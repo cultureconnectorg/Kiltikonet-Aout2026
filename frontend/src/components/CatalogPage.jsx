@@ -218,19 +218,16 @@ export const CatalogPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const fetchParticipants = useCallback(async () => {
+  const fetchParticipants = useCallback(async (attempt = 1) => {
     setIsLoading(true);
     try {
-      // Fetch only catalog-visible AND approved participants
-      const response = await axios.get(`${API}/catalog`);
+      const response = await axios.get(`${API}/catalog`, { timeout: 8000 });
       const catalogParticipants = response.data.participants || [];
       
-      // Filter only approved participants and map with their uploaded photos
       const approvedParticipants = catalogParticipants
         .filter(p => p.status === 'approved')
         .map((p, i) => ({
           ...p,
-          // Use the photo uploaded by the participant (logo_url from Cloudinary)
           image: p.logo_url || null,
           tier: p.tier || 'professional'
         }));
@@ -238,7 +235,6 @@ export const CatalogPage = () => {
       setParticipants(approvedParticipants);
       setFilteredParticipants(approvedParticipants);
       
-      // Fetch sector suggestions
       try {
         const suggestionsRes = await axios.get(`${API_V1}/search/match?limit=5`);
         setSectorKeywords(suggestionsRes.data.suggestions || []);
@@ -246,6 +242,10 @@ export const CatalogPage = () => {
       }
     } catch (error) {
       console.error('Error fetching catalog:', error);
+      if (attempt < 3) {
+        setTimeout(() => fetchParticipants(attempt + 1), 1500 * attempt);
+        return;
+      }
       setParticipants([]);
       setFilteredParticipants([]);
     } finally {

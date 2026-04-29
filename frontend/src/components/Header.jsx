@@ -38,6 +38,7 @@ export const Header = () => {
     { path: '/partnership', label: language === 'fr' ? 'Partenariat' : 'Partnership' },
     { path: '/jetons', label: 'Jetons' },
     { path: '/catalogue', label: 'Catalogue' },
+    { path: '/gouvernance', label: 'Gouvernance' },
     { path: '/appel-2026', label: language === 'fr' ? 'Appel à projet' : 'Call for projects' },
   ];
 

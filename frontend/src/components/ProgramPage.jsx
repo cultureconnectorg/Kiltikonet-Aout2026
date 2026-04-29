@@ -322,6 +322,25 @@ const ProgramPage = () => {
           >
             {intro?.text || '4 jours de rencontres professionnelles au cœur de Fort-de-France, Martinique.'}
           </p>
+
+          {/* Flyer download buttons */}
+          <div 
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8"
+            style={{
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+              transition: prefersReducedMotion 
+                ? 'opacity 0.3s ease-out' 
+                : 'opacity 0.6s ease-out 0.6s, transform 0.6s ease-out 0.6s',
+            }}
+          >
+            <a href="/flyers/CC2026-Programme-FR.pdf" download className="inline-flex items-center gap-2 px-5 py-2.5 bg-terracotta text-paper text-sm font-syne hover:bg-terracotta/90 transition-colors" data-testid="download-flyer-fr">
+              <Download className="w-4 h-4" /> Programme FR (PDF)
+            </a>
+            <a href="/flyers/CC2026-Programme-EN.pdf" download className="inline-flex items-center gap-2 px-5 py-2.5 border border-cream/30 text-cream text-sm font-syne hover:bg-cream/10 transition-colors" data-testid="download-flyer-en">
+              <Download className="w-4 h-4" /> Program EN (PDF)
+            </a>
+          </div>
         </div>
       </section>
 

@@ -8,6 +8,7 @@ from typing import Optional, List
 from datetime import datetime, timezone
 import uuid
 import os
+import asyncio
 import logging
 from motor.motor_asyncio import AsyncIOMotorClient
 
@@ -18,6 +19,39 @@ from services.yousign_service import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+async def _send_signature_email(to_email: str, member_name: str, num_membre: str, signature_link: str):
+    """Send signature invitation email via Resend (best-effort, never blocks)."""
+    try:
+        import resend
+        resend.api_key = os.environ.get("RESEND_API_KEY")
+        sender = os.environ.get("SENDER_EMAIL", "onboarding@resend.dev")
+        html = f"""<!DOCTYPE html><html><body style="margin:0;padding:0;background:#F4F0E8;font-family:Georgia,serif;color:#2D2A26;">
+<div style="max-width:560px;margin:0 auto;padding:32px 24px;background:#FFFFFF;">
+  <div style="border-left:3px solid #9B3A2E;padding:0 0 0 16px;margin-bottom:24px;">
+    <h1 style="font-size:22px;margin:0 0 8px;color:#2D2A26;">Bienvenue, {member_name}</h1>
+    <p style="font-size:13px;color:#5A554E;margin:0;">Numéro de membre : <strong>{num_membre}</strong></p>
+  </div>
+  <p style="font-size:15px;line-height:22px;">Votre candidature à <strong>Kilti Konet</strong> a été acceptée par le Conseil d'Administration. Avant de finaliser votre adhésion, nous vous invitons à signer électroniquement la <strong>Charte d'Engagement</strong> de l'association.</p>
+  <p style="font-size:15px;line-height:22px;">Ce document, signé via <strong>Yousign</strong>, garantit la protection juridique de la communauté et formalise votre engagement aux valeurs de l'association.</p>
+  <div style="text-align:center;margin:32px 0;">
+    <a href="{signature_link}" style="display:inline-block;background:#9B3A2E;color:#F4F0E8;padding:14px 32px;text-decoration:none;font-weight:bold;letter-spacing:1px;text-transform:uppercase;font-size:13px;">Signer la charte</a>
+  </div>
+  <p style="font-size:12px;color:#5A554E;line-height:18px;">Une fois la charte signée, vous pourrez régler votre cotisation d'entrée dans votre espace membre. Lien valable 30 jours.</p>
+  <hr style="border:none;border-top:1px solid #E8E0D0;margin:24px 0;"/>
+  <p style="font-size:11px;color:#A09A8E;text-align:center;">Kilti Konet — Association loi 1901<br/>Cet email a été envoyé suite à l'acceptation de votre candidature.</p>
+</div></body></html>"""
+        await asyncio.to_thread(resend.Emails.send, {
+            "from": sender,
+            "to": [to_email],
+            "subject": f"Votre charte d'engagement Kilti Konet — {num_membre}",
+            "html": html,
+        })
+        logger.info(f"Signature email sent to {to_email}")
+    except Exception as e:
+        logger.error(f"Signature email failed for {to_email}: {e}")
+
 
 router = APIRouter()
 
@@ -142,6 +176,31 @@ async def verify_frek_stub(id: str):
         return {"valid": True, "name": reg.get("full_name", "Membre"), "email": reg.get("email", ""), "frek_id": reg.get("frek_id", id)}
     # Fallback stub for any non-empty input
     return {"valid": True, "name": "Membre", "frek_id": id.strip()}
+
+
+@router.get("/api/gouvernance/stats")
+async def gouvernance_public_stats():
+    """Compteur public temps réel de l'engagement à la gouvernance."""
+    membres_engages = await _col.count_documents({
+        "statut": "accepte",
+        "signature_done": True,
+    })
+    membres_actifs = await _col.count_documents({
+        "statut": "accepte",
+        "niveau": "actif",
+        "signature_done": True,
+    })
+    candidatures_en_cours = await _col.count_documents({
+        "statut": {"$in": ["candidature_soumise", "en_examen"]},
+    })
+    repertoires_declares = await _col.count_documents({"repertoire_declare": True})
+
+    return {
+        "membres_engages": membres_engages,
+        "membres_actifs": membres_actifs,
+        "candidatures_en_cours": candidatures_en_cours,
+        "repertoires_declares": repertoires_declares,
+    }
 
 
 # ═══════════════════════════════════════
@@ -379,6 +438,16 @@ async def initiate_signature(num_membre: str):
             "signature_initiated_at": now,
         }},
     )
+
+    # Best-effort email notification (non-blocking)
+    if doc.get("email") and result.get("signature_link"):
+        asyncio.create_task(_send_signature_email(
+            to_email=doc["email"],
+            member_name=doc.get("raison_sociale", "Membre"),
+            num_membre=num_membre,
+            signature_link=result["signature_link"],
+        ))
+
     return result
 
 

@@ -1,7 +1,91 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Shield, Users, Globe, Scale, BookOpen, Vote } from 'lucide-react';
+import { ArrowRight, Shield, Users, Globe, Scale, BookOpen, Vote, Activity } from 'lucide-react';
 import { Reveal } from '../hooks/useAnimations';
+
+const API = process.env.REACT_APP_BACKEND_URL;
+
+// Animated counter that smoothly transitions to a target value
+const AnimatedNumber = ({ value, duration = 800 }) => {
+  const [display, setDisplay] = useState(value);
+  useEffect(() => {
+    const start = display;
+    const delta = value - start;
+    if (delta === 0) return;
+    const t0 = performance.now();
+    let raf;
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / duration);
+      const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+      setDisplay(Math.round(start + delta * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => raf && cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+  return <span>{display}</span>;
+};
+
+const LiveCounter = () => {
+  const [stats, setStats] = useState(null);
+  const [pulsing, setPulsing] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      try {
+        const r = await fetch(`${API}/api/gouvernance/stats`, { cache: 'no-store' });
+        if (!r.ok) return;
+        const d = await r.json();
+        if (!mounted) return;
+        setStats((prev) => {
+          if (prev && prev.membres_engages !== d.membres_engages) {
+            setPulsing(true);
+            setTimeout(() => mounted && setPulsing(false), 1200);
+          }
+          return d;
+        });
+      } catch {}
+    };
+    load();
+    const id = setInterval(load, 15000); // refresh every 15s
+    return () => { mounted = false; clearInterval(id); };
+  }, []);
+
+  if (!stats) return null;
+
+  return (
+    <section className="py-16 sm:py-20 bg-charcoal" data-testid="live-counter">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-sage/15 border border-sage/30">
+            <span className={`w-2 h-2 rounded-full bg-sage ${pulsing ? 'animate-ping' : 'animate-pulse'}`} />
+            <span className="text-[11px] uppercase tracking-widest font-syne text-sage">En direct</span>
+          </div>
+          <h2 className="font-serif text-2xl sm:text-3xl text-paper mt-4">L'écosystème en mouvement</h2>
+          <p className="text-sm text-paper/40 mt-2">Mis à jour en temps réel</p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+          {[
+            { label: 'Membres engagés', value: stats.membres_engages, icon: Shield, color: 'text-terracotta' },
+            { label: 'Membres actifs', value: stats.membres_actifs, icon: Vote, color: 'text-amber-400' },
+            { label: 'Candidatures en cours', value: stats.candidatures_en_cours, icon: Activity, color: 'text-sage' },
+            { label: 'Répertoires déclarés', value: stats.repertoires_declares, icon: BookOpen, color: 'text-paper/70' },
+          ].map((s, i) => (
+            <div key={i} className="border border-paper/10 p-5 text-center bg-paper/[0.03]">
+              <s.icon className={`w-5 h-5 mx-auto mb-3 ${s.color}`} />
+              <div className="font-mono text-3xl sm:text-4xl font-bold text-paper tabular-nums">
+                <AnimatedNumber value={s.value} />
+              </div>
+              <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-paper/40 mt-2 leading-tight">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const GouvernanceStoryPage = () => {
   const navigate = useNavigate();
@@ -66,6 +150,9 @@ const GouvernanceStoryPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Live Counter */}
+      <LiveCounter />
 
       {/* Structure */}
       <section className="py-20 bg-cream border-y border-lightborder">

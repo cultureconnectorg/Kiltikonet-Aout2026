@@ -18,16 +18,18 @@
 - /gouvernance/repertoire/{num} — Déclaration répertoire avec droits
 
 ### Partie 4 — Storytelling + Signature Yousign ✅ (29/04/2026)
-- /gouvernance — Page storytelling (vision, piliers, structure, processus 4 étapes)
+- /gouvernance — Page storytelling (vision, piliers, **compteur live temps réel**, structure, processus 4 étapes)
 - /gouvernance/adhesion — Cartes de prix (déplacé)
 - Intégration Yousign API v3 (sandbox) :
-  - `POST /api/gouvernance/signature/initiate/{num_membre}` — crée Signature Request, génère charte PDF, ajoute signer, active
+  - `POST /api/gouvernance/signature/initiate/{num_membre}` — crée Signature Request, génère charte PDF, ajoute signer, active + **email Resend automatique au membre**
   - `GET /api/gouvernance/signature/status/{num_membre}` — poll Yousign + DB
-  - `POST /api/gouvernance/signature/webhook` — réception événement signed/done
+  - `POST /api/gouvernance/signature/webhook` — réception événement signed/done (testé : met à jour signature_done, débloque le paiement automatiquement)
+  - `GET /api/gouvernance/stats` — compteur public temps réel (membres engagés, actifs, candidatures, répertoires)
 - Signature OBLIGATOIRE entre acceptation admin et paiement cotisation
 - Step tracker passé à 5 étapes (Candidature → Examen → Signature → Cotisation → Répertoire)
 - Champs DB ajoutés : signature_done, signature_request_id, signature_link, signature_initiated_at, signature_completed_at
 - PDF Charte d'engagement généré dynamiquement via reportlab (7 articles + zone signature)
+- LiveCounter component : refresh 15s, animation ease-out cubic, indicateur "EN DIRECT" pulsant
 
 ### Routes créées
 | Route | Accès |

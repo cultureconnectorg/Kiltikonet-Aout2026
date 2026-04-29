@@ -438,7 +438,7 @@ async def broadcast_event(event_type: str, data: dict = None, source_client: str
     for queue in sse_connections:
         try:
             await queue.put(event_dict)
-        except:
+        except Exception:
             dead_connections.append(queue)
     for dead in dead_connections:
         if dead in sse_connections:
@@ -1802,7 +1802,7 @@ async def update_registration_status(registration_id: str, status_update: Status
     elif status_update.status == "rejected":
         update_data["show_in_catalog"] = False
     
-    result = await db.registrations.update_one(
+    await db.registrations.update_one(
         {"id": registration_id},
         {"$set": update_data}
     )
@@ -2423,7 +2423,8 @@ async def export_registrations_filtered(
 
 @api_router.post("/admin/verify")
 async def verify_admin(admin: AdminVerify):
-    if admin.password == "CC2026admin":
+    admin_pwd = os.environ.get("ADMIN_PASSWORD", "CC2026admin")
+    if admin.password == admin_pwd:
         response = JSONResponse(content={"success": True})
         set_session_cookie(response, {"role": "admin", "email": "admin@kiltikonet.fr"})
         return response
@@ -2606,7 +2607,7 @@ class UpdatePasswordRequest(BaseModel):
 @api_router.post("/workspace/update-password")
 async def update_workspace_password(request: Request, req_body: UpdatePasswordRequest):
     """Update workspace password (founder only)"""
-    session = require_admin(request)
+    require_admin(request)
     # Store password update in database
     password_entry = {
         "workspace_id": req_body.workspace_id,
@@ -2673,7 +2674,7 @@ class ChatManager:
         for ws in self.connections.values():
             try:
                 await ws.send_json(message)
-            except:
+            except Exception:
                 pass
     
     async def broadcast_to_channel(self, channel: str, message: dict, exclude: str = None):
@@ -2682,7 +2683,7 @@ class ChatManager:
                 continue
             try:
                 await ws.send_json({"type": "message", "message": message})
-            except:
+            except Exception:
                 pass
     
     async def send_dm(self, from_id: str, to_id: str, message: dict):
@@ -2690,7 +2691,7 @@ class ChatManager:
         if to_id in self.connections:
             try:
                 await self.connections[to_id].send_json({"type": "message", "message": message})
-            except:
+            except Exception:
                 pass
         # Laurent (founder) voit tous les DMs
         for user_id, info in self.user_info.items():
@@ -2698,7 +2699,7 @@ class ChatManager:
                 if user_id in self.connections:
                     try:
                         await self.connections[user_id].send_json({"type": "message", "message": message})
-                    except:
+                    except Exception:
                         pass
     
     async def broadcast_typing(self, user_id: str, user_name: str, is_typing: bool, channel: str = None, dm_to: str = None):
@@ -2710,7 +2711,7 @@ class ChatManager:
             if dm_to in self.connections:
                 try:
                     await self.connections[dm_to].send_json(message)
-                except:
+                except Exception:
                     pass
         else:
             # Channel typing - broadcast à tous
@@ -2718,7 +2719,7 @@ class ChatManager:
                 if uid != user_id:
                     try:
                         await ws.send_json(message)
-                    except:
+                    except Exception:
                         pass
 
 chat_manager = ChatManager()
@@ -3604,7 +3605,6 @@ async def get_advanced_analytics():
     # Basic counts
     total = len(all_registrations)
     approved = sum(1 for r in all_registrations if r.get("status") == "approved")
-    pending = sum(1 for r in all_registrations if r.get("status") == "pending")
     in_catalog = sum(1 for r in all_registrations if r.get("show_in_catalog") and r.get("status") == "approved")
     
     # Registration timeline (by day)
@@ -5800,7 +5800,7 @@ async def manual_broadcast(event_type: str = Form(...), data: str = Form("{}")):
     """Manual broadcast endpoint for testing or external triggers"""
     try:
         parsed_data = json.loads(data)
-    except:
+    except (json.JSONDecodeError, TypeError):
         parsed_data = {"raw": data}
     
     await broadcast_event(event_type, parsed_data)
@@ -7823,8 +7823,8 @@ async def get_health_stats(request: Request):
         _health_cache["expires"] = now + 60
 
     # Latency
-    recent = [l for _, l in _request_latencies[-100:]] if _request_latencies else [0]
-    avg_latency = round(sum(recent) / len(recent), 1)
+    recent_latencies = [lat for _, lat in _request_latencies[-100:]] if _request_latencies else [0]
+    avg_latency = round(sum(recent_latencies) / len(recent_latencies), 1)
 
     # Error rate
     hour_ago = now - 3600
@@ -10057,9 +10057,7 @@ async def check_and_trigger_alerts(request: Request):
                 details = {"error_count": error_count, "period": "10 minutes"}
         
         elif rule["condition_type"] == "deadline_approaching":
-            # Check tasks with deadlines in threshold hours
-            deadline_threshold = now + timedelta(hours=rule["threshold"])
-            # This would check dashboard tasks - simplified for now
+            # Check tasks with deadlines in threshold hours — simplified for now
             details = {"threshold_hours": rule["threshold"]}
         
         if triggered:

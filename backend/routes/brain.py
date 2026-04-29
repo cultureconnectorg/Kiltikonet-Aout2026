@@ -132,7 +132,6 @@ async def brain_chat(data: dict):
     import os
     message = data.get("message", "")
     session_id = data.get("session_id", "")
-    user_id = data.get("user_id", "")
     if not message:
         return {"reply": "Pose-moi une question !"}
     try:

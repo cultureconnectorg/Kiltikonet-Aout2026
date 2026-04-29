@@ -31,6 +31,7 @@ import { AdminAddParticipantModal, AdminExportModal, AdminEmailHistoryModal } fr
 import AdminHealthPanel from './admin/AdminHealthPanel';
 import AdminTeamPanel from './admin/AdminTeamPanel';
 import AdminSupportPanel from './admin/AdminSupportPanel';
+import AdminGouvernancePanel from './admin/AdminGouvernancePanel';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -765,6 +766,18 @@ export const AdminDashboard = () => {
                 Support
               </button>
               <button
+                onClick={() => setActiveTab('gouvernance')}
+                className={`px-4 py-3 text-sm font-syne border-b-2 transition-colors ${
+                  activeTab === 'gouvernance'
+                    ? 'border-terracotta text-terracotta'
+                    : 'border-transparent text-charcoal/50 hover:text-charcoal'
+                }`}
+                data-testid="tab-gouvernance"
+              >
+                <Shield className="w-4 h-4 inline mr-2" />
+                Gouvernance
+              </button>
+              <button
                 onClick={() => setShowExportModal(true)}
                 className="ml-auto px-4 py-3 text-sm font-syne text-charcoal/50 hover:text-terracotta transition-colors"
                 data-testid="filtered-export-btn"
@@ -814,6 +827,10 @@ export const AdminDashboard = () => {
           ) : activeTab === 'support' ? (
             <div className="flex-1 overflow-auto">
               <AdminSupportPanel />
+            </div>
+          ) : activeTab === 'gouvernance' ? (
+            <div className="flex-1 overflow-auto">
+              <AdminGouvernancePanel />
             </div>
           ) : (
             <div className="flex-1 overflow-auto">

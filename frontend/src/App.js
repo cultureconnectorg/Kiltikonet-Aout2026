@@ -52,6 +52,8 @@ import GouvernancePage from "./components/GouvernancePage";
 import GouvernanceCandidater from "./components/GouvernanceCandidater";
 import GouvernanceConfirmation from "./components/GouvernanceConfirmation";
 import GouvernanceProfil from "./components/GouvernanceProfil";
+import GouvernancePaiement from "./components/GouvernancePaiement";
+import GouvernanceRepertoire from "./components/GouvernanceRepertoire";
 // Workspaces
 import WorkspaceLaurent from "./components/workspaces/WorkspaceLaurent";
 import WorkspaceTwina from "./components/workspaces/WorkspaceTwina";
@@ -376,6 +378,8 @@ function App() {
               <Route path="/gouvernance/candidater" element={<GouvernanceCandidater />} />
               <Route path="/gouvernance/confirmation" element={<GouvernanceConfirmation />} />
               <Route path="/gouvernance/profil" element={<GouvernanceProfil />} />
+              <Route path="/gouvernance/paiement/:numMembre" element={<GouvernancePaiement />} />
+              <Route path="/gouvernance/repertoire/:numMembre" element={<GouvernanceRepertoire />} />
               {/* Dynamic CMS Pages */}
               <Route path="/p/:slug" element={<DynamicPage />} />
                 </Routes>

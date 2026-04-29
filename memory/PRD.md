@@ -1,38 +1,38 @@
-# PRD — Kiltikonet CC2026 — LAUNCH READY
+# PRD — Kiltikonet CC2026
 
-## Vision
-Plateforme evenementielle culturelle souveraine pour Culture Connect 2026, Martinique.
-Chaque utilisateur commence a zero. Le contenu vit et evolue avec la communaute.
+## GOUVERNANCE KILTI KONET — COMPLET
 
-## LAUNCH CHECKLIST ✅
-- [x] Stripe payments (partnership, accreditation, ticket, jetons)
-- [x] Auth (email magic link, Google, GitHub, WebAuthn silent)
-- [x] Feed Instagram + Reels (real content only, no ghosts)
-- [x] Builder (publish to feed with images)
-- [x] Wallet (KT tokens)
-- [x] Shop (packs + products)
-- [x] FAQ (7 seedees, admin editable)
-- [x] Support tickets (public form + admin panel)
-- [x] Tutorial first login (8 steps tooltips)
-- [x] Geolocation (reverse geocoding on posts + globe)
-- [x] i18n (FR, EN, ES, PT, KW)
-- [x] Analytics tracker (page views, clicks, conversions, scroll depth)
-- [x] FREK silent authority (hidden from UI)
-- [x] Face ID / Touch ID silent auto-trigger
-- [x] Production indexes (40+ indexes for 100k+ users)
-- [x] Ghost data purged (0 ghost posts, 0 ghost profiles)
-- [x] Rate limiter production (500 req/min/IP)
-- [x] TTL indexes for auto-cleanup (logs 30d, access 90d)
-- [x] Empty states for new users (feed, inbox, reels)
-- [x] Email: contact@kiltikonet.fr everywhere
+### Partie 1 — Data Model ✅
+- Collection `membre_gouvernance` (21 champs, 7 indexes)
+- Endpoints CRUD backend (routes/gouvernance.py)
 
-## Architecture
-- React 19 + Tailwind + motion/react
-- FastAPI + MongoDB (motor async)
-- Stripe Checkout (live keys)
-- Nominatim reverse geocoding
-- Native analytics (no 3rd party)
-- PWA with splash video
+### Partie 2 — Pages Frontend ✅
+- /gouvernance — 2 cartes (Associe 50€ / Actif 150€+30€/an)
+- /gouvernance/candidater — 4 étapes (FREK → Profil → Répertoire 3-20 → Documents)
+- /gouvernance/confirmation — Référence GOV-XXXXXXXX
+- /gouvernance/profil — Profil membre, step tracker, cotisation, projets
+
+### Partie 3 — Admin + Stripe + Répertoire ✅
+- /admin/gouvernance — Onglet AdminDashboard (candidatures, filtres, détail, accepter/refuser)
+- /gouvernance/paiement/{num} — Stripe PaymentIntent (50€ Associé / 150€ Actif)
+- /gouvernance/repertoire/{num} — Déclaration répertoire avec droits
+
+### Routes créées
+| Route | Accès |
+|-------|-------|
+| /gouvernance | Public |
+| /gouvernance/candidater | Public |
+| /gouvernance/profil | Membre authentifié |
+| /gouvernance/paiement/{num} | Membre (statut=accepte) |
+| /gouvernance/repertoire/{num} | Membre (cotisation payée) |
+| /admin/gouvernance | admin_kiltikonet |
+
+### Existant vérifié intact
+- 4 packs CC2026 ✅
+- FREK wizard ✅
+- Stripe ✅
+- Feed ✅
+- Programme ✅
 
 ## Credentials
 - Admin: cultureconnectorg@gmail.com / code 000000

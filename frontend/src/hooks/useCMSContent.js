@@ -60,14 +60,14 @@ export const useCMSProgram = () => {
         const res = await axios.get(`${API}/api/public/content/program`);
         const data = res.data || {};
         
-        // Sanitize: replace legacy "Tropiques Atrium" with "Teyat Otonom Mawon (TOM)"
+        // Sanitize: replace legacy "Tropiques Atrium" with "Grand Carbet du Parc culturel Aimé Césaire"
         let days = data.official_program?.days || [];
         if (days.length > 0) {
           const raw = JSON.stringify(days);
           if (raw.includes('Atrium') || raw.includes('atrium')) {
             days = JSON.parse(
-              raw.replace(/Tropiques?\s*Atrium/gi, 'Teyat Otonom Mawon (TOM)')
-                 .replace(/Atrium/gi, 'TOM')
+              raw.replace(/Tropiques?\s*Atrium/gi, 'Grand Carbet du Parc culturel Aimé Césaire')
+                 .replace(/Atrium/gi, 'Grand Carbet Aimé Césaire')
             );
           }
         }

@@ -350,7 +350,7 @@ const RecommendationsDashboard = () => {
         <div className="space-y-3">
           <div className="flex items-center gap-2 mb-2">
             <MapPin size={12} className="text-[#A65D47]" />
-            <span className="text-xs text-[#F4F1EA] font-bold">La Savane, Fort-de-France — 20-23 Mai 2026</span>
+            <span className="text-xs text-[#F4F1EA] font-bold">Grand Carbet du Parc culturel Aimé Césaire, Fort-de-France — 20-23 Mai 2026</span>
           </div>
           {['2026-05-20', '2026-05-21', '2026-05-22', '2026-05-23'].map(date => {
             const dayEvents = allEvents.filter(e => e.date === date);

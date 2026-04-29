@@ -56,7 +56,7 @@ const MediaSection = () => {
   const categories = [
     { id: 'hero', label: 'Bannière Principale', desc: 'Image hero de la page d\'accueil' },
     { id: 'logo', label: 'Logo Culture Connect', desc: 'Logo officiel de l\'événement' },
-    { id: 'venue', label: 'Photos des Sites', desc: 'La Savane, Schoelcher, TOM' },
+    { id: 'venue', label: 'Photos des Sites', desc: 'Grand Carbet Aimé Césaire, Schoelcher, TOM' },
     { id: 'gallery', label: 'Galerie Ambiance', desc: 'Photos de l\'événement' }
   ];
 
@@ -760,7 +760,7 @@ const ProgramEditor = ({ content, setContent, saveSection, saving, loadContent }
       id: 'day2',
       date: '2026-05-21',
       label: 'DAY 2 — Mercredi 21 Mai 2026',
-      site: 'Bibliothèque Schoelcher + Teyat Otonom Mawon',
+      site: 'Bibliothèque Schoelcher + Grand Carbet Aimé Césaire',
       is_highlight: false,
       highlight_color: null,
       slots: []
@@ -769,7 +769,7 @@ const ProgramEditor = ({ content, setContent, saveSection, saving, loadContent }
       id: 'day3',
       date: '2026-05-22',
       label: 'DAY 3 — Jeudi 22 Mai 2026 (JOURNÉE ABOLITION)',
-      site: 'Teyat Otonom Mawon + La Savane',
+      site: 'Grand Carbet Aimé Césaire + Grand Carbet Aimé Césaire',
       is_highlight: true,
       highlight_color: '#A65D47',
       slots: []
@@ -778,7 +778,7 @@ const ProgramEditor = ({ content, setContent, saveSection, saving, loadContent }
       id: 'day4',
       date: '2026-05-23',
       label: 'DAY 4 — Vendredi 23 Mai 2026',
-      site: 'Teyat Otonom Mawon',
+      site: 'Grand Carbet Aimé Césaire',
       is_highlight: false,
       highlight_color: null,
       slots: []

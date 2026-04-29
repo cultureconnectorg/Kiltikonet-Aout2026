@@ -192,7 +192,7 @@ const ProgramPage = () => {
     {
       id: 'jour2',
       label: 'Mercredi 21 Mai — Débats Industrie',
-      site: 'Teyat Otonom Mawon (TOM), Fort-de-France',
+      site: 'Grand Carbet du Parc culturel Aimé Césaire, Fort-de-France',
       is_highlight: false,
       slots: [
         { time: '09:00', title: 'Conférences : Musique & Digital', description: 'Distribution, streaming et monétisation en Caraïbe' },
@@ -204,14 +204,14 @@ const ProgramPage = () => {
     {
       id: 'jour3',
       label: 'Jeudi 22 Mai — Marché Culturel & Concerts',
-      site: 'Parc de La Savane, Fort-de-France',
+      site: 'Grand Carbet du Parc culturel Aimé Césaire, Fort-de-France',
       is_highlight: true,
       slots: [
         { time: '09:00', title: 'Ouverture du Marché Culturel', description: '40-60 stands accrédités' },
         { time: '10:00', title: 'Scène Démo Live', description: 'Performances artistiques en continu' },
         { time: '12:00', title: 'Espace Gastronomie Caribéenne', description: 'Food court avec jetons CC' },
         { time: '14:00', title: 'Rencontres B2B VIP', description: 'Sessions de networking ciblées' },
-        { time: '17:00', title: 'Concerts — Scène Principale', description: 'Soirée musicale au cœur de La Savane' },
+        { time: '17:00', title: 'Concerts — Scène Principale', description: 'Soirée musicale au Grand Carbet Aimé Césaire' },
       ]
     },
     {

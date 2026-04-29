@@ -132,7 +132,7 @@ function BadgeValidation({ badgeId }) {
                 <div className="mt-4 rounded-lg p-3" style={{ background: 'rgba(0,0,0,0.2)' }}>
                   <div className="text-xs uppercase tracking-wider mb-2" style={{ color: C.gold }}>Zones d'acces</div>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Parc La Savane', 'Teyat Otonom Mawon', 'Espace Pro'].map(z => (
+                    {['Grand Carbet Aimé Césaire', 'Grand Carbet Aimé Césaire', 'Espace Pro'].map(z => (
                       <span key={z} className="px-2 py-1 rounded-full text-xs" style={{ background: `${C.gold}15`, border: `1px solid ${C.gold}30`, color: C.gold }}>{z}</span>
                     ))}
                   </div>
@@ -142,7 +142,7 @@ function BadgeValidation({ badgeId }) {
 
             {/* Footer */}
             <div className="p-3 text-center" style={{ background: 'rgba(0,0,0,0.2)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-              <div className="text-xs font-bold tracking-wider" style={{ color: C.terra }}>22 MAI 2026 - LA SAVANE - FORT-DE-FRANCE</div>
+              <div className="text-xs font-bold tracking-wider" style={{ color: C.terra }}>22 MAI 2026 - GRAND CARBET AIMÉ CÉSAIRE - FORT-DE-FRANCE</div>
               <div className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.3)' }}>kiltikonet.fr</div>
             </div>
           </div>

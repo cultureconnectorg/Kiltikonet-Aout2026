@@ -88,10 +88,10 @@ export const LandingPage = () => {
   };
   
   const programDays = [
-    { day: 'Mar. 20 Mai', title: language === 'fr' ? 'Accueil & Accréditations' : 'Welcome', location: 'Bibliothèque Schœlcher' },
-    { day: 'Mer. 21 Mai', title: language === 'fr' ? 'Débats Industrie' : 'Industry Debates', location: 'TOM' },
-    { day: 'Jeu. 22 Mai', title: language === 'fr' ? 'Marché Culturel' : 'Cultural Market', location: 'La Savane', highlight: true },
-    { day: 'Ven. 23 Mai', title: language === 'fr' ? 'Brunch & Clôture' : 'Brunch & Closing', location: 'Fort-de-France' }
+    { day: 'Mer. 20 Mai', title: language === 'fr' ? 'Accueil & Accréditations' : 'Welcome & Accreditation', location: 'Bibliothèque Schœlcher' },
+    { day: 'Jeu. 21 Mai', title: language === 'fr' ? 'Workshop & Rencontres' : 'Workshop & Meetings', location: 'Grand Carbet Aimé Césaire' },
+    { day: 'Ven. 22 Mai', title: language === 'fr' ? 'Sélébrasyon 22 Mé' : 'Celebration 22 May', location: 'Grand Carbet Aimé Césaire', highlight: true },
+    { day: 'Sam. 23 Mai', title: language === 'fr' ? 'Brunch & Bilan' : 'Brunch & Review', location: 'Grand Carbet Aimé Césaire' }
   ];
   
   const partners = [

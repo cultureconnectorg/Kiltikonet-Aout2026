@@ -117,11 +117,11 @@ Partenaire Or/Silver/Bronze: Selon niveau de sponsoring`
       {
         title: 'Zones d\'accès par type',
         content: `🔓 ACCÈS GÉNÉRAL (tous badges):
-- Parc La Savane
+- Grand Carbet Aimé Césaire
 - Zone publique
 
 🔐 ESPACE PRO (VIP, Pro, Institutionnel, Presse):
-- Teyat Otonom Mawon (TOM)
+- Grand Carbet Aimé Césaire (TOM)
 - Salon business
 
 🎭 BACKSTAGE (Artiste, Staff, Régie):
@@ -435,11 +435,11 @@ SI PROBLÈME DE SCAN:
         title: 'Qui fait quoi',
         content: `RÉPARTITION DES POSTES:
 
-📍 ACCUEIL PRINCIPAL (Parc La Savane)
+📍 ACCUEIL PRINCIPAL (Grand Carbet Aimé Césaire)
    Équipe: Bénévoles + 1 régisseur
    Rôle: Scan badges, orientation
 
-📍 ESPACE PRO (Teyat Otonom Mawon)
+📍 ESPACE PRO (Grand Carbet Aimé Césaire)
    Équipe: Alirio + 1 assistant
    Rôle: Accueil pros, badges VIP
 
@@ -496,7 +496,7 @@ Pompiers: 18
 Police: 17
 
 📍 ADRESSE ÉVÉNEMENT:
-Parc La Savane
+Grand Carbet Aimé Césaire
 Fort-de-France, Martinique`
       }
     ]

@@ -232,7 +232,7 @@ export const ConfirmationScreen = () => {
             <div className="p-3 rounded-xl" style={{ background: '#F4F0E8' }}>
               <p className="text-xs uppercase tracking-wider mb-2" style={{ color: '#C9A84C' }}>Zones d'acces</p>
               <div className="flex flex-wrap gap-1.5">
-                {['Parc La Savane', 'Teyat Otonom Mawon', 'Espace Pro', 'Marche Culturel'].map(z => (
+                {['Grand Carbet Aimé Césaire', 'Grand Carbet Aimé Césaire', 'Espace Pro', 'Marche Culturel'].map(z => (
                   <span key={z} className="px-2 py-0.5 rounded-full text-xs" style={{ background: '#fff', border: '1px solid #E8E0D0', color: '#1A1510' }}>
                     {z}
                   </span>

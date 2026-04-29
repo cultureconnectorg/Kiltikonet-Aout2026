@@ -134,7 +134,7 @@ const ConcertPage = () => {
           >
             <Music className="w-4 h-4" style={{ color: '#A65D47' }} />
             <span className="text-sm font-medium" style={{ color: '#A65D47' }}>
-              22 Mai 2026 — Parc de La Savane
+              22 Mai 2026 — Grand Carbet du Parc culturel Aimé Césaire
             </span>
           </div>
 
@@ -159,7 +159,7 @@ const ConcertPage = () => {
               transition: 'opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s',
             }}
           >
-            Découvrez les artistes qui feront vibrer le Parc de La Savane lors de Culture Connect 2026.
+            Découvrez les artistes qui feront vibrer le Grand Carbet du Parc culturel Aimé Césaire lors de Culture Connect 2026.
           </p>
         </div>
       </section>
@@ -169,11 +169,11 @@ const ConcertPage = () => {
         <div className="max-w-6xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-6 text-sm" style={{ color: '#6B6560' }}>
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4" style={{ color: '#C9A84C' }} />
-            <span>Jeudi 22 Mai 2026</span>
+            <span>Vendredi 22 Mai 2026</span>
           </div>
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4" style={{ color: '#A65D47' }} />
-            <span>Parc de La Savane, Fort-de-France</span>
+            <span>Grand Carbet du Parc culturel Aimé Césaire, Fort-de-France</span>
           </div>
           <div className="flex items-center gap-2">
             <Music className="w-4 h-4" style={{ color: '#C9A84C' }} />
@@ -260,7 +260,7 @@ const ConcertPage = () => {
                 animation: 'fadeSlideUp 1s ease-out 0.6s both',
               }}
             >
-              Les artistes qui feront vibrer la Savane seront révélés très prochainement.
+              Les artistes qui feront vibrer le Grand Carbet seront révélés très prochainement.
               Restez connectés !
             </p>
 
@@ -302,7 +302,7 @@ const ConcertPage = () => {
             >
               <div className="w-2 h-2 rounded-full" style={{ background: '#A65D47', animation: 'pulse 1.5s ease-in-out infinite' }} />
               <span className="text-sm font-medium" style={{ color: '#A65D47' }}>
-                22 Mai 2026 — Parc de La Savane, Fort-de-France
+                22 Mai 2026 — Grand Carbet du Parc culturel Aimé Césaire, Fort-de-France
               </span>
             </div>
           </div>

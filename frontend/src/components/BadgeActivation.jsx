@@ -63,7 +63,7 @@ export default function BadgeActivation() {
               <div className="text-center p-3 rounded-lg" style={{ background: C.bg }}>
                 <p className="text-sm font-medium" style={{ color: C.terra }}>{badge.prenom} {badge.nom}</p>
               </div>
-              <p className="text-center text-xs" style={{ color: C.muted }}>Présentez ce badge le 22 Mai 2026 au Parc de La Savane</p>
+              <p className="text-center text-xs" style={{ color: C.muted }}>Présentez ce badge le 22 Mai 2026 au Grand Carbet du Parc culturel Aimé Césaire</p>
             </div>
           </div>
         )}

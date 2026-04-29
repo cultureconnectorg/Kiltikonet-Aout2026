@@ -268,7 +268,7 @@ const AppelPage = () => {
               transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
             }}
           >
-            Chimin Savann &middot; La Savane, Fort-de-France &middot; 20 - 23 mai 2026
+            Chimin Savann &middot; Grand Carbet du Parc culturel Aimé Césaire, Fort-de-France &middot; 20 - 23 mai 2026
           </p>
 
           {/* Countdown */}

@@ -217,14 +217,14 @@ export const PricingPage = () => {
         'Accès aux conférences',
         'Badge accréditation officiel',
         'Networking sessions',
-        'Accès à la Savane (22 Mai)',
+        'Accès au Concert (22 Mai)',
         'Documentation digitale',
         'Certificat de participation'
       ] : [
         'Conference access',
         'Official accreditation badge',
         'Networking sessions',
-        'La Savane access (May 22)',
+        'Concert access (May 22)',
         'Digital documentation',
         'Participation certificate'
       ]
@@ -393,7 +393,7 @@ export const PricingPage = () => {
             <h2 className="font-serif text-3xl text-cream mb-3">
               {language === 'fr' ? 'Venez vivre l\'expérience' : 'Come live the experience'}
             </h2>
-            <p className="text-cream/60 text-sm">20-23 Mai 2026 · Parc de La Savane, Fort-de-France</p>
+            <p className="text-cream/60 text-sm">20-23 Mai 2026 · Grand Carbet Aimé Césaire, Fort-de-France</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -403,8 +403,8 @@ export const PricingPage = () => {
                 name: language === 'fr' ? 'Billet Général' : 'General Ticket',
                 price: 45,
                 access: language === 'fr'
-                  ? ['Entrée générale 4 jours', 'Concerts & spectacles', 'Marché culturel', 'Ateliers ouverts', 'Accès La Savane (22 Mai)']
-                  : ['4-day general entry', 'Concerts & shows', 'Cultural market', 'Open workshops', 'La Savane access (May 22)'],
+                  ? ['Entrée générale 4 jours', 'Concerts & spectacles', 'Marché culturel', 'Ateliers ouverts', 'Accès Concert (22 Mai)']
+                  : ['4-day general entry', 'Concerts & shows', 'Cultural market', 'Open workshops', 'Concert access (May 22)'],
               },
               {
                 id: 'vip',

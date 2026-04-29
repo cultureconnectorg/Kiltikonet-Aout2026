@@ -768,7 +768,7 @@ const FeedLayout = ({ session, profile, connections, onRefresh, jetonsBalance, c
             <div className="flex items-center justify-between flex-wrap gap-3 relative">
               <div>
                 <h2 style={{ fontFamily: "'Newsreader', serif", fontStyle: 'italic', fontSize: 18, fontWeight: 400, color: '#e5e2e3', letterSpacing: '-0.01em' }}>Culture Connect 2026</h2>
-                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 11, color: '#72727a', marginTop: 4 }}>20–23 Mai · Parc de La Savane · Fort-de-France</p>
+                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 11, color: '#72727a', marginTop: 4 }}>20–23 Mai · Grand Carbet du Parc culturel Aimé Césaire · Fort-de-France</p>
               </div>
               <div className="kn-countdown-pulse px-4 py-2 rounded-xl" style={{ background: 'rgba(232,213,160,0.06)' }}>
                 <span style={{ fontFamily: "'Newsreader', serif", fontStyle: 'italic', fontSize: 28, fontWeight: 400, color: '#E8D5A0' }}>J-{getDaysUntil()}</span>

@@ -67,7 +67,7 @@ const WorkspaceGwen = () => {
     { id: 4, label: 'Dossier SACEM déposé', checked: true, category: 'legal', date: '28/02/2026' },
     { id: 5, label: 'Dossier GUSO déposé', checked: false, category: 'legal', date: null },
     { id: 6, label: 'Assurance RC événementielle', checked: false, category: 'admin', date: null },
-    { id: 7, label: 'Autorisation La Savane', checked: false, category: 'admin', date: null },
+    { id: 7, label: 'Autorisation Grand Carbet', checked: false, category: 'admin', date: null },
     { id: 8, label: 'Contrat société sécurité CNAPS', checked: false, category: 'securite', date: null },
     { id: 9, label: 'Plan évacuation validé', checked: false, category: 'securite', date: null },
     { id: 10, label: 'Sono / Backline confirmé', checked: false, category: 'technique', date: null }
@@ -359,7 +359,7 @@ const WorkspaceGwen = () => {
             </div>
             <div className="text-left sm:text-right">
               <div className="text-xl sm:text-3xl font-bold" style={{ color: COLORS.gold }}>22 MAI 2026</div>
-              <div className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>La Savane - Fort-de-France</div>
+              <div className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>Grand Carbet Aimé Césaire - Fort-de-France</div>
             </div>
           </div>
           <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-3 sm:gap-6">

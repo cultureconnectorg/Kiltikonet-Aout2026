@@ -98,7 +98,7 @@ const TASKS = [
   {id:'s1-g5', week:'s1',pole:'gwen',       urgent:false, text:'Contacter Kathy-Liana Bravo — cadrer partenariat Labo des Histoires', sub:'Rôle exact 22 mai · convention à préparer'},
   {id:'s1-g6', week:'s1',pole:'gwen',       urgent:false, text:'Lancer appel d\'offres prestataire son/lumière — 3 devis minimum'},
   {id:'s1-g7', week:'s1',pole:'gwen',       urgent:false, text:'Contacter Nuxuno Xän · Doudou Style · 3TTMan — showcase parvis'},
-  {id:'s1-ad1',week:'s1',pole:'admin',      urgent:true,  text:'Contacter Mairie Fort-de-France — autorisation Parc de La Savane', sub:'Délais longs · À LANCER MAINTENANT'},
+  {id:'s1-ad1',week:'s1',pole:'admin',      urgent:true,  text:'Contacter Mairie Fort-de-France — autorisation Grand Carbet Aimé Césaire', sub:'Délais longs · À LANCER MAINTENANT'},
   {id:'s1-bu1',week:'s1',pole:'business',   urgent:false, text:'Dresser liste 20 exposants cibles Village Business'},
   {id:'s1-di1',week:'s1',pole:'digital',    urgent:false, text:'kiltikonet.fr — vérifier page CC2026 à jour'},
   {id:'s2-ju1',week:'s2',pole:'juridique',  urgent:true,  text:'Créer compte INPI personne morale — depot.inpi.fr'},
@@ -135,10 +135,10 @@ const TASKS = [
   {id:'s4-g2', week:'s4',pole:'gwen',       urgent:false, text:'Signer contrat prestataire son/lumière + acompte 30%'},
   {id:'s4-g3', week:'s4',pole:'gwen',       urgent:false, text:'Signer convention CFA Audiovisuel Martinique'},
   {id:'s4-g4', week:'s4',pole:'gwen',       urgent:false, text:'Confirmer Tambou No Kannal — contrat + rider'},
-  {id:'s4-g5', week:'s4',pole:'gwen',       urgent:false, text:'Plan de masse La Savane — scène + parvis + Village Business'},
+  {id:'s4-g5', week:'s4',pole:'gwen',       urgent:false, text:'Plan de masse Grand Carbet — scène + parvis + Village Business'},
   {id:'s4-bu1',week:'s4',pole:'business',   urgent:false, text:'Village Business — 15 stands confirmés · contrats signés'},
   {id:'s5-f1', week:'s5',pole:'fondateur',  urgent:true,  text:'GO / NO-GO financier avant départ Martinique', sub:'Budget sécurisé 40k€ minimum'},
-  {id:'s5-ad1',week:'s5',pole:'admin',      urgent:true,  text:'Convention Parc de La Savane SIGNÉE avant départ'},
+  {id:'s5-ad1',week:'s5',pole:'admin',      urgent:true,  text:'Convention Grand Carbet Aimé Césaire SIGNÉE avant départ'},
   {id:'s5-ad2',week:'s5',pole:'admin',      urgent:false, text:'Vérifier couverture assurance événement'},
   {id:'s5-co1',week:'s5',pole:'comm',       urgent:false, text:'Envoyer dossier presse — JTV · TRACE · Fusion B.Black · SNEP'},
   {id:'s5-co2',week:'s5',pole:'comm',       urgent:false, text:'Annonces lineup — 1 artiste confirmé par jour × 5 jours'},
@@ -151,7 +151,7 @@ const TASKS = [
   {id:'s6-f1', week:'s6',pole:'fondateur',  urgent:false, text:'RDV physique CTM — Mme Monrose — signer convention'},
   {id:'s6-f2', week:'s6',pole:'fondateur',  urgent:false, text:'RDV DAC Martinique — Yomé Toumson'},
   {id:'s6-g1', week:'s6',pole:'gwen',       urgent:true,  text:'Réunion coordination sur place — point complet production'},
-  {id:'s6-g2', week:'s6',pole:'gwen',       urgent:false, text:'Visite Parc de La Savane avec prestataire — repérage terrain'},
+  {id:'s6-g2', week:'s6',pole:'gwen',       urgent:false, text:'Visite Grand Carbet Aimé Césaire avec prestataire — repérage terrain'},
   {id:'s6-g3', week:'s6',pole:'gwen',       urgent:false, text:'Réunion Kathy-Liana Bravo — convention signée + set 22 mai défini'},
   {id:'s6-fa1',week:'s6',pole:'fabrice',    urgent:false, text:'Briefing régie complète — son · lumière · vidéo · captation'},
   {id:'s6-co1',week:'s6',pole:'comm',       urgent:false, text:'Réception imprimés Twina — vérification + distribution'},
@@ -165,7 +165,7 @@ const TASKS = [
   {id:'s7-ad1',week:'s7',pole:'admin',      urgent:false, text:'Plan sécurité déposé Préfecture'},
   {id:'s7-co1',week:'s7',pole:'comm',       urgent:false, text:'Campagne J–30 — stories quotidiennes · interviews artistes'},
   {id:'s7-bu1',week:'s7',pole:'business',   urgent:false, text:'Village Business final — tous stands confirmés · signalétique'},
-  {id:'s8-g1', week:'s8',pole:'gwen',       urgent:true,  text:'Début montage scène principale — La Savane', sub:'J–15 recommandé pour grande jauge outdoor'},
+  {id:'s8-g1', week:'s8',pole:'gwen',       urgent:true,  text:'Début montage scène principale — Grand Carbet', sub:'J–15 recommandé pour grande jauge outdoor'},
   {id:'s8-g2', week:'s8',pole:'gwen',       urgent:false, text:'Installation Village Business — barnums + stands + signalétique'},
   {id:'s8-g3', week:'s8',pole:'gwen',       urgent:false, text:'Confirmations arrivées artistes · hôtels prêts'},
   {id:'s8-fa1',week:'s8',pole:'fabrice',    urgent:false, text:'Installation régie son/lumière scène principale'},
@@ -729,8 +729,8 @@ const DashboardCC2026 = ({ workspaceId = 'CC2026admin' }) => {
             ★ CHIMIN SAVANN ★
           </div>
           <div className="text-[10px] sm:text-sm" style={{ color: COLORS.textMuted }}>
-            <span className="sm:hidden">6 000 spectateurs · La Savane</span>
-            <span className="hidden sm:inline">6 000 spectateurs · Parc de La Savane · Commémoration Abolition de l'Esclavage</span>
+            <span className="sm:hidden">6 000 spectateurs · Grand Carbet</span>
+            <span className="hidden sm:inline">6 000 spectateurs · Grand Carbet Aimé Césaire · Commémoration Abolition de l'Esclavage</span>
           </div>
         </div>
         )}

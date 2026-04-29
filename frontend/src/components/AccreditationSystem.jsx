@@ -1209,7 +1209,7 @@ const BadgeGeneratorTab = ({
               DES INDUSTRIES CULTURELLES AFRO-DESCENDANTES
             </div>
             <div className="mt-3 text-xs font-bold" style={{ color: COLORS.gold, fontFamily: "'Syne', sans-serif" }}>
-              22 MAI 2026 - LA SAVANE - FORT-DE-FRANCE
+              22 MAI 2026 - GRAND CARBET AIMÉ CÉSAIRE - FORT-DE-FRANCE
             </div>
           </div>
 

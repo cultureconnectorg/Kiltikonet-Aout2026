@@ -60,14 +60,19 @@ export const useCMSProgram = () => {
         const res = await axios.get(`${API}/api/public/content/program`, { timeout: 8000 });
         const data = res.data || {};
         
-        // Sanitize: replace legacy "Tropiques Atrium" with "Grand Carbet du Parc culturel Aimé Césaire"
+        // Sanitize: replace legacy venue names
         let days = data.official_program?.days || [];
         if (days.length > 0) {
           const raw = JSON.stringify(days);
-          if (raw.includes('Atrium') || raw.includes('atrium')) {
+          if (raw.includes('Atrium') || raw.includes('atrium') || raw.includes('TOM') || raw.includes('Teyat') || raw.includes('Mawon') || raw.includes('Savane')) {
             days = JSON.parse(
               raw.replace(/Tropiques?\s*Atrium/gi, 'Grand Carbet du Parc culturel Aimé Césaire')
+                 .replace(/Teyat\s*Otonom\s*Mawon\s*\(TOM\)/gi, 'Grand Carbet du Parc culturel Aimé Césaire')
+                 .replace(/Teyat\s*Otonom\s*Mawon/gi, 'Grand Carbet du Parc culturel Aimé Césaire')
+                 .replace(/\bTOM\b/g, 'Grand Carbet')
                  .replace(/Atrium/gi, 'Grand Carbet Aimé Césaire')
+                 .replace(/Parc\s*de\s*La\s*Savane/gi, 'Grand Carbet du Parc culturel Aimé Césaire')
+                 .replace(/La\s*Savane/gi, 'Grand Carbet Aimé Césaire')
             );
           }
         }

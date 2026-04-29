@@ -48,6 +48,10 @@ import AppelPage from "./components/AppelPage";
 import AccessibilitePage from "./components/AccessibilitePage";
 import FAQPage from "./components/FAQPage";
 import SupportPage from "./components/SupportPage";
+import GouvernancePage from "./components/GouvernancePage";
+import GouvernanceCandidater from "./components/GouvernanceCandidater";
+import GouvernanceConfirmation from "./components/GouvernanceConfirmation";
+import GouvernanceProfil from "./components/GouvernanceProfil";
 // Workspaces
 import WorkspaceLaurent from "./components/workspaces/WorkspaceLaurent";
 import WorkspaceTwina from "./components/workspaces/WorkspaceTwina";
@@ -367,6 +371,11 @@ function App() {
               <Route path="/aide" element={<FAQPage />} />
               <Route path="/support" element={<SupportPage />} />
               <Route path="/contact" element={<SupportPage />} />
+              {/* Gouvernance */}
+              <Route path="/gouvernance" element={<GouvernancePage />} />
+              <Route path="/gouvernance/candidater" element={<GouvernanceCandidater />} />
+              <Route path="/gouvernance/confirmation" element={<GouvernanceConfirmation />} />
+              <Route path="/gouvernance/profil" element={<GouvernanceProfil />} />
               {/* Dynamic CMS Pages */}
               <Route path="/p/:slug" element={<DynamicPage />} />
                 </Routes>

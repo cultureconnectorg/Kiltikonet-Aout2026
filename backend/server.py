@@ -4155,6 +4155,10 @@ app.include_router(site_analytics_router)
 from routes.support import router as support_router, seed_default_faq
 app.include_router(support_router)
 
+# Gouvernance Kilti Konet
+from routes.gouvernance import router as gouvernance_router, create_gouvernance_indexes
+app.include_router(gouvernance_router)
+
 from routes.doctrine import router as doctrine_router, seed_doctrine as _doctrine_seed, backfill_actor_roles as _doctrine_backfill, require_permission as _require_perm
 app.include_router(doctrine_router)
 
@@ -5591,6 +5595,13 @@ async def create_indexes():
             await seed_default_faq()
         except Exception as faq_err:
             logger.warning(f"FAQ seed deferred: {faq_err}")
+
+        # Gouvernance indexes
+        try:
+            await create_gouvernance_indexes()
+            logger.info("Gouvernance indexes created")
+        except Exception as gov_err:
+            logger.warning(f"Gouvernance indexes deferred: {gov_err}")
 
     except Exception as e:
         logger.error(f"⚠️ Error creating indexes: {str(e)}")

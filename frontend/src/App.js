@@ -48,6 +48,7 @@ import AppelPage from "./components/AppelPage";
 import AccessibilitePage from "./components/AccessibilitePage";
 import FAQPage from "./components/FAQPage";
 import SupportPage from "./components/SupportPage";
+import GouvernanceStoryPage from "./components/GouvernanceStoryPage";
 import GouvernancePage from "./components/GouvernancePage";
 import GouvernanceCandidater from "./components/GouvernanceCandidater";
 import GouvernanceConfirmation from "./components/GouvernanceConfirmation";
@@ -374,7 +375,8 @@ function App() {
               <Route path="/support" element={<SupportPage />} />
               <Route path="/contact" element={<SupportPage />} />
               {/* Gouvernance */}
-              <Route path="/gouvernance" element={<GouvernancePage />} />
+              <Route path="/gouvernance" element={<GouvernanceStoryPage />} />
+              <Route path="/gouvernance/adhesion" element={<GouvernancePage />} />
               <Route path="/gouvernance/candidater" element={<GouvernanceCandidater />} />
               <Route path="/gouvernance/confirmation" element={<GouvernanceConfirmation />} />
               <Route path="/gouvernance/profil" element={<GouvernanceProfil />} />

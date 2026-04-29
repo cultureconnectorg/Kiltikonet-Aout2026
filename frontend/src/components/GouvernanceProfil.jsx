@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ShieldCheck, Clock, CheckCircle, FileText, CreditCard, BookOpen, AlertCircle, Loader2 } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, Clock, CheckCircle, FileText, CreditCard, BookOpen, AlertCircle, Loader2, PenLine, ExternalLink } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { toast } from 'sonner';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
-const STEP_LABELS = ['Candidature soumise', 'Examen CA', 'Adhésion & paiement', 'Répertoire déclaré'];
+const STEP_LABELS = ['Candidature', 'Examen CA', 'Signature charte', 'Cotisation', 'Répertoire'];
 
 const StatusBadge = ({ statut }) => {
   const map = {
@@ -22,8 +22,9 @@ const StatusBadge = ({ statut }) => {
 
 const StepTracker = ({ membre }) => {
   const getActiveStep = () => {
-    if (membre.repertoire_declare) return 4;
-    if (membre.cotisation_entree_payee) return 3;
+    if (membre.repertoire_declare) return 5;
+    if (membre.cotisation_entree_payee) return 4;
+    if (membre.signature_done) return 3;
     if (membre.statut === 'accepte') return 2;
     if (membre.statut === 'en_examen') return 1;
     return 0;
@@ -59,6 +60,102 @@ const PROFIL_LABELS = {
   organisateur: 'Organisateur',
   structure_culturelle: 'Structure culturelle',
   operateur_diffusion: 'Opérateur de diffusion',
+};
+
+const SignatureBlock = ({ membre, onUpdated }) => {
+  const [loading, setLoading] = useState(false);
+  const [link, setLink] = useState(membre.signature_link || '');
+  const [polling, setPolling] = useState(false);
+
+  const initiate = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API}/api/gouvernance/signature/initiate/${membre.num_membre}`, { method: 'POST' });
+      const d = await res.json();
+      if (!res.ok) {
+        toast.error(d.detail || 'Erreur Yousign');
+        return;
+      }
+      setLink(d.signature_link);
+      window.open(d.signature_link, '_blank', 'noopener,noreferrer');
+      toast.success("Document de signature ouvert dans un nouvel onglet.");
+    } catch {
+      toast.error("Erreur de connexion");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const checkStatus = async () => {
+    setPolling(true);
+    try {
+      const res = await fetch(`${API}/api/gouvernance/signature/status/${membre.num_membre}`);
+      const d = await res.json();
+      if (d.signature_done) {
+        toast.success("Charte signée — Vous pouvez maintenant payer la cotisation.");
+        // refresh full profil
+        const r2 = await fetch(`${API}/api/gouvernance/profil/${membre.frek_id}`);
+        if (r2.ok) onUpdated(await r2.json());
+      } else {
+        toast.info("Signature en attente. Pensez à terminer la signature dans l'onglet Yousign.");
+      }
+    } catch {
+      toast.error("Erreur lors de la vérification");
+    } finally {
+      setPolling(false);
+    }
+  };
+
+  return (
+    <div className="border border-amber-300 bg-amber-50/60 p-6 mb-8" data-testid="signature-block">
+      <div className="flex items-start gap-3">
+        <PenLine className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
+        <div className="flex-1">
+          <h3 className="font-serif text-lg text-charcoal mb-1">Signature de la charte d'engagement</h3>
+          <p className="text-sm text-charcoal/60 mb-4">
+            Avant de régler votre cotisation, vous devez signer électroniquement la charte d'engagement de l'association
+            (signature légale via <strong>Yousign</strong>). Cette étape protège juridiquement vos droits et ceux de la communauté.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {!link ? (
+              <Button
+                onClick={initiate}
+                disabled={loading}
+                className="h-10 px-6 bg-amber-700 hover:bg-amber-800 text-paper rounded-none font-syne"
+                data-testid="btn-sign-charte"
+              >
+                {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <PenLine className="w-4 h-4 mr-2" />}
+                Signer la charte
+              </Button>
+            ) : (
+              <>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 h-10 px-6 bg-amber-700 hover:bg-amber-800 text-paper font-syne text-sm font-bold uppercase tracking-wider"
+                  data-testid="btn-open-signature"
+                >
+                  <ExternalLink className="w-4 h-4" /> Reprendre la signature
+                </a>
+                <Button
+                  onClick={checkStatus}
+                  disabled={polling}
+                  variant="outline"
+                  className="h-10 px-6 rounded-none font-syne border-charcoal text-charcoal"
+                  data-testid="btn-check-signature"
+                >
+                  {polling ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <CheckCircle className="w-4 h-4 mr-2" />}
+                  J'ai signé
+                </Button>
+              </>
+            )}
+          </div>
+          <p className="text-xs text-charcoal/40 mt-3">Document légalement contraignant — conservé par Yousign et l'association.</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const GouvernanceProfil = () => {
@@ -158,8 +255,21 @@ const GouvernanceProfil = () => {
         {/* Step tracker */}
         <StepTracker membre={membre} />
 
-        {/* Cotisation section — show if accepted */}
-        {membre.statut === 'accepte' && !membre.cotisation_entree_payee && (
+        {/* Signature charte — show if accepted but not yet signed */}
+        {membre.statut === 'accepte' && !membre.signature_done && (
+          <SignatureBlock membre={membre} onUpdated={(m) => setMembre(m)} />
+        )}
+
+        {/* Signature confirmée */}
+        {membre.signature_done && !membre.cotisation_entree_payee && (
+          <div className="border border-sage/30 bg-sage/5 p-4 mb-8 flex items-center gap-3" data-testid="signature-confirmed">
+            <CheckCircle className="w-5 h-5 text-sage" />
+            <span className="text-sm text-sage font-semibold">Charte d'engagement signée — Vous pouvez maintenant régler votre cotisation.</span>
+          </div>
+        )}
+
+        {/* Cotisation section — show if accepted AND signature_done */}
+        {membre.statut === 'accepte' && membre.signature_done && !membre.cotisation_entree_payee && (
           <div className="border border-terracotta/30 bg-terracotta/5 p-6 mb-8">
             <div className="flex items-start gap-3">
               <CreditCard className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" />

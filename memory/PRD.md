@@ -17,6 +17,18 @@
 - /gouvernance/paiement/{num} — Stripe PaymentIntent (50€ Associé / 150€ Actif)
 - /gouvernance/repertoire/{num} — Déclaration répertoire avec droits
 
+### Partie 4 — Storytelling + Signature Yousign ✅ (29/04/2026)
+- /gouvernance — Page storytelling (vision, piliers, structure, processus 4 étapes)
+- /gouvernance/adhesion — Cartes de prix (déplacé)
+- Intégration Yousign API v3 (sandbox) :
+  - `POST /api/gouvernance/signature/initiate/{num_membre}` — crée Signature Request, génère charte PDF, ajoute signer, active
+  - `GET /api/gouvernance/signature/status/{num_membre}` — poll Yousign + DB
+  - `POST /api/gouvernance/signature/webhook` — réception événement signed/done
+- Signature OBLIGATOIRE entre acceptation admin et paiement cotisation
+- Step tracker passé à 5 étapes (Candidature → Examen → Signature → Cotisation → Répertoire)
+- Champs DB ajoutés : signature_done, signature_request_id, signature_link, signature_initiated_at, signature_completed_at
+- PDF Charte d'engagement généré dynamiquement via reportlab (7 articles + zone signature)
+
 ### Routes créées
 | Route | Accès |
 |-------|-------|

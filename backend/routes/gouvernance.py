@@ -8,7 +8,16 @@ from typing import Optional, List
 from datetime import datetime, timezone
 import uuid
 import os
+import logging
 from motor.motor_asyncio import AsyncIOMotorClient
+
+from services.yousign_service import (
+    initiate_full_flow as yousign_initiate_flow,
+    get_signature_request as yousign_get_request,
+    YousignError,
+)
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -96,6 +105,11 @@ async def soumettre_candidature(body: CandidatureCreate):
         "cotisation_annuelle_payee": False,
         "stripe_payment_intent_id": None,
         "repertoire_declare": False,
+        "signature_done": False,
+        "signature_request_id": None,
+        "signature_link": None,
+        "signature_initiated_at": None,
+        "signature_completed_at": None,
         "projets_culturels": body.projets_culturels,
         "documents": body.documents,
         "notes_admin": None,
@@ -239,6 +253,8 @@ async def paiement_cotisation(num_membre: str):
         raise HTTPException(404, "Membre introuvable ou candidature non acceptée")
     if doc.get("cotisation_entree_payee"):
         raise HTTPException(400, "Cotisation déjà payée")
+    if not doc.get("signature_done"):
+        raise HTTPException(403, "La charte d'engagement doit être signée avant le paiement.")
 
     amount = 15000 if doc["niveau"] == "actif" else 5000  # 150€ or 50€
 
@@ -316,6 +332,135 @@ async def update_repertoire(num_membre: str, request: Request):
 
 
 # ═══════════════════════════════════════
+# SIGNATURE — Yousign integration
+# ═══════════════════════════════════════
+
+@router.post("/api/gouvernance/signature/initiate/{num_membre}")
+async def initiate_signature(num_membre: str):
+    """Démarrer le flux de signature électronique Yousign pour un membre accepté.
+    Retourne le lien de signature à présenter au candidat.
+    """
+    doc = await _col.find_one({"num_membre": num_membre}, {"_id": 0})
+    if not doc:
+        raise HTTPException(404, "Membre introuvable")
+    if doc.get("statut") != "accepte":
+        raise HTTPException(403, "La candidature doit être acceptée pour signer la charte.")
+    if doc.get("signature_done"):
+        raise HTTPException(400, "La charte est déjà signée.")
+
+    # If a signature request already exists, return the existing link
+    existing_id = doc.get("signature_request_id")
+    if existing_id and doc.get("signature_link"):
+        return {
+            "signature_request_id": existing_id,
+            "signature_link": doc["signature_link"],
+            "status": "ongoing",
+            "reused": True,
+        }
+
+    try:
+        result = await yousign_initiate_flow(
+            member_name=doc.get("raison_sociale", "Membre"),
+            email=doc.get("email", ""),
+            num_membre=num_membre,
+            niveau=doc.get("niveau", "associe"),
+            frek_id=doc.get("frek_id", ""),
+        )
+    except YousignError as e:
+        logger.error(f"Yousign initiate failed for {num_membre}: {e.payload}")
+        raise HTTPException(e.status if 400 <= e.status < 600 else 500, f"Yousign: {str(e)}")
+
+    now = datetime.now(timezone.utc).isoformat()
+    await _col.update_one(
+        {"num_membre": num_membre},
+        {"$set": {
+            "signature_request_id": result["signature_request_id"],
+            "signature_link": result["signature_link"],
+            "signature_initiated_at": now,
+        }},
+    )
+    return result
+
+
+@router.get("/api/gouvernance/signature/status/{num_membre}")
+async def get_signature_status(num_membre: str):
+    """Récupérer l'état actuel de la signature (poll Yousign + DB)."""
+    doc = await _col.find_one({"num_membre": num_membre}, {"_id": 0})
+    if not doc:
+        raise HTTPException(404, "Membre introuvable")
+    sr_id = doc.get("signature_request_id")
+    if not sr_id:
+        return {"signature_done": False, "status": "not_initiated"}
+
+    if doc.get("signature_done"):
+        return {
+            "signature_done": True,
+            "status": "done",
+            "signature_request_id": sr_id,
+            "signature_completed_at": doc.get("signature_completed_at"),
+        }
+
+    # Poll Yousign for current status
+    try:
+        sr = await yousign_get_request(sr_id)
+    except YousignError as e:
+        logger.warning(f"Yousign status poll failed for {num_membre}: {e}")
+        return {
+            "signature_done": False,
+            "status": doc.get("signature_link") and "ongoing" or "unknown",
+            "signature_link": doc.get("signature_link"),
+        }
+
+    status = sr.get("status", "unknown")
+    if status == "done":
+        now = datetime.now(timezone.utc).isoformat()
+        await _col.update_one(
+            {"num_membre": num_membre},
+            {"$set": {"signature_done": True, "signature_completed_at": now}},
+        )
+        return {"signature_done": True, "status": "done", "signature_completed_at": now}
+
+    return {
+        "signature_done": False,
+        "status": status,
+        "signature_link": doc.get("signature_link"),
+    }
+
+
+@router.post("/api/gouvernance/signature/webhook")
+async def yousign_webhook(request: Request):
+    """Webhook Yousign — met à jour signature_done quand le document est signé."""
+    try:
+        payload = await request.json()
+    except Exception:
+        raise HTTPException(400, "Payload JSON invalide")
+
+    event_name = payload.get("event_name") or payload.get("event_type") or ""
+    data = payload.get("data") or {}
+    sr = data.get("signature_request") or data.get("signatureRequest") or {}
+    sr_id = sr.get("id") or payload.get("signature_request_id")
+
+    logger.info(f"Yousign webhook reçu: event={event_name} sr_id={sr_id}")
+
+    if not sr_id:
+        return {"status": "ignored", "reason": "signature_request_id manquant"}
+
+    # Only act on completion-type events
+    if "done" in event_name or "signed" in event_name:
+        now = datetime.now(timezone.utc).isoformat()
+        result = await _col.update_one(
+            {"signature_request_id": sr_id},
+            {"$set": {"signature_done": True, "signature_completed_at": now}},
+        )
+        if result.matched_count == 0:
+            logger.warning(f"Webhook: aucun membre lié à signature_request_id={sr_id}")
+            return {"status": "no_member"}
+        return {"status": "updated"}
+
+    return {"status": "acknowledged", "event": event_name}
+
+
+# ═══════════════════════════════════════
 # INDEXES — called at startup
 # ═══════════════════════════════════════
 
@@ -329,5 +474,6 @@ async def create_gouvernance_indexes():
         await _col.create_index("num_membre", unique=True, sparse=True)
         await _col.create_index([("statut", 1), ("date_candidature", -1)])
         await _col.create_index([("niveau", 1), ("statut", 1)])
+        await _col.create_index("signature_request_id", sparse=True)
     except Exception:
         pass  # Indexes may already exist

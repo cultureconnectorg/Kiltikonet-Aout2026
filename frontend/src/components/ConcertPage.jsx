@@ -5,6 +5,7 @@ import { Button } from './ui/button';
 import { LegalFooter } from './legal';
 import { useSharedData } from '../contexts/SharedDataContext';
 import { useIntersectionObserver } from '../hooks/useAnimations';
+import { useLanguage } from '../context/LanguageContext';
 
 const ArtistCard = ({ artist, index }) => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.15 });
@@ -91,6 +92,7 @@ const ArtistCard = ({ artist, index }) => {
 const ConcertPage = () => {
   const navigate = useNavigate();
   const { artistes } = useSharedData();
+  const { language } = useLanguage();
   const [heroVisible, setHeroVisible] = useState(false);
 
   const confirmedArtists = artistes.filter(a => a.status === 'Confirmé');
@@ -120,47 +122,25 @@ const ConcertPage = () => {
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="py-16 sm:py-24 overflow-hidden" style={{ background: '#1A1510' }}>
-        <div className="max-w-6xl mx-auto px-4 text-center">
+      {/* Hero — CHIMEN SAVANN' Flyer */}
+      <section className="relative overflow-hidden" style={{ background: '#1A1510' }}>
+        <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12">
+          {/* Concert Flyer Image */}
           <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+            className="relative rounded-2xl overflow-hidden shadow-2xl"
             style={{
-              background: 'rgba(166,93,71,0.2)',
               opacity: heroVisible ? 1 : 0,
-              transform: heroVisible ? 'translateY(0)' : 'translateY(-20px)',
-              transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+              transform: heroVisible ? 'scale(1)' : 'scale(0.95)',
+              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
             }}
           >
-            <Music className="w-4 h-4" style={{ color: '#A65D47' }} />
-            <span className="text-sm font-medium" style={{ color: '#A65D47' }}>
-              22 Mai 2026 — Grand Carbet du Parc culturel Aimé Césaire
-            </span>
+            <img
+              src={language === 'en' ? '/concert/chimen-savann-en.png' : '/concert/chimen-savann-fr.png'}
+              alt="CHIMEN SAVANN' — Concert Live — 22 Mai 2026 — Grand Carbet du Parc culturel Aimé Césaire"
+              className="w-full h-auto"
+              data-testid="concert-flyer"
+            />
           </div>
-
-          <h1
-            className="font-serif text-4xl sm:text-5xl lg:text-6xl mb-4"
-            style={{
-              color: '#F4F0E8',
-              opacity: heroVisible ? 1 : 0,
-              transform: heroVisible ? 'translateY(0)' : 'translateY(-30px)',
-              transition: 'opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s',
-            }}
-          >
-            Concerts & Performances
-          </h1>
-
-          <p
-            className="text-lg max-w-2xl mx-auto"
-            style={{
-              color: 'rgba(244,240,232,0.7)',
-              opacity: heroVisible ? 1 : 0,
-              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s',
-            }}
-          >
-            Découvrez les artistes qui feront vibrer le Grand Carbet du Parc culturel Aimé Césaire lors de Culture Connect 2026.
-          </p>
         </div>
       </section>
 

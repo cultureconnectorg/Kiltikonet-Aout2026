@@ -38,6 +38,7 @@ import IntroSequence, { ReturnWelcome } from "./components/IntroSequence";
 import { AccreditationSystem } from "./components/AccreditationSystem";
 import BadgeScan from "./components/BadgeScan";
 import ScanApp from "./components/omega/ScanApp";
+import ScannerCC2026 from "./components/omega/ScannerCC2026";
 // CC2026 Badge & Jetons
 import BadgeActivation from "./components/BadgeActivation";
 import BadgeInscription from "./components/BadgeInscription";
@@ -227,7 +228,7 @@ const AppLayout = ({ children }) => {
   const location = useLocation();
   
   // Routes where header should be hidden
-  const hideHeaderRoutes = ['/smart-engine', '/admin', '/badge', '/workspace', '/dashboard-cc2026', '/espace-pro', '/pro'];
+  const hideHeaderRoutes = ['/smart-engine', '/admin', '/badge', '/workspace', '/dashboard-cc2026', '/espace-pro', '/pro', '/scanner-cc2026'];
   const showHeader = !hideHeaderRoutes.some(route => location.pathname.startsWith(route));
   
   return (
@@ -382,6 +383,8 @@ function App() {
               <Route path="/gouvernance/profil" element={<GouvernanceProfil />} />
               <Route path="/gouvernance/paiement/:numMembre" element={<GouvernancePaiement />} />
               <Route path="/gouvernance/repertoire/:numMembre" element={<GouvernanceRepertoire />} />
+              {/* Scanner CC2026 — implantation silencieuse (staff) */}
+              <Route path="/scanner-cc2026" element={<ScannerCC2026 />} />
               {/* Dynamic CMS Pages */}
               <Route path="/p/:slug" element={<DynamicPage />} />
                 </Routes>

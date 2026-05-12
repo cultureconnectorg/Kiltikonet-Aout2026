@@ -48,5 +48,42 @@
 - Feed ✅
 - Programme ✅
 
+## FREK Silent Implantation — CC2026 Entry Layer ✅ (12/05/2026)
+
+**Invariant** : Le FREK-ID ne naît jamais d'une action utilisateur consciente. Il naît d'un geste culturel réel — la présence physique.
+
+### Collections nouvelles (isolées, zéro impact existant)
+- `frek_registrations` : entrée silencieuse avec champ `enrichment` extensible (frek_subject_did, nominatif, jeton_cc_linked, nfc_badge_written)
+- `frek_outbound_queue` : queue de reprise webhook FrekCore (PENDING/SENT/FAILED, max 5 retries)
+- Indexes : frek_id unique, external_ref unique, event_id, status
+
+### Endpoints
+| Route | Accès |
+|---|---|
+| `POST /api/frek/register-silent` | Public (scanner staff) |
+| `GET /api/frek/badge-types` | Public (table 15 types) |
+| `GET /api/frek/registration/{frek_id}` | Public (lookup) |
+| `POST /api/frek/pre-register-batch` | Admin (X-Admin-Token) |
+| `GET /api/frek/queue/stats` | Admin |
+
+### Webhook FrekCore
+- Fire-and-forget vers `FREKCORE_WEBHOOK_URL/api/core/ingest` (Authorization Bearer FREKCORE_SECRET)
+- Si injoignable → queued dans frek_outbound_queue, retry toutes les 5 min (background task asyncio démarré au startup)
+- Variables `.env` : `FREKCORE_WEBHOOK_URL`, `FREKCORE_SECRET` (vides — à remplir)
+
+### Frontend
+- `/scanner-cc2026` → `components/omega/ScannerCC2026.jsx`
+- Offline-first : localStorage queue `cc2026_scanner_queue_v1`, sync auto au retour réseau
+- QR scanning natif `BarcodeDetector` API + fallback saisie manuelle
+- Theme : fond #0a0a0b / or #E8D5A0 / DM Sans
+
+### Tests
+- `tests/test_frek_silent.py` : 13 tests passent (création, idempotence, badge types, batch, admin auth, webhook queue, **non-régression `/api/frek/nfc/tap`**)
+
+### Phase suivante (champs enrichment prêts, structure absorbera sans migration)
+- Phase 2 : nominatif + écriture badge NFC
+- Phase 3 : lien Jeton CC
+- Phase 5 : DID `did:frek:FREK-CC26-XXXXXX`
+
 ## Credentials
 - Admin: cultureconnectorg@gmail.com / code 000000

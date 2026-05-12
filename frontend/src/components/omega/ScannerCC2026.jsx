@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { Camera, CheckCircle2, AlertCircle, WifiOff, Wifi, Loader2, RefreshCw, X } from 'lucide-react';
+import { Camera, CheckCircle2, AlertCircle, WifiOff, Wifi, Loader2, RefreshCw, X, Shield, LogOut } from 'lucide-react';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 const QUEUE_KEY = 'cc2026_scanner_queue_v1';
+const TOKEN_KEY = 'cc2026_staff_token_v1';
 const EVENT_ID = 'CC2026';
 
 // Cached badge types — résolu au boot, fallback statique si offline
@@ -34,7 +35,101 @@ const loadQueue = () => {
 
 const saveQueue = (q) => localStorage.setItem(QUEUE_KEY, JSON.stringify(q));
 
+const loadToken = () => {
+  try {
+    return localStorage.getItem(TOKEN_KEY) || '';
+  } catch {
+    return '';
+  }
+};
+
+const saveToken = (t) => {
+  if (t) localStorage.setItem(TOKEN_KEY, t);
+  else localStorage.removeItem(TOKEN_KEY);
+};
+
+// ────────────────────────────────────────────────────────────────
+// StaffGate : écran de login si pas de token, ou si serveur le refuse
+// ────────────────────────────────────────────────────────────────
+const StaffGate = ({ onValidated }) => {
+  const [token, setToken] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const submit = async () => {
+    if (!token.trim()) return;
+    setLoading(true);
+    setError('');
+    try {
+      const r = await fetch(`${API}/api/frek/staff/verify`, {
+        method: 'POST',
+        headers: { 'X-Staff-Token': token.trim() },
+      });
+      if (!r.ok) {
+        setError('Token refusé par le serveur');
+        setLoading(false);
+        return;
+      }
+      saveToken(token.trim());
+      onValidated(token.trim());
+    } catch {
+      setError('Connexion impossible — vérifie le réseau');
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div
+      className="min-h-screen flex flex-col items-center justify-center px-6"
+      style={{ background: '#0a0a0b', color: '#E8D5A0', fontFamily: 'DM Sans, system-ui, sans-serif' }}
+      data-testid="staff-gate"
+    >
+      <div className="w-14 h-14 flex items-center justify-center mb-8" style={{ background: '#E8D5A0', color: '#0a0a0b' }}>
+        <Shield className="w-7 h-7" />
+      </div>
+      <h1 className="text-xl font-bold tracking-wider uppercase mb-2">Accès Staff CC2026</h1>
+      <p className="text-xs opacity-50 mb-10 text-center max-w-xs">
+        Saisis le token d'accès distribué pour le scanner.
+      </p>
+
+      <div className="w-full max-w-xs flex flex-col gap-3">
+        <input
+          type="password"
+          value={token}
+          onChange={(e) => setToken(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && submit()}
+          placeholder="X-Staff-Token"
+          autoFocus
+          className="w-full px-3 py-3 bg-transparent border text-sm outline-none text-center tracking-widest"
+          style={{ borderColor: 'rgba(232,213,160,0.25)', color: '#E8D5A0' }}
+          data-testid="staff-gate-input"
+        />
+        <button
+          onClick={submit}
+          disabled={loading || !token.trim()}
+          className="w-full py-3 flex items-center justify-center gap-2 disabled:opacity-40"
+          style={{ background: '#E8D5A0', color: '#0a0a0b', fontWeight: 900, fontSize: 13, letterSpacing: '0.15em', textTransform: 'uppercase' }}
+          data-testid="staff-gate-submit"
+        >
+          {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+          Activer le scanner
+        </button>
+        {error && (
+          <div className="text-xs text-center" style={{ color: '#ff8a65' }} data-testid="staff-gate-error">
+            {error}
+          </div>
+        )}
+      </div>
+
+      <p className="text-[10px] opacity-30 mt-12 max-w-xs text-center">
+        Token stocké localement sur cet appareil. Révocable côté serveur en changeant STAFF_TOKEN_CC2026.
+      </p>
+    </div>
+  );
+};
+
 const ScannerCC2026 = () => {
+  const [staffToken, setStaffToken] = useState(loadToken());
   const [badgeTypes, setBadgeTypes] = useState(FALLBACK_BADGE_TYPES);
   const [selectedBadgeType, setSelectedBadgeType] = useState('CC26-BNV');
   const [online, setOnline] = useState(typeof navigator !== 'undefined' ? navigator.onLine : true);
@@ -78,9 +173,19 @@ const ScannerCC2026 = () => {
     try {
       const r = await fetch(`${API}/api/frek/register-silent`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(staffToken ? { 'X-Staff-Token': staffToken } : {}),
+        },
         body: JSON.stringify({ external_qr_content: qr_content, event_id: EVENT_ID, badge_type }),
       });
+      if (r.status === 403) {
+        // Token révoqué côté serveur
+        saveToken('');
+        setStaffToken('');
+        setLastResult({ ok: false, error: 'Token staff révoqué — reconnexion requise' });
+        return;
+      }
       const d = await r.json();
       if (!r.ok) {
         setLastResult({ ok: false, error: d.detail || 'Erreur serveur' });
@@ -95,7 +200,7 @@ const ScannerCC2026 = () => {
       setQueueCount(q.length);
       setLastResult({ ok: true, queued: true, badge_type });
     }
-  }, [online]);
+  }, [online, staffToken]);
 
   // ── Drain queue when back online
   const syncQueue = useCallback(async () => {
@@ -107,7 +212,10 @@ const ScannerCC2026 = () => {
       try {
         const r = await fetch(`${API}/api/frek/register-silent`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            ...(staffToken ? { 'X-Staff-Token': staffToken } : {}),
+          },
           body: JSON.stringify({
             external_qr_content: job.qr_content,
             event_id: job.event_id || EVENT_ID,
@@ -122,7 +230,7 @@ const ScannerCC2026 = () => {
     saveQueue(remaining);
     setQueueCount(remaining.length);
     setSyncing(false);
-  }, [online, syncing]);
+  }, [online, syncing, staffToken]);
 
   useEffect(() => {
     if (online && queueCount > 0) {
@@ -194,6 +302,15 @@ const ScannerCC2026 = () => {
   const resetResult = () => setLastResult(null);
 
   // ── UI
+  if (!staffToken) {
+    return <StaffGate onValidated={setStaffToken} />;
+  }
+
+  const logout = () => {
+    saveToken('');
+    setStaffToken('');
+  };
+
   return (
     <div
       className="min-h-screen flex flex-col"
@@ -211,7 +328,7 @@ const ScannerCC2026 = () => {
             <span className="text-[10px] opacity-50">Implantation silencieuse</span>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {online ? (
             <span className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider opacity-70">
               <Wifi className="w-3.5 h-3.5" /> Online
@@ -221,6 +338,14 @@ const ScannerCC2026 = () => {
               <WifiOff className="w-3.5 h-3.5" /> Offline
             </span>
           )}
+          <button
+            onClick={logout}
+            className="opacity-40 hover:opacity-90 transition-opacity"
+            title="Se déconnecter"
+            data-testid="scanner-logout-btn"
+          >
+            <LogOut className="w-4 h-4" />
+          </button>
         </div>
       </header>
 

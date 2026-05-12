@@ -85,5 +85,18 @@
 - Phase 3 : lien Jeton CC
 - Phase 5 : DID `did:frek:FREK-CC26-XXXXXX`
 
+### Protection scanner (12/05/2026)
+- Variable `STAFF_TOKEN_CC2026` (vide en preview = mode ouvert, set en prod = scanner protégé)
+- Endpoint `POST /api/frek/staff/verify` pour validation au login scanner
+- `POST /api/frek/register-silent` protégé par `X-Staff-Token` (dependency)
+- Frontend `ScannerCC2026.jsx` : composant `StaffGate` au boot, token stocké en localStorage, bouton logout dans le header, gestion 403 → reconnexion
+- Révocation : changer la valeur de `STAFF_TOKEN_CC2026` → tous les tokens existants invalidés instantanément
+- Tests pytest : 14/14 (dont test du flag protection)
+
+### FrekCore Souveraineté (prompt à envoyer)
+- `/app/memory/PROMPT_FREKCORE_SOUVERAINETE.md` créé
+- Architecture : kiltikonet = point d'entrée, FrekCore = base souveraine
+- Endpoints à implémenter côté FrekCore : `POST /api/core/ingest`, `GET /api/core/frek/{id}`, `GET /api/core/event/{id}/stats`, `GET /api/core/ecosystem/pulse`
+
 ## Credentials
 - Admin: cultureconnectorg@gmail.com / code 000000

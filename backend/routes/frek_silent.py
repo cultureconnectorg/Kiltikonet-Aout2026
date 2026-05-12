@@ -25,6 +25,7 @@ from services.frek_silent_service import (
 import os
 _ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "").strip().lower()
 _ADMIN_KEY = os.environ.get("EMERGENCY_SECRET", "")
+_STAFF_TOKEN = os.environ.get("STAFF_TOKEN_CC2026", "").strip()
 
 
 def require_admin(x_admin_token: Optional[str] = Header(None)):
@@ -35,6 +36,20 @@ def require_admin(x_admin_token: Optional[str] = Header(None)):
         raise HTTPException(503, "Admin auth non configurée (EMERGENCY_SECRET manquant)")
     if not x_admin_token or x_admin_token != _ADMIN_KEY:
         raise HTTPException(403, "Accès admin requis")
+    return True
+
+
+def require_staff(x_staff_token: Optional[str] = Header(None)):
+    """Vérification staff CC2026 via header X-Staff-Token.
+    - Si STAFF_TOKEN_CC2026 est vide → mode dev ouvert (preview)
+    - Si STAFF_TOKEN_CC2026 est set → vérifie strictement
+    Révocation : changer la valeur en .env + redéployer = invalide instantanément tous les tokens.
+    """
+    if not _STAFF_TOKEN:
+        # Mode dev / preview : pas de protection si non configuré
+        return True
+    if not x_staff_token or x_staff_token != _STAFF_TOKEN:
+        raise HTTPException(403, "Token staff CC2026 invalide ou manquant")
     return True
 
 
@@ -85,7 +100,16 @@ async def get_badge_types():
     return {"badge_types": BADGE_TYPES, "event_id": "CC2026"}
 
 
-@router.post("/api/frek/register-silent", response_model=FrekSilentRegisterResponse)
+@router.post("/api/frek/staff/verify", dependencies=[Depends(require_staff)])
+async def verify_staff_token():
+    """Vérifie qu'un X-Staff-Token est valide. Utilisé par le scanner au login.
+    - 200 + {ok: true} si token valide (ou si STAFF_TOKEN_CC2026 vide = mode preview)
+    - 403 sinon
+    """
+    return {"ok": True, "protected": bool(_STAFF_TOKEN)}
+
+
+@router.post("/api/frek/register-silent", response_model=FrekSilentRegisterResponse, dependencies=[Depends(require_staff)])
 async def register_silent(body: FrekSilentRegisterRequest):
     """Enregistrement silencieux d'un FREK-ID depuis un QR code externe.
     Idempotent : si le même QR a déjà été enregistré, retourne le FREK-ID existant.

@@ -240,3 +240,15 @@ def test_all_15_badge_types_accepted():
         )
         assert r.status_code == 200, f"badge_type={bt} → {r.status_code} {r.text}"
         assert r.json()["badge_type"] == bt
+
+
+def test_staff_verify_returns_protection_flag():
+    """POST /api/frek/staff/verify retourne {ok, protected}."""
+    r = httpx.post(f"{API}/api/frek/staff/verify", timeout=10)
+    # En preview STAFF_TOKEN_CC2026 est vide donc 200 et protected=false
+    # En prod ce sera 403 sans token et 200 avec
+    assert r.status_code in (200, 403)
+    if r.status_code == 200:
+        d = r.json()
+        assert "ok" in d
+        assert "protected" in d

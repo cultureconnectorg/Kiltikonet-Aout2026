@@ -1900,6 +1900,13 @@ export const ProSpaceLogin = ({ onLogin } = {}) => {
   const [regPrenom, setRegPrenom] = useState('');
   const [regNom, setRegNom] = useState('');
   const [regEmail, setRegEmail] = useState('');
+  // Détection des navigateurs in-app (Instagram, Facebook, Messenger, TikTok)
+  // qui cassent fréquemment cookies/auth — on alerte l'utilisateur
+  const [isInAppBrowser] = useState(() => {
+    if (typeof navigator === 'undefined') return false;
+    const ua = navigator.userAgent || '';
+    return /Instagram|FBAN|FBAV|FB_IAB|Messenger|TikTok|Snapchat|Line\//i.test(ua);
+  });
   // FREK-ID login state
   const [frekMode, setFrekMode] = useState(false);
   const [frekId, setFrekId] = useState('');
@@ -1977,13 +1984,27 @@ export const ProSpaceLogin = ({ onLogin } = {}) => {
         navigate('/pro', { replace: true });
       }
     } catch (err) {
-      const detail = err.response?.data?.detail || '';
-      if (detail.includes('existe deja') || detail.includes('already')) {
-        toast.error('Ce compte existe déjà', { description: 'Utilisez "Recevoir mon lien de connexion" avec cet email' });
+      const detail = (err.response?.data?.detail || '').toString();
+      const status = err.response?.status;
+      const lowered = detail.toLowerCase();
+      // Compte existant — bascule automatiquement vers la connexion
+      if (status === 400 && (lowered.includes('existe') || lowered.includes('already') || lowered.includes('exist'))) {
+        toast.error('Ce compte existe déjà', {
+          description: 'Bascule vers la connexion — clique "Recevoir mon lien" pour te connecter avec ' + regEmail.trim(),
+          duration: 6000,
+        });
         setShowRegister(false);
         setEmail(regEmail.trim());
+      } else if (!err.response) {
+        // Pas de réponse = problème réseau (souvent webview Instagram/FB)
+        toast.error('Problème de connexion', {
+          description: "Si tu es dans Instagram/Facebook, ouvre ce lien dans Safari ou Chrome (menu '⋯' → 'Ouvrir dans Safari')",
+          duration: 8000,
+        });
       } else {
-        toast.error(detail || 'Erreur lors de l\'inscription');
+        toast.error(detail || 'Erreur lors de l\'inscription', {
+          description: status ? `Code ${status} — réessaie ou contacte le support` : undefined,
+        });
       }
     } finally { setLoading(false); }
   };
@@ -2153,6 +2174,21 @@ export const ProSpaceLogin = ({ onLogin } = {}) => {
               Votre reseau professionnel culturel afro-caribeen
             </p>
           </div>
+
+          {/* In-app browser warning (Instagram, Facebook, Messenger…) */}
+          {isInAppBrowser && (
+            <div
+              className="mb-5 p-4 rounded-xl border flex items-start gap-3"
+              style={{ background: 'rgba(255, 138, 101, 0.08)', borderColor: 'rgba(255, 138, 101, 0.35)' }}
+              data-testid="inapp-browser-warning"
+            >
+              <span className="material-symbols-outlined" style={{ color: '#ff8a65', fontSize: 22, flexShrink: 0 }}>open_in_new</span>
+              <div className="flex-1 text-xs leading-relaxed" style={{ color: '#ffd0bd' }}>
+                <strong className="block text-sm mb-1">Ouvre dans Safari ou Chrome</strong>
+                Le navigateur de cette app ne supporte pas les sessions sécurisées. Tape sur le menu <strong>« ⋯ »</strong> en haut à droite puis <strong>« Ouvrir dans Safari »</strong> (ou Chrome).
+              </div>
+            </div>
+          )}
 
           {/* Registration Form */}
           {showRegister ? (

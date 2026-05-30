@@ -4159,10 +4159,12 @@ app.include_router(support_router)
 from routes.gouvernance import router as gouvernance_router, create_gouvernance_indexes
 from routes.frek_silent import router as frek_silent_router
 from routes.laurentia_bridge import router as laurentia_bridge_router
+from routes.laurentia_widget import router as laurentia_widget_router
 from services.frek_silent_service import create_frek_silent_indexes, frekcore_retry_worker
 app.include_router(gouvernance_router)
 app.include_router(frek_silent_router)
 app.include_router(laurentia_bridge_router)
+app.include_router(laurentia_widget_router)
 
 from routes.doctrine import router as doctrine_router, seed_doctrine as _doctrine_seed, backfill_actor_roles as _doctrine_backfill, require_permission as _require_perm
 app.include_router(doctrine_router)

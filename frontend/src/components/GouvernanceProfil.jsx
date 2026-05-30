@@ -4,6 +4,7 @@ import { ArrowLeft, ShieldCheck, Clock, CheckCircle, FileText, CreditCard, BookO
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { toast } from 'sonner';
+import LaurentiaWidget from './LaurentiaWidget';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -254,6 +255,13 @@ const GouvernanceProfil = () => {
 
         {/* Step tracker */}
         <StepTracker membre={membre} />
+
+        {/* Widget Laurent.ia — discret, mode coming_soon tant que pas configuré */}
+        {membre.frek_id && (
+          <div className="mb-8" data-testid="laurentia-widget-container">
+            <LaurentiaWidget frekId={membre.frek_id} />
+          </div>
+        )}
 
         {/* Signature charte — show if accepted but not yet signed */}
         {membre.statut === 'accepte' && !membre.signature_done && (

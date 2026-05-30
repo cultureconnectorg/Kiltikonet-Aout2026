@@ -98,5 +98,28 @@
 - Architecture : kiltikonet = point d'entrée, FrekCore = base souveraine
 - Endpoints à implémenter côté FrekCore : `POST /api/core/ingest`, `GET /api/core/frek/{id}`, `GET /api/core/event/{id}/stats`, `GET /api/core/ecosystem/pulse`
 
+## Laurent.ia Bridge + Rebranding UI ✅ (30/05/2026)
+
+Documents :
+- `/app/memory/LAURENTIA_SYSTEM_PROMPT_EMERGENT_FINAL.md` — system prompt complet pour le projet Emergent Laurent.ia
+- Pattern : code = `cvl_brain` (intact), UI = "Laurent.ia"
+
+### Lot 1 : Bridge inter-services (`routes/laurentia_bridge.py`)
+- `GET /api/users/validate/{frek_id}` — protected X-API-Key, cascade lookup (registrations → kn_profiles → cc_badges)
+- `GET /api/users/{frek_id}/profile` — agrégat (identity + cultural_profile 7D + badges + wallet)
+- `GET /api/users/bridge/health` — public (révèle juste si configuré ou non)
+- Var env : `LAURENTIA_API_KEY` (vide = bridge désactivé 503, set = protégé 403/200)
+- Testé : 503 si non configuré, 403 sans/avec mauvais token, 200 avec bon token
+
+### Lot 2 : 3 bug fixes CVL Brain
+- `services/cvl_brain.py` : modèle `claude-sonnet-4-20250514` → `claude-sonnet-4-5-20250929`
+- `services/cvl_brain_agents.py` : nouvelle fonction `log_write()` + appel auto dans `_log_agent_call()` → collection `agent_logs` enfin alimentée
+- `routes/omega.py` : nouvel endpoint additif `POST /api/brain/chat-stream` (SSE streaming) à côté de `/api/brain/chat-enriched` (intact)
+
+### Lot 3 : Rebranding UI (CVL BRAIN → Laurent.ia)
+- 13 fichiers modifiés : ProSpaceDashboard, ProOnboarding, BrainChat, CockpitView, ContentDisplay, OrbitalMenu, ProTutorial, CvlBrainFloat, AIAgentsDashboard, RecommendationsDashboard, MgraphView, TradingSettings, ProfileTriptych, StudiosSidebar, ArchivesCloud, SovereignProfileView, AccessibilitePage
+- Code Python = INTACT (cvl_brain.py, /api/brain/*, collections cvl_brain_*)
+- Seuls les labels visibles à l'utilisateur changent
+
 ## Credentials
 - Admin: cultureconnectorg@gmail.com / code 000000

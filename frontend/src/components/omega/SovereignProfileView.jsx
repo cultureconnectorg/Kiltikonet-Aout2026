@@ -309,7 +309,7 @@ export default function SovereignProfileView({ onBack, auth, adhesion, adhesionL
                   {(profileAnalytics.wallet?.total_spent || 0) === 0 && (
                     <div className="flex items-start gap-3 p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
                       <MessageSquare className="w-4 h-4 mt-0.5 shrink-0 text-gray-400" />
-                      <p className="text-[10px] text-gray-300 leading-relaxed">Utilisez vos JCC pour soutenir d'autres créateurs via l'Éclair (⚡) ou accéder au CVL Brain pour booster votre contenu.</p>
+                      <p className="text-[10px] text-gray-300 leading-relaxed">Utilisez vos JCC pour soutenir d'autres créateurs via l'Éclair (⚡) ou accéder à Laurent.ia pour booster votre contenu.</p>
                     </div>
                   )}
                 </div>
@@ -379,7 +379,7 @@ export default function SovereignProfileView({ onBack, auth, adhesion, adhesionL
 
             {activeSection === "language" && (
               <div className="space-y-4">
-                <div className="text-xs text-gray-400 mb-2">Langue de l'interface et du CVL Brain</div>
+                <div className="text-xs text-gray-400 mb-2">Langue de l'interface et de Laurent.ia</div>
                 {["fr", "cr", "en"].map(lang => (
                   <motion.button key={lang} whileTap={{ scale: 0.98 }} onClick={() => { setEditLang(lang); }} className="w-full p-4 rounded-xl flex items-center justify-between" style={{ background: editLang === lang ? 'rgba(242,202,80,0.1)' : 'rgba(255,255,255,0.03)', border: `1px solid ${editLang === lang ? 'rgba(242,202,80,0.3)' : 'rgba(255,255,255,0.06)'}` }} data-testid={`lang-${lang}`}>
                     <span className="text-sm text-white">{lang === 'fr' ? 'Francais' : lang === 'cr' ? 'Creole Martiniquais' : 'English'}</span>

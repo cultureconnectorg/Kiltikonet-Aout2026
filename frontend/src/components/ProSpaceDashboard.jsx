@@ -134,7 +134,7 @@ const BrainInlineChat = ({ session }) => {
             </div>
             <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d8c591' }}>Intelligence Culturelle</span>
             <h1 className="mt-2" style={{ fontFamily: "'Newsreader', serif", fontStyle: 'italic', fontSize: 'clamp(30px, 5vw, 44px)', fontWeight: 300, letterSpacing: '-0.03em', color: '#e5e2e3', lineHeight: 1 }}>
-              CVL <span style={{ color: '#E8D5A0' }}>BRAIN</span>
+              <span style={{ fontFamily: "'Syne', sans-serif", letterSpacing: '0.02em' }}>LAURENT.IA</span>
             </h1>
             <p className="max-w-sm mx-auto mt-3 text-center" style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13, color: '#72727a', lineHeight: 1.7 }}>
               Posez vos questions. Man la pou ou.
@@ -443,10 +443,10 @@ const ProSpaceDashboard = () => {
 
           <div className="flex-1" />
 
-          {/* CVL BRAIN Status — desktop */}
+          {/* Laurent.ia Status — desktop */}
           <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'rgba(53,52,54,0.5)', border: '1px solid rgba(75,70,59,0.2)' }}>
             <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#E8D5A0' }}></span>
-            <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#E8D5A0' }}>CVL BRAIN ACTIF</span>
+            <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#E8D5A0' }}>LAURENT.IA ACTIF</span>
           </div>
 
           {/* Desktop Nav — Sovereign style */}
@@ -506,7 +506,7 @@ const ProSpaceDashboard = () => {
               { id: 'feed', icon: 'dynamic_feed', label: 'Feed' },
               { id: 'reels', icon: 'play_circle', label: 'Reels / Shorts' },
               { id: 'open-inbox', icon: 'inbox', label: 'Boite de reception' },
-              { id: 'brain', icon: 'psychology', label: 'CVL BRAIN' },
+              { id: 'brain', icon: 'psychology', label: 'LAURENT.IA' },
               { id: 'wallet', icon: 'account_balance_wallet', label: 'Wallet KT' },
               ...(hasPerm('publish_content') ? [{ id: 'open-studios', icon: 'dashboard_customize', label: 'Studios' }] : []),
               { id: 'shop', icon: 'storefront', label: 'Sovereign Shop' },
@@ -841,11 +841,11 @@ const FeedSection = ({ session }) => {
     try {
       const res = await axios.post(`${API}/v1/llm/chat`, {
         message: `Génère un post professionnel court (3-4 phrases max) pour le réseau CC2026. Le profil est : ${session.name}, ${PROFILE_LABELS[session.type] || 'professionnel culturel'}. Le post doit être authentique, culturellement ancré (Caraïbes/Afrique), et inspirant. Utilise un mélange de français et de créole si pertinent. Ne mets pas de hashtags.`,
-        system_prompt: 'Tu es CVL BRAIN. Génère un post professionnel court et authentique pour le réseau culturel CC2026. Maximum 3-4 phrases. Pas de hashtags.',
+        system_prompt: 'Tu es Laurent.ia. Génère un post professionnel court et authentique pour le réseau culturel CC2026. Maximum 3-4 phrases. Pas de hashtags.',
         provider: 'anthropic', model: 'claude-sonnet-4-5-20250929',
       });
       setNewPost(res.data.response || '');
-    } catch { toast.error('CVL BRAIN est momentanément indisponible'); } finally { setGenerating(false); }
+    } catch { toast.error('Laurent.ia est momentanément indisponible'); } finally { setGenerating(false); }
   };
 
   const handleLike = async (postId) => {
@@ -888,7 +888,7 @@ const FeedSection = ({ session }) => {
                 className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all hover:scale-[1.02] active:scale-[0.97]"
                 style={{ background: 'rgba(232,213,160,0.06)', color: '#E8D5A0', minHeight: 36, fontFamily: "'Manrope', sans-serif", letterSpacing: '0.04em' }}>
                 <span className="material-symbols-outlined" style={{ fontSize: 16 }}>psychology</span>
-                {generating ? 'Génération...' : 'CVL BRAIN'}
+                {generating ? 'Génération...' : 'LAURENT.IA'}
               </button>
               <button disabled={!newPost.trim() || posting} onClick={createPost} data-testid="publish-post-btn"
                 className="px-6 py-2 rounded-full text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.97] disabled:opacity-30"

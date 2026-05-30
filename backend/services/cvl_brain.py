@@ -106,7 +106,7 @@ def _extract_json(text: str) -> dict:
 
 async def analyse(data: dict, context: str = "profil") -> dict:
     message = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-5-20250929",
         max_tokens=2000,
         system=CVL_BRAIN_SYSTEM_PROMPT,
         messages=[

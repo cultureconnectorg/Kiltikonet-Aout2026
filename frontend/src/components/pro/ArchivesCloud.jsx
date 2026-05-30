@@ -128,7 +128,7 @@ const ArchivesCloud = ({ session }) => {
         <div className="flex gap-1 p-1 rounded-xl" style={{ background: '#131314' }}>
           {[
             { id: 'files', icon: 'folder', label: 'Fichiers' },
-            { id: 'brain', icon: 'psychology', label: 'CVL Brain Data' },
+            { id: 'brain', icon: 'psychology', label: 'Laurent.ia Data' },
           ].map(tab => (
             <button key={tab.id} onClick={() => setActiveTab(tab.id)} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg transition-all" style={{ background: activeTab === tab.id ? 'rgba(232,213,160,0.08)' : 'transparent', color: activeTab === tab.id ? G : '#72727a' }} data-testid={`cloud-tab-${tab.id}`}>
               <span className="material-symbols-outlined" style={{ fontSize: 18, fontVariationSettings: activeTab === tab.id ? "'FILL' 1" : "'FILL' 0" }}>{tab.icon}</span>
@@ -250,10 +250,10 @@ const ArchivesCloud = ({ session }) => {
                 <span className="material-symbols-outlined" style={{ fontSize: 28, color: '#C4714A', fontVariationSettings: "'FILL' 1" }}>psychology</span>
               </div>
               <div>
-                <h3 style={{ fontFamily: "'Newsreader', serif", fontStyle: 'italic', fontSize: 20, color: '#e5e2e3' }}>Données d'entraînement CVL BRAIN</h3>
+                <h3 style={{ fontFamily: "'Newsreader', serif", fontStyle: 'italic', fontSize: 20, color: '#e5e2e3' }}>Données d'entraînement Laurent.ia</h3>
                 <p className="mt-1" style={{ fontFamily: "'Manrope', sans-serif", fontSize: 12, color: '#72727a', lineHeight: 1.6 }}>
                   Uploadez vos corpus, transcriptions et datasets pour enrichir l'intelligence culturelle souveraine.
-                  Plus vous fournissez de données, plus CVL BRAIN comprend votre contexte.
+                  Plus vous fournissez de données, plus Laurent.ia comprend votre contexte.
                 </p>
               </div>
             </div>

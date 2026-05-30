@@ -386,6 +386,100 @@ async def brain_chat_enriched(request: Request):
 
 
 # ═══════════════════════════════════════════════════════════════
+# BRAIN — SSE STREAMING (additif — ne remplace pas chat-enriched)
+# Bug fix #3 Laurent.ia : tokens en temps réel pour Terminal IA
+# ═══════════════════════════════════════════════════════════════
+
+@router.post("/api/brain/chat-stream", dependencies=[Depends(_require_perm("use_terminal_ia"))])
+async def brain_chat_stream(request: Request):
+    """SSE streaming version of /api/brain/chat-enriched.
+    Same payload, but returns text/event-stream with progressive tokens.
+    Client side: use EventSource or fetch + ReadableStream.
+    """
+    from fastapi.responses import StreamingResponse
+    body = await request.json()
+    message = body.get("message", "")
+    messages_history = body.get("messages", [])
+    user_name = body.get("user_name", "un utilisateur")
+    user_context = body.get("user_context", None)
+    langue = body.get("langue_preference", "fr")
+    frek_id = body.get("frek_id", "")
+    brain_session_id = body.get("session_id", "")
+
+    # Reuse quota check from chat-enriched (light copy)
+    email = ""
+    try:
+        session = _get_session(request)
+        email = session.get("email", "")
+    except Exception:
+        pass
+    if email:
+        adhesion = await _db.adhesions.find_one({"email": email, "actif": True}, {"_id": 0})
+        if adhesion:
+            quota = adhesion.get("brain_quota_daily", 10)
+            used = adhesion.get("brain_quota_used_today", 0)
+            if quota != 999999 and used >= quota:
+                raise HTTPException(429, f"Quota journalier atteint ({used}/{quota})")
+
+    from services.cvl_brain_knowledge import build_cvl_brain_prompt
+    system_prompt = build_cvl_brain_prompt(user_name, user_context, "")
+
+    history_context = ""
+    if messages_history and len(messages_history) > 1:
+        recent = messages_history[-20:-1] if len(messages_history) > 21 else messages_history[:-1]
+        history_context = "\n\n[HISTORIQUE DE CONVERSATION]\n"
+        for hist_msg in recent:
+            role_label = "Utilisateur" if hist_msg.get("role") == "user" else "CVL Brain"
+            content = hist_msg.get("content", "")[:500]
+            history_context += f"{role_label}: {content}\n"
+        history_context += "\n[FIN HISTORIQUE]\n"
+
+    async def event_generator():
+        import json as _json
+        full_response = []
+        try:
+            # emergentintegrations doesn't expose streaming yet → fallback to anthropic native
+            import anthropic
+            api_key = os.environ.get("EMERGENT_LLM_KEY", "")
+            client = anthropic.Anthropic(api_key=api_key, base_url="https://integrations.emergentagent.com/llm")
+            with client.messages.stream(
+                model="claude-sonnet-4-5-20250929",
+                max_tokens=2000,
+                system=system_prompt + history_context,
+                messages=[{"role": "user", "content": message}],
+            ) as stream:
+                for text in stream.text_stream:
+                    full_response.append(text)
+                    yield f"data: {_json.dumps({'token': text})}\n\n"
+            # Final event
+            final_text = "".join(full_response)
+            yield f"data: {_json.dumps({'done': True, 'full_response': final_text})}\n\n"
+
+            # Post-response housekeeping (quota + training data)
+            if email:
+                await _db.adhesions.update_one(
+                    {"email": email, "actif": True},
+                    {"$inc": {"brain_quota_used_today": 1}},
+                )
+            resolved_frek = frek_id or (await _get_user_frek_id(email) if email else "")
+            await write_brain_training(
+                frek_id=resolved_frek or email or "anonymous",
+                langue=langue,
+                input_text=message, output_text=final_text,
+                context_tags=[], session_id=brain_session_id,
+            )
+        except Exception as e:
+            yield f"data: {_json.dumps({'error': str(e)})}\n\n"
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
+
+# ═══════════════════════════════════════════════════════════════
 # BRAIN — MEMORY (extracted from server.py L9785)
 # ═══════════════════════════════════════════════════════════════
 

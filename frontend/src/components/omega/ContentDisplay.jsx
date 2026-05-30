@@ -65,7 +65,7 @@ export default function ContentDisplay({ onBack, onSelectBrainChat, onNavigate, 
   };
 
   const navItems = [
-    { id: "brain", label: "CVL BRAIN", icon: Brain },
+    { id: "brain", label: "LAURENT.IA", icon: Brain },
     { id: "quick_feed", label: "QUICK FEED", icon: Zap },
     { id: "inbox", label: "INBOX", icon: MessageSquare },
     { id: "wallet", label: "WALLET", icon: Wallet },
@@ -184,7 +184,7 @@ export default function ContentDisplay({ onBack, onSelectBrainChat, onNavigate, 
           <div className="w-24 h-24 rounded-xl omega-glass flex items-center justify-center mb-6 overflow-hidden" style={{ border: '1px solid rgba(242,202,80,0.3)' }}>
             <div className="flex flex-col items-center">
               <Coins className="w-8 h-8 mb-1" style={{ color: '#f2ca50', fill: '#f2ca50' }} />
-              <span className="italic font-bold text-[8px] tracking-widest text-center uppercase" style={{ color: '#f2ca50', fontFamily: "'Noto Serif', serif" }}>CVL BRAIN</span>
+              <span className="italic font-bold text-[8px] tracking-widest text-center uppercase" style={{ color: '#f2ca50', fontFamily: "'Noto Serif', serif" }}>LAURENT.IA</span>
             </div>
           </div>
           <p className="text-[10px] tracking-[0.4em] text-gray-500 uppercase mt-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>L'Espace Pro</p>

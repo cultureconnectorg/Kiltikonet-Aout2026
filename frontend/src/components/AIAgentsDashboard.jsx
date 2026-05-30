@@ -199,11 +199,11 @@ const AIAgentsDashboard = () => {
                 </Button>
               </div>
 
-              {/* CVL BRAIN Connection */}
+              {/* Laurent.ia Connection */}
               {agentDetail.cvl_brain_connected && (
                 <div className="bg-gradient-to-r from-cyan-900/20 to-[#141414] border border-cyan-500/30 p-5 rounded-lg">
                   <h3 className="text-sm font-semibold mb-3 uppercase tracking-wide flex items-center gap-2 text-cyan-400">
-                    <Zap size={14} /> CVL BRAIN connecte
+                    <Zap size={14} /> Laurent.ia connecte
                   </h3>
                   <div className="grid grid-cols-2 gap-3 text-xs">
                     <div>

@@ -155,7 +155,7 @@ const AccessibilitePage = () => {
                 desc="La visualisation 3D du reseau de noeuds est un outil d'exploration avancee reserve aux administrateurs. Un role='dialog' a ete ajoute en mode plein ecran avec une description aria-label."
               />
               <LimitationCard
-                title="Contenus generes par IA (CVL BRAIN)"
+                title="Contenus generes par IA (Laurent.ia)"
                 desc="Les recommandations generees par l'intelligence artificielle sont presentees sous forme textuelle standard, accessible aux lecteurs d'ecran."
               />
             </div>

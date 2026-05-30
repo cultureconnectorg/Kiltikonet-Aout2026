@@ -18,7 +18,7 @@ const STUDIOS = [
       { icon: 'edit_note', label: 'Nouvel article', desc: 'Redigez un post long format' },
       { icon: 'image', label: 'Media enrichi', desc: 'Ajoutez images et carrousels' },
       { icon: 'schedule', label: 'Planifier', desc: 'Programmez vos publications' },
-      { icon: 'psychology', label: 'CVL BRAIN Assist', desc: 'Generation IA de contenu' },
+      { icon: 'psychology', label: 'Laurent.ia Assist', desc: 'Generation IA de contenu' },
     ],
   },
   {

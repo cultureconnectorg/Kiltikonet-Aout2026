@@ -4,9 +4,9 @@ import axios from 'axios';
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const WELCOME_MESSAGES = [
-  "Sak pasé ? Man sé CVL BRAIN — Intelligence Souveraine CVLN. Ki mannyè man pé édé'w jòdi-a ?",
-  "Bienvenue. Man konnet tout sou CC2026, Jeton CC, et l'écosystème CVLN. Pozé kestion'w.",
-  "Man la pou ou. Demandez-moi n'importe quoi sur kiltikonet, la flywheel economy, ou votre profil.",
+  "Sak pasé ? Man sé Laurent.ia — Intelligence Souveraine CVLN. Ki mannyè man pé édé'w jòdi-a ?",
+  "Bienvenue. Je suis Laurent.ia. Je connais tout sur CC2026, Jeton CC, et l'écosystème CVLN. Pose ta question.",
+  "Je suis là pour toi. Demandez-moi n'importe quoi sur kiltikonet, la flywheel economy, ou votre profil.",
 ];
 
 const QUICK_ACTIONS = [
@@ -170,7 +170,7 @@ const CvlBrainFloat = ({ session, externalOpen, onExternalClose }) => {
         <button onClick={handleOpen} data-testid="cvl-brain-float-btn"
           className="fixed right-4 z-[80] w-14 h-14 rounded-full flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
           style={{ bottom: 'var(--kk-fab-bottom-mobile)', background: 'rgba(232,213,160,0.12)', boxShadow: '0 0 32px rgba(232,213,160,0.15), 0 8px 32px rgba(0,0,0,0.5)', backdropFilter: 'blur(16px)' }}
-          aria-label="Parle à CVL BRAIN">
+          aria-label="Parle à Laurent.ia">
           <span className="material-symbols-outlined" style={{ color: '#E8D5A0', fontSize: 26, fontVariationSettings: "'FILL' 0, 'wght' 300" }}>psychology</span>
         </button>
       )}
@@ -187,7 +187,7 @@ const CvlBrainFloat = ({ session, externalOpen, onExternalClose }) => {
                 <span className="material-symbols-outlined" style={{ color: '#E8D5A0', fontSize: 18, fontVariationSettings: "'FILL' 0, 'wght' 300" }}>psychology</span>
               </div>
               <div>
-                <p style={{ fontFamily: "'Newsreader', serif", fontStyle: 'italic', fontSize: 14, fontWeight: 400, color: '#e5e2e3' }}>CVL BRAIN</p>
+                <p style={{ fontFamily: "'Newsreader', serif", fontStyle: 'italic', fontSize: 14, fontWeight: 400, color: '#e5e2e3' }}>Laurent.ia</p>
                 <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 8, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5D4E' }}>Intelligence Souveraine</p>
               </div>
             </div>
@@ -288,7 +288,7 @@ const CvlBrainFloat = ({ session, externalOpen, onExternalClose }) => {
             <div className="flex gap-2 items-center rounded-full px-1" style={{ background: '#1b1b1c' }}>
               <input value={input} onChange={e => setInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && sendMessage()}
-                placeholder="Écrivez à CVL BRAIN..." aria-label="Message pour CVL BRAIN"
+                placeholder="Écrivez à Laurent.ia..." aria-label="Message pour Laurent.ia"
                 className="flex-1 h-11 px-4 rounded-full text-sm" data-testid="brain-chat-input"
                 style={{ background: 'transparent', border: 'none', color: '#e5e2e3', outline: 'none', fontFamily: "'Manrope', sans-serif" }} />
               <button onClick={sendMessage} disabled={!input.trim() || loading} data-testid="brain-send-btn"

@@ -226,7 +226,7 @@ const RecommendationsDashboard = () => {
               data-testid="reco-brain-btn"
             >
               {loading.brain ? <Loader2 size={12} className="animate-spin" /> : <Brain size={12} />}
-              CVL BRAIN
+              LAURENT.IA
             </button>
           </div>
 
@@ -337,7 +337,7 @@ const RecommendationsDashboard = () => {
             <div className="bg-[#9B59B6]/10 border border-[#9B59B6]/30 rounded-lg p-3">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <Brain size={12} className="text-[#9B59B6]" />
-                <span className="text-[10px] font-bold text-[#9B59B6]">Enrichissement CVL BRAIN</span>
+                <span className="text-[10px] font-bold text-[#9B59B6]">Enrichissement Laurent.ia</span>
               </div>
               <p className="text-[10px] text-[#CCC] leading-relaxed">{connections.brain_enrichment.analysis}</p>
             </div>

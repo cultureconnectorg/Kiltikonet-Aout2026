@@ -139,7 +139,7 @@ export default function CockpitView({ onBack, onSelect, auth }) {
       <div className="p-3 border-b flex items-center justify-between" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
         <div className="flex items-center gap-2">
           <Brain className="w-4 h-4" style={{ color: '#f2ca50' }} />
-          <span className="text-[10px] font-bold tracking-[0.2em] uppercase" style={{ color: '#f2ca50' }}>CVL BRAIN · TERMINAL</span>
+          <span className="text-[10px] font-bold tracking-[0.2em] uppercase" style={{ color: '#f2ca50' }}>LAURENT.IA · TERMINAL</span>
         </div>
         {onClose && <button onClick={onClose} className="p-1 rounded-lg hover:bg-white/10"><X className="w-4 h-4 text-gray-400" /></button>}
       </div>

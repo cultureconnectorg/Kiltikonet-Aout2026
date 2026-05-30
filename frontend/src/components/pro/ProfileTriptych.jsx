@@ -38,7 +38,7 @@ const FicheProfile = ({ session, doctrine, onDoctrineUpdate }) => {
     { icon: 'article', text: 'Publication "Gwoka et modernité" — 234 vues', time: '2h' },
     { icon: 'handshake', text: 'Connexion avec Simone Ogundimu', time: '5h' },
     { icon: 'shopping_bag', text: 'Achat Pack KT Diaspora — 150 KT', time: '1j' },
-    { icon: 'psychology', text: 'Session CVL BRAIN — Analyse de profil', time: '2j' },
+    { icon: 'psychology', text: 'Session Laurent.ia — Analyse de profil', time: '2j' },
   ];
 
   return (
@@ -327,7 +327,7 @@ const GovernanceProfile = ({ session }) => {
 
 // ─── ESPACE SAAS PAIEMENT ───────────────────────────────
 const SaasProfile = ({ session }) => {
-  const plan = { name: 'Pro Souverain', price: '29', period: 'mois', features: ['Feed illimité', 'CVL BRAIN complet', '5 Studios actifs', 'Wallet & Trading', 'Support prioritaire'] };
+  const plan = { name: 'Pro Souverain', price: '29', period: 'mois', features: ['Feed illimité', 'Laurent.ia complet', '5 Studios actifs', 'Wallet & Trading', 'Support prioritaire'] };
 
   const invoices = [
     { id: 'INV-2026-004', date: 'Avr 2026', amount: '29,00', status: 'Payé' },
@@ -337,7 +337,7 @@ const SaasProfile = ({ session }) => {
   ];
 
   const usage = [
-    { icon: 'psychology', label: 'CVL BRAIN', used: 847, total: 1000, unit: 'requêtes' },
+    { icon: 'psychology', label: 'LAURENT.IA', used: 847, total: 1000, unit: 'requêtes' },
     { icon: 'cloud_upload', label: 'Stockage', used: 2.4, total: 10, unit: 'GB' },
     { icon: 'api', label: 'API Calls', used: 12400, total: 50000, unit: 'appels' },
   ];

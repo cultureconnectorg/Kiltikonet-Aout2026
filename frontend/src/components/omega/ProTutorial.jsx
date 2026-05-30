@@ -55,8 +55,8 @@ const STEPS = [
   {
     id: "brain",
     icon: MessageSquare,
-    titleFr: "CVL Brain",
-    titleEn: "CVL Brain",
+    titleFr: "Laurent.ia",
+    titleEn: "Laurent.ia",
     descFr: "Ton assistant IA personnel. Pose-lui n'importe quelle question sur l'événement ou la plateforme.",
     descEn: "Your personal AI assistant. Ask it anything about the event or the platform.",
     position: "center",

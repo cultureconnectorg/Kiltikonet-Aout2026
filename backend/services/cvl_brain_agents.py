@@ -19,10 +19,27 @@ ANALYSES_COL = "cvl_brain_analyses"
 REPORTS_COL = "cvl_brain_daily_reports"
 AGENT_STATUS_COL = "cvl_brain_agent_status"
 ALERTS_COL = "cvl_brain_alerts"
+AGENT_LOGS_COL = "agent_logs"
+
+
+async def log_write(agent_id: str, level: str, message: str, detail: str = ""):
+    """Persistent log entry — visible via /api/ai-agents/{id}/logs.
+    levels: info | success | warning | error
+    """
+    try:
+        await _db[AGENT_LOGS_COL].insert_one({
+            "agent_id": agent_id,
+            "level": level,
+            "message": message,
+            "detail": detail,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        })
+    except Exception as e:
+        logger.warning(f"agent_logs write failed for {agent_id}: {e}")
 
 
 async def _log_agent_call(agent_id: str, success: bool, detail: str = ""):
-    """Track each agent's last CVL BRAIN interaction."""
+    """Track each agent's last CVL BRAIN interaction + persistent log entry."""
     await _db[AGENT_STATUS_COL].update_one(
         {"agent_id": agent_id},
         {"$set": {
@@ -33,6 +50,12 @@ async def _log_agent_call(agent_id: str, success: bool, detail: str = ""):
             "connected": True,
         }, "$inc": {"total_calls": 1}},
         upsert=True,
+    )
+    # Persistent log (was empty before bug fix)
+    await log_write(
+        agent_id=agent_id,
+        level="success" if success else "error",
+        message=detail or ("Call OK" if success else "Call failed"),
     )
 
 

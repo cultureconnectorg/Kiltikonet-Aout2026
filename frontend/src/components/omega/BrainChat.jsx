@@ -207,7 +207,7 @@ export default function BrainChat({ onBack, onSelect, balance, auth }) {
               <ArrowLeft className="w-4 h-4" />
             </motion.button>
             <div className="flex flex-col">
-              <span className="italic text-base" style={{ fontFamily: "'Noto Serif', serif", color: '#f2ca50' }}>CVL BRAIN</span>
+              <span className="italic text-base" style={{ fontFamily: "'Noto Serif', serif", color: '#f2ca50' }}>Laurent.ia</span>
               <span className="font-mono text-[7px] tracking-[0.2em] text-gray-500 uppercase">Claude 3.5 Sonnet · Core Engine</span>
             </div>
           </div>
@@ -313,7 +313,7 @@ export default function BrainChat({ onBack, onSelect, balance, auth }) {
         <footer className="p-6 shrink-0">
           <div className="max-w-3xl mx-auto relative">
             <div className="relative rounded-2xl p-2 focus-within:border-[rgba(242,202,80,0.3)] transition-all shadow-2xl" style={{ background: '#161618', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <textarea value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && (e.preventDefault(), handleSend())} placeholder="Posez une question au CVL Brain..." className="w-full bg-transparent border-none outline-none px-4 py-3 text-sm text-white placeholder-gray-600 resize-none min-h-[60px] max-h-48" />
+              <textarea value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && (e.preventDefault(), handleSend())} placeholder="Posez une question à Laurent.ia..." className="w-full bg-transparent border-none outline-none px-4 py-3 text-sm text-white placeholder-gray-600 resize-none min-h-[60px] max-h-48" />
               <div className="flex items-center justify-between px-2 pb-1">
                 <div className="flex items-center gap-1">
                   <input ref={fileInputRef} type="file" className="hidden" accept="image/*,audio/*,video/*" onChange={async (e) => {

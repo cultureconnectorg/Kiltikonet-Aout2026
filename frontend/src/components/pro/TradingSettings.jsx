@@ -99,7 +99,7 @@ const TradingSettings = ({ session }) => {
         <section className="rounded-xl p-5" style={{ background: '#131314' }}>
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 style={{ fontFamily: "'Manrope', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#72727a' }}>Auto-Trading CVL BRAIN</h3>
+              <h3 style={{ fontFamily: "'Manrope', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#72727a' }}>Auto-Trading Laurent.ia</h3>
               <p className="mt-1" style={{ fontFamily: "'Manrope', sans-serif", fontSize: 12, color: '#555' }}>Laisser CVL BRAIN gérer vos positions automatiquement</p>
             </div>
             <Toggle value={autoTrading} onChange={setAutoTrading} testId="toggle-auto-trading" />
@@ -110,7 +110,7 @@ const TradingSettings = ({ session }) => {
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined" style={{ fontSize: 18, color: '#5B9BD5' }}>info</span>
                 <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 12, color: '#5B9BD5', lineHeight: 1.5 }}>
-                  CVL BRAIN analysera le marché et exécutera des ordres selon votre profil de risque.
+                  Laurent.ia analysera le marché et exécutera des ordres selon votre profil de risque.
                 </p>
               </div>
               <div className="flex items-center justify-between">

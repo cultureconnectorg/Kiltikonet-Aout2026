@@ -131,7 +131,7 @@ const ConstellationReveal = ({ frekId, score, jetons, analysis, onComplete }) =>
           {analysis && (
             <div className="p-4 rounded-lg text-sm leading-relaxed" style={{ background: `${C.forest}15`, border: `1px solid ${C.forest}40`, color: C.text }}>
               <p className="text-xs font-bold mb-1 flex items-center gap-1" style={{ color: C.forest }}>
-                <Sparkles size={12} /> CVL BRAIN
+                <Sparkles size={12} /> LAURENT.IA
               </p>
               {analysis}
             </div>
@@ -191,9 +191,9 @@ const ProOnboarding = ({ session, onComplete }) => {
             <div className="w-20 h-20 rounded-full mx-auto flex items-center justify-center animate-pulse" style={{ background: `${C.gold}20`, border: `2px solid ${C.gold}` }}>
               <Sparkles size={32} style={{ color: C.gold }} />
             </div>
-            <h2 className="text-2xl font-black" style={{ color: C.text, fontFamily: "'Syne', sans-serif" }}>CVL BRAIN vous accueille</h2>
+            <h2 className="text-2xl font-black" style={{ color: C.text, fontFamily: "'Syne', sans-serif" }}>Laurent.ia vous accueille</h2>
             <p className="text-sm leading-relaxed max-w-sm mx-auto" style={{ color: C.muted }}>
-              Bienvenue dans l'Espace Pro CC2026. Avant de commencer, CVL BRAIN va évaluer votre profil culturel et vous attribuer votre identité FREK unique.
+              Bienvenue dans l'Espace Pro CC2026. Avant de commencer, Laurent.ia va évaluer votre profil culturel et vous attribuer votre identité FREK unique.
             </p>
             <p className="text-xs" style={{ color: C.dim }}>3 questions. 30 secondes. 10 Jetons CC offerts.</p>
             <Button onClick={() => setStep(1)} className="rounded-full px-8 h-12 text-base" style={{ background: C.gold, color: '#000' }} data-testid="start-onboarding-btn">
@@ -279,7 +279,7 @@ const ProOnboarding = ({ session, onComplete }) => {
             <div className="flex gap-2">
               <Button onClick={() => setStep(2)} variant="ghost" className="rounded-full px-4" style={{ color: C.muted }}>Retour</Button>
               <Button onClick={handleSubmit} disabled={!goal || loading} className="flex-1 h-11 rounded-full" style={{ background: goal ? C.gold : C.dim, color: '#000' }} data-testid="submit-onboarding-btn">
-                {loading ? 'CVL BRAIN analyse...' : 'Accéder à mon espace'}
+                {loading ? 'Laurent.ia analyse...' : 'Accéder à mon espace'}
               </Button>
             </div>
           </div>

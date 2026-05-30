@@ -780,7 +780,7 @@ const MgraphView = () => {
       <div className="absolute bottom-3 right-3 z-10 text-[8px] text-[#444] pointer-events-none text-right leading-relaxed">
         Clic + drag : rotation | Scroll : zoom<br />
         Clic droit : pan | Clic noeud : profil<br />
-        Double-clic : isoler | Long press : CVL BRAIN
+        Double-clic : isoler | Long press : Laurent.ia
       </div>
 
       {/* Canvas */}
@@ -834,7 +834,7 @@ const MgraphView = () => {
             </div>
           </div>
 
-          {/* CVL BRAIN */}
+          {/* Laurent.ia */}
           {popup.brainLoading && (
             <div className="mt-3 pt-2 border-t border-[#222] flex items-center gap-2 text-[10px] text-[#9B59B6]">
               <Loader2 size={10} className="animate-spin" /> Analyse CVL BRAIN en cours...

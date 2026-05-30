@@ -281,7 +281,7 @@ export default function OrbitalMenu({ onSelect, balance, frekId }) {
               <Zap className="w-4 h-4" /> Feed
             </button>
             <button onClick={() => onSelect("brain")} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs text-gray-400 hover:text-[#f2ca50] transition-all" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)' }} data-testid="panel-brain-btn">
-              <Bell className="w-4 h-4" /> CVL Brain
+              <Bell className="w-4 h-4" /> Laurent.ia
             </button>
           </div>
         </div>

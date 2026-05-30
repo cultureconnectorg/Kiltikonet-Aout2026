@@ -23,6 +23,75 @@ _db = _client[os.environ.get("DB_NAME", "culture_connect_2026")]
 LAURENTIA_API_KEY = os.environ.get("LAURENTIA_API_KEY", "").strip()
 
 
+# ─── RBAC Doctrine roles whitelist (brief équipe) ──────────────
+VALID_ROLES = {"creator", "distributor", "institutional", "professional", "consumer"}
+
+# Mapping interne kiltikonet → vocabulaire RBAC Doctrine
+ROLE_MAP = {
+    # registrations.profile_type / actor_role
+    "creator": "creator",
+    "artiste": "creator",
+    "artiste_createur": "creator",
+    "producteur": "creator",
+    "createur": "creator",
+    "distributor": "distributor",
+    "distributeur": "distributor",
+    "diffuseur": "distributor",
+    "operateur": "distributor",
+    "institutional": "institutional",
+    "institutionnel": "institutional",
+    "structure": "institutional",
+    "structure_culturelle": "institutional",
+    "professional": "professional",
+    "professionnel": "professional",
+    "pro": "professional",
+    "consumer": "consumer",
+    "public": "consumer",
+    "spectateur": "consumer",
+    "other": "professional",  # default safe fallback
+    "admin": "professional",  # admin = pro pour Laurent.ia
+}
+
+
+def _normalize_role(raw: str) -> str:
+    """Normalise un rôle kiltikonet vers le vocabulaire Doctrine."""
+    if not raw:
+        return "professional"
+    key = str(raw).strip().lower()
+    return ROLE_MAP.get(key, "professional")
+
+
+# ─── 7 dimensions culturelles (spec brief équipe) ──────────────
+CULTURAL_DIMENSIONS_7D = [
+    "musique",
+    "arts_visuels",
+    "langue_creole",
+    "patrimoine",
+    "gastronomie",
+    "feminite_matriarcat",
+    "identite_diasporique",
+]
+
+
+def _shape_cultural_profile(raw: dict) -> dict:
+    """Aplatit le profil culturel kiltikonet vers les 7 dimensions du brief.
+    Valeurs 0-100. Champs manquants → 0.
+    """
+    if not raw:
+        return {dim: 0 for dim in CULTURAL_DIMENSIONS_7D}
+    dims = (raw.get("dimensions") or {}) if isinstance(raw, dict) else {}
+    flat = {}
+    for dim in CULTURAL_DIMENSIONS_7D:
+        v = dims.get(dim, raw.get(dim, 0))
+        try:
+            v_int = int(v) if v is not None else 0
+        except (TypeError, ValueError):
+            v_int = 0
+        # Clamp 0-100
+        flat[dim] = max(0, min(100, v_int))
+    return flat
+
+
 def require_inter_service(x_api_key: Optional[str] = Header(None, alias="X-API-Key")):
     """Vérifie le header X-API-Key contre LAURENTIA_API_KEY."""
     if not LAURENTIA_API_KEY:
@@ -37,115 +106,110 @@ router = APIRouter()
 
 # ═══════════════════════════════════════════════════════════════
 # GET /api/users/validate/{frek_id}
+# Spec brief équipe :
+#   { "valid": bool, "frek_id": str, "role": <RBAC role> }
 # ═══════════════════════════════════════════════════════════════
 @router.get("/api/users/validate/{frek_id}", dependencies=[Depends(require_inter_service)])
 async def validate_frek_id(frek_id: str):
-    """Valide qu'un FREK-ID existe et retourne son rôle.
-    Cherche dans registrations, kn_profiles, cc_badges (cascade).
+    """Valide qu'un FREK-ID existe et retourne son rôle normalisé RBAC.
+    Cascade lookup : registrations → kn_profiles → cc_badges.
     """
     frek_id = (frek_id or "").strip().upper()
-    if not frek_id or not frek_id.startswith("FREK-"):
-        return {"valid": False, "frek_id": frek_id, "role": None, "reason": "format_invalid"}
+    if not frek_id.startswith("FREK-"):
+        return {"valid": False, "frek_id": frek_id, "role": "consumer"}
 
     # 1. registrations (espace pro)
-    reg = await _db.registrations.find_one({"frek_id": frek_id}, {"_id": 0, "profile_type": 1, "status": 1, "is_admin": 1})
+    reg = await _db.registrations.find_one(
+        {"frek_id": frek_id},
+        {"_id": 0, "profile_type": 1, "actor_role": 1, "status": 1, "is_admin": 1, "suspended": 1},
+    )
     if reg:
-        if reg.get("status") != "approved":
-            return {"valid": False, "frek_id": frek_id, "role": None, "reason": "pending"}
-        role = "admin" if reg.get("is_admin") else reg.get("profile_type", "professional")
-        return {"valid": True, "frek_id": frek_id, "role": role, "source": "registrations"}
+        if reg.get("suspended") or reg.get("status") not in (None, "approved"):
+            return {"valid": False, "frek_id": frek_id, "role": "consumer"}
+        # actor_role est plus précis que profile_type pour le RBAC
+        raw_role = reg.get("actor_role") or reg.get("profile_type") or "professional"
+        return {"valid": True, "frek_id": frek_id, "role": _normalize_role(raw_role)}
 
-    # 2. kn_profiles (espace pro CC2026)
-    kn = await _db.kn_profiles.find_one({"frek_id": frek_id}, {"_id": 0, "role": 1, "suspended": 1})
+    # 2. kn_profiles
+    kn = await _db.kn_profiles.find_one(
+        {"frek_id": frek_id},
+        {"_id": 0, "role": 1, "actor_role": 1, "suspended": 1},
+    )
     if kn:
         if kn.get("suspended"):
-            return {"valid": False, "frek_id": frek_id, "role": None, "reason": "suspended"}
-        return {"valid": True, "frek_id": frek_id, "role": kn.get("role", "pro"), "source": "kn_profiles"}
+            return {"valid": False, "frek_id": frek_id, "role": "consumer"}
+        raw_role = kn.get("actor_role") or kn.get("role") or "professional"
+        return {"valid": True, "frek_id": frek_id, "role": _normalize_role(raw_role)}
 
-    # 3. cc_badges (badge NFC physique uniquement)
+    # 3. cc_badges (badge NFC physique seulement → consumer par défaut)
     badge = await _db.cc_badges.find_one({"frek_id": frek_id}, {"_id": 0, "type_badge": 1})
     if badge:
-        return {"valid": True, "frek_id": frek_id, "role": badge.get("type_badge", "badge").lower(), "source": "cc_badges"}
+        return {"valid": True, "frek_id": frek_id, "role": "consumer"}
 
-    return {"valid": False, "frek_id": frek_id, "role": None, "reason": "not_found"}
+    return {"valid": False, "frek_id": frek_id, "role": "consumer"}
 
 
 # ═══════════════════════════════════════════════════════════════
 # GET /api/users/{frek_id}/profile
-# Agrégat: cultural_profile 7D + badges + wallet
+# Spec brief équipe :
+#   {
+#     "cultural_profile": { musique, arts_visuels, langue_creole,
+#                          patrimoine, gastronomie, feminite_matriarcat,
+#                          identite_diasporique },  // 0-100
+#     "badges": [],
+#     "wallet": { "jcc_balance": 0 }
+#   }
 # ═══════════════════════════════════════════════════════════════
 @router.get("/api/users/{frek_id}/profile", dependencies=[Depends(require_inter_service)])
 async def get_user_profile(frek_id: str):
-    """Profil complet pour Laurent.ia bridge.
-    Joint registrations + cultural_scores + cc_badges + kn_wallets.
-    """
+    """Profil agrégé pour Laurent.ia. Lecture seule. Format strict brief équipe."""
     frek_id = (frek_id or "").strip().upper()
     if not frek_id.startswith("FREK-"):
         raise HTTPException(400, "Format FREK-ID invalide")
 
-    # Identité de base
+    # Identité de base (registrations ou kn_profiles)
     base = await _db.registrations.find_one(
         {"frek_id": frek_id},
-        {"_id": 0, "id": 1, "email": 1, "full_name": 1, "prenom": 1, "nom": 1,
-         "profile_type": 1, "actor_role": 1, "language": 1, "status": 1, "created_at": 1},
+        {"_id": 0, "id": 1, "email": 1},
     )
     if not base:
-        # Fallback sur kn_profiles
-        kn = await _db.kn_profiles.find_one({"frek_id": frek_id}, {"_id": 0})
+        kn = await _db.kn_profiles.find_one({"frek_id": frek_id}, {"_id": 0, "frek_id": 1, "email": 1})
         if not kn:
             raise HTTPException(404, "FREK-ID introuvable")
-        base = {
-            "id": kn.get("frek_id"),
-            "email": kn.get("email", ""),
-            "full_name": kn.get("display_name") or kn.get("full_name", ""),
-            "profile_type": kn.get("role", "pro"),
-            "actor_role": "professional",
-            "language": "fr",
-            "status": "approved",
-            "created_at": kn.get("created_at", ""),
-        }
+        base = {"id": kn.get("frek_id"), "email": kn.get("email", "")}
 
     user_id = base.get("id") or frek_id
 
-    # Cultural profile 7D
-    cultural = await _db.cultural_scores.find_one(
+    # Cultural profile 7D (depuis cultural_scores)
+    cultural_raw = await _db.cultural_scores.find_one(
         {"user_id": user_id},
-        {"_id": 0, "score": 1, "dimensions": 1, "level": 1,
-         "reactions_given": 1, "reactions_received": 1, "updated_at": 1},
+        {"_id": 0, "dimensions": 1, "musique": 1, "arts_visuels": 1, "langue_creole": 1,
+         "patrimoine": 1, "gastronomie": 1, "feminite_matriarcat": 1, "identite_diasporique": 1},
     )
-    if not cultural:
-        # Initialiser à 0 (cohérent avec /api/cultural-identity/{user_id})
-        cultural = {
-            "score": 0,
-            "dimensions": {},
-            "level": {"name": "Néophyte", "min": 0, "max": 10},
-            "reactions_given": 0,
-            "reactions_received": 0,
-        }
 
-    # Badges
-    badges = await _db.cc_badges.find(
-        {"frek_id": frek_id},
-        {"_id": 0, "badge_id": 1, "type_badge": 1, "date_emission": 1, "active": 1},
+    # Badges (liste d'IDs uniquement — RGPD safe)
+    badges_docs = await _db.cc_badges.find(
+        {"frek_id": frek_id, "active": {"$ne": False}},
+        {"_id": 0, "badge_id": 1, "type_badge": 1},
     ).to_list(50)
+    badges = [b.get("type_badge") or b.get("badge_id") for b in badges_docs if b]
 
-    # Wallet
+    # JCC balance uniquement (sécurité — pas d'autre montant exposé)
     wallet = await _db.kn_wallets.find_one(
         {"frek_id": frek_id},
-        {"_id": 0, "balance_kt": 1, "balance_jcc": 1, "updated_at": 1},
+        {"_id": 0, "balance_jcc": 1},
     )
     if not wallet:
         wallet = await _db.kn_wallets.find_one(
             {"email": base.get("email", "")},
-            {"_id": 0, "balance_kt": 1, "balance_jcc": 1, "updated_at": 1},
-        ) or {"balance_kt": 0, "balance_jcc": 0}
+            {"_id": 0, "balance_jcc": 1},
+        )
+    jcc_balance = int((wallet or {}).get("balance_jcc", 0) or 0)
 
     return {
-        "frek_id": frek_id,
-        "identity": base,
-        "cultural_profile": cultural,
+        "cultural_profile": _shape_cultural_profile(cultural_raw),
         "badges": badges,
-        "wallet": wallet,
+        "wallet": {"jcc_balance": jcc_balance},
     }
 
 

@@ -6895,28 +6895,61 @@ async def auth_register(request: RegisterRequest, req: Request):
     # Send Brevo welcome email
     try:
         welcome_html = f"""
-        <div style="font-family: 'Segoe UI', sans-serif; max-width: 500px; margin: 0 auto; padding: 40px 20px; background: #0a0a0b; color: #e0e0e0;">
+        <div style="font-family: 'Segoe UI', sans-serif; max-width: 560px; margin: 0 auto; padding: 40px 20px; background: #0a0a0b; color: #e0e0e0;">
             <div style="text-align: center; margin-bottom: 30px;">
                 <h1 style="color: #f2ca50; margin: 0;">Bienvenue sur Kiltikonet</h1>
             </div>
             <div style="background: #1a1a1c; padding: 30px; border-radius: 12px; text-align: center; border: 1px solid rgba(242,202,80,0.3);">
                 <p style="font-size: 18px; margin: 0 0 10px 0;">Bonjour {request.prenom},</p>
-                <p style="font-size: 14px; color: #aaa; margin: 0 0 20px 0;">Ton identite culturelle souveraine est prete.</p>
+                <p style="font-size: 14px; color: #aaa; margin: 0 0 20px 0;">Ton identité culturelle souveraine est prête.</p>
                 <div style="background: #0a0a0b; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid rgba(242,202,80,0.2);">
                     <div style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.2em;">Ton FREK-ID</div>
                     <div style="font-size: 24px; font-weight: bold; color: #f2ca50; font-family: monospace; margin-top: 8px;">{frek_id}</div>
                 </div>
-                <p style="font-size: 14px; color: #aaa;">Tu as recu <strong style="color: #f2ca50;">{welcome_kt} KT</strong> pour commencer.</p>
+                <p style="font-size: 14px; color: #aaa;">Tu as reçu <strong style="color: #f2ca50;">{welcome_kt} KT</strong> pour commencer.</p>
                 <a href="https://kiltikonet.fr/pro" style="display: inline-block; background: #f2ca50; color: #0a0a0b; padding: 14px 36px; border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; margin-top: 20px; letter-spacing: 0.05em;">
-                    Explorer l'Espace Pro
+                    Accéder à mon Espace Pro
                 </a>
+            </div>
+            <div style="background: #14141a; padding: 22px; border-radius: 12px; margin-top: 16px; border-left: 3px solid #f2ca50;">
+                <p style="font-size: 13px; color: #f2ca50; margin: 0 0 10px 0; font-weight: 700; letter-spacing: 0.05em;">📌 Comment te reconnecter plus tard</p>
+                <ol style="font-size: 13px; color: #cfcfcf; margin: 0; padding-left: 20px; line-height: 1.7;">
+                    <li>Va sur <a href="https://kiltikonet.fr/espace-pro/connexion" style="color: #f2ca50;">kiltikonet.fr/espace-pro/connexion</a></li>
+                    <li>Clique sur « <strong>Déjà un compte ? Se connecter</strong> »</li>
+                    <li>Entre ton email : <strong>{email}</strong></li>
+                    <li>Tu recevras un email avec un lien magique → clique dedans</li>
+                </ol>
+                <p style="font-size: 11px; color: #888; margin: 14px 0 0 0; font-style: italic;">⚠️ Astuce : si tu reçois ce mail depuis Instagram ou Facebook, ouvre-le dans Safari ou Chrome (sinon ça plante).</p>
             </div>
             <p style="text-align: center; font-size: 10px; color: #555; margin-top: 20px;">kiltikonet.fr — CC2026</p>
         </div>
         """
-        await send_email_async(email, "Bienvenue sur kiltikonet — ton FREK-ID est pret", welcome_html)
+        await send_email_async(email, "Bienvenue sur Kiltikonet — ton FREK-ID est prêt", welcome_html)
     except Exception as mail_err:
         logger.warning(f"Welcome email failed for {email}: {mail_err}")
+
+    # Send admin notification (best-effort, non-blocking)
+    try:
+        admin_email = os.environ.get("ADMIN_EMAIL", "cultureconnectorg@gmail.com")
+        notif_html = f"""
+        <div style="font-family: 'Segoe UI', sans-serif; max-width: 520px; margin: 0 auto; padding: 30px 20px; background: #0a0a0b; color: #e0e0e0;">
+            <div style="background: #1a1a1c; padding: 24px; border-radius: 12px; border: 1px solid rgba(242,202,80,0.3);">
+                <p style="font-size: 11px; color: #f2ca50; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.2em;">🔔 Nouvelle inscription Pro</p>
+                <h2 style="color: #fff; font-size: 20px; margin: 0 0 16px 0;">{full_name}</h2>
+                <table style="width: 100%; font-size: 13px; color: #cfcfcf; border-collapse: collapse;">
+                    <tr><td style="padding: 4px 0; color: #888;">Email</td><td style="padding: 4px 0;"><a href="mailto:{email}" style="color: #f2ca50;">{email}</a></td></tr>
+                    <tr><td style="padding: 4px 0; color: #888;">FREK-ID</td><td style="padding: 4px 0; font-family: monospace; color: #f2ca50;">{frek_id}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #888;">Inscrit le</td><td style="padding: 4px 0;">{now[:19].replace('T', ' à ')}</td></tr>
+                </table>
+                <a href="https://kiltikonet.fr/admin" style="display: inline-block; background: #f2ca50; color: #0a0a0b; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 12px; text-decoration: none; margin-top: 18px; letter-spacing: 0.05em;">
+                    Ouvrir l'admin
+                </a>
+            </div>
+        </div>
+        """
+        await send_email_async(admin_email, f"🔔 Nouvelle inscription : {full_name}", notif_html)
+    except Exception as notif_err:
+        logger.warning(f"Admin notification email failed: {notif_err}")
 
     # Set session cookie
     response = JSONResponse(content={
@@ -7286,10 +7319,17 @@ async def google_auth_session(request: Request):
     google_picture = guser.get("picture", "")
     google_id = guser.get("id", "")
 
+    if not google_email:
+        raise HTTPException(status_code=400, detail="Email Google manquant dans la réponse OAuth")
+
     # FUSION: check if email exists in registrations
     existing = await db.registrations.find_one({"email": google_email}, {"_id": 0})
     if existing:
         # Account fusion — update google_id, keep ALL existing data
+        # SECURITY: log if google_id changes (different Google account using same email)
+        prev_gid = existing.get("google_id")
+        if prev_gid and prev_gid != google_id:
+            logger.warning(f"Google account fusion: email={google_email} prev_gid={prev_gid[:8]}... new_gid={google_id[:8]}...")
         await db.registrations.update_one(
             {"email": google_email},
             {"$set": {"google_id": google_id, "google_picture": google_picture},

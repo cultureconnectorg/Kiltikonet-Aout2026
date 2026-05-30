@@ -237,6 +237,18 @@ const useProSession = () => {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    // ❌ NE PAS restaurer la session si on est en plein flow OAuth (session_id dans le hash)
+    // Bug critique sinon : on connecte l'ancien user pendant que le callback OAuth s'exécute
+    const isOAuthCallback = typeof window !== 'undefined' && (
+      window.location.hash?.includes('session_id=') ||
+      window.location.hash?.includes('github_auth=success') ||
+      window.location.search?.includes('switch_account=1')
+    );
+    if (isOAuthCallback) {
+      sessionStorage.removeItem('cc2026_pro_session');
+      setLoading(false);
+      return;
+    }
     // Check sessionStorage first
     const stored = sessionStorage.getItem('cc2026_pro_session');
     if (stored) {
@@ -265,6 +277,7 @@ const useProSession = () => {
   }, []);
   const logout = async () => {
     sessionStorage.removeItem('cc2026_pro_session');
+    localStorage.removeItem('kk_last_login_email');
     setSession(null);
     try { await fetch(`${API}/auth/logout`, { method: 'POST', credentials: 'include' }); } catch { /* silent */ }
   };
@@ -2067,8 +2080,12 @@ export const ProSpaceLogin = ({ onLogin } = {}) => {
   };
 
   const handleGoogleLogin = () => {
+    // Clear any existing session before launching Google flow
+    sessionStorage.removeItem('cc2026_pro_session');
+    localStorage.removeItem('kk_last_login_email');
     const redirectUrl = window.location.origin + '/espace-pro/connexion';
-    window.location.href = `https://auth.emergentagent.com/?redirect=${encodeURIComponent(redirectUrl)}`;
+    // Note : auth.emergentagent.com gère le prompt — on indique notre intent via query
+    window.location.href = `https://auth.emergentagent.com/?redirect=${encodeURIComponent(redirectUrl)}&prompt=select_account`;
   };
 
   const handleGitHubLogin = () => {

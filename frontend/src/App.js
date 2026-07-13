@@ -39,6 +39,7 @@ import { AccreditationSystem } from "./components/AccreditationSystem";
 import BadgeScan from "./components/BadgeScan";
 import ScanApp from "./components/omega/ScanApp";
 import ScannerCC2026 from "./components/omega/ScannerCC2026";
+import NotFound from "./components/NotFound";
 // CC2026 Badge & Jetons
 import BadgeActivation from "./components/BadgeActivation";
 import BadgeInscription from "./components/BadgeInscription";
@@ -387,6 +388,8 @@ function App() {
               <Route path="/scanner-cc2026" element={<ScannerCC2026 />} />
               {/* Dynamic CMS Pages */}
               <Route path="/p/:slug" element={<DynamicPage />} />
+              {/* Catch-all 404 — DOIT ÊTRE EN DERNIER */}
+              <Route path="*" element={<NotFound />} />
                 </Routes>
               </AppLayout>
             } />

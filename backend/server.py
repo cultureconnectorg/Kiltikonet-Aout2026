@@ -216,26 +216,77 @@ _rate_limit_store: Dict[str, list] = {}
 RATE_LIMIT_WINDOW = 60  # seconds
 RATE_LIMIT_MAX = 500     # requests per window per IP (production-grade)
 
+# ── Aggressive rate limiter for sensitive endpoints (admin login, auth) ──
+_auth_rate_limit_store: Dict[str, list] = {}
+AUTH_RATE_LIMIT_WINDOW = 900  # 15 minutes
+AUTH_RATE_LIMIT_MAX = 5       # 5 attempts per 15 min per IP
+
+
+def _get_client_ip(request: Request) -> str:
+    """Extract real client IP behind Cloudflare / proxy."""
+    cf_ip = request.headers.get("cf-connecting-ip")
+    if cf_ip:
+        return cf_ip.strip()
+    xff = request.headers.get("x-forwarded-for", "")
+    if xff:
+        return xff.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
+
+
+# Endpoints qui déclenchent le rate limiter agressif
+_SENSITIVE_ENDPOINTS = (
+    "/api/workspace/login",
+    "/api/admin/verify",
+    "/api/admin/login",
+    "/api/auth/login",
+    "/api/auth/register",
+    "/api/pro/verify-code",
+)
+
+
 @app.middleware("http")
 async def rate_limit_middleware(request: Request, call_next):
-    """Basic IP-based rate limiting — only for non-API routes to prevent abuse."""
+    """Basic IP-based rate limiting — only for non-API routes to prevent abuse.
+    Combined with aggressive rate limiter on sensitive auth endpoints.
+    """
+    path = request.url.path
+
+    # ─── Aggressive rate limiter on sensitive endpoints (always on, even preview) ───
+    if any(path.startswith(ep) for ep in _SENSITIVE_ENDPOINTS) and request.method == "POST":
+        client_ip = _get_client_ip(request)
+        now = datetime.now(timezone.utc).timestamp()
+        window_start = now - AUTH_RATE_LIMIT_WINDOW
+        hits = _auth_rate_limit_store.get(client_ip, [])
+        hits = [t for t in hits if t > window_start]
+        if len(hits) >= AUTH_RATE_LIMIT_MAX:
+            return JSONResponse(
+                status_code=429,
+                content={
+                    "detail": "Trop de tentatives. Réessayez dans 15 minutes.",
+                    "retry_after_seconds": AUTH_RATE_LIMIT_WINDOW,
+                },
+                headers={"Retry-After": str(AUTH_RATE_LIMIT_WINDOW)},
+            )
+        hits.append(now)
+        _auth_rate_limit_store[client_ip] = hits
+
+    # ─── Standard global rate limiter (production only, non-API) ───
     if IS_PRODUCTION:
-        path = request.url.path
         # All API routes are excluded — rate limit only applies to static/unknown routes
         if not path.startswith("/api/"):
-            client_ip = request.headers.get("x-forwarded-for", request.client.host if request.client else "unknown").split(",")[0].strip()
+            client_ip = _get_client_ip(request)
             now = datetime.now(timezone.utc).timestamp()
-            
+
             window_start = now - RATE_LIMIT_WINDOW
             hits = _rate_limit_store.get(client_ip, [])
             hits = [t for t in hits if t > window_start]
-            
+
             if len(hits) >= RATE_LIMIT_MAX:
                 return JSONResponse(status_code=429, content={"detail": "Trop de requêtes. Réessayez dans quelques secondes."})
-            
+
             hits.append(now)
             _rate_limit_store[client_ip] = hits
-    
+
     return await call_next(request)
 
 
@@ -5458,6 +5509,11 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         response.headers["X-XSS-Protection"] = "1; mode=block"
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+
+        # Cross-Origin-Resource-Policy (empêche l'inclusion de ressources par d'autres origines)
+        # Utilise same-site pour autoriser sous-domaines *.kiltikonet.fr
+        if "Cross-Origin-Resource-Policy" not in response.headers:
+            response.headers["Cross-Origin-Resource-Policy"] = "same-site"
         
         # Hide server info
         if "server" in response.headers:
@@ -5946,7 +6002,7 @@ async def dynamic_sitemap():
     """Generate dynamic sitemap including all catalog participants"""
     from datetime import datetime
     
-    base_url = "https://cultureconnect2026.fr"
+    base_url = "https://kiltikonet.fr"
     today = datetime.now().strftime("%Y-%m-%d")
     
     # Static pages
@@ -5963,16 +6019,17 @@ async def dynamic_sitemap():
         {"loc": "/legal/cookies.html", "priority": "0.3", "changefreq": "yearly"},
     ]
     
-    # Get catalog participants for dynamic URLs
+    # Get catalog participants for dynamic URLs — WITHOUT exposing UUIDs
+    # (Point audit sécurité: retirer /participant/{uuid} du sitemap public)
     participants = await db.registrations.find(
-        {"show_in_catalog": True, "status": "approved"},
-        {"_id": 0, "id": 1, "full_name": 1}
+        {"show_in_catalog": True, "status": "approved", "public_slug": {"$exists": True, "$ne": ""}},
+        {"_id": 0, "public_slug": 1}
     ).to_list(500)
-    
+
     # Build XML
     xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    
+
     # Add static pages
     for page in static_pages:
         xml_content += f'''    <url>
@@ -5981,11 +6038,14 @@ async def dynamic_sitemap():
         <changefreq>{page["changefreq"]}</changefreq>
         <priority>{page["priority"]}</priority>
     </url>\n'''
-    
-    # Add dynamic participant pages (if you have individual profile pages)
+
+    # Only add participants with a public slug (opt-in). NEVER expose UUIDs in sitemap.
     for participant in participants:
+        slug = participant.get("public_slug", "").strip()
+        if not slug:
+            continue
         xml_content += f'''    <url>
-        <loc>{base_url}/catalogue?profile={participant.get("id", "")}</loc>
+        <loc>{base_url}/catalogue/{slug}</loc>
         <lastmod>{today}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -6691,7 +6751,7 @@ User-agent: *
 Allow: /
 
 Crawl-delay: 1
-Sitemap: https://cultureconnect2026.fr/sitemap.xml
+Sitemap: https://kiltikonet.fr/sitemap.xml
 
 # Protected areas
 Disallow: /admin/

@@ -13,6 +13,9 @@ Sitemap: https://cultureconnect2026.fr/sitemap.xml
 # Disallow admin areas
 Disallow: /admin/
 Disallow: /api/
+Disallow: /participant/
+Disallow: /mon-espace/
+Disallow: /espace-pro/
 
 # Allow important pages
 Allow: /

@@ -5528,12 +5528,12 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         else:
             csp = (
                 "default-src 'self'; "
-                "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.emergent.sh https://cdn.tailwindcss.com https://us.i.posthog.com https://*.posthog.com https://js.stripe.com; "
-                "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+                "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.emergent.sh https://cdn.tailwindcss.com https://us.i.posthog.com https://*.posthog.com https://js.stripe.com https://hcaptcha.com https://*.hcaptcha.com; "
+                "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://hcaptcha.com https://*.hcaptcha.com; "
                 "font-src 'self' https://fonts.gstatic.com data:; "
                 "img-src 'self' data: blob: https: http:; "
-                "connect-src 'self' https: wss: https://api.openai.com https://api.anthropic.com https://api.stripe.com https://api.cloudinary.com; "
-                "frame-src 'self' https://js.stripe.com https://hooks.stripe.com; "
+                "connect-src 'self' https: wss: https://api.openai.com https://api.anthropic.com https://api.stripe.com https://api.cloudinary.com https://hcaptcha.com https://*.hcaptcha.com; "
+                "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://hcaptcha.com https://*.hcaptcha.com; "
                 "frame-ancestors 'self'; "
                 "base-uri 'self'; "
                 "form-action 'self' https://checkout.stripe.com;"
@@ -6753,11 +6753,14 @@ Allow: /
 Crawl-delay: 1
 Sitemap: https://kiltikonet.fr/sitemap.xml
 
-# Protected areas
+# Protected areas (RGPD - Personal data)
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /static/
+Disallow: /participant/
+Disallow: /mon-espace/
+Disallow: /espace-pro/
 
 # Allow important public content
 Allow: /catalogue

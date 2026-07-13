@@ -121,5 +121,25 @@ Documents :
 - Code Python = INTACT (cvl_brain.py, /api/brain/*, collections cvl_brain_*)
 - Seuls les labels visibles à l'utilisateur changent
 
+## Bug Fixes Sécurité ✅ (13/07/2026)
+
+### hCaptcha CSP Fix (P0) — badge inscription débloqué
+- **Bug** : Le widget hCaptcha ne s'affichait pas / était bloqué sur `/badge-inscription` (BadgeInscription.jsx) et sur le formulaire de contact (LandingPage.jsx)
+- **Cause racine** : Le middleware `SecurityHeadersMiddleware` dans `server.py` définissait une CSP qui n'autorisait pas les domaines `hcaptcha.com` / `*.hcaptcha.com` dans `script-src`, `style-src`, `connect-src`, `frame-src`
+- **Fix** : Ajout de `https://hcaptcha.com https://*.hcaptcha.com` dans les 4 directives CSP concernées
+- **Vérification** : Toutes les requêtes hCaptcha (`api.js`, `hcaptcha.html`, `checksiteconfig`, `hsw.js`, logos) retournent 200 en preview. Backend `POST /api/badges/inscrire` accepte les inscriptions avec ou sans captcha_token.
+
+### robots.txt RGPD (P2) — masquer les URLs personnelles
+- Ajouts dans `/app/frontend/public/robots.txt` ET dans `@app.get("/robots.txt")` de `server.py` :
+  - `Disallow: /participant/`
+  - `Disallow: /mon-espace/`
+  - `Disallow: /espace-pro/`
+- Objectif : Empêcher l'indexation des profils publics/personnels par les moteurs de recherche
+
+### Cloudflare Workers Checklist (P1) — instructions manuelles
+- Doc créée : `/app/memory/CLOUDFLARE_CHECKLIST.md`
+- Étapes pour vérifier sur dashboard Cloudflare que les Workers/Transform Rules/WAF ne réécrivent pas les headers CSP/X-Frame-Options/HSTS posés par FastAPI
+
 ## Credentials
 - Admin: cultureconnectorg@gmail.com / code 000000
+

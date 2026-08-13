@@ -1,0 +1,39 @@
+{
+  "summary": "Phase 1 Observatory tested end-to-end (backend + frontend). 11/12 backend tests passing. All 7 /api/observatory/* endpoints return real data with explicit data lineage. Analytics normalization confirmed on live DB: visitor_id, referrer_host (google.com parsed correctly), utm (source/medium/campaign parsed from URL), device, consent_level (default anonymous), ip_hash present, ip=None when consent=anonymous. Frontend /observatory renders correctly: dark bg #0B0906, serif Newsreader monumental H1, no rounded cards, no gradients, all 6 metrics with src·lineage visible, all 8 sections numbered 01–08 present. Non-regression: gouvernance/stats OK, badges/inscrire OK. Only failures: (1) /api/badges/types returns 15 not 14 (pre-existing state, EXP-VIP is the 15th); (2) minor bug in analytics_normalize.parse_device where iPhone UA is detected as macOS.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/badges/types", "issue": "Returns 15 badge types (VIS, ART, INT, STF, BNV, PRS, VIP, OFF, SPO, EXP-B, EXP-S, EXP-G, EXP-P, EXP-D, EXP-VIP) instead of 14 mentioned in test spec. Likely pre-existing; not caused by Phase 1 changes but violates user's regression requirement literally."},
+      {"endpoint": "services/analytics_normalize.py::parse_device", "issue": "Regex order for OS detection: 'Mac OS X' regex matches iPhone UA (which contains 'like Mac OS X') BEFORE iOS regex. Result: iPhone events stored with device.os='macOS' instead of 'iOS'. Fix: move iOS regex before macOS regex in _UA_OS_RX list, OR check iPhone/iPad tokens before Mac OS X."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_observatory_phase1.py",
+    "/app/test_reports/pytest/observatory_phase1.xml"
+  ],
+  "action_items": [
+    "Reorder OS regex in services/analytics_normalize.py::_UA_OS_RX so iOS is checked before macOS (or short-circuit when Mobile/Tablet detected).",
+    "Confirm with user whether 14 or 15 badge types is expected (EXP-VIP appears to be a new addition). If 14 is correct, remove EXP-VIP; otherwise update spec."
+  ],
+  "critical_code_review_comments": [
+    "observatory.py creates its own AsyncIOMotorClient at import time (line 26-27) instead of reusing the app's existing DB client — could lead to connection pool duplication.",
+    "observatory.py sessions endpoint iterates over all events in period in-memory (Counter). Fine at 2.5k events, but should use MongoDB aggregation pipeline once volume grows.",
+    "require_founder dependency exists but is not applied to any current endpoint — Phase 1 endpoints are all public. Confirm this is intentional (task note says yes).",
+    "parse_device OS detection order bug (see minor issues)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_observatory_phase1.py (new)"
+  ],
+  "success_rate": {"backend": "92%", "frontend": "100%"},
+  "test_credentials": "not required (endpoints public in Phase 1)",
+  "seed_data_creation": "3 TEST_ prefixed analytics_events inserted via /api/analytics/batch and /api/analytics/track to verify normalization writes. Can be cleaned via db.analytics_events.delete_many({'session_id': {'$regex': '^TEST_'}}).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Phase 1 Observatory is functional. Preview DB is culture_connect_2026 with 2544 legacy events (_pre_refonte=True) + 50+ new normalized events. Timeline correctly shows legacy events (spike around July). registrations.country/organization_name fields absent in preview → distinct_territories=0 and distinct_organizations=0 is expected (per user's 10 principles). Frontend design validated: monumental serif, no cards/gradients, src·lineage visible on every metric.",
+  "rca of the issue": "parse_device OS bug RCA: iPhone Safari UA contains substring 'like Mac OS X' so the Mac OS X regex (checked before iOS) matches first, causing all iOS traffic to be mislabeled as macOS. Reproduction: POST /api/analytics/batch with UA 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)' → stored device.os='macOS'. Fix: swap the order or bail on Mobile detection first."
+}

@@ -14,6 +14,7 @@ import CultureConnect2027 from "./components/CultureConnect2027";
 import Infrastructure from "./components/Infrastructure";
 import Rejoindre from "./components/Rejoindre";
 import ContactKiltikonet from "./components/ContactKiltikonet";
+import Observatory from "./components/Observatory";
 import { PricingPage } from "./components/PricingPage";
 import { PartnershipPage } from "./components/PartnershipPage";
 import { PartnerConfirmation } from "./components/PartnerConfirmation";
@@ -211,6 +212,7 @@ const ROUTE_TITLES = {
   '/rejoindre': 'Rejoindre le réseau — Kiltikonet',
   '/contact': 'Contact — Kiltikonet',
   '/legacy-cc2026': 'Culture Connect 2026 — Édition — Kiltikonet',
+  '/observatory': 'Observatory · Kiltikonet',
   '/pricing': 'Tarifs — Kiltikonet',
   '/tarifs': 'Tarifs — Kiltikonet',
   '/inscription': 'Inscription — Kiltikonet',
@@ -250,7 +252,7 @@ const AppLayout = ({ children }) => {
   const location = useLocation();
   
   // Routes where header should be hidden
-  const hideHeaderRoutes = ['/smart-engine', '/admin', '/badge', '/workspace', '/dashboard-cc2026', '/espace-pro', '/pro', '/scanner-cc2026'];
+  const hideHeaderRoutes = ['/smart-engine', '/admin', '/badge', '/workspace', '/dashboard-cc2026', '/espace-pro', '/pro', '/scanner-cc2026', '/observatory'];
   const showHeader = !hideHeaderRoutes.some(route => location.pathname.startsWith(route));
   
   return (
@@ -325,6 +327,7 @@ function App() {
               <Route path="/infrastructure" element={<Infrastructure />} />
               <Route path="/rejoindre" element={<Rejoindre />} />
               <Route path="/contact" element={<ContactKiltikonet />} />
+              <Route path="/observatory" element={<Observatory />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/partnership" element={<PartnershipPage />} />
               <Route path="/partenaires" element={<PartnershipPage />} />

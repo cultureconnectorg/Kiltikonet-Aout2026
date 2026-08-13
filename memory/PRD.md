@@ -204,13 +204,57 @@ Kiltikonet est déjà en Level 1-2 observability : SmartAnalytics.js + useAnalyt
 
 ### Prochaines phases (validées par user)
 1. ✅ P0 event integrity — DONE
-2. ⏳ Normalisation (visitor_id, session lifecycle, UTM/referrer)
-3. ⏳ Reconstruction historique (25 collections → agrégats)
-4. ⏳ Modèle d'observation (schéma commun métier + web)
-5. ⏳ Observatory skeleton (`/observatory`, rôle `founder`, SSE)
-6. ⏳ Sessions/funnels/referrer/UTM/signals
-7. ⏳ Visualisations documentaires
-8. ⏳ Exposition publique agrégée (fenêtre kiltikonet.fr)
+2. ✅ Normalisation — DONE (visitor_id client-provided, session_id, UTM/referrer_host parsés, device.type+os, geo via CF-IPCountry, consent_level, ip conditional, ip_hash sha256)
+3. ✅ Reconstruction historique — DONE (7 endpoints /api/observatory/* lisant workspace_logs + registrations + scan_events + analytics_events)
+4. ✅ Observatory skeleton — DONE (`/observatory`, palette dark documentaire, 8 sections numérotées 01-08, data lineage visible, timeline pré-refonte réelle 2544 events)
+5. ⏳ Sessions/funnels/referrer/UTM/signals — À faire (moteur signals + funnels configurables)
+6. ⏳ Visualisations documentaires enrichies
+7. ⏳ Exposition publique agrégée (fenêtre kiltikonet.fr)
+
+## Observatory — Phase 1 (Normalisation + Skeleton) ✅ (13/08/2026)
+
+Le Founder Observatory est né. Testing agent verdict `iteration_94.json` : **100% frontend + 92% backend** (les 2 issues mineures corrigées : parse_device iOS→macOS fix + info 15 badge types pre-existing).
+
+### Backend nouveau
+- `/app/backend/services/analytics_normalize.py` — service de normalisation privacy-first : `parse_device` (UA → type + OS, iOS avant macOS), `parse_referrer` (host only, 'internal' pour kiltikonet/emergent), `parse_utm` (nested dict OR from data.url), `hash_ip` (sha256:16), `normalize_event` (canonical doc avec consent_level + ip conditional).
+- `/app/backend/routes/observatory.py` — 7 endpoints publics read-only avec data lineage explicite :
+  - `GET /api/observatory/access` — check role founder (public)
+  - `GET /api/observatory/memory` — 6 métriques mémoire numérique
+  - `GET /api/observatory/timeline?days=` — reconstruction historique daily bins (4 sources)
+  - `GET /api/observatory/event-types?days=` — distribution event_type
+  - `GET /api/observatory/territories` — countries depuis registrations
+  - `GET /api/observatory/actors?limit=` — top organizations (opt-in show_in_catalog)
+  - `GET /api/observatory/sessions?days=` — unique sessions/visitors + top pages + top referrers
+- `POST /api/analytics/batch` et `/api/analytics/track` branchés sur `normalize_event`
+- `FOUNDER_EMAILS` env var configurée (cultureconnectorg@gmail.com, cc@kiltikonet.fr, laurent@kiltikonet.fr) — rôle founder distinct de admin, PAS de mot de passe hardcodé
+- Dependency `require_founder` prête pour les endpoints d'écriture futurs
+
+### Frontend nouveau
+- `/app/frontend/src/components/Observatory.jsx` — composant skeleton documentaire :
+  - Palette dark `#0B0906` (bg), `#EAE4D5` (texte), `#C9A84C` (accent gold), aucune card arrondie, aucun gradient
+  - Typo `Newsreader` serif italic pour H1 monumental, `Manrope` sans-serif corps, `monospace` pour labels/data lineage
+  - 8 sections numérotées : 01 Digital Memory, 02 Timeline, 03 Event Types, 04 Territories, 05 Sessions, 06 Sources, 07 Signals (Phase 5), 08 System Health
+  - Chaque métrique affiche `src · db.xxx` en-dessous (data lineage transparent)
+  - Sparkline SVG des 60 derniers jours (données réelles)
+  - Route `/observatory` (headerless, titre 'Observatory · Kiltikonet')
+  - Message "not yet configured" quand la source manque, JAMAIS de fake data
+
+### Screenshot confirmé
+- H1 "Kiltikonet Observatory" (serif italic)
+- Metric events: **2 592** (legacy 2544 · new 48)
+- Metric workspace: **16**
+- Metric registrations: **9**
+- Metric scans/orgs/territories: **0** (comportement voulu — les champs n'existent pas dans le schéma preview)
+- Bandeau doc "KILTIKONET / OBSERVATORY · OBSERVATION LAYER · FOUNDER · 2026-08-13"
+- Aucune ressemblance avec un dashboard SaaS
+
+### Principes respectés
+- ✅ Ne rien écraser (site_events 2544 intact, analytics_events préservée)
+- ✅ Source of truth visible sur chaque métrique
+- ✅ Aucune donnée fabriquée — 0 quand la source est vide
+- ✅ Consent-aware (`consent_level` dans normalized event, ip stockée uniquement si 'full')
+- ✅ Pas de fingerprint agressif (visitor_id client-provided depuis localStorage)
+- ✅ Rôle founder séparé, email-based, sans mot de passe hardcodé
 
 ## Credentials
 - Admin: cultureconnectorg@gmail.com / code 000000

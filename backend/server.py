@@ -4216,6 +4216,9 @@ app.include_router(pro_feed_router)
 app.include_router(wallet_router)
 app.include_router(shop_payments_router)
 app.include_router(site_analytics_router)
+# Observatory — Founder observation layer (reads only, role-based)
+from routes.observatory import router as observatory_router
+app.include_router(observatory_router)
 
 # FAQ & Support Tickets
 from routes.support import router as support_router, seed_default_faq
@@ -9450,7 +9453,7 @@ class AnalyticsBatch(BaseModel):
 # Accepts any of : {eventType|event_type|event|type, sessionId|session_id, userId|user_id, ...}
 @app.post("/api/analytics/track")
 async def track_analytics_single(req: Request):
-    """Single-event ingestion with tolerant schema (accepts snake_case aliases)."""
+    """Single-event ingestion with tolerant schema (accepts snake_case aliases) + normalization."""
     try:
         body = await req.json()
     except Exception:
@@ -9466,7 +9469,6 @@ async def track_analytics_single(req: Request):
     data = body.get("data") or body.get("properties") or {}
     if not isinstance(data, dict):
         data = {"raw": data}
-    # Include page if provided flat
     if "page" in body and "page" not in data:
         data["page"] = body.get("page")
 
@@ -9474,45 +9476,55 @@ async def track_analytics_single(req: Request):
     if client_ip and "," in client_ip:
         client_ip = client_ip.split(",")[0].strip()
 
-    doc = {
-        "id": str(uuid.uuid4()),
-        "event_type": event_type,
-        "session_id": session_id,
-        "user_id": user_id,
-        "timestamp": timestamp,
-        "data": data,
-        "ip": client_ip,
-        "user_agent": req.headers.get("user-agent", ""),
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "_ingestion": "track_v1",
-    }
+    from services.analytics_normalize import normalize_event
+    doc = normalize_event(
+        event_type=event_type,
+        session_id=session_id,
+        user_id=user_id,
+        timestamp=timestamp,
+        data=data,
+        ip=client_ip,
+        user_agent=req.headers.get("user-agent", ""),
+        referrer_header=req.headers.get("referer"),
+        cf_country_header=req.headers.get("cf-ipcountry"),
+    )
+    doc["id"] = str(uuid.uuid4())
+    doc["created_at"] = datetime.now(timezone.utc).isoformat()
+    doc["_ingestion"] = "track_v2"
+
     await db.analytics_events.insert_one(doc)
     return {"success": True, "event_id": doc["id"]}
 
 @app.post("/api/analytics/batch")
 async def track_analytics_batch(batch: AnalyticsBatch, req: Request):
-    """Store batch of analytics events (canonical, schema riche + notifications + anomaly detection)."""
+    """Store batch of analytics events (canonical, rich schema + notifications + anomaly detection + normalization)."""
     client_ip = req.headers.get("x-forwarded-for", req.headers.get("x-real-ip", req.client.host if req.client else "unknown"))
     if client_ip and "," in client_ip:
         client_ip = client_ip.split(",")[0].strip()
     user_agent = req.headers.get("user-agent", "")
-    
+    referrer_header = req.headers.get("referer")
+    cf_country = req.headers.get("cf-ipcountry")
+
+    from services.analytics_normalize import normalize_event
     events_to_insert = []
     notifications_to_create = []
-    
+
     for event in batch.events:
-        event_doc = {
-            "id": str(uuid.uuid4()),
-            "event_type": event.eventType,
-            "session_id": event.sessionId,
-            "user_id": event.userId,
-            "timestamp": event.timestamp,
-            "data": event.data,
-            "ip": client_ip,
-            "user_agent": user_agent,
-            "created_at": datetime.now(timezone.utc).isoformat()
-        }
-        events_to_insert.append(event_doc)
+        doc = normalize_event(
+            event_type=event.eventType,
+            session_id=event.sessionId,
+            user_id=event.userId,
+            timestamp=event.timestamp,
+            data=event.data,
+            ip=client_ip,
+            user_agent=user_agent,
+            referrer_header=referrer_header,
+            cf_country_header=cf_country,
+        )
+        doc["id"] = str(uuid.uuid4())
+        doc["created_at"] = datetime.now(timezone.utc).isoformat()
+        doc["_ingestion"] = "batch_v2"
+        events_to_insert.append(doc)
         
         # Check for notification-worthy events
         if event.eventType == 'data_modification':

@@ -1,117 +1,174 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Fingerprint, Database, Share2, Shield, ArrowRight } from 'lucide-react';
 import SEO from './SEO';
 
 const K = {
-  bg: '#F4F0E8', card: '#FFFFFF', warm: '#E8E0D0',
-  dark: '#1A1510', muted: '#6B6560', gold: '#C9A84C',
-  terra: '#A65D47', sage: '#4A5D4E', ink: '#0F0C09',
+  paper: '#F1EBDD', ivory: '#EAE3D2', ink: '#0F0C09', ash: '#1F1B15',
+  bone: '#3C342A', dust: '#6B6560', rust: '#A65D47', gold: '#C9A84C', rule: '#00000010',
 };
+
+const Rule = ({ dark = false }) => (
+  <div className="w-full h-px" style={{ background: dark ? '#ffffff15' : K.rule }} />
+);
+
+const BRICKS = [
+  {
+    id: '01', label: 'Identity', name: 'FREK-ID',
+    role: 'Identifiant culturel numérique souverain',
+    detail: "Chaque acteur, chaque objet culturel du réseau reçoit un identifiant stable, portable, contrôlé par son porteur. Il ne dépend d'aucun événement particulier — il traverse le temps.",
+  },
+  {
+    id: '02', label: 'Cultural Objects', name: 'Cultural Cards',
+    role: 'Documentation structurée des actifs',
+    detail: "Œuvres, structures, projets, biens culturels : chaque objet culturel du réseau reçoit sa carte documentaire — attribution, provenance, métadonnées, liens.",
+  },
+  {
+    id: '03', label: 'Network', name: 'Actors · Orgs · Territoires',
+    role: 'Cartographie vivante du champ',
+    detail: "L'infrastructure relie les artistes aux structures, les structures aux institutions, les institutions aux territoires — et les territoires entre eux. Une topologie du réseau afro-caribéen.",
+  },
+  {
+    id: '04', label: 'Trace', name: 'Événements · Contributions · Présence',
+    role: 'Mémoire des interactions',
+    detail: "Chaque présence à Culture Connect, chaque contribution au réseau, chaque rencontre B2B laisse une trace dans l'infrastructure. Le réseau se souvient.",
+  },
+  {
+    id: '05', label: 'Value', name: 'Cultural Value Engine',
+    role: 'Circulation et valorisation',
+    detail: "Le moteur de valeur culturelle rend possibles de nouvelles formes de circulation, de mise en marché et de reconnaissance des actifs culturels afro-caribéens.",
+  },
+];
 
 export default function Infrastructure() {
   return (
-    <div className="min-h-screen" style={{ background: K.bg }} data-testid="infrastructure-page">
+    <div
+      className="min-h-screen"
+      style={{ background: K.paper, color: K.ink, fontFamily: "'Manrope', sans-serif" }}
+      data-testid="infrastructure-page"
+    >
       <SEO
         title="Infrastructure culturelle — Identité, données, valorisation"
-        description="Kiltikonet développe une infrastructure culturelle permettant d'identifier, structurer, connecter et valoriser les acteurs et objets culturels des industries afro-caribéennes."
+        description="Kiltikonet développe une architecture d'identité culturelle, de données, de trace et de valeur pour les industries culturelles afro-caribéennes."
         path="/infrastructure"
       />
 
-      {/* HERO */}
-      <section className="px-6 md:px-10 lg:px-16 pt-28 md:pt-40 pb-16" data-testid="infra-hero">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.2em] mb-6" style={{ color: K.terra }}>
-            <Link to="/">Kiltikonet</Link> → Infrastructure
+      {/* Bandeau documentaire */}
+      <div
+        className="px-6 md:px-12 lg:px-20 pt-24 md:pt-28 pb-6 flex flex-wrap justify-between text-xs font-mono uppercase tracking-widest"
+        style={{ color: K.dust }}
+      >
+        <span>Kiltikonet / Infrastructure</span>
+        <span>5 briques fonctionnelles</span>
+        <span>Souveraineté · Réutilisabilité</span>
+      </div>
+
+      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
+
+      {/* Ouverture — H1 monumental */}
+      <section className="px-6 md:px-12 lg:px-20 pt-16 md:pt-28 pb-24 md:pb-40">
+        <div className="text-xs font-mono uppercase tracking-widest mb-8" style={{ color: K.rust }}>
+          <Link to="/">Kiltikonet</Link> · Infrastructure
+        </div>
+
+        <h1
+          className="mb-16 md:mb-20 max-w-5xl"
+          style={{
+            fontFamily: "'Newsreader', serif", fontWeight: 400,
+            fontSize: 'clamp(3rem, 7vw, 7rem)', lineHeight: 0.94,
+            letterSpacing: '-0.035em', color: K.ink,
+          }}
+          data-testid="infra-title"
+        >
+          Une architecture <br />
+          <span style={{ fontStyle: 'italic', color: K.bone }}>
+            qui traverse chaque édition.
+          </span>
+        </h1>
+
+        <div className="grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-6 md:col-start-1">
+            <p style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }}>
+              L'infrastructure Kiltikonet est conçue pour vivre au-delà d'un seul
+              événement. L'identifiant culturel utilisé à Culture Connect 2026
+              reste actif pour l'édition 2027, 2028 et les suivantes. Un artiste
+              identifié une fois le reste — et bénéficie de tout ce que Kiltikonet
+              construit dans le temps.
+            </p>
           </div>
-
-          <h1
-            className="text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 max-w-4xl"
-            style={{ fontFamily: "'Newsreader', serif", fontWeight: 500, color: K.dark, letterSpacing: '-0.02em' }}
-            data-testid="infra-title"
-          >
-            Une infrastructure <br/>
-            <span style={{ color: K.terra, fontStyle: 'italic' }}>pour la culture.</span>
-          </h1>
-
-          <p className="text-lg md:text-xl max-w-3xl" style={{ color: K.muted, lineHeight: 1.6 }}>
-            Kiltikonet développe une architecture permettant d'identifier, structurer, connecter et
-            valoriser les acteurs et objets culturels de l'écosystème afro-caribéen — au-delà d'un
-            seul événement.
-          </p>
+          <div className="md:col-span-4 md:col-start-9 md:pt-2">
+            <div className="text-xs font-mono uppercase tracking-widest space-y-1" style={{ color: K.dust }}>
+              <div>Statut · Actif</div>
+              <div>Premier déploiement · 2026</div>
+              <div>Souveraineté · Kiltikonet</div>
+              <div>Portage stratégique · CVLN Group</div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 4 CAPACITÉS */}
-      <section className="px-6 md:px-10 lg:px-16 py-16" style={{ background: K.card }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
-              {
-                icon: Fingerprint,
-                title: 'Identité culturelle',
-                desc: "Chaque acteur et chaque objet culturel reçoit un identifiant numérique souverain. Une identité stable, portable, contrôlée par son porteur.",
-                testId: 'cap-identity',
-              },
-              {
-                icon: Database,
-                title: 'Données structurées',
-                desc: "Le réseau documente ses actifs, cartographie ses membres et enrichit chaque interaction. Une mémoire vivante du secteur culturel afro-caribéen.",
-                testId: 'cap-data',
-              },
-              {
-                icon: Share2,
-                title: 'Connexion',
-                desc: "L'infrastructure relie les acteurs entre eux, les territoires aux opportunités, et les objets culturels à leurs marchés potentiels.",
-                testId: 'cap-network',
-              },
-              {
-                icon: Shield,
-                title: 'Souveraineté',
-                desc: "Les données culturelles restent la propriété de leurs détenteurs. Kiltikonet est un pont — pas un propriétaire.",
-                testId: 'cap-sovereignty',
-              },
-            ].map((c) => (
-              <div key={c.testId} className="p-6 md:p-8 rounded-2xl"
-                   style={{ background: K.bg, border: `1px solid ${K.warm}` }}
-                   data-testid={c.testId}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                     style={{ background: `${K.terra}12` }}>
-                  <c.icon className="w-6 h-6" style={{ color: K.terra }} />
-                </div>
-                <h3 className="text-xl font-semibold mb-3" style={{ color: K.dark }}>{c.title}</h3>
-                <p className="text-sm" style={{ color: K.muted, lineHeight: 1.7 }}>{c.desc}</p>
+      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
+
+      {/* 5 briques — table éditoriale, pas de cards */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 md:py-32" data-testid="bricks-table">
+        {BRICKS.map((b) => (
+          <div key={b.id} className="grid grid-cols-12 gap-4 py-10 md:py-14"
+               style={{ borderTop: `1px solid ${K.rule}` }}
+               data-testid={`brick-${b.id}`}>
+            <div className="col-span-2 md:col-span-1">
+              <span className="text-xs font-mono tracking-widest" style={{ color: K.dust }}>
+                {b.id}
+              </span>
+            </div>
+            <div className="col-span-10 md:col-span-4">
+              <div className="text-xs uppercase tracking-widest font-mono mb-2" style={{ color: K.rust }}>
+                {b.label}
               </div>
-            ))}
+              <div style={{ fontFamily: "'Newsreader', serif", fontSize: 'clamp(1.6rem, 2.6vw, 2.2rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+                {b.name}
+              </div>
+              <div className="mt-2 text-sm italic" style={{ color: K.bone, fontFamily: "'Newsreader', serif" }}>
+                {b.role}
+              </div>
+            </div>
+            <div className="col-span-12 md:col-span-6 md:col-start-7">
+              <p style={{ color: K.bone, fontSize: '15px', lineHeight: 1.7 }}>{b.detail}</p>
+            </div>
           </div>
-        </div>
+        ))}
+        <div style={{ borderTop: `1px solid ${K.rule}` }} />
       </section>
 
-      {/* USAGE / APPLICATION */}
-      <section className="px-6 md:px-10 lg:px-16 py-16" style={{ background: K.ink, color: '#F1EBDD' }} data-testid="infra-usage">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.2em] mb-4" style={{ color: K.gold }}>
-            Réutilisable
-          </div>
-          <h2 className="text-3xl md:text-4xl mb-6 max-w-3xl" style={{ fontFamily: "'Newsreader', serif" }}>
-            Une infrastructure conçue pour vivre au-delà de chaque édition.
-          </h2>
-          <p className="text-base mb-10 max-w-3xl" style={{ color: '#B8B0A0', lineHeight: 1.7 }}>
-            L'identifiant culturel utilisé lors de Culture Connect 2026 reste actif entre les éditions.
-            Il devient l'identité numérique d'un acteur culturel et permet la continuité :
-            un artiste identifié en 2026 le reste en 2027, en 2028, et bénéficie de tout ce que
-            Kiltikonet construit dans le temps.
-          </p>
-          <Link
-            to="/rejoindre"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold"
-            style={{ background: K.gold, color: K.ink }}
-            data-testid="infra-cta"
-          >
-            Rejoindre le réseau
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+      {/* Continuité — bande sombre */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
+               style={{ background: K.ink, color: K.paper }}
+               data-testid="infra-continuity">
+        <div className="text-xs font-mono uppercase tracking-widest mb-8" style={{ color: K.gold, opacity: 0.85 }}>
+          Continuité
         </div>
+        <h2
+          className="mb-10 max-w-4xl"
+          style={{
+            fontFamily: "'Newsreader', serif", fontWeight: 400,
+            fontSize: 'clamp(2.2rem, 4.6vw, 4.2rem)', lineHeight: 1,
+            letterSpacing: '-0.03em', color: K.paper,
+          }}
+        >
+          Une infrastructure <br />
+          <span style={{ fontStyle: 'italic', color: '#B8B0A0' }}>
+            ne se dissout pas avec la fin d'un événement.
+          </span>
+        </h2>
+        <p className="max-w-2xl mb-10" style={{ color: '#B8B0A0', lineHeight: 1.75, fontSize: '15px' }}>
+          Chaque édition de Culture Connect en active un morceau supplémentaire.
+          Chaque acteur intégré au réseau augmente sa portée. Chaque objet
+          documenté rejoint la mémoire commune. Ce qui se construit ne se défait plus.
+        </p>
+        <Link to="/rejoindre" className="inline-flex items-center gap-3 text-sm font-medium"
+              style={{ color: K.paper, borderBottom: `1px solid ${K.paper}` }}
+              data-testid="infra-cta">
+          Rejoindre le réseau
+          <span style={{ fontFamily: 'monospace', fontSize: 11 }}>→</span>
+        </Link>
       </section>
     </div>
   );

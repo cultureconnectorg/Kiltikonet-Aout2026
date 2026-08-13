@@ -1,0 +1,319 @@
+{
+  "run_id": "826718ad21c5",
+  "backend_url": "http://127.0.0.1:8001",
+  "db_name": "culture_connect_2026",
+  "results": [
+    {
+      "name": "baseline DB counts captured",
+      "passed": true,
+      "details": {
+        "db": "culture_connect_2026",
+        "site_events": 2544,
+        "analytics_events": 2546,
+        "analytics_legacy": 2544,
+        "analytics_legacy_tagged": 2544
+      }
+    },
+    {
+      "name": "site_events archive has expected 2544 docs",
+      "passed": true,
+      "details": {
+        "actual": 2544,
+        "expected": 2544
+      }
+    },
+    {
+      "name": "analytics_events contains expected 2544 migrated legacy docs",
+      "passed": true,
+      "details": {
+        "legacy_count": 2544,
+        "fully_tagged_count": 2544,
+        "expected": 2544
+      }
+    },
+    {
+      "name": "POST /api/analytics/batch response is canonical success/count, not legacy ok/count",
+      "passed": true,
+      "details": {
+        "status_code": 200,
+        "body": {
+          "success": true,
+          "count": 1
+        }
+      }
+    },
+    {
+      "name": "batch event persisted in analytics_events with rich schema",
+      "passed": true,
+      "details": {
+        "found": true,
+        "missing_fields": [],
+        "doc_sample": {
+          "id": "f4823943-3cf2-4831-9937-1c26497ee4d0",
+          "event_type": "qa_p0_batch_826718ad21c5",
+          "session_id": "sess-batch-826718ad21c5",
+          "user_id": "user-826718ad21c5",
+          "timestamp": "2026-08-13T14:33:19.370725+00:00",
+          "data": {
+            "probe": "batch",
+            "run_id": "826718ad21c5",
+            "page": "/qa-p0-batch"
+          },
+          "ip": "203.0.113.10",
+          "user_agent": "P0AnalyticsVerification/1.0",
+          "created_at": "2026-08-13T14:33:19.375186+00:00"
+        }
+      }
+    },
+    {
+      "name": "batch event did not write into site_events",
+      "passed": true,
+      "details": {
+        "matching_site_events": []
+      }
+    },
+    {
+      "name": "batch request reached rich handler anomaly notification path",
+      "passed": true,
+      "details": {
+        "status_code": 200,
+        "body": {
+          "success": true,
+          "count": 1
+        },
+        "anomaly_doc_found": true,
+        "notification_found": true,
+        "notification_sample": {
+          "id": "b07f76c2-514a-4cb1-8326-abc8111c54fc",
+          "type": "anomaly_detected",
+          "title": "Anomalie détectée: qa_p0_anomaly_826718ad21c5",
+          "message": "P0 rich handler verification",
+          "data": {
+            "type": "qa_p0_anomaly_826718ad21c5",
+            "details": "P0 rich handler verification",
+            "severity": "high"
+          },
+          "priority": "high",
+          "read": false,
+          "read_by": [],
+          "created_at": "2026-08-13T14:33:19.688298+00:00"
+        }
+      }
+    },
+    {
+      "name": "POST /api/analytics/track accepts snake_case and returns success/event_id",
+      "passed": true,
+      "details": {
+        "status_code": 200,
+        "body": {
+          "success": true,
+          "event_id": "f9697d24-677d-430c-8db9-bea61ca296b1"
+        },
+        "doc_sample": {
+          "id": "f9697d24-677d-430c-8db9-bea61ca296b1",
+          "event_type": "qa_p0_track_snake_826718ad21c5",
+          "session_id": "sess-snake-826718ad21c5",
+          "user_id": "user-snake-826718ad21c5",
+          "timestamp": "2026-08-13T14:33:20.194087+00:00",
+          "data": {
+            "probe": "track_snake",
+            "run_id": "826718ad21c5"
+          },
+          "ip": "203.0.113.10",
+          "user_agent": "P0AnalyticsVerification/1.0",
+          "created_at": "2026-08-13T14:33:20.197303+00:00",
+          "_ingestion": "track_v1"
+        }
+      }
+    },
+    {
+      "name": "POST /api/analytics/track accepts camelCase and writes analytics_events only",
+      "passed": true,
+      "details": {
+        "status_code": 200,
+        "body": {
+          "success": true,
+          "event_id": "652e7778-918f-414b-9b27-111e92ce8957"
+        },
+        "doc_sample": {
+          "id": "652e7778-918f-414b-9b27-111e92ce8957",
+          "event_type": "qa_p0_track_camel_826718ad21c5",
+          "session_id": "sess-camel-826718ad21c5",
+          "user_id": "user-camel-826718ad21c5",
+          "timestamp": "2026-08-13T14:33:20.400879+00:00",
+          "data": {
+            "probe": "track_camel",
+            "run_id": "826718ad21c5"
+          },
+          "ip": "203.0.113.10",
+          "user_agent": "P0AnalyticsVerification/1.0",
+          "created_at": "2026-08-13T14:33:20.403984+00:00",
+          "_ingestion": "track_v1"
+        },
+        "matching_site_events": []
+      }
+    },
+    {
+      "name": "GET /api/analytics/health reports canonical analytics status",
+      "passed": true,
+      "details": {
+        "status_code": 200,
+        "body": {
+          "status": "ok",
+          "total_events": 2550,
+          "last_event_at": "2026-08-13T14:33:20.400879+00:00",
+          "seconds_since_last_event": 0,
+          "legacy_archive_size": 2544,
+          "collections": {
+            "current": "analytics_events",
+            "legacy_preserved": "site_events (pre-refonte, read-only)"
+          }
+        }
+      }
+    },
+    {
+      "name": "GET /api/analytics/site-stats reads canonical source and exposes lineage",
+      "passed": true,
+      "details": {
+        "status_code": 200,
+        "body": {
+          "overview": {
+            "total_events": 2550,
+            "events_24h": 425,
+            "events_7d": 425,
+            "events_30d": 440,
+            "unique_sessions_30d": 46
+          },
+          "legacy_archive": {
+            "site_events_preserved": 2544,
+            "note": "site_events est une collection archive (données pré-refonte). Non exposée telle quelle."
+          },
+          "top_pages": [
+            {
+              "page": "/",
+              "views": 172
+            },
+            {
+              "page": "/rejoindre",
+              "views": 18
+            },
+            {
+              "page": "/culture-connect",
+              "views": 14
+            },
+            {
+              "page": "/badge-inscription",
+              "views": 10
+            },
+            {
+              "page": "/culture-connect/2026",
+              "views": 6
+            },
+            {
+              "page": "/culture-connect/2027",
+              "views": 6
+            },
+            {
+              "page": "/infrastructure",
+              "views": 6
+            },
+            {
+              "page": "/contact",
+              "views": 4
+            },
+            {
+              "page": "/pricing",
+              "views": 2
+            },
+            {
+              "page": "/gouvernance",
+              "views": 2
+            }
+          ],
+          "timeline": [
+            {
+              "date": "2026-08-13",
+              "events": 425
+            }
+          ],
+          "data_lineage": {
+            "source": "db.analytics_events",
+            "canonical_endpoint": "POST /api/analytics/batch (server.py)",
+            "legacy_source_preserved": "db.site_events (pre-refonte, immutable)"
+          }
+        }
+      }
+    },
+    {
+      "name": "site_events count unchanged after new ingestion",
+      "passed": true,
+      "details": {
+        "before": 2544,
+        "after": 2544
+      }
+    },
+    {
+      "name": "migrate_site_events.py is idempotent and creates no duplicates",
+      "passed": true,
+      "details": {
+        "returncode": 0,
+        "stdout_tail": "Source (site_events) total    : 2544\nAlready migrated (analytics_events._source_legacy=site_events) : 2544\nSkipping 2544 already-migrated docs\n\n✅ Migration complete. 0 docs migrated.\n   site_events    : 2544 (unchanged — read-only archive)\n   analytics_events (total)  : 2550\n   analytics_events (legacy) : 2544\n   analytics_events (new)    : 6\n",
+        "stderr_tail": "",
+        "analytics_before": 2550,
+        "analytics_after": 2550,
+        "legacy_before": 2544,
+        "legacy_after": 2544
+      }
+    },
+    {
+      "name": "GET /api/badges/types still works",
+      "passed": true,
+      "details": {
+        "status_code": 200,
+        "keys": [
+          "types",
+          "nfc_enabled_types",
+          "zones"
+        ]
+      }
+    },
+    {
+      "name": "GET /api/gouvernance/stats still works",
+      "passed": true,
+      "details": {
+        "status_code": 200,
+        "body": {
+          "membres_engages": 1,
+          "membres_actifs": 0,
+          "candidatures_en_cours": 0,
+          "repertoires_declares": 1
+        }
+      }
+    },
+    {
+      "name": "POST /api/badges/inscrire still works",
+      "passed": true,
+      "details": {
+        "status_code": 200,
+        "body": {
+          "badge_id": "CC26-VIS-I1B9R",
+          "frek_id": "LOCAL-feaf7f327745",
+          "frek_status": "local_fallback",
+          "type_badge": "VIS",
+          "type_label": "Visiteur",
+          "qr_token": "a6d63125aa5d45aeae44c99293d89ebc",
+          "nfc_enabled": false,
+          "statut": "INSCRIT"
+        }
+      }
+    }
+  ],
+  "passed": true,
+  "final_counts": {
+    "site_events": 2544,
+    "analytics_events": 2550,
+    "analytics_legacy": 2544,
+    "test_analytics_events": 3,
+    "test_notifications": 1
+  }
+}

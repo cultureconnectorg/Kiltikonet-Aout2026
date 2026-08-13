@@ -178,6 +178,40 @@ Audit externe d'actif numérique consolidé : Kiltikonet.fr était perçu comme 
 - Fichier rapport : `/app/test_reports/iteration_92.json`
 - Bypass IntroSequence pour tests : `?skip_intro=1` OU `localStorage.setItem('kk_visited','true')`
 
+## Observatory — Phase 0 (Discovery) + P0 Fix ✅ (13/08/2026)
+
+Mission observability layer / Founder Observatory (validation utilisateur : a1 b3 c2 d2 e1 f3 g2 + 10 principes stricts). Site public = fenêtre, Observatory = source d'observation.
+
+### SYSTEM DISCOVERY REPORT
+Rapport complet dans `/app/memory/SYSTEM_DISCOVERY_REPORT.md`.
+Kiltikonet est déjà en Level 1-2 observability : SmartAnalytics.js + useAnalytics hook globaux, 25 collections MongoDB dont 445 workspace_logs, 45 registrations, 8 scan_events, 2544 events historiques.
+
+### 🔴 P0 — Duplicate `/api/analytics/batch` résolu (perte silencieuse d'events)
+- **Cause racine** : la route `POST /api/analytics/batch` était déclarée deux fois — `server.py` (rich schema + notifications + anomaly detection) ET `site_analytics.py` (light schema → `site_events`). L'ordre d'enregistrement FastAPI faisait gagner le light handler ; le rich handler n'avait jamais été appelé en preview.
+- **Fix appliqué** :
+  1. `routes/site_analytics.py` entièrement réécrit : plus que 2 endpoints lecture-seule (`GET /site-stats`, `GET /health`) lisant dans `analytics_events` canonique
+  2. `server.py` — `AnalyticsEvent` modèle Pydantic renforcé (populate_by_name)
+  3. Nouveau endpoint tolérant `POST /api/analytics/track` (accepte camelCase ET snake_case aliases) dans server.py, unique source de vérité
+  4. Nettoyage du stale duplicate `POST /api/analytics/track` L10472
+- **Migration non-destructive** : script one-shot idempotent `/app/backend/migrate_site_events.py` a copié **2544 legacy `site_events` → `analytics_events`** avec tags `_source_legacy="site_events"`, `_pre_refonte=True`, `_legacy_id` (pour idempotence). La collection `site_events` reste **intacte à 2544 docs** comme archive immuable.
+- **Validation testing_agent** (`/app/test_reports/bug_verification_93.json`, `iteration_93.json`) : verdict **FIXED**, 100% backend, tous les tests passent (canonical response `{success:true,count:1}`, rich schema écrit dans analytics_events, snake_case et camelCase tous 2 acceptés, health endpoint OK, migration idempotente, site_events préservée, non-régression badges/gouvernance OK).
+
+### État actuel `analytics_events`
+- 2544 docs legacy (`_pre_refonte=True`)
+- +6 nouveaux docs (tests P0 + verifications)
+- Total : ~2550 events canoniques
+- Schéma unique : `{id, event_type, session_id, user_id, timestamp, data, ip, user_agent, created_at, [_source_legacy, _pre_refonte, _legacy_id]}`
+
+### Prochaines phases (validées par user)
+1. ✅ P0 event integrity — DONE
+2. ⏳ Normalisation (visitor_id, session lifecycle, UTM/referrer)
+3. ⏳ Reconstruction historique (25 collections → agrégats)
+4. ⏳ Modèle d'observation (schéma commun métier + web)
+5. ⏳ Observatory skeleton (`/observatory`, rôle `founder`, SSE)
+6. ⏳ Sessions/funnels/referrer/UTM/signals
+7. ⏳ Visualisations documentaires
+8. ⏳ Exposition publique agrégée (fenêtre kiltikonet.fr)
+
 ## Credentials
 - Admin: cultureconnectorg@gmail.com / code 000000
 

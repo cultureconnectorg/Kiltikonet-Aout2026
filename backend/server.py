@@ -7,7 +7,7 @@ import os
 import logging
 import json
 from pathlib import Path
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import List, Optional, Dict
 import uuid
 from datetime import datetime, timezone, timedelta
@@ -9431,18 +9431,67 @@ async def stats_heatmap():
 
 
 class AnalyticsEvent(BaseModel):
-    eventType: str
-    sessionId: str
-    userId: Optional[str] = None
+    """Canonical analytics event schema.
+    Accepts both new (eventType/sessionId/userId camelCase) and legacy fields via aliases.
+    """
+    eventType: str = Field(..., alias="eventType")
+    sessionId: str = Field(default="", alias="sessionId")
+    userId: Optional[str] = Field(default=None, alias="userId")
     timestamp: str
-    data: dict
+    data: dict = Field(default_factory=dict)
+
+    class Config:
+        populate_by_name = True
 
 class AnalyticsBatch(BaseModel):
     events: List[AnalyticsEvent]
 
+# ── Tolerant single-event track endpoint (P0 fix — replaces the removed site_analytics /track) ──
+# Accepts any of : {eventType|event_type|event|type, sessionId|session_id, userId|user_id, ...}
+@app.post("/api/analytics/track")
+async def track_analytics_single(req: Request):
+    """Single-event ingestion with tolerant schema (accepts snake_case aliases)."""
+    try:
+        body = await req.json()
+    except Exception:
+        return JSONResponse(status_code=400, content={"error": "invalid_json"})
+    if not isinstance(body, dict):
+        return JSONResponse(status_code=400, content={"error": "invalid_body"})
+
+    # Normalize keys (tolerant: eventType | event_type | event | type)
+    event_type = body.get("eventType") or body.get("event_type") or body.get("event") or body.get("type") or "unknown"
+    session_id = body.get("sessionId") or body.get("session_id") or ""
+    user_id = body.get("userId") or body.get("user_id")
+    timestamp = body.get("timestamp") or datetime.now(timezone.utc).isoformat()
+    data = body.get("data") or body.get("properties") or {}
+    if not isinstance(data, dict):
+        data = {"raw": data}
+    # Include page if provided flat
+    if "page" in body and "page" not in data:
+        data["page"] = body.get("page")
+
+    client_ip = req.headers.get("x-forwarded-for", req.headers.get("x-real-ip", req.client.host if req.client else "unknown"))
+    if client_ip and "," in client_ip:
+        client_ip = client_ip.split(",")[0].strip()
+
+    doc = {
+        "id": str(uuid.uuid4()),
+        "event_type": event_type,
+        "session_id": session_id,
+        "user_id": user_id,
+        "timestamp": timestamp,
+        "data": data,
+        "ip": client_ip,
+        "user_agent": req.headers.get("user-agent", ""),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "_ingestion": "track_v1",
+    }
+    await db.analytics_events.insert_one(doc)
+    return {"success": True, "event_id": doc["id"]}
+
 @app.post("/api/analytics/batch")
 async def track_analytics_batch(batch: AnalyticsBatch, req: Request):
-    """Store batch of analytics events"""
+    """Store batch of analytics events (canonical, schema riche + notifications + anomaly detection)."""
     client_ip = req.headers.get("x-forwarded-for", req.headers.get("x-real-ip", req.client.host if req.client else "unknown"))
     if client_ip and "," in client_ip:
         client_ip = client_ip.split(",")[0].strip()
@@ -10417,21 +10466,8 @@ async def smart_engine_cron_check(request: Request):
 
 
 # ═══════════════════════════════════════════════════════════════
-# ANALYTICS TRACKING
+# ANALYTICS TRACKING — canonical endpoints declared earlier in this file
+# (POST /api/analytics/batch + POST /api/analytics/track — both with rich
+#  schema, tolerant aliases and route-of-truth documentation).
+# Any stale duplicate has been removed to keep OpenAPI unambiguous.
 # ═══════════════════════════════════════════════════════════════
-
-@app.post("/api/analytics/track")
-async def track_analytics_event(request: Request, data: dict):
-    """Track frontend analytics events (PWA install, etc.)."""
-    event_type = data.get("event_type", "unknown")
-    now = datetime.now(timezone.utc).isoformat()
-    ip = request.client.host if request.client else "unknown"
-    ua = request.headers.get("user-agent", "")
-    await db.analytics_events.insert_one({
-        "event_type": event_type,
-        "timestamp": now,
-        "ip": ip,
-        "user_agent": ua,
-        "metadata": {k: v for k, v in data.items() if k != "event_type"},
-    })
-    return {"tracked": True}

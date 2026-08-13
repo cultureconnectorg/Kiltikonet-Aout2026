@@ -1,0 +1,48 @@
+{
+  "verdict": "fixed",
+  "user_reported_bug": "Le duplicate POST /api/analytics/batch (déclaré dans server.py L9443 ET dans site_analytics.py L51) cause une perte silencieuse d'événements : le light handler (site_analytics.py) gagne le routing et écrit dans site_events avec un schéma allégé, tandis que le rich handler (server.py) avec notifications + anomaly detection n'a jamais été appelé. Le user a demandé de corriger ce P0 avant toute nouvelle instrumentation observability.",
+  "summary": "No relevant testing skill found. Focused backend verification passed: POST /api/analytics/batch now returns {'success': true, 'count': 1}, writes rich events to analytics_events only, and the anomaly path creates team_notifications. Track snake_case/camelCase, health/site-stats, legacy archive counts, migration idempotence, and named non-regression endpoints all passed in culture_connect_2026.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "POST /api/analytics/track",
+        "issue": "Runtime correctly hits the new tolerant handler and returns success/event_id, but code review found a stale duplicate @app.post('/api/analytics/track') at server.py:10472. OpenAPI currently documents the stale handler operationId, so remove it to keep source-of-truth/docs unambiguous."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/tests/test_p0_analytics_duplicate_route.py",
+    "/app/test_reports/p0_analytics_verification_details.json",
+    "/app/test_reports/bug_verification_93.json",
+    "/app/test_reports/iteration_93.json"
+  ],
+  "action_items": [
+    "Optional cleanup: remove the stale duplicate POST /api/analytics/track at server.py:10472 so OpenAPI/source-of-truth matches the runtime tolerant handler."
+  ],
+  "critical_code_review_comments": [
+    "Confirmed routes/site_analytics.py has no POST /batch or POST /track handlers; only read-only /site-stats and /health remain.",
+    "POST /api/analytics/batch runtime path is now the rich server.py handler: canonical response, analytics_events rich schema, no site_events write, and anomaly notification creation verified.",
+    "Stale duplicate /api/analytics/track remains later in server.py and affects OpenAPI docs, although runtime route order currently resolves to the correct new handler."
+  ],
+  "updated_files": [
+    "/app/tests/test_p0_analytics_duplicate_route.py",
+    "/app/test_reports/p0_analytics_verification_details.json",
+    "/app/test_reports/bug_verification_93.json",
+    "/app/test_reports/iteration_93.json"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "not tested (backend-only bug)"
+  },
+  "seed_data_creation": "Created 4 analytics_events test docs with run_id 826718ad21c5 and 1 team_notifications anomaly test doc to prove rich handler execution; site_events remained unchanged at 2544. Temporary badge registration for non-regression was deleted after verification. Badge endpoint returned frek_status=local_fallback, not a mocked API.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Use /app/tests/test_p0_analytics_duplicate_route.py for focused retest. Last run against http://127.0.0.1:8001 and DB_NAME=culture_connect_2026 passed all assertions: site_events=2544, analytics_events legacy=2544, migration inserted 0 duplicates.",
+  "rca_of_the_issue": "Reproduction verified fixed by sending canonical batch and tolerant track payloads, then checking MongoDB. The prior light handler symptom ({'ok': true} and site_events writes) did not reproduce; /batch returned {'success': true, 'count': 1}, inserted rich schema into analytics_events, and did not alter site_events."
+}

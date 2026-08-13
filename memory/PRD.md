@@ -140,6 +140,44 @@ Documents :
 - Doc créée : `/app/memory/CLOUDFLARE_CHECKLIST.md`
 - Étapes pour vérifier sur dashboard Cloudflare que les Workers/Transform Rules/WAF ne réécrivent pas les headers CSP/X-Frame-Options/HSTS posés par FastAPI
 
+## Refondation institutionnelle Kiltikonet ✅ (13/08/2026)
+
+Audit externe d'actif numérique consolidé : Kiltikonet.fr était perçu comme la façade de Culture Connect 2026 (événementiel passé). Objectif : réconcilier l'actif numérique avec l'architecture réelle CVLN Group → Kiltikonet → Culture Connect → éditions récurrentes.
+
+### Phase 1 — Corrections techniques (P0/P1)
+- `/api/health` réduit à `{"status":"ok"}` — pas de fuite version/env/db
+- `/api/admin/health-detailed` créé (admin/founder only, 403 sinon)
+- OAuth callback (`ProSpaceDashboard.jsx`) : `history.replaceState` immédiat au retour de Google/GitHub OAuth pour supprimer `session_id`, `code`, `state` de l'URL avant le POST session → pas de rejeu au clic Back
+- CORS déjà strict (vérifié) : `allow_origins` depuis env, `RuntimeError` si non set en prod
+- `debug-monitor.js` : déjà iframe-only (Emergent Visual Editor uniquement) — pas de fuite en prod
+
+### Phase 2 — SEO / meta tags
+- `index.html` refondé : titre, description, OG, canonical, JSON-LD basculés vers Kiltikonet institutionnel
+- JSON-LD Organization = Kiltikonet + parentOrganization = CVLN Group + EventSeries = Culture Connect (avec subEvent 2026)
+- Sitemap.xml reconstruit sur `kiltikonet.fr` — retrait des URLs `/participant/{UUID}` (RGPD)
+- Composant `SEO.jsx` créé (React 19 native metadata, sans `react-helmet-async` qui crashait en React 19) : titre, meta, OG, Twitter, canonical, JSON-LD par page
+
+### Phase 3 — Homepage institutionnelle Kiltikonet
+- Nouveau composant `KiltikonetHome.jsx` désormais servi sur `/`
+- Sections : Hero (mission + 2 CTA), 4 piliers (Réseau / Infrastructure / Programmes / Marché), Culture Connect comme initiative, Infrastructure culturelle, Territoire, CTA final, Footer institutionnel
+- Ancien `LandingPage` (CC2026) conservé accessible via `/legacy-cc2026`
+- `Header.jsx` : nouvelle nav Kiltikonet-first (Accueil, Culture Connect, Infrastructure, Gouvernance, Partenaires, Rejoindre, Contact)
+- `ROUTE_TITLES` refait — tous titres suffixés par `— Kiltikonet`
+
+### Phase 4 — Culture Connect + éditions + pages annexes
+- `/culture-connect` (mother page) : `CultureConnect.jsx` — liste des éditions, storytelling continuité
+- `/culture-connect/2026` : `CultureConnect2026.jsx` — bilan (métriques placeholder, programme, continuité vers 2027)
+- `/culture-connect/2027` : `CultureConnect2027.jsx` — édition à venir, CTA "être informé"
+- `/infrastructure` : `Infrastructure.jsx` — 4 capacités (Identité, Données, Connexion, Souveraineté) sans divulgation IP
+- `/rejoindre` : `Rejoindre.jsx` — 4 profils d'adhésion
+- `/contact` : `ContactKiltikonet.jsx` — email, adresse, Instagram, LinkedIn
+
+### Non-régression (testing agent iteration 92)
+- **100% backend + 100% frontend PASS**
+- 17 critères validés : nouvelles routes, header nav, `/api/health` minimal, `/api/admin/health-detailed` 403, sitemap kiltikonet.fr sans UUIDs, robots.txt avec 3 Disallow, hCaptcha OK, POST /api/badges/inscrire OK (badge CC26-VIS-PO705 créé), gouvernance stats OK
+- Fichier rapport : `/app/test_reports/iteration_92.json`
+- Bypass IntroSequence pour tests : `?skip_intro=1` OU `localStorage.setItem('kk_visited','true')`
+
 ## Credentials
 - Admin: cultureconnectorg@gmail.com / code 000000
 

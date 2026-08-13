@@ -1969,7 +1969,7 @@ export const ProSpaceLogin = ({ onLogin } = {}) => {
       welcome_kt: p.welcome_kt || 0,
     }));
     toast.success(`Bienvenue ${p.full_name || p.email} !`);
-    window.location.hash = '';
+    // Note: URL hash already cleaned in OAuth callback effect (replaceState) — no need to touch it here
     if (onLogin) { onLogin(); } else { navigate('/pro', { replace: true }); }
   };
 
@@ -2027,6 +2027,9 @@ export const ProSpaceLogin = ({ onLogin } = {}) => {
     const hash = window.location.hash;
     if (hash?.includes('session_id=')) {
       const sessionId = new URLSearchParams(hash.substring(1)).get('session_id');
+      // ✅ Clean URL IMMEDIATELY (before backend call) to prevent back-button replay
+      // Uses replaceState so the callback URL is not added to browser history
+      window.history.replaceState({}, '', window.location.pathname + window.location.search);
       if (sessionId) {
         setLoading(true);
         axios.post(`${API}/auth/google/session`, { session_id: sessionId }, { withCredentials: true })
@@ -2040,8 +2043,9 @@ export const ProSpaceLogin = ({ onLogin } = {}) => {
     if (hash?.includes('github_auth=success')) {
       const params = new URLSearchParams(hash.substring(1));
       const ghName = decodeURIComponent(params.get('name') || '');
+      // ✅ Clean URL IMMEDIATELY via replaceState (no history entry, no back-button replay)
+      window.history.replaceState({}, '', window.location.pathname + window.location.search);
       toast.success(`Bienvenue ${ghName} !`);
-      window.location.hash = '';
       // Session cookie already set by backend, just verify via /auth/me
       axios.get(`${API}/auth/me`, { withCredentials: true })
         .then(res => {
@@ -2055,6 +2059,16 @@ export const ProSpaceLogin = ({ onLogin } = {}) => {
           }
         })
         .catch(() => {});
+    }
+    // Standard OAuth callback ?code=...&state=... (defensive — clean URL if present)
+    const search = window.location.search;
+    if (search && (search.includes('code=') || search.includes('state='))) {
+      // Only clean if this looks like an OAuth callback landing on the pro page
+      // Backend already validated the code+state and set the session cookie server-side
+      const params = new URLSearchParams(search);
+      if (params.has('code') && params.has('state')) {
+        window.history.replaceState({}, '', window.location.pathname);
+      }
     }
   }, [navigate]);
 

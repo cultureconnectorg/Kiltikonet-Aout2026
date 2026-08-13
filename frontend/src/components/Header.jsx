@@ -32,14 +32,12 @@ export const Header = () => {
 
   const navLinks = [
     { path: '/', label: language === 'fr' ? 'Accueil' : 'Home' },
-    { path: '/programme', label: 'Programme' },
-    { path: '/concert', label: 'Concert' },
-    { path: '/pricing', label: language === 'fr' ? 'Tarifs' : 'Pricing' },
-    { path: '/partnership', label: language === 'fr' ? 'Partenariat' : 'Partnership' },
-    { path: '/jetons', label: 'Jetons' },
-    { path: '/catalogue', label: 'Catalogue' },
+    { path: '/culture-connect', label: 'Culture Connect' },
+    { path: '/infrastructure', label: language === 'fr' ? 'Infrastructure' : 'Infrastructure' },
     { path: '/gouvernance', label: 'Gouvernance' },
-    { path: '/appel-2026', label: language === 'fr' ? 'Appel à projet' : 'Call for projects' },
+    { path: '/partenaires', label: language === 'fr' ? 'Partenaires' : 'Partners' },
+    { path: '/rejoindre', label: language === 'fr' ? 'Rejoindre' : 'Join' },
+    { path: '/contact', label: 'Contact' },
   ];
 
   const accountLinks = [

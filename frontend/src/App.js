@@ -7,6 +7,13 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { SharedDataProvider } from "./contexts/SharedDataContext";
 import { Header } from "./components/Header";
 import { LandingPage } from "./components/LandingPage";
+import KiltikonetHome from "./components/KiltikonetHome";
+import CultureConnect from "./components/CultureConnect";
+import CultureConnect2026 from "./components/CultureConnect2026";
+import CultureConnect2027 from "./components/CultureConnect2027";
+import Infrastructure from "./components/Infrastructure";
+import Rejoindre from "./components/Rejoindre";
+import ContactKiltikonet from "./components/ContactKiltikonet";
 import { PricingPage } from "./components/PricingPage";
 import { PartnershipPage } from "./components/PartnershipPage";
 import { PartnerConfirmation } from "./components/PartnerConfirmation";
@@ -196,30 +203,44 @@ const PageTracker = () => {
 
 // Dynamic document title per route (WCAG 2.4.2)
 const ROUTE_TITLES = {
-  '/': 'Accueil — Kilti Konet',
-  '/pricing': 'Tarifs — Kilti Konet',
-  '/concert': 'Concert — Kilti Konet',
-  '/programme': 'Programme — Kilti Konet',
-  '/catalogue': 'Catalogue — Kilti Konet',
-  '/jetons': 'Jetons CC — Kilti Konet',
-  '/appel-2026': 'Appel à projet CC2026 — Kilti Konet',
-  '/partnership': 'Partenariat — Kilti Konet',
-  '/badge-inscription': 'Inscription Badge — Kilti Konet',
-  '/admin': 'Administration — Kilti Konet',
-  '/smart-engine': 'Smart Engine — Kilti Konet',
-  '/espace-pro': 'Espace Pro — Kilti Konet',
-  '/accessibilite': 'Accessibilité — Kilti Konet',
-  '/mentions-legales': 'Mentions légales — Kilti Konet',
-  '/politique-confidentialite': 'Politique de confidentialité — Kilti Konet',
-  '/cgu': 'CGU — Kilti Konet',
-  '/cookies': 'Cookies — Kilti Konet',
+  '/': 'Kiltikonet — Réseau et infrastructure culturelle afro-caribéenne',
+  '/culture-connect': 'Culture Connect — Kiltikonet',
+  '/culture-connect/2026': 'Culture Connect 2026 — Bilan — Kiltikonet',
+  '/culture-connect/2027': 'Culture Connect 2027 — Kiltikonet',
+  '/infrastructure': 'Infrastructure culturelle — Kiltikonet',
+  '/rejoindre': 'Rejoindre le réseau — Kiltikonet',
+  '/contact': 'Contact — Kiltikonet',
+  '/legacy-cc2026': 'Culture Connect 2026 — Édition — Kiltikonet',
+  '/pricing': 'Tarifs — Kiltikonet',
+  '/tarifs': 'Tarifs — Kiltikonet',
+  '/inscription': 'Inscription — Kiltikonet',
+  '/concert': 'Concert — Kiltikonet',
+  '/programme': 'Programme — Kiltikonet',
+  '/catalogue': 'Catalogue — Kiltikonet',
+  '/jetons': 'Jetons — Kiltikonet',
+  '/appel-2026': 'Appel à projet — Kiltikonet',
+  '/partnership': 'Partenariat — Kiltikonet',
+  '/partenaires': 'Partenaires — Kiltikonet',
+  '/gouvernance': 'Gouvernance — Kiltikonet',
+  '/badge-inscription': 'Inscription Badge — Kiltikonet',
+  '/admin': 'Administration — Kiltikonet',
+  '/smart-engine': 'Smart Engine — Kiltikonet',
+  '/espace-pro': 'Espace Pro — Kiltikonet',
+  '/accessibilite': 'Accessibilité — Kiltikonet',
+  '/mentions-legales': 'Mentions légales — Kiltikonet',
+  '/politique-confidentialite': 'Politique de confidentialité — Kiltikonet',
+  '/cgu': 'CGU — Kiltikonet',
+  '/cookies': 'Cookies — Kiltikonet',
 };
 const DocumentTitle = () => {
   const location = useLocation();
   useEffect(() => {
     const path = location.pathname;
-    const matchedKey = Object.keys(ROUTE_TITLES).find(k => path === k || (k !== '/' && path.startsWith(k)));
-    document.title = matchedKey ? ROUTE_TITLES[matchedKey] : 'Kilti Konet — Culture Connect 2026';
+    // Exact match first, then startsWith fallback
+    const exact = ROUTE_TITLES[path];
+    if (exact) { document.title = exact; return; }
+    const matchedKey = Object.keys(ROUTE_TITLES).find(k => k !== '/' && path.startsWith(k));
+    document.title = matchedKey ? ROUTE_TITLES[matchedKey] : 'Kiltikonet — Réseau et infrastructure culturelle afro-caribéenne';
   }, [location.pathname]);
   return null;
 };
@@ -293,7 +314,17 @@ function App() {
             <Route path="/*" element={
               <AppLayout>
                 <Routes>
-              <Route path="/" element={<LandingPage />} />
+              <Route path="/" element={<KiltikonetHome />} />
+              {/* Legacy CC2026 landing — accessible via /legacy-cc2026 pour référence */}
+              <Route path="/legacy-cc2026" element={<LandingPage />} />
+              {/* Culture Connect — page mère + éditions */}
+              <Route path="/culture-connect" element={<CultureConnect />} />
+              <Route path="/culture-connect/2026" element={<CultureConnect2026 />} />
+              <Route path="/culture-connect/2027" element={<CultureConnect2027 />} />
+              {/* Kiltikonet institutionnel */}
+              <Route path="/infrastructure" element={<Infrastructure />} />
+              <Route path="/rejoindre" element={<Rejoindre />} />
+              <Route path="/contact" element={<ContactKiltikonet />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/partnership" element={<PartnershipPage />} />
               <Route path="/partenaires" element={<PartnershipPage />} />

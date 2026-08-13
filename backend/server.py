@@ -303,14 +303,29 @@ async def session_cookie_middleware(request: Request, call_next):
 # ── Health check endpoint (for deployment/monitoring) ──
 @app.get("/api/health")
 async def health_check():
-    """Production health check — verifies DB connectivity."""
+    """Public health check — minimal response (no environment/version/db leakage)."""
+    return {"status": "ok"}
+
+
+# ── Internal detailed health (protected — requires admin) ──
+@app.get("/api/admin/health-detailed")
+async def health_detailed(request: Request):
+    """Detailed diagnostics for admins only (DB connectivity, environment)."""
+    session = getattr(request.state, 'session', None)
+    if not session or session.get('role') not in ('admin', 'founder'):
+        return JSONResponse(status_code=403, content={"error": "forbidden"})
     try:
         from motor.motor_asyncio import AsyncIOMotorClient
         client = AsyncIOMotorClient(os.environ.get("MONGO_URL", "mongodb://localhost:27017"), serverSelectionTimeoutMS=3000)
         await client.server_info()
-        return {"status": "ok", "db": "connected", "version": "1.0.0"}
+        db_status = "connected"
     except Exception:
-        return JSONResponse(status_code=503, content={"status": "error", "db": "disconnected"})
+        db_status = "disconnected"
+    return {
+        "status": "ok" if db_status == "connected" else "degraded",
+        "db": db_status,
+        "environment": "production" if IS_PRODUCTION else "development",
+    }
 
 
 # ── Session endpoints ──

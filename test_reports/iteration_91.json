@@ -1,0 +1,39 @@
+{
+  "verdict": "fixed",
+  "user_reported_bug": "hCaptcha bloqué sur la page 'Inscription Badge' (LandingBadge / BadgeInscription). Les utilisateurs ne peuvent pas s'inscrire car le widget hCaptcha ne fonctionne pas.",
+  "summary": "No relevant testing skill found. Focused verification confirmed the BadgeInscription hCaptcha CSP fix: backend CSP now allows hCaptcha domains in script-src/style-src/connect-src/frame-src, the /badge-inscription visitor flow attaches the hCaptcha widget and loads newassets.hcaptcha.com resources without hCaptcha CSP console errors, POST /api/badges/inscrire creates a VIS badge, and frontend/backend robots.txt contain the required Disallow lines.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/tests/bug_verification_91_hcaptcha_badge.py",
+    "/app/tests/bug_verification_91_hcaptcha_ui_playwright.py"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Inspected /app/backend/server.py CSP and robots.txt route, /app/frontend/public/robots.txt, /app/frontend/src/components/BadgeInscription.jsx, and /app/frontend/src/components/HCaptchaWidget.jsx; the hCaptcha CSP allowlist is present in all four required directives.",
+    "Automated headless browser showed hCaptcha iframes as display:none/visibility:hidden, matching the provided automation caveat, while network responses from js.hcaptcha.com, api.hcaptcha.com, and newassets.hcaptcha.com returned 200 and no hCaptcha CSP errors were logged.",
+    "Observation outside the hCaptcha bug scope: badge creation returned frek_status=local_fallback with a generated frek_id; the requested badge_id/frek_id/statut=INSCRIT contract was still satisfied. No APIs were mocked by this test."
+  ],
+  "updated_files": [
+    "/app/tests/bug_verification_91_hcaptcha_badge.py",
+    "/app/tests/bug_verification_91_hcaptcha_ui_playwright.py",
+    "/app/test_reports/bug_verification_91.json",
+    "/app/test_reports/iteration_91.json"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "100%"
+  },
+  "seed_data_creation": "Created one VIS test badge via POST /api/badges/inscrire using unique email qa.hcaptcha.1786625799777@example.com; response badge_id=CC26-VIS-WE3NV, frek_id=LOCAL-1a7002ca9144, statut=INSCRIT.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Use /app/tests/bug_verification_91_hcaptcha_badge.py for API/CSP/robots checks. Browser verification was run against https://tarifs-update.preview.emergentagent.com/badge-inscription with cat-visitor; console log saved by automation at /root/.emergent/automation_output/20260813_125747/console_20260813_125747.log.",
+  "rca_of_the_issue": "Original suspected RCA was CSP missing hcaptcha.com domains. Runtime proof now shows Content-Security-Policy includes https://hcaptcha.com and https://*.hcaptcha.com in script-src, style-src, connect-src, and frame-src; hCaptcha resources load without CSP refusal in the affected visitor inscription flow."
+}

@@ -1,174 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    
-    <!-- Pages principales -->
+
+    <!-- ============================================== -->
+    <!-- KILTIKONET.FR — Façade institutionnelle         -->
+    <!-- Réseau & infrastructure culturelle              -->
+    <!-- ============================================== -->
+
+    <!-- Accueil / Mission -->
     <url>
-        <loc>https://cultureconnect2026.fr/</loc>
-        <lastmod>2026-02-28</lastmod>
+        <loc>https://kiltikonet.fr/</loc>
+        <lastmod>2026-08-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
-    
+
+    <!-- À propos / Mission -->
     <url>
-        <loc>https://cultureconnect2026.fr/inscription</loc>
-        <lastmod>2026-02-28</lastmod>
+        <loc>https://kiltikonet.fr/a-propos</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Réseau -->
+    <url>
+        <loc>https://kiltikonet.fr/reseau</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Infrastructure culturelle -->
+    <url>
+        <loc>https://kiltikonet.fr/infrastructure</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Programmes -->
+    <url>
+        <loc>https://kiltikonet.fr/programmes</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Culture Connect (page mère) -->
+    <url>
+        <loc>https://kiltikonet.fr/culture-connect</loc>
+        <lastmod>2026-08-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
-    
+
+    <!-- Culture Connect 2026 — bilan / impact -->
     <url>
-        <loc>https://cultureconnect2026.fr/catalogue</loc>
-        <lastmod>2026-02-28</lastmod>
+        <loc>https://kiltikonet.fr/culture-connect/2026</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Culture Connect 2027 — édition à venir -->
+    <url>
+        <loc>https://kiltikonet.fr/culture-connect/2027</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Impact -->
+    <url>
+        <loc>https://kiltikonet.fr/impact</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Partenaires -->
+    <url>
+        <loc>https://kiltikonet.fr/partenaires</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Gouvernance -->
+    <url>
+        <loc>https://kiltikonet.fr/gouvernance</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Actualités / Presse -->
+    <url>
+        <loc>https://kiltikonet.fr/actualites</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://kiltikonet.fr/presse</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Rejoindre Kiltikonet -->
+    <url>
+        <loc>https://kiltikonet.fr/rejoindre</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Contact -->
+    <url>
+        <loc>https://kiltikonet.fr/contact</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Inscription (conservé pour compat CC2026) -->
+    <url>
+        <loc>https://kiltikonet.fr/inscription</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Catalogue -->
+    <url>
+        <loc>https://kiltikonet.fr/catalogue</loc>
+        <lastmod>2026-08-13</lastmod>
         <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://cultureconnect2026.fr/partenaires</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
-    
+
+    <!-- Programme événement -->
     <url>
-        <loc>https://cultureconnect2026.fr/programme</loc>
-        <lastmod>2026-02-28</lastmod>
+        <loc>https://kiltikonet.fr/programme</loc>
+        <lastmod>2026-08-13</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.6</priority>
     </url>
-    
+
+    <!-- Tarifs -->
     <url>
-        <loc>https://cultureconnect2026.fr/tarifs</loc>
-        <lastmod>2026-02-28</lastmod>
+        <loc>https://kiltikonet.fr/tarifs</loc>
+        <lastmod>2026-08-13</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.6</priority>
     </url>
-    
-    <!-- Pages légales -->
+
+    <!-- ============================================== -->
+    <!-- Pages légales                                   -->
+    <!-- ============================================== -->
+
     <url>
-        <loc>https://cultureconnect2026.fr/legal/mentions-legales.html</loc>
-        <lastmod>2026-02-28</lastmod>
+        <loc>https://kiltikonet.fr/legal/mentions-legales.html</loc>
+        <lastmod>2026-08-13</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
-    
+
     <url>
-        <loc>https://cultureconnect2026.fr/legal/politique-confidentialite.html</loc>
-        <lastmod>2026-02-28</lastmod>
+        <loc>https://kiltikonet.fr/legal/politique-confidentialite.html</loc>
+        <lastmod>2026-08-13</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
-    
+
     <url>
-        <loc>https://cultureconnect2026.fr/legal/cgu.html</loc>
-        <lastmod>2026-02-28</lastmod>
+        <loc>https://kiltikonet.fr/legal/cgu.html</loc>
+        <lastmod>2026-08-13</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
-    
+
     <url>
-        <loc>https://cultureconnect2026.fr/legal/cookies.html</loc>
-        <lastmod>2026-02-28</lastmod>
+        <loc>https://kiltikonet.fr/legal/cookies.html</loc>
+        <lastmod>2026-08-13</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
-    
-    <!-- Profils participants (16 profils actifs) -->
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/83b0c5d9-e310-4e91-b846-ee6de2d283b0</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/65b50ba4-fb99-4ae9-9c43-9ea9eadac9c6</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/2c96b9e9-6ba5-4823-bc14-832439ff9d49</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/42d947e4-14e1-46f6-a774-408ab048f6db</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/9e99f40c-b54e-475a-8b49-2c9c54fe260f</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/57059af0-7fe1-4870-982b-e4cb07a1eade</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/c3cf995c-6a52-4e58-8498-3619f6fec820</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/3586a9a6-4e14-49dc-a013-009bc074436a</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/ee645ff4-3251-430e-b640-f7d4cf51d709</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/a24ce475-10be-45d6-8cbb-3df82681dd61</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/42fe5bd4-9bd9-4231-9860-32cb37f7ded7</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/927f000a-7f79-4e76-93f6-46e1dde0067c</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/8e357c17-b747-41e4-b3e6-471c11ee5608</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/ed39a44a-f60a-4deb-be7a-a3732e20ab7b</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/4e093d73-f2e0-4016-8e43-fd790a6ed6ff</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://cultureconnect2026.fr/participant/a423d265-f87b-42d8-822e-947cdb7ef4e3</loc>
-        <lastmod>2026-02-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
+
+    <!-- NB : les URLs /participant/{UUID} ne sont volontairement pas listées -->
+    <!-- (RGPD — données personnelles, non indexables — voir robots.txt)      -->
+
 </urlset>

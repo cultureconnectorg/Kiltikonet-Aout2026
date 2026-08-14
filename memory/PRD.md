@@ -77,6 +77,22 @@ CVLN Group (holding)
 
 ## What's been implemented (2026-02)
 
+### Session Kiltikonet Network — Phase 0 + Phase 1 (Iter 97)
+- ✅ **Discovery complet** avant tout code : `/app/memory/KILTIKONET_NETWORK_DISCOVERY.md` (12 sections : inventaire routes, adapters, collections, rôles, conflits, risques, stratégie, décisions escaladées)
+- ✅ **Data Model** : `/app/memory/KILTIKONET_NETWORK_DATA_MODEL.md` — 11 collections `network_*` conceptuelles avec `_provenance` obligatoire, matrice RBAC à 18 rôles, règle FREK-ID = retrait
+- ✅ **Implementation Plan** : `/app/memory/KILTIKONET_NETWORK_IMPLEMENTATION_PLAN.md` — 12 phases avec livrables + tests par phase, décisions escaladées explicites
+- ✅ **Phase 1 Backend** : `/app/backend/routes/network.py` (14 endpoints read-only) monté dans `server.py` sous `/api/network/*`
+- ✅ **Data lineage obligatoire** : chaque réponse porte `lineage:{sources[], provenance, confidence, as_of}` — provenance `NOT_CONFIGURED` quand collections vides (jamais fabriquées)
+- ✅ **RBAC read-only** : `require_network_read` accepte `founder`, `FOUNDER_EMAILS`, 14 rôles Network globaux, ou `TERRITORY_*` scoped
+- ✅ **Catalogue programmes** : 8 modules fixes (Music Lab, Culture Lab, Kids, Festival, Connect, Academy, Stories, Talents) — public
+- ✅ **Tests régression** `/app/backend/tests/test_network_phase1.py` : **5/5 PASS**
+  - overview public + provenance NOT_CONFIGURED honnête
+  - programmes catalog exact
+  - 10 endpoints restreints → 401 sans auth
+  - /access retourne shape correcte publique
+  - **Observatory persistence intacte** : 2 699 events (dont 2 544 legacy), 10 registrations
+- ✅ **Zéro modification** de collections existantes · zéro donnée fabriquée · Smart Engine intact
+
 ### Session Founder Observatory + Print (Iter 96)
 - ✅ Nouveau composant `/app/frontend/src/components/ObservatoryFounder.jsx` — espace institutionnel restreint, 9 sections (00 Colophon, 01 Memory, 02 Timeline, 03 Actors, 04 Territories, 05 Sessions & Funnels, 06 Network, 07 Signals, 08 Access · System)
 - ✅ Navigation verticale sticky avec numérotation 00→08, gate d'accès data-testid='founder-gate' (H1 Restricted en italic serif)

@@ -4220,6 +4220,10 @@ app.include_router(site_analytics_router)
 from routes.observatory import router as observatory_router
 app.include_router(observatory_router)
 
+# Kiltikonet Network — Phase 1 (read-only foundations)
+from routes.network import router as network_router
+app.include_router(network_router)
+
 # FAQ & Support Tickets
 from routes.support import router as support_router, seed_default_faq
 app.include_router(support_router)

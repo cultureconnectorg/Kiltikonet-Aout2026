@@ -77,7 +77,17 @@ CVLN Group (holding)
 
 ## What's been implemented (2026-02)
 
-### Session Refondation Institutionnelle (cette session)
+### Session Founder Observatory + Print (Iter 96)
+- ✅ Nouveau composant `/app/frontend/src/components/ObservatoryFounder.jsx` — espace institutionnel restreint, 9 sections (00 Colophon, 01 Memory, 02 Timeline, 03 Actors, 04 Territories, 05 Sessions & Funnels, 06 Network, 07 Signals, 08 Access · System)
+- ✅ Navigation verticale sticky avec numérotation 00→08, gate d'accès data-testid='founder-gate' (H1 Restricted en italic serif)
+- ✅ Tags de provenance sur chaque donnée : `OBSERVED` / `RECONSTRUCTED` / `LEGACY` / `LIVE` / `NOT CONFIGURED`
+- ✅ Aucun mot de passe hardcodé — rôle `founder` via `FOUNDER_EMAILS` env ou `session.role`
+- ✅ Nouveau print stylesheet `/app/frontend/src/styles/print.css` — dossiers institutionnels A4 avec headers/footers, cache navigation, préserve data lineage
+- ✅ Route `/observatory/founder` ajoutée dans App.js, ajoutée à `hideHeaderRoutes`
+- ✅ Testing agent iter 96 : **100 %** backend (34 tests) + **100 %** frontend, `retest_needed: false`
+- ✅ Rapport final `/app/memory/KILTIKONET_FINAL_SYSTEM_AUDIT.md` créé (18 sections, self-assessment)
+
+### Session Refondation Institutionnelle (Iter 95)
 - ✅ Design system centralisé (`tokens.css` + `atoms.jsx`)
 - ✅ Footer institutionnel unifié avec data lineage live
 - ✅ Refonte des 5 composants encore en style SaaS (CultureConnect, CultureConnect2026, CultureConnect2027, Rejoindre, ContactKiltikonet)

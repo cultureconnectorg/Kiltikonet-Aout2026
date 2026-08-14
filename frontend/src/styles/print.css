@@ -1,0 +1,200 @@
+/* ═══════════════════════════════════════════════════════════════
+   KILTIKONET — PRINT STYLESHEET (dossiers institutionnels)
+   S'applique aux pages destinées à devenir des documents pour :
+   institutions, presse, partenaires, financeurs, candidatures.
+   Cible : /a-propos, /culture-connect/2026, /infrastructure
+   ═══════════════════════════════════════════════════════════════ */
+
+@media print {
+  /* ── Reset couleurs institutionnelles pour l'impression ── */
+  html, body {
+    background: #FFFFFF !important;
+    color: #0F0C09 !important;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  /* ── Cacher chrome navigation ─────────────────────────── */
+  header,
+  nav,
+  .no-print,
+  [data-testid="header"],
+  [data-testid="mobile-nav"],
+  [data-testid="cookie-banner"],
+  [data-testid="fab"],
+  [data-testid="chat-widget"],
+  [data-testid="account-dropdown-btn"],
+  [role="dialog"],
+  .toast,
+  [data-sonner-toaster] {
+    display: none !important;
+  }
+
+  /* ── Bandeau documentaire = en-tête institutionnel ────── */
+  [data-testid="archive-bar"] {
+    padding: 0 !important;
+    margin: 0 0 24pt 0 !important;
+    border-bottom: 0.5pt solid #0F0C09 !important;
+    padding-bottom: 6pt !important;
+    color: #0F0C09 !important;
+  }
+
+  /* ── Sections : éviter les coupures illisibles ────────── */
+  section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    padding: 24pt 0 !important;
+  }
+
+  section + section {
+    border-top: 0.5pt solid #ccc;
+  }
+
+  /* ── Bandes sombres transformées en fond blanc lisible ── */
+  section[style*="background: rgb(15, 12, 9)"],
+  section[style*="background:#0F0C09"],
+  section[style*="background: #0F0C09"],
+  section[style*="background: rgb(31, 27, 21)"],
+  section[style*="background:#1F1B15"] {
+    background: #FFFFFF !important;
+    color: #0F0C09 !important;
+  }
+
+  section[style*="background"] * {
+    color: #0F0C09 !important;
+  }
+
+  /* ── Headings ─────────────────────────────────────────── */
+  h1, h2, h3, h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+    color: #0F0C09 !important;
+  }
+
+  h1 {
+    font-family: 'Newsreader', 'Georgia', serif !important;
+    font-size: 34pt !important;
+    line-height: 1 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 12pt !important;
+  }
+
+  h2 {
+    font-family: 'Newsreader', 'Georgia', serif !important;
+    font-size: 22pt !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.015em !important;
+    margin-bottom: 8pt !important;
+    margin-top: 24pt !important;
+  }
+
+  /* ── Corps de texte : contraste maximum ───────────────── */
+  p, li, div {
+    color: #1F1B15 !important;
+  }
+
+  /* ── Data lineage : conserver la source (institutionnel) ─ */
+  [data-testid="data-lineage"] {
+    display: block !important;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace !important;
+    font-size: 8pt !important;
+    color: #6B6560 !important;
+    margin-top: 4pt !important;
+  }
+
+  /* ── IndexRow : lignes éditoriales préservées ─────────── */
+  [data-testid^="brick-"],
+  [data-testid^="cvln-"],
+  [data-testid^="join-"] {
+    border-top: 0.5pt solid #0F0C09 !important;
+    padding: 12pt 0 !important;
+    page-break-inside: avoid;
+  }
+
+  /* ── Métriques : préserver la typographie chiffrée ────── */
+  [data-testid^="metric-"],
+  [data-testid^="fmetric-"],
+  [data-testid^="now-metric-"],
+  [data-testid^="cc2026-metric-"] {
+    page-break-inside: avoid;
+    padding: 8pt 0 !important;
+    border-top: 0.5pt solid #0F0C09 !important;
+  }
+
+  /* ── Liens : afficher URL sous le texte ───────────────── */
+  a[href] {
+    color: #0F0C09 !important;
+    text-decoration: none !important;
+    border-bottom: 0.5pt solid #0F0C09 !important;
+  }
+
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-size: 8pt;
+    color: #6B6560;
+  }
+
+  /* Interne : pas d'URL, juste le libellé */
+  a[href^="/"]::after,
+  a[href^="#"]::after { content: ""; }
+
+  /* ── Footer institutionnel = colophon d'impression ────── */
+  [data-testid="institutional-footer"] {
+    background: #FFFFFF !important;
+    border-top: 0.5pt solid #0F0C09 !important;
+    padding: 12pt 0 !important;
+    page-break-before: auto;
+    color: #0F0C09 !important;
+  }
+
+  [data-testid="institutional-footer"] * {
+    color: #0F0C09 !important;
+  }
+
+  /* Pieds de page (metadata data lineage bandeau) */
+  [data-testid="footer-lineage"] {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-size: 8pt;
+  }
+
+  /* ── Page setup ───────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 22mm 20mm 22mm 20mm;
+
+    @top-left {
+      content: "Kiltikonet";
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8pt;
+      color: #6B6560;
+    }
+    @bottom-right {
+      content: "Page " counter(page) " / " counter(pages);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8pt;
+      color: #6B6560;
+    }
+    @bottom-left {
+      content: "kiltikonet.fr";
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8pt;
+      color: #6B6560;
+    }
+  }
+
+  /* Page de couverture : première section */
+  section:first-of-type {
+    page-break-after: always;
+    padding-top: 60pt !important;
+    padding-bottom: 60pt !important;
+  }
+
+  /* ── Metadata (MetaLine) ──────────────────────────────── */
+  [data-testid^="meta-"] {
+    color: #0F0C09 !important;
+    display: inline-block !important;
+    margin-right: 16pt !important;
+  }
+}

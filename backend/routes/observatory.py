@@ -328,3 +328,94 @@ async def access_check(request: Request):
         "is_founder": is_founder,
         "founder_emails_configured": len(FOUNDER_EMAILS) > 0,
     }
+
+
+# ═════════════════════════════════════════════════════════
+# PHASE 2 — Adapter-backed endpoints (Smart Engine × Observatory)
+# All read-only. All carry data lineage. Founder-only by default.
+# ═════════════════════════════════════════════════════════
+from services.observatory_adapters import (
+    badges_adapter, conversion_adapter, network_adapter,
+    diffusion_adapter, live_adapter, mgraph_adapter, alerts_adapter,
+)
+
+
+@router.get("/badges")
+async def observatory_badges(days: int = 180, session: dict = Depends(require_founder)):
+    """Cultural identity snapshot (founder-only — includes top 10 by impact score)."""
+    return await badges_adapter.snapshot(days=days)
+
+
+@router.get("/conversion")
+async def observatory_conversion(days: int = 30, session: dict = Depends(require_founder)):
+    return await conversion_adapter.snapshot(days=days)
+
+
+@router.get("/network")
+async def observatory_network(days: int = 30, session: dict = Depends(require_founder)):
+    return await network_adapter.snapshot(days=days)
+
+
+@router.get("/diffusion")
+async def observatory_diffusion(days: int = 30, session: dict = Depends(require_founder)):
+    return await diffusion_adapter.snapshot(days=days)
+
+
+@router.get("/live")
+async def observatory_live(session: dict = Depends(require_founder)):
+    return await live_adapter.snapshot()
+
+
+@router.get("/mgraph")
+async def observatory_mgraph(limit: int = 500, session: dict = Depends(require_founder)):
+    """Cultural relationship graph — founder-only (contains name fragments)."""
+    return await mgraph_adapter.snapshot(limit=limit)
+
+
+@router.get("/signals")
+async def observatory_signals(days: int = 90, session: dict = Depends(require_founder)):
+    """Historical Signals — surfaced from Smart Engine team_notifications."""
+    return await alerts_adapter.snapshot(days=days)
+
+
+# ═════════════════════════════════════════════════════════
+# PUBLIC WINDOW — Strictly aggregated, no PII, no individual data.
+# Available to anyone. Never reveals founder-only fields.
+# ═════════════════════════════════════════════════════════
+@router.get("/public/now")
+async def observatory_public_now():
+    """
+    Strictly aggregated public snapshot of Kiltikonet's living infrastructure.
+    Contains ONLY : counts + distincts + averages. No names, no emails, no top rankings.
+    """
+    _db = _client[os.environ.get("DB_NAME", "kiltikonet")]
+
+    events_total = await _db.analytics_events.count_documents({})
+    registrations_total = await _db.registrations.count_documents({})
+    workspace_total = await _db.workspace_logs.count_documents({})
+
+    # Territories (aggregated count, no names)
+    countries = set()
+    async for r in _db.registrations.find({}, {"country": 1}):
+        c = (r.get("country") or "").strip()
+        if c:
+            countries.add(c.lower())
+
+    # Badges high-level only
+    cols = await _db.list_collection_names()
+    badges_total = await _db.cc_badges.count_documents({}) if "cc_badges" in cols else 0
+    frek_ids_active = await _db.cc_badges.count_documents({"frek_id": {"$ne": "", "$exists": True}}) if "cc_badges" in cols else 0
+
+    return {
+        "digital_memory": {
+            "recorded_events": events_total,
+            "registrations": registrations_total,
+            "workspace_activity": workspace_total,
+            "badges_total": badges_total,
+            "cultural_identities_active": frek_ids_active,
+            "distinct_territories": len(countries),
+        },
+        "notice": "Aggregated only — no personal data, no individual rankings, no operational details.",
+        "canonical_source": "Kiltikonet Observatory · /api/observatory/public/now",
+        "as_of": datetime.now(timezone.utc).isoformat(),
+    }

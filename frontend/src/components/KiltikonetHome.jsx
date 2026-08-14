@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import SEO from './SEO';
+
+const API = process.env.REACT_APP_BACKEND_URL;
 
 // ─── Palette institutionnelle Kiltikonet ─────────────
 const K = {
@@ -64,6 +67,15 @@ export default function KiltikonetHome() {
   const [now] = useState(() => new Date());
   const year = now.getFullYear();
   const dateStr = now.toISOString().slice(0, 10);
+
+  // ─── Données réelles depuis Observatory /public/now (agrégats, no PII) ─
+  const [publicNow, setPublicNow] = useState(null);
+  useEffect(() => {
+    axios.get(`${API}/api/observatory/public/now`)
+      .then(r => setPublicNow(r.data?.digital_memory || null))
+      .catch(() => setPublicNow(null));
+  }, []);
+  const fmt = (v) => (v === null || v === undefined) ? '—' : Number(v).toLocaleString('fr-FR');
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -583,13 +595,13 @@ export default function KiltikonetHome() {
           approximativement.
         </p>
 
-        <div className="grid md:grid-cols-4 gap-x-8 gap-y-10" data-testid="impact-index">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10" data-testid="impact-index">
           {[
-            ['Participants', 'en consolidation'],
-            ['Professionnels', 'en consolidation'],
-            ['Territoires', 'en consolidation'],
-            ['Rendez-vous B2B', 'en consolidation'],
-          ].map(([label, note]) => (
+            ['Traces historiques', 'recorded_events'],
+            ['Acteurs enregistrés', 'registrations'],
+            ['Activité workspace', 'workspace_activity'],
+            ['Identités actives', 'cultural_identities_active'],
+          ].map(([label, key]) => (
             <div key={label} className="pt-6" style={{ borderTop: `1px solid ${K.rule}` }}>
               <div
                 className="mb-3"
@@ -597,17 +609,17 @@ export default function KiltikonetHome() {
                   fontFamily: "'Newsreader', serif",
                   fontSize: 'clamp(3rem, 6vw, 5rem)',
                   lineHeight: 1,
-                  color: K.dust,
-                  fontStyle: 'italic',
+                  color: K.ink,
+                  fontVariantNumeric: 'tabular-nums',
                 }}
               >
-                —
+                {publicNow ? fmt(publicNow[key]) : '—'}
               </div>
               <div className="text-sm uppercase tracking-widest font-mono" style={{ color: K.ink }}>
                 {label}
               </div>
               <div className="text-xs mt-1 font-mono uppercase tracking-widest" style={{ color: K.dust }}>
-                {note}
+                src · observatory/public/now
               </div>
             </div>
           ))}

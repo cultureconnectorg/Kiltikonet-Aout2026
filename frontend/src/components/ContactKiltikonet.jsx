@@ -1,80 +1,192 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Instagram, Linkedin, ArrowRight } from 'lucide-react';
 import SEO from './SEO';
+import { K, Rule, ArchiveBar, SectionIndex, MonumentalHeading, EditorialLink, MetaLine } from './kilti/atoms';
+import InstitutionalFooter from './kilti/InstitutionalFooter';
 
-const K = { bg: '#F4F0E8', card: '#FFFFFF', warm: '#E8E0D0', dark: '#1A1510', muted: '#6B6560', terra: '#A65D47', ink: '#0F0C09' };
+const CONTACTS = [
+  {
+    id: '01',
+    label: 'Email',
+    name: 'contact@kiltikonet.fr',
+    kind: 'Contact institutionnel',
+    href: 'mailto:contact@kiltikonet.fr',
+    external: false,
+    testId: 'contact-email',
+  },
+  {
+    id: '02',
+    label: 'Localisation',
+    name: 'Fort-de-France · Martinique',
+    kind: 'Siège opérationnel',
+    href: null,
+    external: false,
+    testId: 'contact-location',
+  },
+  {
+    id: '03',
+    label: 'Instagram',
+    name: '@kiltikonet',
+    kind: 'Réseau public',
+    href: 'https://www.instagram.com/kiltikonet',
+    external: true,
+    testId: 'contact-instagram',
+  },
+  {
+    id: '04',
+    label: 'LinkedIn',
+    name: 'company/kiltikonet',
+    kind: 'Réseau professionnel',
+    href: 'https://www.linkedin.com/company/kiltikonet',
+    external: true,
+    testId: 'contact-linkedin',
+  },
+];
 
 export default function ContactKiltikonet() {
+  const year = new Date().getFullYear();
+  const dateStr = new Date().toISOString().slice(0, 10);
+
   return (
-    <div className="min-h-screen" style={{ background: K.bg }} data-testid="contact-page">
+    <div
+      className="min-h-screen"
+      style={{ background: K.paper, color: K.ink, fontFamily: K.sans }}
+      data-testid="contact-page"
+    >
       <SEO
         title="Contact"
-        description="Contacter Kiltikonet — email, adresse et réseaux sociaux du réseau et de l'infrastructure culturelle afro-caribéenne."
+        description="Contacter Kiltikonet — email institutionnel, siège, réseaux professionnels de l'infrastructure culturelle afro-caribéenne."
         path="/contact"
       />
 
-      <section className="px-6 md:px-10 lg:px-16 pt-28 md:pt-40 pb-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.2em] mb-6" style={{ color: K.terra }}>
-            <Link to="/">Kiltikonet</Link> → Contact
+      <ArchiveBar
+        left={`Kiltikonet / Contact / ${year}`}
+        center="Contact institutionnel"
+        right={dateStr}
+      />
+      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
+
+      {/* 01 — Identité */}
+      <section className="px-6 md:px-12 lg:px-20 pt-16 md:pt-28 pb-24 md:pb-40" data-testid="contact-hero">
+        <SectionIndex n="01" label="Contact" />
+        <MonumentalHeading italic="restent ouvertes." maxWidth="16ch">
+          Les portes
+        </MonumentalHeading>
+
+        <div className="mt-16 md:mt-24 grid md:grid-cols-12 gap-8 md:gap-12">
+          <div className="md:col-span-5 md:col-start-2">
+            <p style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }} data-testid="contact-lead">
+              Écrivez-nous pour toute demande d'information, de partenariat institutionnel,
+              de collaboration ou de presse. Chaque message est lu par un membre de
+              l'équipe — pas par un service automatisé.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6"
-              style={{ fontFamily: "'Newsreader', serif", color: K.dark, letterSpacing: '-0.02em' }}
-              data-testid="contact-title">
-            Nous contacter.
-          </h1>
-          <p className="text-lg max-w-2xl mb-12" style={{ color: K.muted, lineHeight: 1.6 }}>
-            Écrivez-nous pour toute demande d'information, de partenariat ou de collaboration.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            <a href="mailto:contact@kiltikonet.fr"
-               className="p-6 rounded-2xl block transition-all hover:shadow-lg"
-               style={{ background: K.card, border: `1px solid ${K.warm}` }}
-               data-testid="contact-email">
-              <Mail className="w-6 h-6 mb-3" style={{ color: K.terra }} />
-              <div className="font-semibold mb-1" style={{ color: K.dark }}>Email</div>
-              <div className="text-sm" style={{ color: K.muted }}>contact@kiltikonet.fr</div>
-            </a>
-
-            <div className="p-6 rounded-2xl"
-                 style={{ background: K.card, border: `1px solid ${K.warm}` }}
-                 data-testid="contact-location">
-              <MapPin className="w-6 h-6 mb-3" style={{ color: K.terra }} />
-              <div className="font-semibold mb-1" style={{ color: K.dark }}>Localisation</div>
-              <div className="text-sm" style={{ color: K.muted }}>Fort-de-France, Martinique</div>
-            </div>
-
-            <a href="https://www.instagram.com/kiltikonet" target="_blank" rel="noopener noreferrer"
-               className="p-6 rounded-2xl block transition-all hover:shadow-lg"
-               style={{ background: K.card, border: `1px solid ${K.warm}` }}
-               data-testid="contact-instagram">
-              <Instagram className="w-6 h-6 mb-3" style={{ color: K.terra }} />
-              <div className="font-semibold mb-1" style={{ color: K.dark }}>Instagram</div>
-              <div className="text-sm" style={{ color: K.muted }}>@kiltikonet</div>
-            </a>
-
-            <a href="https://www.linkedin.com/company/kiltikonet" target="_blank" rel="noopener noreferrer"
-               className="p-6 rounded-2xl block transition-all hover:shadow-lg"
-               style={{ background: K.card, border: `1px solid ${K.warm}` }}
-               data-testid="contact-linkedin">
-              <Linkedin className="w-6 h-6 mb-3" style={{ color: K.terra }} />
-              <div className="font-semibold mb-1" style={{ color: K.dark }}>LinkedIn</div>
-              <div className="text-sm" style={{ color: K.muted }}>company/kiltikonet</div>
-            </a>
-          </div>
-
-          <div className="mt-12 p-6 rounded-2xl"
-               style={{ background: K.ink, color: '#F1EBDD' }}
-               data-testid="contact-cta">
-            <div className="font-semibold mb-2">Vous cherchez à rejoindre le réseau ?</div>
-            <Link to="/rejoindre" className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: '#C9A84C' }}>
-              Voir les parcours d'adhésion <ArrowRight className="w-4 h-4" />
-            </Link>
+          <div className="md:col-span-4 md:col-start-9">
+            <MetaLine
+              items={[
+                { label: 'Réponse', value: '48h ouvrées' },
+                { label: 'Langues', value: 'FR · EN · KW' },
+                { label: 'Siège', value: 'Fort-de-France, MQ' },
+              ]}
+            />
           </div>
         </div>
       </section>
+
+      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
+
+      {/* 02 — Contacts (index éditorial) */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 md:py-40" data-testid="contact-index">
+        <SectionIndex n="02" label="Canaux" />
+
+        {CONTACTS.map((c) => {
+          const rowContent = (
+            <div
+              className="grid grid-cols-12 gap-4 py-10 md:py-14 group"
+              style={{ borderTop: `1px solid ${K.ruleLight}` }}
+              data-testid={c.testId}
+            >
+              <div className="col-span-2 md:col-span-1">
+                <span className="text-xs font-mono tracking-widest" style={{ color: K.dust }}>
+                  {c.id}
+                </span>
+              </div>
+              <div className="col-span-10 md:col-span-3">
+                <div className="text-xs uppercase tracking-widest font-mono mb-2" style={{ color: K.rust }}>
+                  {c.label}
+                </div>
+                <div style={{ fontFamily: K.serif, fontSize: 'clamp(1.4rem, 2.2vw, 1.8rem)', lineHeight: 1.15, letterSpacing: '-0.01em', color: K.ink }}>
+                  {c.name}
+                </div>
+              </div>
+              <div className="col-span-12 md:col-span-7 md:pl-8">
+                <div className="text-xs font-mono uppercase tracking-widest" style={{ color: K.dust }}>
+                  {c.kind}
+                </div>
+              </div>
+              <div className="col-span-12 md:col-span-1 md:text-right">
+                {c.href && (
+                  <span className="text-xs font-mono uppercase tracking-widest" style={{ color: K.rust }}>
+                    → 
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+
+          if (!c.href) return <div key={c.id}>{rowContent}</div>;
+
+          if (c.external) {
+            return (
+              <a key={c.id} href={c.href} target="_blank" rel="noopener noreferrer" className="block">
+                {rowContent}
+              </a>
+            );
+          }
+
+          return (
+            <a key={c.id} href={c.href} className="block">
+              {rowContent}
+            </a>
+          );
+        })}
+        <div style={{ borderTop: `1px solid ${K.ruleLight}` }} />
+      </section>
+
+      {/* 03 — CTA rejoindre */}
+      <section
+        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
+        style={{ background: K.ink, color: K.paper }}
+        data-testid="contact-cta"
+      >
+        <SectionIndex n="03" label="Rejoindre" tone="light" />
+        <div className="grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-7">
+            <h2
+              style={{
+                fontFamily: K.serif,
+                fontWeight: 400,
+                fontSize: 'clamp(2rem, 4.4vw, 3.6rem)',
+                lineHeight: 1,
+                letterSpacing: '-0.03em',
+                color: K.paper,
+              }}
+            >
+              Prendre part au réseau. <br />
+              <span style={{ fontStyle: 'italic', color: '#B8B0A0' }}>
+                Quatre portes d'entrée.
+              </span>
+            </h2>
+          </div>
+          <div className="md:col-span-4 md:col-start-9 md:pt-4">
+            <EditorialLink to="/rejoindre" tone="light" testId="link-rejoindre">
+              Voir les parcours
+            </EditorialLink>
+          </div>
+        </div>
+      </section>
+
+      <InstitutionalFooter />
     </div>
   );
 }

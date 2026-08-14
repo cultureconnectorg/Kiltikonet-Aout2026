@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from './SEO';
+import InstitutionalFooter from './kilti/InstitutionalFooter';
 
 const K = {
   paper: '#F1EBDD', ivory: '#EAE3D2', ink: '#0F0C09', ash: '#1F1B15',
@@ -170,6 +171,8 @@ export default function Infrastructure() {
           <span style={{ fontFamily: 'monospace', fontSize: 11 }}>→</span>
         </Link>
       </section>
+
+      <InstitutionalFooter />
     </div>
   );
 }

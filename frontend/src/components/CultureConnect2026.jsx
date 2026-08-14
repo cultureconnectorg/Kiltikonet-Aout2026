@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Users, Calendar, MapPin, Trophy, Sparkles } from 'lucide-react';
+import axios from 'axios';
 import SEO from './SEO';
+import { K, Rule, ArchiveBar, SectionIndex, Metric, Source, MonumentalHeading, EditorialLink, IndexRow, MetaLine } from './kilti/atoms';
+import InstitutionalFooter from './kilti/InstitutionalFooter';
 
-const K = {
-  bg: '#F4F0E8', card: '#FFFFFF', warm: '#E8E0D0',
-  dark: '#1A1510', muted: '#6B6560', gold: '#C9A84C',
-  terra: '#A65D47', sage: '#4A5D4E', ink: '#0F0C09',
-};
+const API = process.env.REACT_APP_BACKEND_URL;
 
-// Chiffres CC2026 — À REMPLACER par les chiffres vérifiés fournis par l'équipe
-const IMPACT_METRICS = [
-  { label: 'Participants inscrits', value: '—', note: 'À publier après validation' },
-  { label: 'Professionnels', value: '—', note: 'À publier après validation' },
-  { label: 'Pays / territoires', value: '—', note: 'À publier après validation' },
-  { label: 'Rendez-vous B2B', value: '—', note: 'À publier après validation' },
-];
-
+/**
+ * /culture-connect/2026 — Archive institutionnelle de l'édition 2026
+ * Uniquement des données réelles. Aucun chiffre inventé.
+ * Les métriques encore non consolidées apparaissent avec la mention explicite.
+ */
 export default function CultureConnect2026() {
+  const [publicNow, setPublicNow] = useState(null);
+  useEffect(() => {
+    axios
+      .get(`${API}/api/observatory/public/now`)
+      .then((r) => setPublicNow(r.data?.digital_memory || null))
+      .catch(() => setPublicNow(null));
+  }, []);
+
+  const year = new Date().getFullYear();
+  const dateStr = new Date().toISOString().slice(0, 10);
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
@@ -40,138 +46,188 @@ export default function CultureConnect2026() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: K.bg }} data-testid="cc2026-impact-page">
+    <div
+      className="min-h-screen"
+      style={{ background: K.paper, color: K.ink, fontFamily: K.sans }}
+      data-testid="cc2026-impact-page"
+    >
       <SEO
-        title="Culture Connect 2026 — Bilan et impact"
-        description="Culture Connect 2026 a eu lieu du 20 au 23 mai 2026 à Fort-de-France. Retour sur la première édition, les preuves d'exécution et la continuité vers CC2027."
+        title="Culture Connect 2026 — Archive · Bilan"
+        description="Culture Connect 2026 a eu lieu du 20 au 23 mai 2026 à Fort-de-France. Archive institutionnelle : programme, données consolidées, continuité vers CC2027."
         path="/culture-connect/2026"
         type="article"
         jsonLd={jsonLd}
       />
 
-      {/* HERO */}
-      <section className="px-6 md:px-10 lg:px-16 pt-28 md:pt-40 pb-16" data-testid="cc2026-hero">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.2em] mb-6" style={{ color: K.terra }}>
-            <Link to="/">Kiltikonet</Link> → <Link to="/culture-connect">Culture Connect</Link> → 2026
+      <ArchiveBar
+        left={`Kiltikonet / Culture Connect / 2026`}
+        center="Archive 001 · Édition terminée"
+        right={`Consulté le ${dateStr}`}
+      />
+      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
+
+      {/* 01 — IDENTITÉ ARCHIVE */}
+      <section className="px-6 md:px-12 lg:px-20 pt-16 md:pt-28 pb-24 md:pb-40" data-testid="cc2026-hero">
+        <div className="text-xs font-mono uppercase tracking-widest mb-6" style={{ color: K.rust }}>
+          <Link to="/">Kiltikonet</Link> → <Link to="/culture-connect">Culture Connect</Link> → 2026
+        </div>
+
+        <MonumentalHeading italic="Une édition, une preuve." maxWidth="20ch">
+          Culture Connect 2026.
+        </MonumentalHeading>
+
+        <div className="mt-16 md:mt-24 grid md:grid-cols-12 gap-8 md:gap-12">
+          <div className="md:col-span-5 md:col-start-2">
+            <p style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }}>
+              Première édition de Culture Connect. Quatre jours de rencontres à
+              Fort-de-France : un marché culturel, des conférences, des espaces de mise en
+              relation, un concert de clôture. Chaque participant a reçu son identifiant
+              culturel numérique — un fragment permanent du réseau.
+            </p>
           </div>
-
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold px-3 py-1.5 rounded-full mb-6"
-               style={{ background: `${K.gold}20`, color: K.gold, border: `1px solid ${K.gold}40` }}
-               data-testid="cc2026-status">
-            <CheckCircle2 className="w-3.5 h-3.5" />
-            Édition terminée
-          </div>
-
-          <h1
-            className="text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 max-w-4xl"
-            style={{ fontFamily: "'Newsreader', serif", fontWeight: 500, color: K.dark, letterSpacing: '-0.02em' }}
-            data-testid="cc2026-title"
-          >
-            Culture Connect 2026
-          </h1>
-
-          <p className="text-lg md:text-xl max-w-3xl mb-8" style={{ color: K.muted, lineHeight: 1.6 }}>
-            Une première édition réalisée, documentée, et servant de base à la prochaine étape.
-          </p>
-
-          <div className="flex flex-wrap gap-4 text-sm" style={{ color: K.muted }}>
-            <span className="inline-flex items-center gap-2"><Calendar className="w-4 h-4" /> 20-23 Mai 2026</span>
-            <span className="inline-flex items-center gap-2"><MapPin className="w-4 h-4" /> Fort-de-France, Martinique</span>
+          <div className="md:col-span-4 md:col-start-9">
+            <MetaLine
+              items={[
+                { label: 'Dates', value: '20 – 23 mai 2026' },
+                { label: 'Lieu', value: 'Fort-de-France, MQ' },
+                { label: 'Statut', value: 'Terminée' },
+                { label: 'Portage', value: 'Kiltikonet' },
+              ]}
+            />
           </div>
         </div>
       </section>
 
-      {/* MÉTRIQUES D'IMPACT (à remplir avec chiffres vérifiés) */}
-      <section className="px-6 md:px-10 lg:px-16 py-16" data-testid="cc2026-metrics">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.2em] mb-4" style={{ color: K.terra }}>
-            Impact
-          </div>
-          <h2 className="text-3xl md:text-4xl mb-12 max-w-3xl" style={{ fontFamily: "'Newsreader', serif", color: K.dark }}>
-            Les résultats vérifiés — bilan chiffré.
-          </h2>
+      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {IMPACT_METRICS.map((m, i) => (
-              <div
-                key={i}
-                className="p-6 rounded-2xl"
-                style={{ background: K.card, border: `1px solid ${K.warm}` }}
-                data-testid={`metric-${i}`}
-              >
-                <div className="text-4xl md:text-5xl font-semibold mb-2"
-                     style={{ color: K.terra, fontFamily: "'Newsreader', serif" }}>
-                  {m.value}
-                </div>
-                <div className="text-sm font-medium mb-1" style={{ color: K.dark }}>
-                  {m.label}
-                </div>
-                <div className="text-xs italic" style={{ color: K.muted }}>{m.note}</div>
-              </div>
-            ))}
-          </div>
+      {/* 02 — DONNÉES RÉELLES (dispo via Observatory) */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 md:py-40" data-testid="cc2026-metrics">
+        <SectionIndex n="02" label="Preuves" />
 
-          <p className="text-xs mt-8 italic" style={{ color: K.muted }}>
-            Les chiffres définitifs seront publiés après consolidation avec les partenaires et l'équipe organisatrice.
-          </p>
+        <h2
+          className="mb-12 max-w-4xl"
+          style={{
+            fontFamily: K.serif,
+            fontWeight: 400,
+            fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+            lineHeight: 1,
+            letterSpacing: '-0.025em',
+          }}
+        >
+          Les chiffres <br />
+          <span style={{ fontStyle: 'italic', color: K.bone }}>enregistrés par l'infrastructure.</span>
+        </h2>
+
+        <p className="max-w-2xl mb-16" style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }}>
+          Les données ci-dessous proviennent directement des collections métier de
+          l'infrastructure Kiltikonet (analytics_events, registrations, workspace_logs).
+          Aucun chiffre marketing. Les indicateurs de participation détaillés (nombre de
+          professionnels, pays représentés) sont en cours de consolidation par l'équipe
+          organisatrice et seront publiés une fois vérifiés.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-x-12" data-testid="cc2026-metrics-grid">
+          <Metric
+            label="Traces enregistrées"
+            value={publicNow?.recorded_events}
+            source="db.analytics_events (canonical)"
+            testId="cc2026-metric-events"
+          />
+          <Metric
+            label="Inscriptions"
+            value={publicNow?.registrations}
+            source="db.registrations"
+            testId="cc2026-metric-registrations"
+          />
+          <Metric
+            label="Activité workspace"
+            value={publicNow?.workspace_activity}
+            source="db.workspace_logs"
+            testId="cc2026-metric-workspace"
+          />
+          <Metric
+            label="Identités actives"
+            value={publicNow?.cultural_identities_active}
+            source="db.registrations (distinct)"
+            testId="cc2026-metric-identities"
+          />
+        </div>
+
+        <div className="mt-16">
+          <Source>observatory/public/now · agrégats sans PII</Source>
         </div>
       </section>
 
-      {/* CE QUI A ÉTÉ FAIT */}
-      <section className="px-6 md:px-10 lg:px-16 py-16" style={{ background: K.card }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.2em] mb-4" style={{ color: K.terra }}>
-            Programme
-          </div>
-          <h2 className="text-3xl md:text-4xl mb-12 max-w-3xl" style={{ fontFamily: "'Newsreader', serif", color: K.dark }}>
-            Ce qui s'est passé pendant 4 jours.
-          </h2>
+      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              { icon: Users, title: 'Marché culturel', desc: 'Exposants Bronze / Silver / Gold, stands professionnels, mise en relation directe.' },
-              { icon: Sparkles, title: 'Conférences', desc: 'Tables rondes sur les industries culturelles afro-caribéennes, transmission et innovation.' },
-              { icon: Trophy, title: 'Networking B2B', desc: 'Rendez-vous professionnels programmés, catalyseur de partenariats.' },
-              { icon: Calendar, title: 'Concert de clôture', desc: 'Le 22 mai — scène principale, invitation partenaires et VIP.' },
-              { icon: MapPin, title: 'Ateliers ouverts', desc: 'Formations pratiques accessibles à tous les visiteurs accrédités.' },
-              { icon: CheckCircle2, title: 'Badge culturel FREK-ID', desc: "Chaque participant a reçu son identifiant culturel numérique — infrastructure pérenne." },
-            ].map((item, i) => (
-              <div key={i} className="p-6 rounded-2xl"
-                   style={{ background: K.bg, border: `1px solid ${K.warm}` }}
-                   data-testid={`highlight-${i}`}>
-                <item.icon className="w-6 h-6 mb-3" style={{ color: K.terra }} />
-                <div className="font-semibold mb-1.5" style={{ color: K.dark }}>{item.title}</div>
-                <p className="text-sm" style={{ color: K.muted, lineHeight: 1.5 }}>{item.desc}</p>
-              </div>
-            ))}
+      {/* 03 — PROGRAMME (index éditorial) */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 md:py-40" data-testid="cc2026-programme">
+        <SectionIndex n="03" label="Programme" />
+
+        <h2
+          className="mb-16 max-w-4xl"
+          style={{
+            fontFamily: K.serif,
+            fontWeight: 400,
+            fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+            lineHeight: 1,
+            letterSpacing: '-0.025em',
+          }}
+        >
+          Quatre jours. <br />
+          <span style={{ fontStyle: 'italic', color: K.bone }}>Un ensemble.</span>
+        </h2>
+
+        <div data-testid="cc2026-highlights">
+          <IndexRow id="01" label="Marché" name="Marché culturel" description="Exposants Bronze / Silver / Gold, stands professionnels, mise en relation directe entre acteurs des industries culturelles afro-caribéennes." />
+          <IndexRow id="02" label="Conférences" name="Tables rondes & keynotes" description="Programmation thématique sur les industries culturelles, la transmission, l'innovation, le marché et la souveraineté culturelle afro-caribéenne." />
+          <IndexRow id="03" label="B2B" name="Rendez-vous professionnels" description="Sessions de networking B2B programmées, catalyseur de partenariats entre artistes, structures, institutions et distributeurs." />
+          <IndexRow id="04" label="Scène" name="Concert de clôture" description="Le 22 mai — scène principale, invitation partenaires et VIP. Programmation artistique afro-caribéenne." />
+          <IndexRow id="05" label="Ateliers" name="Formations ouvertes" description="Ateliers pratiques accessibles à tous les visiteurs accrédités : production, distribution, propriété intellectuelle, financement." />
+          <IndexRow id="06" label="Identité" name="Badges FREK-ID" description="Chaque participant a reçu son identifiant culturel numérique — infrastructure pérenne qui traverse les éditions." />
+          <div style={{ borderTop: `1px solid ${K.ruleLight}` }} />
+        </div>
+      </section>
+
+      {/* 04 — CONTINUITÉ */}
+      <section
+        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
+        style={{ background: K.ink, color: K.paper }}
+        data-testid="cc2026-continuity"
+      >
+        <SectionIndex n="04" label="Suite" tone="light" />
+
+        <div className="grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-7">
+            <h2
+              style={{
+                fontFamily: K.serif,
+                fontWeight: 400,
+                fontSize: 'clamp(2.2rem, 4.6vw, 4rem)',
+                lineHeight: 1,
+                letterSpacing: '-0.03em',
+                color: K.paper,
+              }}
+            >
+              CC 2026 pose les bases. <br />
+              <span style={{ fontStyle: 'italic', color: '#B8B0A0' }}>CC 2027 les consolide.</span>
+            </h2>
+          </div>
+          <div className="md:col-span-4 md:col-start-9">
+            <p style={{ color: '#B8B0A0', lineHeight: 1.75, fontSize: '15px' }}>
+              Les liens créés en 2026, l'infrastructure déployée et l'expérience acquise
+              nourrissent directement la prochaine édition.
+            </p>
+            <div className="mt-8">
+              <EditorialLink to="/culture-connect/2027" tone="light" testId="link-cc2027">
+                Voir Culture Connect 2027
+              </EditorialLink>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CONTINUITÉ CC2027 */}
-      <section className="px-6 md:px-10 lg:px-16 py-16" style={{ background: K.ink, color: '#F1EBDD' }} data-testid="cc2026-continuity">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.2em] mb-4" style={{ color: K.gold }}>
-            La suite
-          </div>
-          <h2 className="text-3xl md:text-4xl mb-6 max-w-3xl" style={{ fontFamily: "'Newsreader', serif" }}>
-            Culture Connect 2026 servait à poser les bases. CC 2027 les consolide.
-          </h2>
-          <p className="text-base mb-8 max-w-2xl" style={{ color: '#B8B0A0' }}>
-            Les liens créés en 2026, les infrastructures déployées et l'expérience acquise
-            nourrissent directement la prochaine édition.
-          </p>
-          <Link
-            to="/culture-connect/2027"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold"
-            style={{ background: K.gold, color: K.ink }}
-            data-testid="link-cc2027"
-          >
-            Découvrir Culture Connect 2027
-          </Link>
-        </div>
-      </section>
+      <InstitutionalFooter />
     </div>
   );
 }

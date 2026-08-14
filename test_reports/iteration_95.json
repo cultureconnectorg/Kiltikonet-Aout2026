@@ -1,0 +1,44 @@
+{
+  "summary": "Frontend-only validation of the institutional refoundation of Kiltikonet.fr (Phases B–H). All 10 refactored routes return 200, all required data-testid selectors are present, the 4 real metrics from /api/observatory/public/now (2 641 / 10 / 18 / 10) render on /, /now, /culture-connect/2026, and the institutional footer, each with its 'src · <collection>' data-lineage caption. The unified InstitutionalFooter with footer-lineage is present on all 10 public pages. The refactored components (CultureConnect*, Rejoindre, ContactKiltikonet, APropos, NowPage, KiltikonetHome, Observatory, Infrastructure) contain zero occurrences of rounded-2xl / shadow-lg / shadow-xl (grep -c = 0 for all 10 files). Newsreader serif (italic monumental headings) and Manrope sans-serif interface fonts render correctly. Dark #0F0C09 institutional background renders on /now with gold discreet accents.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verified_criteria": {
+    "1_all_routes_200": {
+      "/": 200, "/a-propos": 200, "/now": 200,
+      "/culture-connect": 200, "/culture-connect/2026": 200, "/culture-connect/2027": 200,
+      "/rejoindre": 200, "/contact": 200, "/observatory": 200, "/infrastructure": 200
+    },
+    "2_data_lineage_captions": "PASS — 'src · observatory/public/now' present on home Section 07 (under each of the 4 metrics), footer (Traces + Identités actives); 'src · db.analytics_events (canonical)' and 'src · db.registrations' present on /now",
+    "3_no_saas_cards_in_refactored": "PASS — grep -c rounded-2xl|shadow-lg|shadow-xl = 0 on all 10 refactored .jsx files (CultureConnect.jsx, CultureConnect2026.jsx, CultureConnect2027.jsx, Rejoindre.jsx, ContactKiltikonet.jsx, APropos.jsx, NowPage.jsx, KiltikonetHome.jsx, Observatory.jsx, Infrastructure.jsx)",
+    "4_institutional_footer_everywhere": "PASS — data-testid='institutional-footer' + data-testid='footer-lineage' each returned count=1 on all 10 routes",
+    "5_real_metrics_2641_10_18_10": "PASS — home Section 07 IMPACT shows 2 641 (U+202F) / 10 / 18 / 10; /now shows the same via now-metric-events|registrations|workspace|identities; /culture-connect/2026 shows the same via cc2026-metric-*; footer shows Traces=2 641 and Identités actives=10; /observatory shows metric-events with 2 641 and legacy · new breakdown",
+    "6_backend_endpoint": "PASS — /api/observatory/public/now returns {digital_memory:{recorded_events:2641, registrations:10, workspace_activity:18, badges_total:10, cultural_identities_active:10, distinct_territories:0}, canonical_source, as_of}",
+    "7_h1_monumental_serif_italic": "PASS — home H1 'Kiltikonet. Une infrastructure culturelle pour un monde relié.' rendered in Newsreader serif with italic on trailing phrase; /now H1 'Kiltikonet maintenant.' with 'maintenant.' in italic serif on dark #0F0C09 background",
+    "8_documentary_header_home": "PASS — bandeau 'KILTIKONET / INSTITUTION / 2026' visible at top of home",
+    "9_apropos_sections": "PASS — /a-propos loads with data-testid='apropos-page', 5 sections (Mission, Positionnement, Gouvernance, Écosystème CVLN, Contact), MonumentalHeading italic serif, institutional-footer at bottom",
+    "10_culture_connect_index": "PASS — /culture-connect shows editorial index with 3 éditions 2026 Archive / 2027 À venir / 2028 Projetée (all three years present in body), grid-cols-12 borderTop layout, no SaaS cards",
+    "11_rejoindre_indexrows": "PASS — join-artist, join-pro, join-institution, join-partner each count=1",
+    "12_contact_channels": "PASS — contact-email, contact-location, contact-instagram, contact-linkedin each count=1"
+  },
+  "code_review_notes": [
+    "Refactored component files (10) are clean of rounded-2xl / shadow-lg / shadow-xl (grep verified).",
+    "HTML page dumps still contain 'rounded-2xl' 2x and (on /culture-connect) 'shadow-lg' 4x — these originate from shared legacy components (main header/CookieBanner/user-menu), NOT from the refactored pages. Spec explicitly allows this ('Les autres composants du repo peuvent conserver ces classes'). No action required, but if the institutional aesthetic must be enforced site-wide, the main header component still uses SaaS-style rounded elements on light beige background — visually inconsistent with the dark #0F0C09 institutional palette of /now.",
+    "Console noise (unrelated to refonte): 'THREE.THREE.Clock has been deprecated' warning and 'Multiple instances of Three.js being imported' warning appear on every navigation (from Splash/3D scene). Several 422 responses to a backend probe are logged on route changes — worth investigating but does not affect any tested feature.",
+    "Data lineage caption is rendered as uppercase 'SRC · OBSERVATORY/PUBLIC/NOW' on home Section 07 and lowercase 'src · db.analytics_events (canonical)' on /now — both variants are consistent with the tokens/atoms design; acceptable."
+  ],
+  "test_report_links": [],
+  "action_items": [],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "seed_data_creation": "None. Only public read-only endpoint /api/observatory/public/now was exercised.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Institutional refoundation is fully verified. Refactored routes: /, /a-propos, /now, /culture-connect, /culture-connect/2026, /culture-connect/2027, /rejoindre, /contact, /observatory, /infrastructure. All required data-testid selectors: apropos-page, now-page, now-metric-{events|registrations|workspace|identities}, cc2026-metric-{events|registrations|workspace|identities}, join-{artist|pro|institution|partner}, contact-{email|location|instagram|linkedin}, metric-events, institutional-footer, footer-lineage. Real metrics values as of test: 2641 events (fr-FR formatted as '2\\u202f641'), 10 registrations, 18 workspace, 10 identities. NOTE for future tests: because of French locale formatting, do NOT string-match raw '2641' — the DOM contains '2\\u202f641' (narrow no-break space). Splash 'NOU.' + cookie banner still appear on entry; dismiss with 'Passer' + 'Accepter'. Header is hidden on /now, /maintenant, /observatory (hideHeaderRoutes)."
+}

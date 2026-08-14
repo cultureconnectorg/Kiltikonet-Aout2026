@@ -15,6 +15,9 @@ import Infrastructure from "./components/Infrastructure";
 import Rejoindre from "./components/Rejoindre";
 import ContactKiltikonet from "./components/ContactKiltikonet";
 import Observatory from "./components/Observatory";
+import APropos from "./components/APropos";
+import NowPage from "./components/NowPage";
+import "./styles/tokens.css";
 import { PricingPage } from "./components/PricingPage";
 import { PartnershipPage } from "./components/PartnershipPage";
 import { PartnerConfirmation } from "./components/PartnerConfirmation";
@@ -252,7 +255,7 @@ const AppLayout = ({ children }) => {
   const location = useLocation();
   
   // Routes where header should be hidden
-  const hideHeaderRoutes = ['/smart-engine', '/admin', '/badge', '/workspace', '/dashboard-cc2026', '/espace-pro', '/pro', '/scanner-cc2026', '/observatory'];
+  const hideHeaderRoutes = ['/smart-engine', '/admin', '/badge', '/workspace', '/dashboard-cc2026', '/espace-pro', '/pro', '/scanner-cc2026', '/observatory', '/now', '/maintenant'];
   const showHeader = !hideHeaderRoutes.some(route => location.pathname.startsWith(route));
   
   return (
@@ -328,6 +331,10 @@ function App() {
               <Route path="/rejoindre" element={<Rejoindre />} />
               <Route path="/contact" element={<ContactKiltikonet />} />
               <Route path="/observatory" element={<Observatory />} />
+              <Route path="/a-propos" element={<APropos />} />
+              <Route path="/about" element={<APropos />} />
+              <Route path="/now" element={<NowPage />} />
+              <Route path="/maintenant" element={<NowPage />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/partnership" element={<PartnershipPage />} />
               <Route path="/partenaires" element={<PartnershipPage />} />

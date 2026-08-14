@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import SEO from './SEO';
+import InstitutionalFooter from './kilti/InstitutionalFooter';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -422,6 +423,9 @@ export default function Observatory() {
           <Link to="/" style={{ color: O.gold }}>← Kiltikonet.fr</Link>
         </div>
       </footer>
+
+      {/* Footer institutionnel unifié — data lineage global */}
+      <InstitutionalFooter variant="dark" />
     </div>
   );
 }

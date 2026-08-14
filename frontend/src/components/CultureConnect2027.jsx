@@ -1,108 +1,158 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Bell, ArrowRight, Sparkles } from 'lucide-react';
 import SEO from './SEO';
+import { K, Rule, ArchiveBar, SectionIndex, MonumentalHeading, EditorialLink, IndexRow, MetaLine } from './kilti/atoms';
+import InstitutionalFooter from './kilti/InstitutionalFooter';
 
-const K = {
-  bg: '#F4F0E8', card: '#FFFFFF', warm: '#E8E0D0',
-  dark: '#1A1510', muted: '#6B6560', gold: '#C9A84C',
-  terra: '#A65D47', ink: '#0F0C09',
-};
-
+/**
+ * /culture-connect/2027 — Édition à venir, en continuité
+ * Ne présente rien de chiffré, aucune promesse marketing.
+ */
 export default function CultureConnect2027() {
+  const year = new Date().getFullYear();
+  const dateStr = new Date().toISOString().slice(0, 10);
+
   return (
-    <div className="min-h-screen" style={{ background: K.bg }} data-testid="cc2027-page">
+    <div
+      className="min-h-screen"
+      style={{ background: K.paper, color: K.ink, fontFamily: K.sans }}
+      data-testid="cc2027-page"
+    >
       <SEO
         title="Culture Connect 2027 — Édition à venir"
         description="Culture Connect 2027, la prochaine édition du marché international des industries culturelles afro-caribéennes. Programmation en cours."
         path="/culture-connect/2027"
       />
 
-      <section className="px-6 md:px-10 lg:px-16 pt-28 md:pt-40 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.2em] mb-6" style={{ color: K.terra }}>
-            <Link to="/">Kiltikonet</Link> → <Link to="/culture-connect">Culture Connect</Link> → 2027
+      <ArchiveBar
+        left="Kiltikonet / Culture Connect / 2027"
+        center="Édition à venir · Programmation en cours"
+        right={dateStr}
+      />
+      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
+
+      {/* 01 — Identité */}
+      <section className="px-6 md:px-12 lg:px-20 pt-16 md:pt-28 pb-24 md:pb-40" data-testid="cc2027-hero">
+        <div className="text-xs font-mono uppercase tracking-widest mb-6" style={{ color: K.rust }}>
+          <Link to="/">Kiltikonet</Link> → <Link to="/culture-connect">Culture Connect</Link> → 2027
+        </div>
+
+        <MonumentalHeading italic="Consolidation." maxWidth="18ch">
+          Culture Connect 2027.
+        </MonumentalHeading>
+
+        <div className="mt-16 md:mt-24 grid md:grid-cols-12 gap-8 md:gap-12">
+          <div className="md:col-span-6 md:col-start-2">
+            <p style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }} data-testid="cc2027-lead">
+              La deuxième édition du marché international des industries culturelles
+              afro-caribéennes. Elle prend appui sur ce qui a été construit en 2026 :
+              acteurs déjà présents, identifiants culturels actifs, mémoire des interactions.
+            </p>
+            <p className="mt-6" style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }}>
+              La programmation est en cours. Les dates, le lieu et le format définitif
+              seront annoncés officiellement.
+            </p>
           </div>
-
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold px-3 py-1.5 rounded-full mb-6"
-               style={{ background: `${K.terra}20`, color: K.terra, border: `1px solid ${K.terra}40` }}
-               data-testid="cc2027-status">
-            <Sparkles className="w-3.5 h-3.5" />
-            Édition à venir · Programmation en cours
+          <div className="md:col-span-4 md:col-start-9">
+            <MetaLine
+              items={[
+                { label: 'Statut', value: 'À venir' },
+                { label: 'Dates', value: 'À confirmer' },
+                { label: 'Lieu', value: 'En sélection' },
+                { label: 'Portage', value: 'Kiltikonet' },
+              ]}
+            />
           </div>
+        </div>
+      </section>
 
-          <h1
-            className="text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 max-w-4xl"
-            style={{ fontFamily: "'Newsreader', serif", fontWeight: 500, color: K.dark, letterSpacing: '-0.02em' }}
-            data-testid="cc2027-title"
-          >
-            Culture Connect 2027
-          </h1>
+      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
 
-          <p className="text-lg md:text-xl max-w-3xl mb-10" style={{ color: K.muted, lineHeight: 1.6 }}>
-            La deuxième édition du marché international des industries culturelles afro-caribéennes.
-            Consolidation de la dynamique lancée en 2026.
-          </p>
+      {/* 02 — Perspectives */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 md:py-40" data-testid="cc2027-perspectives">
+        <SectionIndex n="02" label="Perspectives" />
 
-          <div className="flex flex-wrap gap-6 mb-10 text-sm" style={{ color: K.muted }}>
-            <span className="inline-flex items-center gap-2"><Calendar className="w-4 h-4" /> Dates à confirmer</span>
-            <span className="inline-flex items-center gap-2"><MapPin className="w-4 h-4" /> Lieu en cours de sélection</span>
+        <h2
+          className="mb-16 max-w-4xl"
+          style={{
+            fontFamily: K.serif,
+            fontWeight: 400,
+            fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+            lineHeight: 1,
+            letterSpacing: '-0.025em',
+          }}
+        >
+          Ce qui prolonge. <br />
+          <span style={{ fontStyle: 'italic', color: K.bone }}>Ce qui s'amplifie.</span>
+        </h2>
+
+        <div data-testid="cc2027-persp-list">
+          <IndexRow
+            id="01"
+            label="Réseau"
+            name="Continuité du réseau"
+            description="Les artistes, structures et institutions présents en 2026 restent activement mobilisés. Leurs identifiants FREK-ID restent actifs, leurs interactions déjà tracées dans l'infrastructure."
+            testId="cc2027-persp-01"
+          />
+          <IndexRow
+            id="02"
+            label="Territoire"
+            name="Élargissement territorial"
+            description="L'édition 2027 vise une ouverture accrue à la diaspora afro-caribéenne au-delà de la Martinique. Extension aux territoires partenaires en cours de définition."
+            testId="cc2027-persp-02"
+          />
+          <IndexRow
+            id="03"
+            label="Infrastructure"
+            name="Infrastructure renforcée"
+            description="Les identifiants culturels FREK-ID, la cartographie des acteurs et la mémoire des interactions sont pleinement opérationnels — l'édition 2027 en bénéficie dès son lancement."
+            testId="cc2027-persp-03"
+          />
+          <div style={{ borderTop: `1px solid ${K.ruleLight}` }} />
+        </div>
+      </section>
+
+      {/* 03 — Notification / Rejoindre */}
+      <section
+        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
+        style={{ background: K.ink, color: K.paper }}
+        data-testid="cc2027-notify"
+      >
+        <SectionIndex n="03" label="Être informé" tone="light" />
+
+        <div className="grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-7">
+            <h2
+              style={{
+                fontFamily: K.serif,
+                fontWeight: 400,
+                fontSize: 'clamp(2.2rem, 4.6vw, 4rem)',
+                lineHeight: 1,
+                letterSpacing: '-0.03em',
+                color: K.paper,
+              }}
+            >
+              Recevoir les annonces officielles. <br />
+              <span style={{ fontStyle: 'italic', color: '#B8B0A0' }}>
+                Dates, lieu, appels.
+              </span>
+            </h2>
           </div>
-
-          <div className="p-6 md:p-8 rounded-2xl max-w-2xl"
-               style={{ background: K.card, border: `1px solid ${K.warm}` }}
-               data-testid="cc2027-notify">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                   style={{ background: `${K.terra}15` }}>
-                <Bell className="w-5 h-5" style={{ color: K.terra }} />
-              </div>
-              <div>
-                <div className="font-semibold mb-1" style={{ color: K.dark }}>Être informé en priorité</div>
-                <p className="text-sm mb-4" style={{ color: K.muted }}>
-                  Rejoignez le réseau Kiltikonet pour recevoir les annonces officielles de CC 2027 :
-                  dates, lieu, appels à candidature, ouverture des inscriptions.
-                </p>
-                <Link
-                  to="/rejoindre"
-                  className="inline-flex items-center gap-2 text-sm font-semibold"
-                  style={{ color: K.terra }}
-                  data-testid="cc2027-cta-join"
-                >
-                  Rejoindre le réseau <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+          <div className="md:col-span-4 md:col-start-9">
+            <p style={{ color: '#B8B0A0', lineHeight: 1.75, fontSize: '15px' }}>
+              Rejoindre le réseau Kiltikonet, c'est recevoir en priorité les annonces
+              officielles de Culture Connect 2027 — sans publication marketing intermédiaire.
+            </p>
+            <div className="mt-8">
+              <EditorialLink to="/rejoindre" tone="light" testId="cc2027-cta-join">
+                Rejoindre le réseau
+              </EditorialLink>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Ce qui change en 2027 */}
-      <section className="px-6 md:px-10 lg:px-16 py-16" style={{ background: K.card }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.2em] mb-4" style={{ color: K.terra }}>
-            Perspectives
-          </div>
-          <h2 className="text-3xl md:text-4xl mb-12 max-w-3xl" style={{ fontFamily: "'Newsreader', serif", color: K.dark }}>
-            Ce qui prolonge, ce qui s'amplifie.
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              { title: 'Continuité du réseau', desc: 'Les artistes, structures et institutions présents en 2026 restent activement mobilisés.' },
-              { title: 'Élargissement territorial', desc: "L'édition 2027 vise une ouverture accrue à la diaspora afro-caribéenne au-delà de la Martinique." },
-              { title: 'Infrastructure renforcée', desc: 'Les identifiants culturels FREK-ID et les données du réseau sont pleinement opérationnels.' },
-            ].map((it, i) => (
-              <div key={i} className="p-6 rounded-2xl"
-                   style={{ background: K.bg, border: `1px solid ${K.warm}` }}
-                   data-testid={`cc2027-persp-${i}`}>
-                <div className="font-semibold mb-2" style={{ color: K.dark }}>{it.title}</div>
-                <p className="text-sm" style={{ color: K.muted, lineHeight: 1.6 }}>{it.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <InstitutionalFooter />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SEO from './SEO';
+import InstitutionalFooter from './kilti/InstitutionalFooter';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -704,55 +705,10 @@ export default function KiltikonetHome() {
       </section>
 
       {/* ═══════════════════════════════════════════════════ */}
-      {/* COLOPHON — pied documentaire                        */}
+      {/* COLOPHON — Footer institutionnel unifié             */}
       {/* ═══════════════════════════════════════════════════ */}
-      <footer
-        className="px-6 md:px-12 lg:px-20 py-16 md:py-24"
-        style={{ background: K.ink, color: '#8A8378', borderTop: `1px solid #ffffff10` }}
-        data-testid="colophon"
-      >
-        <div className="grid md:grid-cols-12 gap-8 text-xs font-mono uppercase tracking-widest">
-          <div className="md:col-span-4">
-            <div className="mb-2" style={{ color: K.paper, fontFamily: "'Newsreader', serif", textTransform: 'none', fontSize: '1.5rem', letterSpacing: 'normal' }}>
-              Kiltikonet
-            </div>
-            <div>Initiative CVLN Group · {year}</div>
-          </div>
-          <div className="md:col-span-2">
-            <div className="mb-3" style={{ color: K.paper }}>Culture Connect</div>
-            <div className="space-y-1" style={{ textTransform: 'none', letterSpacing: 'normal', fontFamily: 'inherit' }}>
-              <div><Link to="/culture-connect">Page mère</Link></div>
-              <div><Link to="/culture-connect/2026">Édition 2026</Link></div>
-              <div><Link to="/culture-connect/2027">Édition 2027</Link></div>
-            </div>
-          </div>
-          <div className="md:col-span-2">
-            <div className="mb-3" style={{ color: K.paper }}>Institution</div>
-            <div className="space-y-1" style={{ textTransform: 'none', letterSpacing: 'normal', fontFamily: 'inherit' }}>
-              <div><Link to="/a-propos">À propos</Link></div>
-              <div><Link to="/infrastructure">Infrastructure</Link></div>
-              <div><Link to="/gouvernance">Gouvernance</Link></div>
-              <div><Link to="/partenaires">Partenaires</Link></div>
-            </div>
-          </div>
-          <div className="md:col-span-2">
-            <div className="mb-3" style={{ color: K.paper }}>Contact</div>
-            <div className="space-y-1" style={{ textTransform: 'none', letterSpacing: 'normal', fontFamily: 'inherit' }}>
-              <div><Link to="/rejoindre">Rejoindre</Link></div>
-              <div><Link to="/contact">Contact</Link></div>
-              <div><a href="mailto:contact@kiltikonet.fr">contact@kiltikonet.fr</a></div>
-            </div>
-          </div>
-          <div className="md:col-span-2">
-            <div className="mb-3" style={{ color: K.paper }}>Légal</div>
-            <div className="space-y-1" style={{ textTransform: 'none', letterSpacing: 'normal', fontFamily: 'inherit' }}>
-              <div><a href="/legal/mentions-legales.html">Mentions légales</a></div>
-              <div><a href="/legal/politique-confidentialite.html">Confidentialité</a></div>
-              <div><a href="/legal/cgu.html">CGU</a></div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <InstitutionalFooter variant="dark" />
     </div>
   );
 }
+

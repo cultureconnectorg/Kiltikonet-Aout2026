@@ -1,0 +1,80 @@
+/* ═══════════════════════════════════════════════════════════════
+   KILTIKONET — INSTITUTIONAL DESIGN TOKENS
+   Source unique de vérité pour la palette, la typographie et le
+   rythme éditorial. Aucun composant ne doit dupliquer ces valeurs.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Palette institutionnelle (5 signaux) ────────────────── */
+  --kk-paper: #F1EBDD;        /* fond clair grain doux */
+  --kk-ivory: #EAE3D2;        /* variante crème */
+  --kk-ink: #0F0C09;          /* noir profond (institutionnel) */
+  --kk-ash: #1F1B15;          /* noir chaud (couche secondaire) */
+  --kk-panel: #141010;        /* panel observatory */
+  --kk-bone: #3C342A;         /* taupe (texte secondaire sur clair) */
+  --kk-dust: #6B6560;         /* gris moyen */
+  --kk-mist: #8A8378;         /* gris clair sur sombre */
+
+  /* ── Signaux (rares, jamais décoratifs) ──────────────────── */
+  --kk-gold: #C9A84C;         /* signal principal */
+  --kk-rust: #A65D47;         /* signal secondaire */
+  --kk-data: #7BA79A;         /* valeurs numériques observatoire */
+
+  /* ── Rules & hairlines ───────────────────────────────────── */
+  --kk-rule-light: #00000010;  /* sur fond clair */
+  --kk-rule-dark: #ffffff10;   /* sur fond sombre */
+  --kk-rule-dark-strong: #ffffff20;
+
+  /* ── Typographies canoniques ─────────────────────────────── */
+  --kk-serif: 'Newsreader', 'Cormorant Garamond', Georgia, serif;
+  --kk-sans: 'Manrope', 'DM Sans', system-ui, sans-serif;
+  --kk-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* ── Rythme éditorial ────────────────────────────────────── */
+  --kk-lead: 15px;             /* taille corps standard */
+  --kk-lead-lg: 17px;
+  --kk-tracking-mono: 0.22em;
+  --kk-tracking-caps: 0.25em;
+
+  /* ── Espacements verticaux monumentaux ───────────────────── */
+  --kk-space-section: clamp(4rem, 8vw, 10rem);
+  --kk-space-band: clamp(3rem, 5vw, 6rem);
+
+  /* ── Print ───────────────────────────────────────────────── */
+  --kk-print-max: 720px;
+}
+
+/* ── Selection style institutionnelle ──────────────────────── */
+::selection {
+  background: var(--kk-ink);
+  color: var(--kk-paper);
+}
+
+/* ── Reset spécifique : boutons/liens honnêtes ────────────── */
+.kk-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity 200ms ease;
+}
+.kk-link:hover { opacity: 0.7; }
+
+/* ── Mode print institutionnel (dossiers, presse) ─────────── */
+@media print {
+  body { background: white !important; color: black !important; }
+  header, footer, nav, .no-print { display: none !important; }
+  .kk-print-only { display: block !important; }
+  h1, h2, h3 { break-after: avoid; }
+  section { break-inside: avoid; page-break-inside: avoid; }
+  a::after { content: " (" attr(href) ")"; font-size: 10px; color: #666; }
+}
+
+/* ── Reduced motion (respect utilisateur) ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

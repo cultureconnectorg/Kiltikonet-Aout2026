@@ -6,76 +6,31 @@ import InstitutionalFooter from './kilti/InstitutionalFooter';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
-// ─── Palette institutionnelle Kiltikonet ─────────────
+// ═══════════════════════════════════════════════════════════
+// Design system PNG-aligné · fond sombre institutionnel
+// ═══════════════════════════════════════════════════════════
 const K = {
-  paper: '#F1EBDD',    // grain doux
-  ivory: '#EAE3D2',
-  ink:   '#0F0C09',    // noir profond
-  ash:   '#1F1B15',    // noir chaud
-  bone:  '#3C342A',    // taupe
-  dust:  '#6B6560',    // secondaire
-  rust:  '#A65D47',    // accent (rare)
-  gold:  '#C9A84C',    // accent (rare)
-  rule:  '#00000010',  // 1px hairline
+  bg: '#0B0906',      // fond principal (noir profond)
+  panel: '#1A1713',   // panels
+  edge: '#2C2620',    // hairlines
+  paper: '#F7F5EF',   // ivory clair
+  dim: '#8A8378',     // texte secondaire
+  gold: '#C9A84C',    // signal rare
 };
 
-// ─── Numérotation de section (documentaire) ───────────
-const SectionIndex = ({ n, label, tone = 'dark' }) => (
-  <div
-    className="flex items-baseline gap-4 mb-8 md:mb-12"
-    style={{ color: tone === 'dark' ? K.ink : K.paper }}
-    data-testid={`section-index-${n}`}
-  >
-    <span
-      className="text-xs font-mono tracking-[0.2em]"
-      style={{ opacity: 0.5 }}
-    >
-      {n} ——
-    </span>
-    <span
-      className="text-xs uppercase tracking-[0.25em] font-medium"
-      style={{ opacity: 0.7 }}
-    >
-      {label}
-    </span>
-  </div>
-);
-
-// ─── Rule (trait horizontal fin, style archive) ───────
-const Rule = ({ dark = false }) => (
-  <div
-    className="w-full h-px"
-    style={{ background: dark ? '#ffffff15' : K.rule }}
-  />
-);
-
-// ─── Metadata bloc (dates, coord, index — style catalogue) ─
-const MetaLine = ({ items, dark = false }) => (
-  <div
-    className="flex flex-wrap gap-x-8 gap-y-2 text-xs font-mono tracking-wider"
-    style={{ color: dark ? '#8A8378' : K.dust, opacity: 0.85 }}
-  >
-    {items.map((it, i) => (
-      <span key={i} className="uppercase" data-testid={`meta-${i}`}>
-        {it.label} <span style={{ color: dark ? K.paper : K.ink }}>{it.value}</span>
-      </span>
-    ))}
-  </div>
-);
-
+// Hero left/right layout · pas de card, pas de gradient marketing
 export default function KiltikonetHome() {
-  // ─── Année vivante (mise à jour au 1er janvier — pas d'animation) ─
   const [now] = useState(() => new Date());
   const year = now.getFullYear();
   const dateStr = now.toISOString().slice(0, 10);
 
-  // ─── Données réelles depuis Observatory /public/now (agrégats, no PII) ─
   const [publicNow, setPublicNow] = useState(null);
   useEffect(() => {
     axios.get(`${API}/api/observatory/public/now`)
       .then(r => setPublicNow(r.data?.digital_memory || null))
       .catch(() => setPublicNow(null));
   }, []);
+
   const fmt = (v) => (v === null || v === undefined) ? '—' : Number(v).toLocaleString('fr-FR');
 
   const jsonLd = {
@@ -83,243 +38,146 @@ export default function KiltikonetHome() {
     '@type': 'Organization',
     name: 'Kiltikonet',
     url: 'https://kiltikonet.fr',
-    description:
-      'Réseau et infrastructure culturelle qui connecte les acteurs, territoires et opportunités des industries culturelles afro-caribéennes et diasporiques.',
-    parentOrganization: { '@type': 'Organization', name: 'CVLN Group' },
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Fort-de-France',
-      addressRegion: 'Martinique',
-      addressCountry: 'FR',
-    },
+    description: "Kiltikonet est l'infrastructure vivante de la diplomatie culturelle numérique.",
+    parentOrganization: { '@type': 'Organization', name: 'CVLN Holding Ltd' },
   };
 
   return (
     <div
       className="min-h-screen"
-      style={{
-        background: K.paper,
-        color: K.ink,
-        fontFamily: "'Manrope', 'DM Sans', sans-serif",
-      }}
+      style={{ background: K.bg, color: K.paper, fontFamily: "'Manrope', sans-serif" }}
       data-testid="kiltikonet-home"
     >
       <SEO
         title="Réseau et infrastructure culturelle afro-caribéenne"
-        description="Kiltikonet connecte les acteurs, territoires et opportunités des industries culturelles afro-caribéennes et diasporiques. Une initiative CVLN Group."
+        description="Kiltikonet est l'infrastructure vivante de la diplomatie culturelle numérique. Nous connectons les acteurs, valorisons les initiatives et traçons les liens qui façonnent notre avenir commun."
         path="/"
         jsonLd={jsonLd}
       />
 
       {/* ═══════════════════════════════════════════════════ */}
-      {/* BANDEAU DOCUMENTAIRE — Numéro d'archive, date, coord */}
-      {/* ═══════════════════════════════════════════════════ */}
-      <div
-        className="px-6 md:px-12 lg:px-20 pt-24 md:pt-28 pb-6 flex flex-wrap justify-between items-baseline gap-4 text-xs font-mono tracking-widest uppercase"
-        style={{ color: K.dust }}
-        data-testid="archive-bar"
-      >
-        <span>Kiltikonet / Institution / {year}</span>
-        <span>N° 001 · {dateStr}</span>
-        <span>14.6161°N · 61.0588°W</span>
-      </div>
-
-      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
-
-      {/* ═══════════════════════════════════════════════════ */}
-      {/* 01 — IDENTITÉ                                        */}
+      {/* HERO — split screen : texte à gauche, globe à droite  */}
       {/* ═══════════════════════════════════════════════════ */}
       <section
-        className="px-6 md:px-12 lg:px-20 pt-16 md:pt-28 pb-24 md:pb-40"
-        data-testid="section-identity"
+        className="relative overflow-hidden"
+        style={{ minHeight: '86vh' }}
+        data-testid="hero"
       >
-        <SectionIndex n="01" label="Identité" />
+        {/* Bandeau logo + nav simplifiée alignée sur PNG */}
+        <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-8 flex items-center justify-between">
+          <div
+            data-testid="logo-header"
+            style={{ fontFamily: "'Newsreader', serif", fontSize: '1.3rem', letterSpacing: '0.14em', color: K.paper }}
+          >
+            KILTIKONET
+          </div>
+          <nav className="hidden md:flex items-center gap-8 text-[11px] font-mono uppercase tracking-[0.22em]" style={{ color: K.paper }}>
+            <Link to="/a-propos">Mission</Link>
+            <Link to="/culture-connect">Connect</Link>
+            <Link to="/observatory">Observatory</Link>
+            <Link to="/now">Actualités</Link>
+            <Link to="/rejoindre">Participer</Link>
+            <span style={{ color: K.dim }}>FR ▾</span>
+          </nav>
+        </div>
 
-        <h1
-          className="mb-16 md:mb-24"
-          style={{
-            fontFamily: "'Newsreader', 'Cormorant Garamond', serif",
-            fontWeight: 400,
-            fontSize: 'clamp(3.2rem, 8vw, 8rem)',
-            lineHeight: 0.92,
-            letterSpacing: '-0.035em',
-            color: K.ink,
-            maxWidth: '18ch',
-          }}
-          data-testid="hero-title"
-        >
-          Kiltikonet.
-          <br />
-          <span style={{ fontStyle: 'italic', color: K.bone }}>
-            Une infrastructure culturelle
-          </span>
-          <br />
-          <span style={{ fontStyle: 'italic', color: K.bone }}>pour un monde relié.</span>
-        </h1>
-
-        <div className="grid md:grid-cols-12 gap-8 md:gap-12">
-          <div className="md:col-span-5 md:col-start-2">
+        {/* Split content */}
+        <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-16 md:pt-24 pb-12 grid grid-cols-12 gap-8">
+          {/* LEFT · déclaration monumentale */}
+          <div className="col-span-12 md:col-span-6 lg:col-span-6">
+            <h1
+              className="mb-10"
+              style={{
+                fontFamily: "'Newsreader', serif",
+                fontWeight: 400,
+                fontSize: 'clamp(3.4rem, 8vw, 8rem)',
+                lineHeight: 0.94,
+                letterSpacing: '-0.02em',
+                color: K.paper,
+                textTransform: 'uppercase',
+              }}
+              data-testid="hero-title"
+            >
+              Tissons <span style={{ fontStyle: 'italic', textTransform: 'none' }}>l'Invisible.</span>
+              <br />
+              Révélons <span style={{ fontStyle: 'italic', textTransform: 'none' }}>l'Essentiel.</span>
+            </h1>
             <p
-              className="text-base md:text-lg"
-              style={{ color: K.bone, lineHeight: 1.65, fontFamily: "'Manrope', sans-serif" }}
+              className="max-w-lg mb-10"
+              style={{ color: '#B8B0A0', lineHeight: 1.7, fontSize: '15px' }}
               data-testid="hero-lead"
             >
-              Kiltikonet est un réseau et une infrastructure culturelle. Nous relions
-              les acteurs, les territoires et les opportunités des industries culturelles
-              afro-caribéennes et diasporiques — de la Caraïbe vers le monde.
+              Kiltikonet est l'infrastructure vivante de la diplomatie culturelle
+              numérique. Nous connectons les acteurs, valorisons les initiatives et
+              traçons les liens qui façonnent notre avenir commun.
             </p>
-            <p
-              className="mt-6 text-sm uppercase tracking-widest font-mono"
-              style={{ color: K.dust }}
+            <Link
+              to="/a-propos"
+              className="inline-flex items-center gap-3 text-xs font-mono uppercase tracking-[0.22em]"
+              style={{ color: K.paper, borderBottom: `1px solid ${K.paper}`, paddingBottom: 4 }}
+              data-testid="cta-discover"
             >
-              Initiative CVLN Group
-            </p>
+              Découvrir Kiltikonet
+              <span style={{ fontFamily: 'monospace' }}>→</span>
+            </Link>
           </div>
-          <div className="md:col-span-4 md:col-start-9 md:pt-2">
-            <MetaLine
-              items={[
-                { label: 'Siège', value: 'Fort-de-France, MQ' },
-                { label: 'Champ', value: 'Industries culturelles' },
-                { label: 'Portée', value: 'Caraïbe → Monde' },
-              ]}
-            />
-          </div>
-        </div>
-      </section>
 
-      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
-
-      {/* ═══════════════════════════════════════════════════ */}
-      {/* 02 — TERRITOIRE                                     */}
-      {/* ═══════════════════════════════════════════════════ */}
-      <section
-        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
-        data-testid="section-territoire"
-      >
-        <SectionIndex n="02" label="Territoire" />
-
-        <div className="grid md:grid-cols-12 gap-10">
-          <div className="md:col-span-6">
-            <h2
+          {/* RIGHT · Globe / carte du monde constellée */}
+          <div
+            className="col-span-12 md:col-span-6 lg:col-span-6 flex items-center justify-center"
+            data-testid="hero-globe"
+            style={{ minHeight: '400px' }}
+          >
+            <div
               style={{
-                fontFamily: "'Newsreader', serif",
-                fontWeight: 400,
-                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-                lineHeight: 1.05,
-                letterSpacing: '-0.025em',
-                color: K.ink,
+                width: '100%',
+                aspectRatio: '1/1',
+                maxWidth: '620px',
+                background: `
+                  radial-gradient(circle at 30% 40%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
+                  radial-gradient(circle at 70% 60%, rgba(201, 168, 76, 0.04) 0%, transparent 55%)
+                `,
+                position: 'relative',
               }}
             >
-              La Caraïbe n'est pas un décor. <br />
-              <span style={{ fontStyle: 'italic', color: K.bone }}>
-                C'est un point de départ.
-              </span>
-            </h2>
-          </div>
-          <div className="md:col-span-5 md:col-start-8">
-            <p style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }}>
-              Nous partons de Fort-de-France pour tracer des lignes vers Paris,
-              Dakar, New York, Kingston, Cayenne, Pointe-à-Pitre, São Paulo. Les
-              routes de la diaspora afro-caribéenne ne sont pas des trajectoires
-              isolées — elles forment un ensemble, un système, un réseau. Kiltikonet
-              en documente les nœuds et en cartographie les flux.
-            </p>
-          </div>
-        </div>
-
-        {/* Grille de territoires — pas de cards, uniquement lignes documentaires */}
-        <div
-          className="mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-2"
-          data-testid="territoire-index"
-        >
-          {[
-            ['Fort-de-France', '14.6161°N'],
-            ['Pointe-à-Pitre', '16.2411°N'],
-            ['Cayenne', '4.9331°N'],
-            ['Paris', '48.8566°N'],
-            ['Dakar', '14.7167°N'],
-            ['Kingston', '17.9714°N'],
-            ['New York', '40.7128°N'],
-            ['São Paulo', '23.5505°S'],
-          ].map(([city, coord]) => (
-            <div key={city} className="py-3" style={{ borderTop: `1px solid ${K.rule}` }}>
-              <div
-                className="text-base md:text-lg"
-                style={{ color: K.ink, fontFamily: "'Newsreader', serif" }}
-              >
-                {city}
-              </div>
-              <div
-                className="text-xs font-mono uppercase tracking-widest mt-0.5"
-                style={{ color: K.dust }}
-              >
-                {coord}
-              </div>
+              <NetworkGlobe />
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════ */}
-      {/* 03 — RÉSEAU (bande sombre, silence + monumental)     */}
-      {/* ═══════════════════════════════════════════════════ */}
-      <section
-        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
-        style={{ background: K.ink, color: K.paper }}
-        data-testid="section-reseau"
-      >
-        <SectionIndex n="03" label="Réseau" tone="light" />
-
-        <div className="grid md:grid-cols-12 gap-8">
-          <div className="md:col-span-8">
-            <h2
-              style={{
-                fontFamily: "'Newsreader', serif",
-                fontWeight: 400,
-                fontSize: 'clamp(2.4rem, 5.2vw, 5rem)',
-                lineHeight: 1,
-                letterSpacing: '-0.03em',
-                color: K.paper,
-              }}
-            >
-              Un réseau se voit <br />
-              <span style={{ fontStyle: 'italic', color: '#B8B0A0' }}>
-                à ce qu'il relie.
-              </span>
-            </h2>
-            <p
-              className="mt-10 md:mt-14 max-w-xl"
-              style={{ color: '#B8B0A0', lineHeight: 1.75, fontSize: '15px' }}
-            >
-              Artistes. Structures. Institutions. Territoires. Chaque nœud du
-              réseau Kiltikonet reçoit une identité culturelle numérique
-              souveraine, portable, réutilisable au-delà d'un seul événement.
-            </p>
           </div>
+        </div>
 
-          <div className="md:col-span-3 md:col-start-10 md:pt-2 space-y-6" data-testid="network-index">
+        {/* Bande basse : 4 métriques cadrées, style catalogue */}
+        <div
+          className="relative z-10 px-6 md:px-12 lg:px-20 mt-8 md:mt-4"
+          data-testid="hero-metrics-bar"
+        >
+          <div
+            className="grid grid-cols-2 md:grid-cols-4 py-8 md:py-10"
+            style={{ borderTop: `1px solid ${K.edge}`, borderBottom: `1px solid ${K.edge}` }}
+          >
             {[
-              ['Artistes', 'individus'],
-              ['Structures', 'organisations'],
-              ['Institutions', 'partenaires'],
-              ['Territoires', 'lieux'],
-            ].map(([label, kind], i) => (
-              <div key={label}>
-                <div
-                  className="text-xs font-mono tracking-widest uppercase mb-1"
-                  style={{ color: K.gold, opacity: 0.8 }}
-                >
-                  N.{String(i + 1).padStart(2, '0')} · {kind}
-                </div>
+              { value: publicNow ? fmt(publicNow.recorded_events) : '—', label: 'Traces historiques', sub: 'événements enregistrés' },
+              { value: publicNow ? fmt(publicNow.registrations) : '—', label: 'Acteurs', sub: 'enregistrés' },
+              { value: publicNow ? fmt(publicNow.workspace_activity) : '—', label: 'Activités', sub: 'workspace' },
+              { value: 'CC2026', label: 'Culture Connect', sub: 'édition 2026', isSlug: true },
+            ].map((m, i) => (
+              <div key={i} className="px-2 md:px-6" data-testid={`hero-metric-${i}`}>
                 <div
                   style={{
                     fontFamily: "'Newsreader', serif",
-                    fontSize: '1.75rem',
-                    color: K.paper,
+                    fontSize: m.isSlug ? 'clamp(1.8rem, 3.2vw, 2.6rem)' : 'clamp(2.2rem, 4vw, 3.4rem)',
                     lineHeight: 1,
+                    color: K.paper,
+                    fontVariantNumeric: 'tabular-nums',
+                    marginBottom: 12,
                   }}
                 >
-                  {label}
+                  {m.value}
+                </div>
+                <div className="text-[10px] font-mono uppercase tracking-[0.22em]" style={{ color: K.paper }}>
+                  {m.label}
+                </div>
+                <div className="text-[10px] font-mono uppercase tracking-widest mt-0.5" style={{ color: K.dim }}>
+                  {m.sub}
                 </div>
               </div>
             ))}
@@ -328,387 +186,119 @@ export default function KiltikonetHome() {
       </section>
 
       {/* ═══════════════════════════════════════════════════ */}
-      {/* 04 — MÉMOIRE / ARCHIVE                              */}
+      {/* NOTRE MISSION                                        */}
       {/* ═══════════════════════════════════════════════════ */}
       <section
-        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
-        data-testid="section-memoire"
+        className="px-6 md:px-12 lg:px-20 py-24 md:py-32"
+        style={{ borderBottom: `1px solid ${K.edge}` }}
+        data-testid="section-mission"
       >
-        <SectionIndex n="04" label="Mémoire" />
-
-        <div className="grid md:grid-cols-12 gap-12">
-          <div className="md:col-span-5">
-            <div
-              className="text-xs font-mono uppercase tracking-widest mb-3"
-              style={{ color: K.rust }}
-            >
-              Kiltikonet / Archive · 001
-            </div>
-            <h2
-              style={{
-                fontFamily: "'Newsreader', serif",
-                fontWeight: 400,
-                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-                lineHeight: 1,
-                letterSpacing: '-0.025em',
-              }}
-            >
-              Culture Connect <br />
-              <span style={{ fontStyle: 'italic', color: K.bone }}>2026</span>
-            </h2>
-            <div className="mt-6 text-sm font-mono uppercase tracking-widest" style={{ color: K.dust }}>
-              20 – 23 mai 2026 · Fort-de-France
-            </div>
-          </div>
-
-          <div className="md:col-span-6 md:col-start-7">
-            <p style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }}>
-              Une première édition. Quatre jours de rencontres. Un marché
-              culturel, des conférences, des espaces de mise en relation, un
-              concert de clôture. Chaque participant a reçu son identifiant
-              culturel — un fragment permanent du réseau.
-            </p>
-            <p className="mt-6" style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }}>
-              Culture Connect 2026 ne s'achève pas avec la clôture de l'événement.
-              L'archive continue.
-            </p>
-            <div className="mt-8">
-              <Link
-                to="/culture-connect/2026"
-                className="inline-flex items-center gap-3 text-sm font-medium"
-                style={{ color: K.ink, borderBottom: `1px solid ${K.ink}` }}
-                data-testid="link-archive-cc2026"
-              >
-                Consulter l'archive 001
-                <span style={{ fontFamily: 'monospace', fontSize: 11 }}>→</span>
-              </Link>
-            </div>
-          </div>
+        <div className="text-[10px] font-mono uppercase tracking-[0.22em] mb-6" style={{ color: K.dim }}>
+          Notre Mission
         </div>
-      </section>
-
-      <div className="px-6 md:px-12 lg:px-20"><Rule /></div>
-
-      {/* ═══════════════════════════════════════════════════ */}
-      {/* 05 — INFRASTRUCTURE                                 */}
-      {/* ═══════════════════════════════════════════════════ */}
-      <section
-        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
-        data-testid="section-infrastructure"
-      >
-        <SectionIndex n="05" label="Infrastructure" />
-
         <h2
-          className="mb-16 md:mb-20 max-w-4xl"
+          className="max-w-4xl mb-6"
           style={{
             fontFamily: "'Newsreader', serif",
             fontWeight: 400,
-            fontSize: 'clamp(2.2rem, 4.6vw, 4.2rem)',
-            lineHeight: 1,
-            letterSpacing: '-0.03em',
+            fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)',
+            lineHeight: 1.15,
+            color: K.paper,
           }}
         >
-          Une architecture <br />
-          <span style={{ fontStyle: 'italic', color: K.bone }}>
-            faite pour durer.
-          </span>
+          Kiltikonet œuvre pour une diplomatie culturelle nouvelle génération.
         </h2>
-
-        <div className="space-y-0" data-testid="infra-list">
-          {[
-            { id: '01', label: 'Identité', name: 'FREK-ID', desc: 'Identifiant culturel numérique souverain.' },
-            { id: '02', label: 'Objets culturels', name: 'Cultural Cards', desc: 'Documentation structurée des actifs culturels.' },
-            { id: '03', label: 'Réseau', name: 'Actors · Orgs · Territoires', desc: 'Cartographie vivante des acteurs et lieux du champ afro-caribéen.' },
-            { id: '04', label: 'Trace', name: 'Événements · Contributions · Présence', desc: 'Mémoire des interactions et des présences dans le réseau.' },
-            { id: '05', label: 'Valeur', name: 'Cultural Value Engine', desc: 'Moteur de circulation et de valorisation de la valeur culturelle.' },
-          ].map((row) => (
-            <div
-              key={row.id}
-              className="grid grid-cols-12 gap-4 py-8 md:py-10"
-              style={{ borderTop: `1px solid ${K.rule}` }}
-              data-testid={`infra-row-${row.id}`}
-            >
-              <div className="col-span-2 md:col-span-1">
-                <span className="text-xs font-mono tracking-widest" style={{ color: K.dust }}>
-                  {row.id}
-                </span>
-              </div>
-              <div className="col-span-10 md:col-span-3">
-                <div className="text-xs uppercase tracking-widest font-mono mb-1" style={{ color: K.rust }}>
-                  {row.label}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'Newsreader', serif",
-                    fontSize: '1.5rem',
-                    lineHeight: 1.1,
-                    color: K.ink,
-                  }}
-                >
-                  {row.name}
-                </div>
-              </div>
-              <div className="col-span-12 md:col-span-8 md:pl-8">
-                <p style={{ color: K.bone, fontSize: '15px', lineHeight: 1.65 }}>{row.desc}</p>
-              </div>
-            </div>
-          ))}
-          <div style={{ borderTop: `1px solid ${K.rule}` }} />
-        </div>
-
-        <div className="mt-16">
+        <p className="max-w-3xl" style={{ color: '#B8B0A0', lineHeight: 1.7, fontSize: '15px' }}>
+          Nous bâtissons les ponts entre les cultures, les territoires et les idées.
+        </p>
+        <div className="mt-8">
           <Link
-            to="/infrastructure"
-            className="inline-flex items-center gap-3 text-sm font-medium"
-            style={{ color: K.ink, borderBottom: `1px solid ${K.ink}` }}
-            data-testid="link-infrastructure"
+            to="/a-propos"
+            className="inline-flex items-center gap-3 text-xs font-mono uppercase tracking-[0.22em]"
+            style={{ color: K.paper, borderBottom: `1px solid ${K.paper}`, paddingBottom: 4 }}
+            data-testid="cta-mission"
           >
-            Voir l'infrastructure complète
-            <span style={{ fontFamily: 'monospace', fontSize: 11 }}>→</span>
+            En savoir plus
+            <span style={{ fontFamily: 'monospace' }}>→</span>
           </Link>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════ */}
-      {/* 06 — CULTURE CONNECT (bande sombre / éditions)      */}
+      {/* ACTUALITÉS · bandeau simple                           */}
       {/* ═══════════════════════════════════════════════════ */}
       <section
-        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
-        style={{ background: K.ash, color: K.paper }}
-        data-testid="section-culture-connect"
+        className="px-6 md:px-12 lg:px-20 py-12 md:py-16"
+        style={{ borderBottom: `1px solid ${K.edge}` }}
+        data-testid="section-actus"
       >
-        <SectionIndex n="06" label="Culture Connect" tone="light" />
-
-        <div className="grid md:grid-cols-12 gap-8">
-          <div className="md:col-span-8">
-            <h2
-              style={{
-                fontFamily: "'Newsreader', serif",
-                fontWeight: 400,
-                fontSize: 'clamp(2.4rem, 5.4vw, 5.5rem)',
-                lineHeight: 0.95,
-                letterSpacing: '-0.03em',
-                color: K.paper,
-              }}
-            >
-              Le marché récurrent <br />
-              <span style={{ fontStyle: 'italic', color: '#B8B0A0' }}>
-                des industries culturelles <br />
-                afro-caribéennes.
-              </span>
-            </h2>
-            <p
-              className="mt-10 max-w-xl"
-              style={{ color: '#B8B0A0', lineHeight: 1.75, fontSize: '15px' }}
-            >
-              Culture Connect n'est pas un événement unique — c'est une série.
-              Une édition ancre la précédente, une édition prépare la suivante.
-              Kiltikonet en porte la permanence institutionnelle.
-            </p>
+        <div className="grid grid-cols-12 items-center gap-6">
+          <div className="col-span-12 md:col-span-2 text-[10px] font-mono uppercase tracking-[0.22em]" style={{ color: K.dim }}>
+            Actualités
           </div>
-
-          <div className="md:col-span-3 md:col-start-10 space-y-1" data-testid="editions-list">
-            {[
-              { year: '2026', status: 'archive', path: '/culture-connect/2026' },
-              { year: '2027', status: 'à venir', path: '/culture-connect/2027' },
-              { year: '2028', status: 'projeté', path: null },
-            ].map((ed, i) => (
-              <div
-                key={ed.year}
-                className="py-4"
-                style={{ borderTop: i === 0 ? `1px solid #ffffff20` : `1px solid #ffffff10` }}
-              >
-                {ed.path ? (
-                  <Link to={ed.path} className="block group" data-testid={`edition-${ed.year}`}>
-                    <div className="flex items-baseline justify-between">
-                      <span
-                        style={{
-                          fontFamily: "'Newsreader', serif",
-                          fontSize: '2rem',
-                          color: K.paper,
-                          lineHeight: 1,
-                        }}
-                      >
-                        {ed.year}
-                      </span>
-                      <span
-                        className="text-xs uppercase tracking-widest font-mono"
-                        style={{ color: K.gold, opacity: 0.85 }}
-                      >
-                        {ed.status} →
-                      </span>
-                    </div>
-                  </Link>
-                ) : (
-                  <div className="flex items-baseline justify-between opacity-40" data-testid={`edition-${ed.year}`}>
-                    <span
-                      style={{
-                        fontFamily: "'Newsreader', serif",
-                        fontSize: '2rem',
-                        color: K.paper,
-                        lineHeight: 1,
-                      }}
-                    >
-                      {ed.year}
-                    </span>
-                    <span className="text-xs uppercase tracking-widest font-mono" style={{ color: '#B8B0A0' }}>
-                      {ed.status}
-                    </span>
-                  </div>
-                )}
-              </div>
-            ))}
-            <div style={{ borderTop: `1px solid #ffffff10` }} />
+          <div className="col-span-12 md:col-span-8" style={{ color: K.paper, fontFamily: "'Newsreader', serif", fontSize: '1.1rem', lineHeight: 1.4 }}>
+            Culture Connect 2026 — Les inscriptions sont ouvertes
           </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════ */}
-      {/* 07 — IMPACT (typographie monumentale, données réelles) */}
-      {/* ═══════════════════════════════════════════════════ */}
-      <section
-        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
-        data-testid="section-impact"
-      >
-        <SectionIndex n="07" label="Impact" />
-
-        <h2
-          className="mb-12 md:mb-20 max-w-4xl"
-          style={{
-            fontFamily: "'Newsreader', serif",
-            fontWeight: 400,
-            fontSize: 'clamp(2.2rem, 4.6vw, 4.2rem)',
-            lineHeight: 1,
-            letterSpacing: '-0.03em',
-          }}
-        >
-          Les preuves <br />
-          <span style={{ fontStyle: 'italic', color: K.bone }}>plutôt que les promesses.</span>
-        </h2>
-
-        <p
-          className="max-w-2xl mb-16"
-          style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }}
-        >
-          Les chiffres consolidés de Culture Connect 2026 sont en cours de
-          validation par l'équipe organisatrice et ses partenaires. Ils seront
-          publiés uniquement une fois vérifiés — la mémoire ne s'écrit pas
-          approximativement.
-        </p>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10" data-testid="impact-index">
-          {[
-            ['Traces historiques', 'recorded_events'],
-            ['Acteurs enregistrés', 'registrations'],
-            ['Activité workspace', 'workspace_activity'],
-            ['Identités actives', 'cultural_identities_active'],
-          ].map(([label, key]) => (
-            <div key={label} className="pt-6" style={{ borderTop: `1px solid ${K.rule}` }}>
-              <div
-                className="mb-3"
-                style={{
-                  fontFamily: "'Newsreader', serif",
-                  fontSize: 'clamp(3rem, 6vw, 5rem)',
-                  lineHeight: 1,
-                  color: K.ink,
-                  fontVariantNumeric: 'tabular-nums',
-                }}
-              >
-                {publicNow ? fmt(publicNow[key]) : '—'}
-              </div>
-              <div className="text-sm uppercase tracking-widest font-mono" style={{ color: K.ink }}>
-                {label}
-              </div>
-              <div className="text-xs mt-1 font-mono uppercase tracking-widest" style={{ color: K.dust }}>
-                src · observatory/public/now
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════ */}
-      {/* 08 — PARTICIPATION (bandeau sombre final)           */}
-      {/* ═══════════════════════════════════════════════════ */}
-      <section
-        className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
-        style={{ background: K.ink, color: K.paper }}
-        data-testid="section-participation"
-      >
-        <SectionIndex n="08" label="Participation" tone="light" />
-
-        <div className="grid md:grid-cols-12 gap-8">
-          <div className="md:col-span-7">
-            <h2
-              style={{
-                fontFamily: "'Newsreader', serif",
-                fontWeight: 400,
-                fontSize: 'clamp(2.4rem, 5.4vw, 5rem)',
-                lineHeight: 0.95,
-                letterSpacing: '-0.03em',
-                color: K.paper,
-              }}
-            >
-              Le réseau reste ouvert. <br />
-              <span style={{ fontStyle: 'italic', color: '#B8B0A0' }}>
-                À qui veut en écrire la suite.
-              </span>
-            </h2>
+          <div className="col-span-6 md:col-span-1 text-[10px] font-mono uppercase tracking-widest" style={{ color: K.dim }}>
+            {dateStr.slice(0, 4) === String(year) ? '12 août 2026' : dateStr}
           </div>
-          <div className="md:col-span-4 md:col-start-9 md:pt-4 space-y-6">
-            <Link
-              to="/rejoindre"
-              className="block py-6"
-              style={{ borderTop: `1px solid #ffffff30`, borderBottom: `1px solid #ffffff20` }}
-              data-testid="cta-join"
-            >
-              <div className="flex items-baseline justify-between">
-                <span
-                  style={{
-                    fontFamily: "'Newsreader', serif",
-                    fontSize: '1.75rem',
-                    lineHeight: 1,
-                    color: K.paper,
-                  }}
-                >
-                  Rejoindre
-                </span>
-                <span className="text-xs font-mono uppercase tracking-widest" style={{ color: K.gold }}>
-                  Artiste · Pro · Institution
-                </span>
-              </div>
-            </Link>
-            <Link
-              to="/contact"
-              className="block py-6"
-              style={{ borderTop: `1px solid #ffffff10`, borderBottom: `1px solid #ffffff20` }}
-              data-testid="cta-contact"
-            >
-              <div className="flex items-baseline justify-between">
-                <span
-                  style={{
-                    fontFamily: "'Newsreader', serif",
-                    fontSize: '1.75rem',
-                    lineHeight: 1,
-                    color: K.paper,
-                  }}
-                >
-                  Contact
-                </span>
-                <span className="text-xs font-mono uppercase tracking-widest" style={{ color: '#B8B0A0' }}>
-                  Partenariat · Presse
-                </span>
-              </div>
+          <div className="col-span-6 md:col-span-1 text-right">
+            <Link to="/culture-connect/2026" style={{ color: K.paper, fontFamily: 'monospace' }} data-testid="link-actus">
+              →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════ */}
-      {/* COLOPHON — Footer institutionnel unifié             */}
-      {/* ═══════════════════════════════════════════════════ */}
+      {/* Footer institutionnel unifié */}
       <InstitutionalFooter variant="dark" />
     </div>
   );
 }
 
+// ─── Composant Globe/Réseau SVG minimaliste ───────────────
+function NetworkGlobe() {
+  // 24 nodes disposés en constellation (déterministes, pas de fabrication de "connexions" réelles)
+  const nodes = [
+    [50, 50], [30, 35], [70, 30], [25, 55], [75, 55], [45, 25], [55, 75],
+    [20, 45], [80, 45], [35, 70], [65, 65], [40, 40], [60, 40], [50, 70],
+    [30, 25], [70, 20], [15, 60], [85, 60], [40, 80], [60, 80], [50, 15],
+    [25, 75], [75, 75], [50, 60],
+  ];
+  const edges = [
+    [0, 1], [0, 2], [0, 11], [0, 12], [0, 23],
+    [1, 4], [1, 5], [1, 7], [1, 14],
+    [2, 5], [2, 8], [2, 15], [2, 20],
+    [3, 7], [3, 9], [3, 16],
+    [4, 8], [4, 10], [4, 17],
+    [11, 12], [11, 14], [12, 15],
+    [23, 6], [6, 13], [13, 18], [13, 19],
+    [9, 21], [10, 22], [5, 20], [20, 15],
+  ];
+  return (
+    <svg viewBox="0 0 100 100" className="w-full h-full" aria-hidden data-testid="hero-globe-svg">
+      {/* Cercle d'orbite discret */}
+      <circle cx="50" cy="50" r="42" stroke="#C9A84C" strokeOpacity="0.08" strokeWidth="0.2" fill="none" />
+      <circle cx="50" cy="50" r="32" stroke="#C9A84C" strokeOpacity="0.06" strokeWidth="0.2" fill="none" />
+      <circle cx="50" cy="50" r="22" stroke="#C9A84C" strokeOpacity="0.04" strokeWidth="0.2" fill="none" />
+      {/* Edges */}
+      {edges.map(([a, b], i) => (
+        <line
+          key={i}
+          x1={nodes[a][0]} y1={nodes[a][1]}
+          x2={nodes[b][0]} y2={nodes[b][1]}
+          stroke="#C9A84C"
+          strokeOpacity="0.28"
+          strokeWidth="0.15"
+        />
+      ))}
+      {/* Nodes lumineux */}
+      {nodes.map(([x, y], i) => (
+        <g key={i}>
+          <circle cx={x} cy={y} r="0.9" fill="#C9A84C" opacity="0.85" />
+          <circle cx={x} cy={y} r="2" fill="#C9A84C" opacity="0.08" />
+        </g>
+      ))}
+    </svg>
+  );
+}

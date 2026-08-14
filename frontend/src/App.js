@@ -257,8 +257,9 @@ const AppLayout = ({ children }) => {
   const location = useLocation();
   
   // Routes where header should be hidden
-  const hideHeaderRoutes = ['/smart-engine', '/admin', '/badge', '/workspace', '/dashboard-cc2026', '/espace-pro', '/pro', '/scanner-cc2026', '/observatory', '/now', '/maintenant', '/observatory/founder'];
-  const showHeader = !hideHeaderRoutes.some(route => location.pathname.startsWith(route));
+  const hideHeaderRoutes = ['/', '/smart-engine', '/admin', '/badge', '/workspace', '/dashboard-cc2026', '/espace-pro', '/pro', '/scanner-cc2026', '/observatory', '/now', '/maintenant', '/observatory/founder'];
+  // Note: '/' has its own integrated header in KiltikonetHome (PNG-aligned)
+  const showHeader = !hideHeaderRoutes.some(route => route === '/' ? location.pathname === '/' : location.pathname.startsWith(route));
   
   return (
     <>

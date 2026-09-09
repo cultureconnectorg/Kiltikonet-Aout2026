@@ -171,7 +171,7 @@ export default function JetonsPage() {
           >
             <Ticket className="w-4 h-4" style={{ color: '#C9A84C' }} />
             <span className="text-sm font-medium" style={{ color: '#C9A84C' }}>
-              Monnaie officielle CC2026
+              Unité interne CC2026
             </span>
           </div>
 
@@ -196,7 +196,7 @@ export default function JetonsPage() {
               transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
             }}
           >
-            Votre monnaie Culture Connect 2026
+            Jetons internes Culture Connect 2026
           </p>
 
           <p
@@ -207,7 +207,7 @@ export default function JetonsPage() {
               transition: 'opacity 0.6s ease-out 0.45s',
             }}
           >
-            1 Jeton = 1,50&euro; de valeur faciale
+            Unité d'usage interne. La qualification juridique et économique reste distincte de l'affichage applicatif.
           </p>
 
           {/* Countdown mini */}
@@ -249,7 +249,7 @@ export default function JetonsPage() {
               <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: '#C9A84C15' }}>
                 <Wallet size={20} style={{ color: '#C9A84C' }} />
               </div>
-              Mon Porte-Monnaie
+              Mon solde de jetons
             </h2>
             <div className="flex gap-3">
               <input
@@ -330,9 +330,9 @@ export default function JetonsPage() {
               <Shield size={18} style={{ color: '#C9A84C' }} />
             </div>
             <div className="space-y-1.5 text-sm" style={{ color: '#6B6560' }}>
-              <p><strong style={{ color: '#1A1510' }}>Paiement securise par Stripe</strong></p>
-              <p>Les Jetons CC non utilises sont convertibles a 100% pour CC2027.</p>
-              <p>Rachat marchand J+3 SEPA : 1,35&euro;/jeton.</p>
+              <p><strong style={{ color: '#1A1510' }}>Paiement sécurisé par Stripe</strong></p>
+              <p>Les Jetons CC sont présentés ici comme une unité interne d'usage, pas comme une monnaie.</p>
+              <p>Les conditions de conversion, de report entre éditions et de rachat marchand doivent être confirmées avant toute nouvelle ouverture commerciale.</p>
             </div>
           </div>
         </Reveal>

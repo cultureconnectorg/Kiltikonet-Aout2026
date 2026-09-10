@@ -36,9 +36,13 @@ au SHA testé. Une exécution réussie de ce workflow ne ferme pas D-01 à D-11 
 valide pas les parcours navigateur, le monolithe complet ni les services externes.
 
 À la préparation, aucun run GitHub Actions n'était présent dans le dépôt.
-L'exécution distante doit être constatée après publication : la présence du
-workflow seule n'est jamais un résultat PASS. Les résultats effectivement obtenus
-seront consignés dans `REBUILD_VERIFICATION.md`.
+Après publication, le [run 34470721311](https://github.com/cultureconnectorg/Kiltikonet-Aout2026/actions/runs/34470721311)
+est terminé avec la conclusion **success** sur
+`4a928f80c30aa10b3a14d7245701eb429e680828`. Les deux jobs réussissent :
+15 tests frontend, 25 tests d'autorisation et 29 tests avec MongoDB réel.
+Le build, le lint et le smoke de 15 routes/2 fichiers d'entrée réussissent.
+Les journaux ont été lus et les deux artifacts JSON/JUnit sont présents.
+Le détail et les limites sont consignés dans `REBUILD_VERIFICATION.md`.
 
 ## Reproduction locale
 

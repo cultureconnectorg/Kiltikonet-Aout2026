@@ -55,3 +55,9 @@
 5. Ne pas engager le namespace canonique, la refonte des coquilles, un LMS ou le transfert de Smart Engine sans décision D-01…D-11 appropriée.
 
 Résultats d'exécution à consigner dans `REBUILD_VERIFICATION.md`. Cette carte seule ne clôture aucune phase.
+
+Mise à jour des preuves, 10 septembre : [la validation GitHub](REBUILD_VERIFICATION.md)
+réussit avec 29 tests Network/Observatory sur une base MongoDB réelle temporaire,
+25 tests d'autorisation et 15 tests frontend. Ce résultat complète CURRENT pour
+les scénarios testés, sans attester de déploiement territorial ou de LMS.
+Les choix D-01 à D-11 restent ouverts ; [D-06 est détaillé](ATLAS_PRO_MIGRATION_DECISION.md).

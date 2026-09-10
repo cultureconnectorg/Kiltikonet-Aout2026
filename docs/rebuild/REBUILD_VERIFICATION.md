@@ -3,6 +3,11 @@
 Cette phase n'est pas une validation de production. Les preuves ci-dessous
 distinguent compilation, tests unitaires, parcours navigateur et intégration.
 
+**Dernière preuve : validation GitHub du 10 septembre, run 34470721311 réussi.
+69 tests passent, dont 29 avec MongoDB réel.** Les blocages locaux décrits plus
+bas restent des résultats historiques ; voir la dernière section pour la portée
+et les limites actuelles.
+
 ## Références
 
 - Base main : `bb64ce72812f20f6237c02a7ca316fdbbcbb3bf6`.
@@ -120,3 +125,41 @@ réinstallées ; aucun substitut de ce SDK ni faux MongoDB n'a été introduit.
 Le lot de traçabilité et de navigation a ses contrôles ci-dessus. La reconstruction
 complète reste ouverte. Les décisions et parcours restants sont détaillés dans
 [ATLAS_NEXT_STEPS.md](ATLAS_NEXT_STEPS.md).
+
+## Validation GitHub avec MongoDB réel — 10 septembre 2026
+
+- Commit testé : `4a928f80c30aa10b3a14d7245701eb429e680828`.
+- Arbre testé : `0647de55d943e82cda4f172d9a00c6ad6db00474`, identique à l'arbre local publié.
+- [Run push 34470721311](https://github.com/cultureconnectorg/Kiltikonet-Aout2026/actions/runs/34470721311) : `completed`, `success`.
+- [Job backend 102849734267](https://github.com/cultureconnectorg/Kiltikonet-Aout2026/actions/runs/34470721311/job/102849734267) : réussi, journaux consultés.
+- [Job frontend 102849734011](https://github.com/cultureconnectorg/Kiltikonet-Aout2026/actions/runs/34470721311/job/102849734011) : réussi, journaux consultés.
+
+| Contrôle distant | Résultat observé |
+|---|---|
+| Index Atlas et inventaires | 82 écrans, 91 chemins nommés et 404 recoupés ; inventaires générés inchangés. |
+| Installation frontend depuis le lockfile | `npm ci --legacy-peer-deps --ignore-scripts --no-audit --no-fund` réussit sur le runner neuf. |
+| Lint frontend | Étape réussie ; rapport JSON conservé. Les avertissements existants ne sont pas présentés comme corrigés. |
+| Tests frontend | **15 passed**, 2 suites, selon le journal. |
+| Build frontend | **Compiled with warnings**, étape réussie. |
+| Smoke HTTP du build | **15 routes et 2 fichiers d'entrée réussis**, contenu des assets comparé au build. |
+| Lint Python ciblé | Étape réussie. |
+| Autorisation backend | **25 passed in 0.52s**. |
+| MongoDB réel / sessions signées / Network / Observatory | Archive vérifiée par SHA-256 ; **29 passed, 1 warning in 1.26s**. Aucun test d'intégration sauté. |
+
+Les artifacts `atlas-frontend-4a928f80c30aa10b3a14d7245701eb429e680828`
+et `atlas-backend-4a928f80c30aa10b3a14d7245701eb429e680828` ont été listés
+après exécution, non expirés. Ils contiennent les rapports JSON/JUnit et sont
+conservés sept jours. La pull request déjà présente a également déclenché un run ;
+les comptes ci-dessus portent sur un seul run et ne doublent pas les tests.
+
+**Le blocage de validation MongoDB est levé pour le harnais sur GitHub.** Les
+tests prouvent les refus de cookies non signés, les rôles et périmètres testés,
+les lectures des collections synthétiques, le catalogue Academy, la provenance
+des lectures et l'absence de mutation sur les routes de lecture testées.
+Ils ne prouvent pas le middleware complet de `server.py`, une base de production,
+les paiements réels ni le fonctionnement des autres API du dépôt.
+
+Restent non validés : backend complet avec son SDK Emergent, rendu navigateur
+et parcours métier complets Admin/Pro/workspaces/3D. D-01 à D-11 restent ouverts.
+Le [contrat D-06](ATLAS_PRO_MIGRATION_DECISION.md) précise désormais les différences
+de navigation, de boutique et de session avant une migration Pro éventuelle.

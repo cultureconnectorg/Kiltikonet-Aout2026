@@ -10,7 +10,8 @@ Reprise du 10 septembre 2026. Point de départ vérifié sur GitHub :
 - [Matrice des 82 écrans](ATLAS_SCREEN_MATRIX.md) : chaque ligne du classeur reliée à ses routes et à son composant actuel.
 - [Confrontation avec CVLN iOS](ATLAS_RECONCILIATION.md) : contradictions et limites de ce référentiel.
 - [Vérifications exécutées](REBUILD_VERIFICATION.md) : tests réels, données simulées explicitement identifiées et blocages.
-- [Validation automatisée Atlas](ATLAS_CI_VALIDATION.md) : exécution isolée du frontend et de Network/Observatory avec MongoDB réel, statut à confirmer par les runs.
+- [Validation automatisée Atlas](ATLAS_CI_VALIDATION.md) : exécution réussie du frontend et de Network/Observatory avec MongoDB réel, preuves et limites du run.
+- [Contrat de migration Pro D-06](ATLAS_PRO_MIGRATION_DECISION.md) : différences constatées entre les deux interfaces et proposition à arbitrer avant toute redirection générale.
 - [Configuration privée](SECRETS_RECONCILIATION.md) : noms de variables et constat corrigé, sans valeur de clé.
 
 ## Lot de reprise : corrections certaines
@@ -48,6 +49,12 @@ pas être choisies par simple analogie de nom.
 | D-08 / D-09 / D-10 / D-11 | Moteurs, identité, économie et gouvernance locaux présents ; contradictions consignées dans la carte. | Contrats de responsabilité et éventuelles migrations ? | Conserver les capacités et expliciter leurs contrats avant transfert ou fusion. |
 
 ## Conditions de validation à poursuivre
+
+Mise à jour du 10 septembre : le [run GitHub 34470721311](https://github.com/cultureconnectorg/Kiltikonet-Aout2026/actions/runs/34470721311)
+réussit sur `4a928f8` : 15 tests frontend, 25 tests d'autorisation et 29 tests
+d'intégration avec MongoDB réel. Build, lint et smoke HTTP réussissent également.
+Le blocage MongoDB est donc levé pour ce harnais sur GitHub, même si le processus
+reste refusé dans l'environnement local. Les autres limites ci-dessous demeurent.
 
 | Parcours | Vérification attendue | Dépendance |
 |---|---|---|

@@ -1,0 +1,10 @@
+# Isolated Network/Observatory test harness only, not server.py installation.
+# Production requirements and the Emergent SDK dependency remain unchanged.
+fastapi==0.110.1
+starlette==0.37.2
+motor==3.3.1
+pymongo==4.5.0
+PyJWT==2.11.0
+httpx==0.28.1
+pytest==9.0.2
+flake8==7.3.0

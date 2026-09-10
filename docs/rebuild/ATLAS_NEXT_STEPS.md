@@ -10,6 +10,7 @@ Reprise du 10 septembre 2026. Point de départ vérifié sur GitHub :
 - [Matrice des 82 écrans](ATLAS_SCREEN_MATRIX.md) : chaque ligne du classeur reliée à ses routes et à son composant actuel.
 - [Confrontation avec CVLN iOS](ATLAS_RECONCILIATION.md) : contradictions et limites de ce référentiel.
 - [Vérifications exécutées](REBUILD_VERIFICATION.md) : tests réels, données simulées explicitement identifiées et blocages.
+- [Validation automatisée Atlas](ATLAS_CI_VALIDATION.md) : exécution isolée du frontend et de Network/Observatory avec MongoDB réel, statut à confirmer par les runs.
 - [Configuration privée](SECRETS_RECONCILIATION.md) : noms de variables et constat corrigé, sans valeur de clé.
 
 ## Lot de reprise : corrections certaines

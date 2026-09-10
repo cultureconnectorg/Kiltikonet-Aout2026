@@ -2271,7 +2271,7 @@ const MapFondsSection = () => {
   };
 
   const deleteTerritory = (id) => {
-    if (confirm('Supprimer ce territoire ?')) {
+    if (window.confirm('Supprimer ce territoire ?')) {
       setTerritories(territories.filter(t => t.id !== id));
       toast.success('Territoire supprimé');
     }

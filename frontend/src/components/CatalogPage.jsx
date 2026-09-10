@@ -26,6 +26,11 @@ const profileIcons = {
 
 // Pas de placeholderImages — les participants sans photo utilisent le fallback initiales/KKAvatar
 
+const getSharedInterestsCount = (participantTags, filterTags) => {
+  if (!participantTags || !filterTags || filterTags.length === 0) return 0;
+  return participantTags.filter(t => filterTags.includes(t)).length;
+};
+
 // Animated Participant Card
 const ParticipantCard = ({ participant, language, filters, onBadgeClick, onSmartClick, viewMode }) => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
@@ -37,11 +42,6 @@ const ParticipantCard = ({ participant, language, filters, onBadgeClick, onSmart
   const tier = tierConfig[participant.tier] || tierConfig.professional;
   const Icon = profileIcons[participant.profile_type] || Users;
   const pTags = participant.expertise_tags || [];
-  
-  const getSharedInterestsCount = (participantTags, filterTags) => {
-    if (!participantTags || !filterTags || filterTags.length === 0) return 0;
-    return participantTags.filter(t => filterTags.includes(t)).length;
-  };
   
   const sharedCount = getSharedInterestsCount(pTags, filters.expertiseTags);
 

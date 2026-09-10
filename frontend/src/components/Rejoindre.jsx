@@ -9,7 +9,7 @@ const PROFILES = [
     id: '01',
     label: 'Acteur',
     name: 'Artiste · Créateur',
-    description: 'Musicien, plasticien, auteur ou créateur culturel afro-caribéen. Obtenir un identifiant culturel FREK-ID et accéder aux parcours actuellement disponibles dans Kiltikonet.',
+    description: 'Musicien, plasticien, auteur ou créateur culturel afro-caribéen. Découvrir le parcours de badge et d’identité culturelle.',
     to: '/badge-inscription',
     testId: 'join-artist',
   },
@@ -17,7 +17,7 @@ const PROFILES = [
     id: '02',
     label: 'Professionnel',
     name: 'Producteur · Distributeur · Média',
-    description: 'Professionnel des industries culturelles. Accéder aux inscriptions, profils, rencontres et services déjà ouverts dans la plateforme et dans les programmes Culture Connect.',
+    description: 'Professionnel des industries culturelles. Découvrir les inscriptions et les rencontres proposées dans les programmes Culture Connect.',
     to: '/badge-inscription',
     testId: 'join-pro',
   },
@@ -50,13 +50,13 @@ export default function Rejoindre() {
       data-testid="rejoindre-page"
     >
       <SEO
-        title="Participer à Kiltikonet — quatre parcours d'entrée"
-        description="Artistes, professionnels, institutions et partenaires : découvrez les parcours actuellement ouverts dans Kiltikonet."
+        title="Rejoindre Kiltikonet — quatre parcours d'entrée"
+        description="Artistes, professionnels, institutions et partenaires : découvrez les parcours de participation à Kiltikonet."
         path="/rejoindre"
       />
 
       <ArchiveBar
-        left={`Kiltikonet / Participer / ${year}`}
+        left={`Kiltikonet / Rejoindre / ${year}`}
         center="Quatre portes d'entrée"
         right={dateStr}
       />
@@ -69,14 +69,9 @@ export default function Rejoindre() {
         <div className="mt-16 md:mt-24 grid md:grid-cols-12 gap-8 md:gap-12">
           <div className="md:col-span-6 md:col-start-2">
             <p style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }} data-testid="rejoindre-lead">
-              Kiltikonet rassemble plusieurs parcours déjà opérationnels : identité et badge,
-              participation à Culture Connect, espace professionnel, partenariats et services
-              institutionnels. Choisissez ci-dessous la porte correspondant à votre rôle.
-            </p>
-            <p className="mt-6" style={{ color: K.dust, lineHeight: 1.7, fontSize: '13px' }} data-testid="network-status-note">
-              Le futur <strong style={{ color: K.rust }}>Kiltikonet Network</strong> — réseau territorial
-              d'opérateurs, hubs, licences et dispositifs de déploiement — est une architecture en
-              structuration. Cette page ne le présente pas comme déjà déployé.
+              Chaque acteur — artiste, structure, institution ou partenaire — peut découvrir
+              le parcours correspondant à son rôle : badge culturel, participation à Culture
+              Connect ou prise de contact pour une coopération.
             </p>
           </div>
         </div>
@@ -151,9 +146,9 @@ export default function Rejoindre() {
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <p style={{ color: '#B8B0A0', lineHeight: 1.75, fontSize: '15px' }}>
-              Les parcours de badge s'appuient sur FREKCORE et FREK-ID pour l'identité
-              culturelle. Les usages disponibles dépendent du programme et du service
-              concerné ; Kiltikonet ne duplique pas la couche d'identité de l'écosystème CVLN.
+              Le parcours de badge vous accompagne dans votre participation à Culture Connect.
+              Les informations d’identité culturelle et les usages associés sont précisés
+              dans votre parcours d’inscription.
             </p>
             <div className="mt-8">
               <EditorialLink to="/contact" tone="light" testId="cta-contact">

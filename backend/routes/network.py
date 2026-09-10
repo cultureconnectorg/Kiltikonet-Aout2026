@@ -48,16 +48,31 @@ NETWORK_GLOBAL_READ_ROLES = {
 # ACCESS
 # ═════════════════════════════════════════════════════════
 def _extract_session(request: Request) -> dict | None:
+    # server.py verifies the signed cookie before attaching request.state.session.
+    # Unsigned JSON cookies are never an authentication fallback.
     session = getattr(request.state, "session", None)
-    if not session:
-        cookie = request.cookies.get("session_cookie") or request.cookies.get("cc_pro_session")
-        if cookie:
-            try:
-                import json as _json
-                session = _json.loads(cookie)
-            except Exception:
-                session = None
-    return session
+    return session if isinstance(session, dict) else None
+
+
+def _is_founder(session: dict) -> bool:
+    email = (session.get("email") or "").lower()
+    return session.get("role") == "founder" or email in FOUNDER_EMAILS
+
+
+def _has_global_scope(session: dict) -> bool:
+    return _is_founder(session) or session.get("network_role") in NETWORK_GLOBAL_READ_ROLES
+
+
+def _scope_query(session: dict) -> dict:
+    if _has_global_scope(session):
+        return {}
+    net_role = session.get("network_role") or ""
+    if net_role.startswith("TERRITORY_"):
+        territory_id = session.get("territory_id")
+        if not isinstance(territory_id, str) or not territory_id.strip():
+            raise HTTPException(status_code=403, detail="territory_scope_required")
+        return {"territory_id": territory_id}
+    raise HTTPException(status_code=403, detail="network_role_required")
 
 
 async def require_network_read(request: Request) -> dict:
@@ -67,15 +82,8 @@ async def require_network_read(request: Request) -> dict:
     if not session:
         raise HTTPException(status_code=401, detail="authentication_required")
 
-    email = (session.get("email") or "").lower()
-    role = session.get("role") or ""
-    net_role = session.get("network_role") or ""
-
-    is_founder = role == "founder" or (email and FOUNDER_EMAILS and email in FOUNDER_EMAILS)
-    if is_founder or net_role in NETWORK_GLOBAL_READ_ROLES or net_role.startswith("TERRITORY_"):
-        return session
-
-    raise HTTPException(status_code=403, detail="network_role_required")
+    _scope_query(session)
+    return session
 
 
 def _lineage(sources: list[str], provenance: str, confidence: float = 1.0) -> dict:
@@ -156,8 +164,7 @@ async def network_access(request: Request):
     if not session:
         return {"authenticated": False, "network_role": None, "territory_id": None}
     email = (session.get("email") or "").lower()
-    role = session.get("role") or ""
-    is_founder = role == "founder" or (email and FOUNDER_EMAILS and email in FOUNDER_EMAILS)
+    is_founder = _is_founder(session)
     return {
         "authenticated": True,
         "email_masked": (email.split("@")[0][:3] + "…@" + email.split("@")[1]) if "@" in email else None,
@@ -171,21 +178,13 @@ async def network_access(request: Request):
 # 3-9. Read-only listings — return empty + NOT_CONFIGURED if collection absent
 # ═════════════════════════════════════════════════════════
 async def _list_collection(name: str, session: dict, limit: int = 100) -> dict:
+    query = _scope_query(session)
     if not await _collection_exists(name):
         return {
             "data": [],
             "lineage": _lineage([f"db.{name}"], "NOT_CONFIGURED"),
             "total": 0,
         }
-    # Founder/global roles see all; territory-scoped see only theirs
-    net_role = session.get("network_role") or ""
-    territory_id = session.get("territory_id")
-    is_founder = session.get("role") == "founder" or net_role in NETWORK_GLOBAL_READ_ROLES
-
-    query = {}
-    if not is_founder and net_role.startswith("TERRITORY_") and territory_id:
-        query = {"territory_id": territory_id}
-
     docs = []
     async for d in _db[name].find(query).limit(limit):
         d["_id"] = str(d["_id"])
@@ -206,9 +205,8 @@ async def list_territories(session: dict = Depends(require_network_read)):
 
 @router.get("/territories/{territory_id}")
 async def get_territory(territory_id: str, session: dict = Depends(require_network_read)):
-    net_role = session.get("network_role") or ""
-    is_global = session.get("role") == "founder" or net_role in NETWORK_GLOBAL_READ_ROLES
-    if not is_global and session.get("territory_id") != territory_id:
+    query = _scope_query(session)
+    if query and query["territory_id"] != territory_id:
         raise HTTPException(status_code=403, detail="territory_scope_denied")
 
     if not await _collection_exists("network_territories"):

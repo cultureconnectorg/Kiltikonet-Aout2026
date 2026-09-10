@@ -103,16 +103,8 @@ export const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   const [sessionData, setSessionData] = useState(null);
 
   const verify = useCallback(async () => {
-    // Quick check: sessionStorage cache
-    const { session } = getSession();
-    if (session) {
-      setSessionData(session);
-      setAuthState('authenticated');
-      updateSessionActivity();
-      return;
-    }
-
-    // Fallback: verify via httpOnly cookie
+    // The display cache is user-editable and cannot authorize a route.
+    // Verify the signed cookie with the server before rendering children.
     const cookieSession = await checkCookieAuth();
     if (cookieSession) {
       // Cache for subsequent renders
@@ -120,6 +112,8 @@ export const ProtectedRoute = ({ children, allowedRoles = [] }) => {
       setSessionData(cookieSession);
       setAuthState('authenticated');
     } else {
+      sessionStorage.removeItem(SESSION_KEY);
+      setSessionData(null);
       setAuthState('unauthenticated');
     }
   }, []);

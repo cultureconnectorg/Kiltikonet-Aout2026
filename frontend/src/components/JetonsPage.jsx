@@ -108,6 +108,7 @@ const PackCard = ({ pack, index, onBuy, loading, walletReady }) => {
 export default function JetonsPage() {
   const navigate = useNavigate();
   const [packs, setPacks] = useState([]);
+  const [jetonValue, setJetonValue] = useState(null);
   const [loading, setLoading] = useState(true);
   const [badgeId, setBadgeId] = useState('');
   const [wallet, setWallet] = useState(null);
@@ -119,7 +120,14 @@ export default function JetonsPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => setHeroVisible(true), 100);
-    fetch(`${API_URL}/api/jetons/packs`).then(r => r.json()).then(d => { setPacks(d.packs || []); setLoading(false); }).catch(() => setLoading(false));
+    fetch(`${API_URL}/api/jetons/packs`)
+      .then(r => { if (!r.ok) throw new Error('packs_unavailable'); return r.json(); })
+      .then(d => {
+        setPacks(d.packs || []);
+        setJetonValue(typeof d.jeton_value_eur === 'number' && Number.isFinite(d.jeton_value_eur) && d.jeton_value_eur > 0 ? d.jeton_value_eur : null);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
     return () => clearTimeout(timer);
   }, []);
 
@@ -171,7 +179,7 @@ export default function JetonsPage() {
           >
             <Ticket className="w-4 h-4" style={{ color: '#C9A84C' }} />
             <span className="text-sm font-medium" style={{ color: '#C9A84C' }}>
-              Unité interne CC2026
+              Jetons CC2026
             </span>
           </div>
 
@@ -196,7 +204,7 @@ export default function JetonsPage() {
               transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
             }}
           >
-            Jetons internes Culture Connect 2026
+            Vos jetons Culture Connect 2026
           </p>
 
           <p
@@ -207,7 +215,9 @@ export default function JetonsPage() {
               transition: 'opacity 0.6s ease-out 0.45s',
             }}
           >
-            Unité d'usage interne. La qualification juridique et économique reste distincte de l'affichage applicatif.
+            {jetonValue === null
+              ? 'Consultez les packs de jetons disponibles ci-dessous.'
+              : `1 Jeton = ${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(jetonValue)} de valeur faciale`}
           </p>
 
           {/* Countdown mini */}
@@ -331,8 +341,8 @@ export default function JetonsPage() {
             </div>
             <div className="space-y-1.5 text-sm" style={{ color: '#6B6560' }}>
               <p><strong style={{ color: '#1A1510' }}>Paiement sécurisé par Stripe</strong></p>
-              <p>Les Jetons CC sont présentés ici comme une unité interne d'usage, pas comme une monnaie.</p>
-              <p>Les conditions de conversion, de report entre éditions et de rachat marchand doivent être confirmées avant toute nouvelle ouverture commerciale.</p>
+              <p>Les Jetons CC non utilises sont convertibles a 100% pour CC2027.</p>
+              <p>Rachat marchand J+3 SEPA : 1,35&euro;/jeton.</p>
             </div>
           </div>
         </Reveal>

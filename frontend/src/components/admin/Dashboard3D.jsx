@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-// NOTE: Three.js imports disabled due to React 19 compatibility
-// import { Canvas, useFrame, useThree } from '@react-three/fiber';
-// import { Text, RoundedBox, OrbitControls, Environment, Float } from '@react-three/drei';
+import React, { useState, useRef } from 'react';
+// Retained 3D components; the existing dashboard still renders its 2D fallback.
+import { useFrame } from '@react-three/fiber';
+import { Text, RoundedBox, OrbitControls, Float } from '@react-three/drei';
 import { useNavigate } from 'react-router-dom';
-// import * as THREE from 'three';
+import * as THREE from 'three';
 import { Badge, Users, BarChart3, Brain, Edit3, List, Settings, ChevronRight } from 'lucide-react';
 
 // ═══════════════════════════════════════════════════════════════

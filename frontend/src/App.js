@@ -1,7 +1,9 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import "@/App.css";
 import "./i18n";
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import CompatibilityRedirect from "./components/CompatibilityRedirect";
+import { documentTitleFor } from "./config/routeMetadata";
 import { initTracker } from "./lib/smartTracker";
 import { LanguageProvider } from "./context/LanguageContext";
 import { SharedDataProvider } from "./contexts/SharedDataContext";
@@ -31,9 +33,9 @@ import { ParticipantProfile } from "./components/ParticipantProfile";
 import { Toaster } from "./components/ui/sonner";
 // Legal pages
 import { MentionsLegales, PolitiqueConfidentialite, CGU, Cookies, CookieBanner } from "./components/legal";
-// Smart Engine - admin/founder console only. Cognition/model-routing ownership belongs to CVLN iOS target services.
+// Existing local Smart Engine administration surface.
 import SmartEngineDashboard from "./pages/Admin/SmartEngineDashboard";
-// AI Agents Dashboard - monitoring console only. Agent lifecycle/runtime belongs to CVLN Agent Factory target boundary.
+// Existing local agent administration surface; shared-service ownership is undecided.
 import AIAgentsDashboard from "./components/AIAgentsDashboard";
 // CMS Admin
 import CMSAdmin from "./components/CMSAdmin";
@@ -87,27 +89,6 @@ import { BACKEND_URL } from "./config/api";
 import DashboardCC2026 from "./components/DashboardCC2026";
 // Pro Space (LinkedIn Culturel)
 import ProSpaceDashboard, { ProSpaceLogin } from "./components/ProSpaceDashboard";
-// ProProtectedRoute — affiche ProSpaceLogin inline si non connecté
-const ProProtectedRoute = ({ children }) => {
-  const [state, setState] = React.useState('checking');
-  React.useEffect(() => {
-    const checkAuth = async () => {
-      // Check pro session
-      const proSession = sessionStorage.getItem('cc2026_pro_session');
-      if (proSession) { setState('ok'); return; }
-      // Check cookie auth
-      try {
-        const res = await fetch(`${BACKEND_URL}/api/auth/me`, { credentials: 'include' });
-        if (res.ok) { const d = await res.json(); if (d.authenticated) { setState('ok'); return; } }
-      } catch {}
-      setState('denied');
-    };
-    checkAuth();
-  }, []);
-  if (state === 'checking') return <div className="min-h-screen flex items-center justify-center" style={{ background: '#0a0a0b' }} />;
-  if (state === 'denied') return <ProSpaceLogin onLogin={() => setState('ok')} />;
-  return children;
-};
 // Auth Pages
 import MagicLinkPage from "./components/MagicLinkPage";
 import InvitePage from "./components/InvitePage";
@@ -132,6 +113,27 @@ import useDeviceDetect from "./hooks/useDeviceDetect";
 import { useAnalytics } from "./hooks/useAnalytics";
 // Site Analytics Dashboard
 import SiteAnalyticsDashboard from "./components/SiteAnalyticsDashboard";
+// ProProtectedRoute — affiche ProSpaceLogin inline si non connecté
+const ProProtectedRoute = ({ children }) => {
+  const [state, setState] = React.useState('checking');
+  React.useEffect(() => {
+    const checkAuth = async () => {
+      // Check pro session
+      const proSession = sessionStorage.getItem('cc2026_pro_session');
+      if (proSession) { setState('ok'); return; }
+      // Check cookie auth
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/auth/me`, { credentials: 'include' });
+        if (res.ok) { const d = await res.json(); if (d.authenticated) { setState('ok'); return; } }
+      } catch {}
+      setState('denied');
+    };
+    checkAuth();
+  }, []);
+  if (state === 'checking') return <div className="min-h-screen flex items-center justify-center" style={{ background: '#0a0a0b' }} />;
+  if (state === 'denied') return <ProSpaceLogin onLogin={() => setState('ok')} />;
+  return children;
+};
 // 3D Components - LAZY LOADED to avoid React 19 compatibility issues
 const Dashboard3D = lazy(() => import("./components/admin/Dashboard3D"));
 const SmartEngine3D = lazy(() => import("./components/admin/SmartEngine3D"));
@@ -208,45 +210,10 @@ const PageTracker = () => {
 };
 
 // Dynamic document title per route (WCAG 2.4.2)
-const ROUTE_TITLES = {
-  '/': 'Kiltikonet — Infrastructure culturelle et plateforme institutionnelle',
-  '/culture-connect': 'Culture Connect — Kiltikonet',
-  '/culture-connect/2026': 'Culture Connect 2026 — Bilan — Kiltikonet',
-  '/culture-connect/2027': 'Culture Connect 2027 — À venir — Kiltikonet',
-  '/culture-connect/programme': 'Programme — Culture Connect',
-  '/culture-connect/concert': 'Concert — Culture Connect',
-  '/culture-connect/inscription': 'Inscription — Culture Connect',
-  '/culture-connect/catalogue': 'Catalogue — Culture Connect',
-  '/infrastructure': 'Infrastructure culturelle — Kiltikonet',
-  '/rejoindre': 'Participer à Kiltikonet',
-  '/reseau': 'Participer à Kiltikonet',
-  '/contact': 'Contact — Kiltikonet',
-  '/legacy-cc2026': 'Culture Connect 2026 — Édition historique — Kiltikonet',
-  '/observatory': 'Observatory culturel · Kiltikonet',
-  '/jetons': 'Jetons CC — unité interne — Kiltikonet',
-  '/appel-2026': 'Appel à projet — Kiltikonet',
-  '/partnership': 'Partenariat — Kiltikonet',
-  '/partenaires': 'Partenaires — Kiltikonet',
-  '/gouvernance': 'Gouvernance — Kiltikonet',
-  '/badge-inscription': 'Inscription Badge — Kiltikonet',
-  '/admin': 'Administration — Kiltikonet',
-  '/smart-engine': 'Console Smart Engine — Kiltikonet',
-  '/espace-pro': 'Espace Pro — Kiltikonet',
-  '/accessibilite': 'Accessibilité — Kiltikonet',
-  '/mentions-legales': 'Mentions légales — Kiltikonet',
-  '/confidentialite': 'Politique de confidentialité — Kiltikonet',
-  '/cgu': 'CGU — Kiltikonet',
-  '/cookies': 'Cookies — Kiltikonet',
-};
 const DocumentTitle = () => {
   const location = useLocation();
   useEffect(() => {
-    const path = location.pathname;
-    // Exact match first, then startsWith fallback
-    const exact = ROUTE_TITLES[path];
-    if (exact) { document.title = exact; return; }
-    const matchedKey = Object.keys(ROUTE_TITLES).find(k => k !== '/' && path.startsWith(k));
-    document.title = matchedKey ? ROUTE_TITLES[matchedKey] : 'Kiltikonet — Infrastructure culturelle et plateforme institutionnelle';
+    document.title = documentTitleFor(location.pathname);
   }, [location.pathname]);
   return null;
 };
@@ -325,7 +292,7 @@ function App() {
               {/* Legacy CC2026 landing — accessible via /legacy-cc2026 pour référence */}
               <Route path="/legacy-cc2026" element={<LandingPage />} />
 
-              {/* Culture Connect — produit/programme distinct porté par Kiltikonet */}
+              {/* Existing Culture Connect pages and additional compatible paths. */}
               <Route path="/culture-connect" element={<CultureConnect />} />
               <Route path="/culture-connect/2026" element={<CultureConnect2026 />} />
               <Route path="/culture-connect/2027" element={<CultureConnect2027 />} />
@@ -337,8 +304,8 @@ function App() {
               {/* Kiltikonet institutionnel */}
               <Route path="/infrastructure" element={<Infrastructure />} />
               <Route path="/rejoindre" element={<Rejoindre />} />
-              {/* Compatibilité historique : /reseau ne prétend pas que le Network territorial est déployé. */}
-              <Route path="/reseau" element={<Navigate to="/rejoindre" replace />} />
+              {/* Preserve query, anchor and navigation context on this compatibility entry. */}
+              <Route path="/reseau" element={<CompatibilityRedirect to="/rejoindre" />} />
               <Route path="/contact" element={<ContactKiltikonet />} />
               <Route path="/observatory" element={<Observatory />} />
               <Route path="/observatory/founder" element={<ObservatoryFounder />} />
@@ -347,15 +314,15 @@ function App() {
               <Route path="/now" element={<NowPage />} />
               <Route path="/maintenant" element={<NowPage />} />
 
-              {/* Legacy Culture Connect aliases → namespace canonique */}
-              <Route path="/pricing" element={<Navigate to="/culture-connect/inscription" replace />} />
-              <Route path="/tarifs" element={<Navigate to="/culture-connect/inscription" replace />} />
-              <Route path="/register" element={<Navigate to="/culture-connect/inscription" replace />} />
-              <Route path="/inscription" element={<Navigate to="/culture-connect/inscription" replace />} />
-              <Route path="/programme" element={<Navigate to="/culture-connect/programme" replace />} />
-              <Route path="/concert" element={<Navigate to="/culture-connect/concert" replace />} />
-              <Route path="/catalogue" element={<Navigate to="/culture-connect/catalogue" replace />} />
-              <Route path="/catalog" element={<Navigate to="/culture-connect/catalogue" replace />} />
+              {/* Preserve current URLs and Stripe return parameters. Canonical migration is undecided. */}
+              <Route path="/pricing" element={<PricingPage />} />
+              <Route path="/tarifs" element={<PricingPage />} />
+              <Route path="/register" element={<PricingPage />} />
+              <Route path="/inscription" element={<PricingPage />} />
+              <Route path="/programme" element={<ProgramPage />} />
+              <Route path="/concert" element={<ConcertPage />} />
+              <Route path="/catalogue" element={<CatalogPage />} />
+              <Route path="/catalog" element={<CatalogPage />} />
 
               {/* Partenariats restent non migrés : séparation institutionnel/sponsoring encore OPEN. */}
               <Route path="/partnership" element={<PartnershipPage />} />
@@ -409,7 +376,7 @@ function App() {
               {/* Site Analytics */}
               <Route path="/admin/analytics/site" element={<ProtectedRoute allowedRoles={['admin', 'founder']}><SiteAnalyticsDashboard /></ProtectedRoute>} />
 
-              {/* Intelligence consoles — protected, not Kiltikonet-owned CVLN intelligence runtimes. */}
+              {/* Local administration tools. These UI guards do not replace API authorization. */}
               <Route path="/smart-engine" element={<ProtectedRoute allowedRoles={['admin', 'founder']}><SmartEngineDashboard /></ProtectedRoute>} />
               <Route path="/smart-engine-3d" element={<ProtectedRoute allowedRoles={['admin', 'founder']}><Suspense fallback={<Loading3D />}><SmartEngine3D /></Suspense></ProtectedRoute>} />
               <Route path="/admin/ai-agents" element={<ProtectedRoute allowedRoles={['admin', 'founder']}><AIAgentsDashboard /></ProtectedRoute>} />

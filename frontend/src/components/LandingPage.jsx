@@ -23,6 +23,8 @@ import { Globe3D } from './Globe3D';
 import { useSharedData } from '../contexts/SharedDataContext';
 import HCaptchaWidget from './HCaptchaWidget';
 
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+
 export const LandingPage = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();

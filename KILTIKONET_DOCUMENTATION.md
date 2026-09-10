@@ -298,18 +298,22 @@ Tous les autres types (ART, INT, VIP, etc.) sont identiques.
 
 ---
 
-## 8. CREDENTIALS
+## 8. CONFIGURATION DES ACCÈS
 
-| Service | Identifiant | Secret |
-|---------|-------------|--------|
-| Admin Bypass | cc@kiltikonet.fr | (pas de code requis) |
-| Workspace Admin | - | CC2026admin |
-| FREKcore | kiltikonet-cc2026 | pczBP49crCXSSSwSOShsXClzs9srhKe5S-xnraMPn-k |
-| AWS SES | AKIAVJWEWGHLI4YO26CP | gG+NGrkaHm338yBXufq2hvsq2Mq7uuKOACKBJLss |
-| AWS Region | eu-west-1 | - |
-| Baserow | Token: BjKPCSpcpif72OtZtsmMFUbZysqlNGiK | Table: 865847 |
-| Stripe | sk_live_51T4le... | whsec_Ar2Uqq... |
-| Sender Email | cc@kiltikonet.fr | via SES |
+Aucune valeur d’accès ne doit être stockée dans cette documentation ou dans Git.
+Les valeurs autrefois présentes ici doivent être considérées comme compromises et
+révoquées auprès de leurs fournisseurs.
+
+| Service | Variables / configuration attendues |
+|---------|--------------------------------------|
+| Administration | `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `EMERGENCY_SECRET` |
+| FREKcore | `FREK_CLIENT_ID`, `FREK_CLIENT_SECRET`, `FREKCORE_SECRET`, `FREK_API_URL` |
+| AWS SES | `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `SES_FROM_EMAIL` |
+| Baserow | `BASEROW_URL`, `BASEROW_TOKEN`, `BASEROW_TABLE_ID` — côté serveur uniquement |
+| Stripe | `STRIPE_API_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PUBLIC_KEY` |
+| Sessions | `SESSION_SECRET` |
+
+Procédure et constat : `docs/rebuild/SECRETS_RECONCILIATION.md`.
 
 ---
 

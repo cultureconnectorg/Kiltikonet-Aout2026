@@ -33,19 +33,9 @@ FOUNDER_EMAILS = [e.strip().lower() for e in (os.environ.get("FOUNDER_EMAILS", "
 # ACCESS CONTROL — role-based, no hardcoded password
 # ═════════════════════════════════════════════════════════
 async def require_founder(request: Request) -> dict:
-    """Founder-only access. Reads from existing session cookie / request state."""
+    """Founder-only access using the signed session verified by server.py."""
     session = getattr(request.state, "session", None)
-    # Fallback : read session cookie manually if middleware didn't attach
-    if not session:
-        session_cookie = request.cookies.get("session_cookie") or request.cookies.get("cc_pro_session")
-        if session_cookie:
-            try:
-                import json as _json
-                session = _json.loads(session_cookie)
-            except Exception:
-                session = None
-
-    if not session:
+    if not isinstance(session, dict) or not session:
         raise HTTPException(status_code=401, detail="authentication_required")
 
     email = (session.get("email") or "").lower()
@@ -305,16 +295,7 @@ async def sessions(days: int = 7):
 async def access_check(request: Request):
     """Public endpoint : returns whether the caller has founder access."""
     session = getattr(request.state, "session", None)
-    if not session:
-        session_cookie = request.cookies.get("session_cookie") or request.cookies.get("cc_pro_session")
-        if session_cookie:
-            try:
-                import json as _json
-                session = _json.loads(session_cookie)
-            except Exception:
-                session = None
-
-    if not session:
+    if not isinstance(session, dict) or not session:
         return {"authenticated": False, "is_founder": False}
 
     email = (session.get("email") or "").lower()

@@ -1,0 +1,7398 @@
+{
+  "scope": "Source declarations only. Runtime, access and deployment must be tested separately.",
+  "main_sha": "bb64ce72812f20f6237c02a7ca316fdbbcbb3bf6",
+  "audited_head_sha": "932067029e75eb74b7136002576655237a2ff262",
+  "frontend_main": [
+    {
+      "path": "/pro",
+      "component": "ProSplashWrapper",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 316
+    },
+    {
+      "path": "/scan",
+      "component": "ScanApp",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 319
+    },
+    {
+      "path": "/",
+      "component": "KiltikonetHome",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 325
+    },
+    {
+      "path": "/legacy-cc2026",
+      "component": "LandingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 327
+    },
+    {
+      "path": "/culture-connect",
+      "component": "CultureConnect",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 329
+    },
+    {
+      "path": "/culture-connect/2026",
+      "component": "CultureConnect2026",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 330
+    },
+    {
+      "path": "/culture-connect/2027",
+      "component": "CultureConnect2027",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 331
+    },
+    {
+      "path": "/infrastructure",
+      "component": "Infrastructure",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 333
+    },
+    {
+      "path": "/rejoindre",
+      "component": "Rejoindre",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 334
+    },
+    {
+      "path": "/contact",
+      "component": "ContactKiltikonet",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 335
+    },
+    {
+      "path": "/observatory",
+      "component": "Observatory",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 336
+    },
+    {
+      "path": "/observatory/founder",
+      "component": "ObservatoryFounder",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 337
+    },
+    {
+      "path": "/a-propos",
+      "component": "APropos",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 338
+    },
+    {
+      "path": "/about",
+      "component": "APropos",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 339
+    },
+    {
+      "path": "/now",
+      "component": "NowPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 340
+    },
+    {
+      "path": "/maintenant",
+      "component": "NowPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 341
+    },
+    {
+      "path": "/pricing",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 342
+    },
+    {
+      "path": "/partnership",
+      "component": "PartnershipPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 343
+    },
+    {
+      "path": "/partenaires",
+      "component": "PartnershipPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 344
+    },
+    {
+      "path": "/partenaire/confirmation",
+      "component": "PartnerConfirmation",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 345
+    },
+    {
+      "path": "/catalogue",
+      "component": "CatalogPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 346
+    },
+    {
+      "path": "/catalog",
+      "component": "CatalogPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 347
+    },
+    {
+      "path": "/tarifs",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 348
+    },
+    {
+      "path": "/register",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 349
+    },
+    {
+      "path": "/inscription",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 350
+    },
+    {
+      "path": "/programme",
+      "component": "ProgramPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 351
+    },
+    {
+      "path": "/appel-2026",
+      "component": "AppelPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 352
+    },
+    {
+      "path": "/accessibilite",
+      "component": "AccessibilitePage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 353
+    },
+    {
+      "path": "/concert",
+      "component": "ConcertPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 354
+    },
+    {
+      "path": "/confirmation",
+      "component": "ConfirmationScreen",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 355
+    },
+    {
+      "path": "/admin",
+      "component": "AdminDashboard",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 356
+    },
+    {
+      "path": "/admin/dashboard-3d",
+      "component": "Dashboard3D",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 357
+    },
+    {
+      "path": "/admin/cms",
+      "component": "CMSAdmin",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 358
+    },
+    {
+      "path": "/admin/cms/visual-editor",
+      "component": "VisualEditor",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 359
+    },
+    {
+      "path": "/admin/accreditation",
+      "component": "AccreditationSystem",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 360
+    },
+    {
+      "path": "/admin/performance",
+      "component": "PerformanceDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 362
+    },
+    {
+      "path": "/admin/finance",
+      "component": "AdminFinanceDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder",
+        "finance"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 364
+    },
+    {
+      "path": "/admin/mobile",
+      "component": "AdminMobileDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 366
+    },
+    {
+      "path": "/admin/terrain",
+      "component": "AdminMobileDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 367
+    },
+    {
+      "path": "/badge/:id",
+      "component": "BadgeScan",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 368
+    },
+    {
+      "path": "/badge-scan",
+      "component": "BadgeScan",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 369
+    },
+    {
+      "path": "/activer-badge/:qrToken",
+      "component": "BadgeActivation",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 371
+    },
+    {
+      "path": "/badge-inscription",
+      "component": "BadgeInscription",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 372
+    },
+    {
+      "path": "/register-pro",
+      "component": "RegistrationForm",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 373
+    },
+    {
+      "path": "/jetons",
+      "component": "JetonsPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 374
+    },
+    {
+      "path": "/mon-espace",
+      "component": "UserDashboard",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 375
+    },
+    {
+      "path": "/jetons/confirmation",
+      "component": "JetonsPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 376
+    },
+    {
+      "path": "/admin/analytics/jetons",
+      "component": "JetonsAnalyticsDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 377
+    },
+    {
+      "path": "/participant/:participantId",
+      "component": "ParticipantProfile",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 378
+    },
+    {
+      "path": "/workspace/laurent",
+      "component": "WorkspaceLaurent",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 380
+    },
+    {
+      "path": "/workspace/twina",
+      "component": "WorkspaceTwina",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "design"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 381
+    },
+    {
+      "path": "/workspace/gwen",
+      "component": "WorkspaceGwen",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "event"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 382
+    },
+    {
+      "path": "/workspace/kaige",
+      "component": "WorkspaceKaige",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "press"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 383
+    },
+    {
+      "path": "/workspace/alirio",
+      "component": "WorkspaceAlirio",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "business"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 384
+    },
+    {
+      "path": "/workspace/wudy",
+      "component": "WorkspaceWudy",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "finance"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 385
+    },
+    {
+      "path": "/workspace/fabrice",
+      "component": "WorkspaceFabrice",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "captions"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 386
+    },
+    {
+      "path": "/workspace/analyst",
+      "component": "WorkspaceAnalyst",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "analyst"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 387
+    },
+    {
+      "path": "/workspace/coleen",
+      "component": "ColeenWorkspace",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "partnerships"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 388
+    },
+    {
+      "path": "/dashboard-cc2026",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "design"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 390
+    },
+    {
+      "path": "/dashboard-cc2026/laurent",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 391
+    },
+    {
+      "path": "/dashboard-cc2026/twina",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "design"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 392
+    },
+    {
+      "path": "/dashboard-cc2026/gwen",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "event"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 393
+    },
+    {
+      "path": "/dashboard-cc2026/fabrice",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "captions"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 394
+    },
+    {
+      "path": "/dashboard-cc2026/kaige",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "press"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 395
+    },
+    {
+      "path": "/dashboard-cc2026/alirio",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "business"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 396
+    },
+    {
+      "path": "/dashboard-cc2026/wudy",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "finance"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 397
+    },
+    {
+      "path": "/admin/analytics/site",
+      "component": "SiteAnalyticsDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 399
+    },
+    {
+      "path": "/smart-engine",
+      "component": "SmartEngineDashboard",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 401
+    },
+    {
+      "path": "/smart-engine-3d",
+      "component": "SmartEngine3D",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 402
+    },
+    {
+      "path": "/admin/ai-agents",
+      "component": "AIAgentsDashboard",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 404
+    },
+    {
+      "path": "/espace-pro/connexion",
+      "component": "ProSpaceLogin",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 406
+    },
+    {
+      "path": "/admin/core",
+      "component": "ProSpaceDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 408
+    },
+    {
+      "path": "/admin/core/messages",
+      "component": "MessagesPage",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 409
+    },
+    {
+      "path": "/admin/core/reseau",
+      "component": "NetworkStandalonePage",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 410
+    },
+    {
+      "path": "/auth/magic/:token",
+      "component": "MagicLinkPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 412
+    },
+    {
+      "path": "/invite/:token",
+      "component": "InvitePage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 413
+    },
+    {
+      "path": "/mentions-legales",
+      "component": "MentionsLegales",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 415
+    },
+    {
+      "path": "/confidentialite",
+      "component": "PolitiqueConfidentialite",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 416
+    },
+    {
+      "path": "/cgu",
+      "component": "CGU",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 417
+    },
+    {
+      "path": "/cookies",
+      "component": "Cookies",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 418
+    },
+    {
+      "path": "/faq",
+      "component": "FAQPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 420
+    },
+    {
+      "path": "/aide",
+      "component": "FAQPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 421
+    },
+    {
+      "path": "/support",
+      "component": "SupportPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 422
+    },
+    {
+      "path": "/contact",
+      "component": "SupportPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 423
+    },
+    {
+      "path": "/gouvernance",
+      "component": "GouvernanceStoryPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 425
+    },
+    {
+      "path": "/gouvernance/adhesion",
+      "component": "GouvernancePage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 426
+    },
+    {
+      "path": "/gouvernance/candidater",
+      "component": "GouvernanceCandidater",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 427
+    },
+    {
+      "path": "/gouvernance/confirmation",
+      "component": "GouvernanceConfirmation",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 428
+    },
+    {
+      "path": "/gouvernance/profil",
+      "component": "GouvernanceProfil",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 429
+    },
+    {
+      "path": "/gouvernance/paiement/:numMembre",
+      "component": "GouvernancePaiement",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 430
+    },
+    {
+      "path": "/gouvernance/repertoire/:numMembre",
+      "component": "GouvernanceRepertoire",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 431
+    },
+    {
+      "path": "/scanner-cc2026",
+      "component": "ScannerCC2026",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 433
+    },
+    {
+      "path": "/p/:slug",
+      "component": "DynamicPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 435
+    }
+  ],
+  "frontend_audited_head": [
+    {
+      "path": "/pro",
+      "component": "ProSplashWrapper",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 315
+    },
+    {
+      "path": "/scan",
+      "component": "ScanApp",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 318
+    },
+    {
+      "path": "/",
+      "component": "KiltikonetHome",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 324
+    },
+    {
+      "path": "/legacy-cc2026",
+      "component": "LandingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 326
+    },
+    {
+      "path": "/culture-connect",
+      "component": "CultureConnect",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 329
+    },
+    {
+      "path": "/culture-connect/2026",
+      "component": "CultureConnect2026",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 330
+    },
+    {
+      "path": "/culture-connect/2027",
+      "component": "CultureConnect2027",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 331
+    },
+    {
+      "path": "/culture-connect/programme",
+      "component": "ProgramPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 332
+    },
+    {
+      "path": "/culture-connect/concert",
+      "component": "ConcertPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 333
+    },
+    {
+      "path": "/culture-connect/inscription",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 334
+    },
+    {
+      "path": "/culture-connect/catalogue",
+      "component": "CatalogPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 335
+    },
+    {
+      "path": "/infrastructure",
+      "component": "Infrastructure",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 338
+    },
+    {
+      "path": "/rejoindre",
+      "component": "Rejoindre",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 339
+    },
+    {
+      "path": "/reseau",
+      "component": "Navigate",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 341,
+      "redirectTo": "/rejoindre"
+    },
+    {
+      "path": "/contact",
+      "component": "ContactKiltikonet",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 342
+    },
+    {
+      "path": "/observatory",
+      "component": "Observatory",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 343
+    },
+    {
+      "path": "/observatory/founder",
+      "component": "ObservatoryFounder",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 344
+    },
+    {
+      "path": "/a-propos",
+      "component": "APropos",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 345
+    },
+    {
+      "path": "/about",
+      "component": "APropos",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 346
+    },
+    {
+      "path": "/now",
+      "component": "NowPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 347
+    },
+    {
+      "path": "/maintenant",
+      "component": "NowPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 348
+    },
+    {
+      "path": "/pricing",
+      "component": "Navigate",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 351,
+      "redirectTo": "/culture-connect/inscription"
+    },
+    {
+      "path": "/tarifs",
+      "component": "Navigate",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 352,
+      "redirectTo": "/culture-connect/inscription"
+    },
+    {
+      "path": "/register",
+      "component": "Navigate",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 353,
+      "redirectTo": "/culture-connect/inscription"
+    },
+    {
+      "path": "/inscription",
+      "component": "Navigate",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 354,
+      "redirectTo": "/culture-connect/inscription"
+    },
+    {
+      "path": "/programme",
+      "component": "Navigate",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 355,
+      "redirectTo": "/culture-connect/programme"
+    },
+    {
+      "path": "/concert",
+      "component": "Navigate",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 356,
+      "redirectTo": "/culture-connect/concert"
+    },
+    {
+      "path": "/catalogue",
+      "component": "Navigate",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 357,
+      "redirectTo": "/culture-connect/catalogue"
+    },
+    {
+      "path": "/catalog",
+      "component": "Navigate",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 358,
+      "redirectTo": "/culture-connect/catalogue"
+    },
+    {
+      "path": "/partnership",
+      "component": "PartnershipPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 361
+    },
+    {
+      "path": "/partenaires",
+      "component": "PartnershipPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 362
+    },
+    {
+      "path": "/partenaire/confirmation",
+      "component": "PartnerConfirmation",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 363
+    },
+    {
+      "path": "/appel-2026",
+      "component": "AppelPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 364
+    },
+    {
+      "path": "/accessibilite",
+      "component": "AccessibilitePage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 365
+    },
+    {
+      "path": "/confirmation",
+      "component": "ConfirmationScreen",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 366
+    },
+    {
+      "path": "/admin",
+      "component": "AdminDashboard",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 367
+    },
+    {
+      "path": "/admin/dashboard-3d",
+      "component": "Dashboard3D",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 368
+    },
+    {
+      "path": "/admin/cms",
+      "component": "CMSAdmin",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 369
+    },
+    {
+      "path": "/admin/cms/visual-editor",
+      "component": "VisualEditor",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 370
+    },
+    {
+      "path": "/admin/accreditation",
+      "component": "AccreditationSystem",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 371
+    },
+    {
+      "path": "/admin/performance",
+      "component": "PerformanceDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 373
+    },
+    {
+      "path": "/admin/finance",
+      "component": "AdminFinanceDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder",
+        "finance"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 375
+    },
+    {
+      "path": "/admin/mobile",
+      "component": "AdminMobileDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 377
+    },
+    {
+      "path": "/admin/terrain",
+      "component": "AdminMobileDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 378
+    },
+    {
+      "path": "/badge/:id",
+      "component": "BadgeScan",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 379
+    },
+    {
+      "path": "/badge-scan",
+      "component": "BadgeScan",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 380
+    },
+    {
+      "path": "/activer-badge/:qrToken",
+      "component": "BadgeActivation",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 382
+    },
+    {
+      "path": "/badge-inscription",
+      "component": "BadgeInscription",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 383
+    },
+    {
+      "path": "/register-pro",
+      "component": "RegistrationForm",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 384
+    },
+    {
+      "path": "/jetons",
+      "component": "JetonsPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 385
+    },
+    {
+      "path": "/mon-espace",
+      "component": "UserDashboard",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 386
+    },
+    {
+      "path": "/jetons/confirmation",
+      "component": "JetonsPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 387
+    },
+    {
+      "path": "/admin/analytics/jetons",
+      "component": "JetonsAnalyticsDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 388
+    },
+    {
+      "path": "/participant/:participantId",
+      "component": "ParticipantProfile",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 389
+    },
+    {
+      "path": "/workspace/laurent",
+      "component": "WorkspaceLaurent",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 391
+    },
+    {
+      "path": "/workspace/twina",
+      "component": "WorkspaceTwina",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "design"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 392
+    },
+    {
+      "path": "/workspace/gwen",
+      "component": "WorkspaceGwen",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "event"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 393
+    },
+    {
+      "path": "/workspace/kaige",
+      "component": "WorkspaceKaige",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "press"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 394
+    },
+    {
+      "path": "/workspace/alirio",
+      "component": "WorkspaceAlirio",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "business"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 395
+    },
+    {
+      "path": "/workspace/wudy",
+      "component": "WorkspaceWudy",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "finance"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 396
+    },
+    {
+      "path": "/workspace/fabrice",
+      "component": "WorkspaceFabrice",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "captions"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 397
+    },
+    {
+      "path": "/workspace/analyst",
+      "component": "WorkspaceAnalyst",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "analyst"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 398
+    },
+    {
+      "path": "/workspace/coleen",
+      "component": "ColeenWorkspace",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "partnerships"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 399
+    },
+    {
+      "path": "/dashboard-cc2026",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "design"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 401
+    },
+    {
+      "path": "/dashboard-cc2026/laurent",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 402
+    },
+    {
+      "path": "/dashboard-cc2026/twina",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "design"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 403
+    },
+    {
+      "path": "/dashboard-cc2026/gwen",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "event"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 404
+    },
+    {
+      "path": "/dashboard-cc2026/fabrice",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "captions"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 405
+    },
+    {
+      "path": "/dashboard-cc2026/kaige",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "press"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 406
+    },
+    {
+      "path": "/dashboard-cc2026/alirio",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "business"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 407
+    },
+    {
+      "path": "/dashboard-cc2026/wudy",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "finance"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 408
+    },
+    {
+      "path": "/admin/analytics/site",
+      "component": "SiteAnalyticsDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 410
+    },
+    {
+      "path": "/smart-engine",
+      "component": "SmartEngineDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 413
+    },
+    {
+      "path": "/smart-engine-3d",
+      "component": "SmartEngine3D",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 414
+    },
+    {
+      "path": "/admin/ai-agents",
+      "component": "AIAgentsDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 415
+    },
+    {
+      "path": "/espace-pro/connexion",
+      "component": "ProSpaceLogin",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 418
+    },
+    {
+      "path": "/admin/core",
+      "component": "ProSpaceDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 420
+    },
+    {
+      "path": "/admin/core/messages",
+      "component": "MessagesPage",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 421
+    },
+    {
+      "path": "/admin/core/reseau",
+      "component": "NetworkStandalonePage",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 422
+    },
+    {
+      "path": "/auth/magic/:token",
+      "component": "MagicLinkPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 424
+    },
+    {
+      "path": "/invite/:token",
+      "component": "InvitePage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 425
+    },
+    {
+      "path": "/mentions-legales",
+      "component": "MentionsLegales",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 427
+    },
+    {
+      "path": "/confidentialite",
+      "component": "PolitiqueConfidentialite",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 428
+    },
+    {
+      "path": "/cgu",
+      "component": "CGU",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 429
+    },
+    {
+      "path": "/cookies",
+      "component": "Cookies",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 430
+    },
+    {
+      "path": "/faq",
+      "component": "FAQPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 432
+    },
+    {
+      "path": "/aide",
+      "component": "FAQPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 433
+    },
+    {
+      "path": "/support",
+      "component": "SupportPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 434
+    },
+    {
+      "path": "/gouvernance",
+      "component": "GouvernanceStoryPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 437
+    },
+    {
+      "path": "/gouvernance/adhesion",
+      "component": "GouvernancePage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 438
+    },
+    {
+      "path": "/gouvernance/candidater",
+      "component": "GouvernanceCandidater",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 439
+    },
+    {
+      "path": "/gouvernance/confirmation",
+      "component": "GouvernanceConfirmation",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 440
+    },
+    {
+      "path": "/gouvernance/profil",
+      "component": "GouvernanceProfil",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 441
+    },
+    {
+      "path": "/gouvernance/paiement/:numMembre",
+      "component": "GouvernancePaiement",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 442
+    },
+    {
+      "path": "/gouvernance/repertoire/:numMembre",
+      "component": "GouvernanceRepertoire",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 443
+    },
+    {
+      "path": "/scanner-cc2026",
+      "component": "ScannerCC2026",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 445
+    },
+    {
+      "path": "/p/:slug",
+      "component": "DynamicPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 447
+    }
+  ],
+  "frontend_current": [
+    {
+      "path": "/pro",
+      "component": "ProSplashWrapper",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 282
+    },
+    {
+      "path": "/scan",
+      "component": "ScanApp",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 285
+    },
+    {
+      "path": "/",
+      "component": "KiltikonetHome",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 291
+    },
+    {
+      "path": "/legacy-cc2026",
+      "component": "LandingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 293
+    },
+    {
+      "path": "/culture-connect",
+      "component": "CultureConnect",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 296
+    },
+    {
+      "path": "/culture-connect/2026",
+      "component": "CultureConnect2026",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 297
+    },
+    {
+      "path": "/culture-connect/2027",
+      "component": "CultureConnect2027",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 298
+    },
+    {
+      "path": "/culture-connect/programme",
+      "component": "ProgramPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 299
+    },
+    {
+      "path": "/culture-connect/concert",
+      "component": "ConcertPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 300
+    },
+    {
+      "path": "/culture-connect/inscription",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 301
+    },
+    {
+      "path": "/culture-connect/catalogue",
+      "component": "CatalogPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 302
+    },
+    {
+      "path": "/infrastructure",
+      "component": "Infrastructure",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 305
+    },
+    {
+      "path": "/rejoindre",
+      "component": "Rejoindre",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 306
+    },
+    {
+      "path": "/reseau",
+      "component": "CompatibilityRedirect",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 308,
+      "redirectTo": "/rejoindre"
+    },
+    {
+      "path": "/contact",
+      "component": "ContactKiltikonet",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 309
+    },
+    {
+      "path": "/observatory",
+      "component": "Observatory",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 310
+    },
+    {
+      "path": "/observatory/founder",
+      "component": "ObservatoryFounder",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 311
+    },
+    {
+      "path": "/a-propos",
+      "component": "APropos",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 312
+    },
+    {
+      "path": "/about",
+      "component": "APropos",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 313
+    },
+    {
+      "path": "/now",
+      "component": "NowPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 314
+    },
+    {
+      "path": "/maintenant",
+      "component": "NowPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 315
+    },
+    {
+      "path": "/pricing",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 318
+    },
+    {
+      "path": "/tarifs",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 319
+    },
+    {
+      "path": "/register",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 320
+    },
+    {
+      "path": "/inscription",
+      "component": "PricingPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 321
+    },
+    {
+      "path": "/programme",
+      "component": "ProgramPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 322
+    },
+    {
+      "path": "/concert",
+      "component": "ConcertPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 323
+    },
+    {
+      "path": "/catalogue",
+      "component": "CatalogPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 324
+    },
+    {
+      "path": "/catalog",
+      "component": "CatalogPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 325
+    },
+    {
+      "path": "/partnership",
+      "component": "PartnershipPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 328
+    },
+    {
+      "path": "/partenaires",
+      "component": "PartnershipPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 329
+    },
+    {
+      "path": "/partenaire/confirmation",
+      "component": "PartnerConfirmation",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 330
+    },
+    {
+      "path": "/appel-2026",
+      "component": "AppelPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 331
+    },
+    {
+      "path": "/accessibilite",
+      "component": "AccessibilitePage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 332
+    },
+    {
+      "path": "/confirmation",
+      "component": "ConfirmationScreen",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 333
+    },
+    {
+      "path": "/admin",
+      "component": "AdminDashboard",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 334
+    },
+    {
+      "path": "/admin/dashboard-3d",
+      "component": "Dashboard3D",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 335
+    },
+    {
+      "path": "/admin/cms",
+      "component": "CMSAdmin",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 336
+    },
+    {
+      "path": "/admin/cms/visual-editor",
+      "component": "VisualEditor",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 337
+    },
+    {
+      "path": "/admin/accreditation",
+      "component": "AccreditationSystem",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 338
+    },
+    {
+      "path": "/admin/performance",
+      "component": "PerformanceDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 340
+    },
+    {
+      "path": "/admin/finance",
+      "component": "AdminFinanceDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder",
+        "finance"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 342
+    },
+    {
+      "path": "/admin/mobile",
+      "component": "AdminMobileDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 344
+    },
+    {
+      "path": "/admin/terrain",
+      "component": "AdminMobileDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 345
+    },
+    {
+      "path": "/badge/:id",
+      "component": "BadgeScan",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 346
+    },
+    {
+      "path": "/badge-scan",
+      "component": "BadgeScan",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 347
+    },
+    {
+      "path": "/activer-badge/:qrToken",
+      "component": "BadgeActivation",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 349
+    },
+    {
+      "path": "/badge-inscription",
+      "component": "BadgeInscription",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 350
+    },
+    {
+      "path": "/register-pro",
+      "component": "RegistrationForm",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 351
+    },
+    {
+      "path": "/jetons",
+      "component": "JetonsPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 352
+    },
+    {
+      "path": "/mon-espace",
+      "component": "UserDashboard",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 353
+    },
+    {
+      "path": "/jetons/confirmation",
+      "component": "JetonsPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 354
+    },
+    {
+      "path": "/admin/analytics/jetons",
+      "component": "JetonsAnalyticsDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 355
+    },
+    {
+      "path": "/participant/:participantId",
+      "component": "ParticipantProfile",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 356
+    },
+    {
+      "path": "/workspace/laurent",
+      "component": "WorkspaceLaurent",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 358
+    },
+    {
+      "path": "/workspace/twina",
+      "component": "WorkspaceTwina",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "design"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 359
+    },
+    {
+      "path": "/workspace/gwen",
+      "component": "WorkspaceGwen",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "event"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 360
+    },
+    {
+      "path": "/workspace/kaige",
+      "component": "WorkspaceKaige",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "press"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 361
+    },
+    {
+      "path": "/workspace/alirio",
+      "component": "WorkspaceAlirio",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "business"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 362
+    },
+    {
+      "path": "/workspace/wudy",
+      "component": "WorkspaceWudy",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "finance"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 363
+    },
+    {
+      "path": "/workspace/fabrice",
+      "component": "WorkspaceFabrice",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "captions"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 364
+    },
+    {
+      "path": "/workspace/analyst",
+      "component": "WorkspaceAnalyst",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "analyst"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 365
+    },
+    {
+      "path": "/workspace/coleen",
+      "component": "ColeenWorkspace",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "partnerships"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 366
+    },
+    {
+      "path": "/dashboard-cc2026",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "design"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 368
+    },
+    {
+      "path": "/dashboard-cc2026/laurent",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 369
+    },
+    {
+      "path": "/dashboard-cc2026/twina",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "design"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 370
+    },
+    {
+      "path": "/dashboard-cc2026/gwen",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "event"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 371
+    },
+    {
+      "path": "/dashboard-cc2026/fabrice",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "captions"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 372
+    },
+    {
+      "path": "/dashboard-cc2026/kaige",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "press"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 373
+    },
+    {
+      "path": "/dashboard-cc2026/alirio",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "business"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 374
+    },
+    {
+      "path": "/dashboard-cc2026/wudy",
+      "component": "DashboardCC2026",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "finance"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 375
+    },
+    {
+      "path": "/admin/analytics/site",
+      "component": "SiteAnalyticsDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 377
+    },
+    {
+      "path": "/smart-engine",
+      "component": "SmartEngineDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 380
+    },
+    {
+      "path": "/smart-engine-3d",
+      "component": "SmartEngine3D",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 381
+    },
+    {
+      "path": "/admin/ai-agents",
+      "component": "AIAgentsDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 382
+    },
+    {
+      "path": "/espace-pro/connexion",
+      "component": "ProSpaceLogin",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 385
+    },
+    {
+      "path": "/admin/core",
+      "component": "ProSpaceDashboard",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 387
+    },
+    {
+      "path": "/admin/core/messages",
+      "component": "MessagesPage",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 388
+    },
+    {
+      "path": "/admin/core/reseau",
+      "component": "NetworkStandalonePage",
+      "guard": "ProtectedRoute",
+      "allowedRoles": [
+        "admin",
+        "founder"
+      ],
+      "source": "frontend/src/App.js",
+      "line": 389
+    },
+    {
+      "path": "/auth/magic/:token",
+      "component": "MagicLinkPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 391
+    },
+    {
+      "path": "/invite/:token",
+      "component": "InvitePage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 392
+    },
+    {
+      "path": "/mentions-legales",
+      "component": "MentionsLegales",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 394
+    },
+    {
+      "path": "/confidentialite",
+      "component": "PolitiqueConfidentialite",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 395
+    },
+    {
+      "path": "/cgu",
+      "component": "CGU",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 396
+    },
+    {
+      "path": "/cookies",
+      "component": "Cookies",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 397
+    },
+    {
+      "path": "/faq",
+      "component": "FAQPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 399
+    },
+    {
+      "path": "/aide",
+      "component": "FAQPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 400
+    },
+    {
+      "path": "/support",
+      "component": "SupportPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 401
+    },
+    {
+      "path": "/gouvernance",
+      "component": "GouvernanceStoryPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 404
+    },
+    {
+      "path": "/gouvernance/adhesion",
+      "component": "GouvernancePage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 405
+    },
+    {
+      "path": "/gouvernance/candidater",
+      "component": "GouvernanceCandidater",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 406
+    },
+    {
+      "path": "/gouvernance/confirmation",
+      "component": "GouvernanceConfirmation",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 407
+    },
+    {
+      "path": "/gouvernance/profil",
+      "component": "GouvernanceProfil",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 408
+    },
+    {
+      "path": "/gouvernance/paiement/:numMembre",
+      "component": "GouvernancePaiement",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 409
+    },
+    {
+      "path": "/gouvernance/repertoire/:numMembre",
+      "component": "GouvernanceRepertoire",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 410
+    },
+    {
+      "path": "/scanner-cc2026",
+      "component": "ScannerCC2026",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 412
+    },
+    {
+      "path": "/p/:slug",
+      "component": "DynamicPage",
+      "guard": "component-defined",
+      "allowedRoles": [],
+      "source": "frontend/src/App.js",
+      "line": 414
+    }
+  ],
+  "backend_declarations": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "function": "health_check",
+      "source": "backend/server.py",
+      "line": 304,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/health-detailed",
+      "function": "health_detailed",
+      "source": "backend/server.py",
+      "line": 311,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "function": "auth_me",
+      "source": "backend/server.py",
+      "line": 332,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/logout",
+      "function": "auth_logout",
+      "source": "backend/server.py",
+      "line": 341,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/create-checkout-session",
+      "function": "create_checkout_session",
+      "source": "backend/server.py",
+      "line": 1214,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/checkout/status/{session_id}",
+      "function": "get_checkout_status",
+      "source": "backend/server.py",
+      "line": 1336,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/webhook/stripe",
+      "function": "stripe_webhook",
+      "source": "backend/server.py",
+      "line": 1373,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/stripe-public-key",
+      "function": "get_stripe_public_key",
+      "source": "backend/server.py",
+      "line": 1711,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/partners",
+      "function": "get_partners",
+      "source": "backend/server.py",
+      "line": 1716,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/",
+      "function": "root",
+      "source": "backend/server.py",
+      "line": 1726,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/upload-image",
+      "function": "upload_image",
+      "source": "backend/server.py",
+      "line": 1730,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/registrations",
+      "function": "create_registration",
+      "source": "backend/server.py",
+      "line": 1749,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/registrations",
+      "function": "get_registrations",
+      "source": "backend/server.py",
+      "line": 1814,
+      "router": "api_router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/registrations/{registration_id}/status",
+      "function": "update_registration_status",
+      "source": "backend/server.py",
+      "line": 1853,
+      "router": "api_router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/registrations/{registration_id}/catalog",
+      "function": "update_catalog_visibility",
+      "source": "backend/server.py",
+      "line": 1902,
+      "router": "api_router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/registrations/{registration_id}/photo",
+      "function": "update_registration_photo",
+      "source": "backend/server.py",
+      "line": 1914,
+      "router": "api_router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/registrations/{registration_id}",
+      "function": "delete_registration",
+      "source": "backend/server.py",
+      "line": 1932,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/registrations/manual",
+      "function": "create_manual_registration",
+      "source": "backend/server.py",
+      "line": 1941,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/catalog",
+      "function": "get_catalog_entries",
+      "source": "backend/server.py",
+      "line": 1970,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/registrations/export",
+      "function": "export_registrations",
+      "source": "backend/server.py",
+      "line": 1989,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/registrations/batch/approve",
+      "function": "batch_approve_registrations",
+      "source": "backend/server.py",
+      "line": 2093,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/registrations/batch/send-badges",
+      "function": "batch_send_badges",
+      "source": "backend/server.py",
+      "line": 2148,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/registrations/batch/progress/{job_id}",
+      "function": "get_batch_progress",
+      "source": "backend/server.py",
+      "line": 2242,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/registrations/batch/history",
+      "function": "get_batch_history",
+      "source": "backend/server.py",
+      "line": 2265,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/email-logs",
+      "function": "get_email_logs",
+      "source": "backend/server.py",
+      "line": 2280,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/email-logs/stats",
+      "function": "get_email_stats",
+      "source": "backend/server.py",
+      "line": 2314,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/registrations/export/filtered",
+      "function": "export_registrations_filtered",
+      "source": "backend/server.py",
+      "line": 2427,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/verify",
+      "function": "verify_admin",
+      "source": "backend/server.py",
+      "line": 2490,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/workspace/login",
+      "function": "workspace_login",
+      "source": "backend/server.py",
+      "line": 2548,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/workspace/log",
+      "function": "add_workspace_log",
+      "source": "backend/server.py",
+      "line": 2601,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/logs",
+      "function": "get_workspace_logs",
+      "source": "backend/server.py",
+      "line": 2615,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/sessions",
+      "function": "get_workspace_sessions",
+      "source": "backend/server.py",
+      "line": 2630,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/workspace/logout",
+      "function": "workspace_logout",
+      "source": "backend/server.py",
+      "line": 2652,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/workspace/update-password",
+      "function": "update_workspace_password",
+      "source": "backend/server.py",
+      "line": 2673,
+      "router": "api_router"
+    },
+    {
+      "method": "WEBSOCKET",
+      "path": "/api/ws/chat",
+      "function": "chat_websocket",
+      "source": "backend/server.py",
+      "line": 2793,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/chat/messages/channel/{channel}",
+      "function": "get_channel_messages",
+      "source": "backend/server.py",
+      "line": 2870,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/chat/messages/dm/{user_id}",
+      "function": "get_dm_messages",
+      "source": "backend/server.py",
+      "line": 2885,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/chat/messages",
+      "function": "save_chat_message",
+      "source": "backend/server.py",
+      "line": 2903,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/chat/upload",
+      "function": "upload_chat_attachment",
+      "source": "backend/server.py",
+      "line": 2913,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/chat/online",
+      "function": "get_online_users",
+      "source": "backend/server.py",
+      "line": 2948,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ai/assistant",
+      "function": "ai_assistant",
+      "source": "backend/server.py",
+      "line": 2999,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/notifications/send",
+      "function": "send_notification",
+      "source": "backend/server.py",
+      "line": 3040,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/{target}",
+      "function": "get_notifications",
+      "source": "backend/server.py",
+      "line": 3071,
+      "router": "api_router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/notifications/{notification_id}/read",
+      "function": "mark_notification_read",
+      "source": "backend/server.py",
+      "line": 3087,
+      "router": "api_router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/notifications/{target}/read-all",
+      "function": "mark_all_notifications_read",
+      "source": "backend/server.py",
+      "line": 3096,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/{target}/stream",
+      "function": "notification_stream",
+      "source": "backend/server.py",
+      "line": 3106,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/countries",
+      "function": "get_countries",
+      "source": "backend/server.py",
+      "line": 3137,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/participant/{participant_id}",
+      "function": "get_public_participant_profile",
+      "source": "backend/server.py",
+      "line": 3144,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/participant/{participant_id}/badge",
+      "function": "generate_badge_pdf",
+      "source": "backend/server.py",
+      "line": 3178,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/partners/admin",
+      "function": "get_partners_admin",
+      "source": "backend/server.py",
+      "line": 3340,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/partners/manual",
+      "function": "create_manual_partner",
+      "source": "backend/server.py",
+      "line": 3359,
+      "router": "api_router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/partners/{partner_id}",
+      "function": "update_partner",
+      "source": "backend/server.py",
+      "line": 3388,
+      "router": "api_router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/partners/{partner_id}",
+      "function": "delete_partner",
+      "source": "backend/server.py",
+      "line": 3405,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/partners/{partner_id}/sponsor/{registration_id}",
+      "function": "link_sponsor_to_registration",
+      "source": "backend/server.py",
+      "line": 3421,
+      "router": "api_router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/partners/{partner_id}/sponsor/{registration_id}",
+      "function": "unlink_sponsor_from_registration",
+      "source": "backend/server.py",
+      "line": 3445,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/jetons/packs",
+      "function": "get_jetons_packs",
+      "source": "backend/server.py",
+      "line": 3465,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/jetons/wallet/{badge_id}",
+      "function": "get_jetons_wallet",
+      "source": "backend/server.py",
+      "line": 3469,
+      "router": "api_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/jetons/checkout",
+      "function": "jetons_checkout",
+      "source": "backend/server.py",
+      "line": 3485,
+      "router": "api_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/stats",
+      "function": "get_public_statistics",
+      "source": "backend/server.py",
+      "line": 3517,
+      "router": "api_v1_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/stats/territories",
+      "function": "get_territory_insights",
+      "source": "backend/server.py",
+      "line": 3617,
+      "router": "api_v1_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/stats/advanced",
+      "function": "get_advanced_analytics",
+      "source": "backend/server.py",
+      "line": 3661,
+      "router": "api_v1_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/report/summary",
+      "function": "get_partner_report_summary",
+      "source": "backend/server.py",
+      "line": 3800,
+      "router": "api_v1_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/search/match",
+      "function": "smart_connect_matching",
+      "source": "backend/server.py",
+      "line": 3848,
+      "router": "api_v1_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/search/suggestions",
+      "function": "get_partner_suggestions",
+      "source": "backend/server.py",
+      "line": 3967,
+      "router": "api_v1_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/llm/embedding",
+      "function": "generate_embedding_endpoint",
+      "source": "backend/server.py",
+      "line": 4107,
+      "router": "api_v1_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/llm/chat",
+      "function": "llm_chat_endpoint",
+      "source": "backend/server.py",
+      "line": 4128,
+      "router": "api_v1_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/activer-badge/{qr_token}",
+      "function": "activer_badge",
+      "source": "backend/server.py",
+      "line": 4249,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/media",
+      "function": "get_cms_media",
+      "source": "backend/server.py",
+      "line": 4306,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/media",
+      "function": "create_cms_media",
+      "source": "backend/server.py",
+      "line": 4316,
+      "router": "app"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cms/media/{media_id}",
+      "function": "update_cms_media",
+      "source": "backend/server.py",
+      "line": 4327,
+      "router": "app"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/cms/media/{media_id}",
+      "function": "delete_cms_media",
+      "source": "backend/server.py",
+      "line": 4343,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/media/{media_id}/upload",
+      "function": "upload_cms_media_image",
+      "source": "backend/server.py",
+      "line": 4353,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/upload",
+      "function": "upload_cms_file",
+      "source": "backend/server.py",
+      "line": 4368,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/exhibitors",
+      "function": "get_cms_exhibitors",
+      "source": "backend/server.py",
+      "line": 4392,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/exhibitors/{profile_id}/upload",
+      "function": "upload_exhibitor_photo",
+      "source": "backend/server.py",
+      "line": 4401,
+      "router": "app"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/cms/exhibitors/{profile_id}",
+      "function": "delete_exhibitor_photo",
+      "source": "backend/server.py",
+      "line": 4430,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/speakers",
+      "function": "get_cms_speakers",
+      "source": "backend/server.py",
+      "line": 4437,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/speakers",
+      "function": "create_cms_speaker",
+      "source": "backend/server.py",
+      "line": 4446,
+      "router": "app"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cms/speakers/{speaker_id}",
+      "function": "update_cms_speaker",
+      "source": "backend/server.py",
+      "line": 4457,
+      "router": "app"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/cms/speakers/{speaker_id}",
+      "function": "delete_cms_speaker",
+      "source": "backend/server.py",
+      "line": 4473,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/speakers/{speaker_id}/upload",
+      "function": "upload_speaker_photo",
+      "source": "backend/server.py",
+      "line": 4483,
+      "router": "app"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cms/speakers/reorder",
+      "function": "reorder_speakers",
+      "source": "backend/server.py",
+      "line": 4498,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/partners",
+      "function": "get_cms_partners",
+      "source": "backend/server.py",
+      "line": 4509,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/partners",
+      "function": "create_cms_partner",
+      "source": "backend/server.py",
+      "line": 4518,
+      "router": "app"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cms/partners/{partner_id}",
+      "function": "update_cms_partner",
+      "source": "backend/server.py",
+      "line": 4529,
+      "router": "app"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/cms/partners/{partner_id}",
+      "function": "delete_cms_partner",
+      "source": "backend/server.py",
+      "line": 4545,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/partners/{partner_id}/upload",
+      "function": "upload_partner_logo",
+      "source": "backend/server.py",
+      "line": 4555,
+      "router": "app"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cms/partners/reorder",
+      "function": "reorder_partners",
+      "source": "backend/server.py",
+      "line": 4570,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/publish",
+      "function": "publish_cms_changes",
+      "source": "backend/server.py",
+      "line": 4581,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/visual-editor/save",
+      "function": "save_visual_editor_changes",
+      "source": "backend/server.py",
+      "line": 4598,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/visual-editor/changes/{page}",
+      "function": "get_visual_editor_changes",
+      "source": "backend/server.py",
+      "line": 4623,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/visual-editor/proxy",
+      "function": "visual_editor_proxy",
+      "source": "backend/server.py",
+      "line": 4633,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/visual-editor/proxy/{full_path:path}",
+      "function": "visual_editor_proxy",
+      "source": "backend/server.py",
+      "line": 4634,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/preview",
+      "function": "get_cms_preview",
+      "source": "backend/server.py",
+      "line": 4757,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/theme",
+      "function": "get_cms_theme",
+      "source": "backend/server.py",
+      "line": 4775,
+      "router": "app"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cms/theme",
+      "function": "update_cms_theme",
+      "source": "backend/server.py",
+      "line": 4796,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/theme/hero-upload",
+      "function": "upload_hero_image",
+      "source": "backend/server.py",
+      "line": 4813,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/content",
+      "function": "get_cms_content",
+      "source": "backend/server.py",
+      "line": 4831,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/content/{page}/{section}",
+      "function": "get_cms_content_section",
+      "source": "backend/server.py",
+      "line": 4841,
+      "router": "app"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cms/content/{page}/{section}",
+      "function": "update_cms_content_section",
+      "source": "backend/server.py",
+      "line": 4850,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/content/init-defaults",
+      "function": "init_default_content",
+      "source": "backend/server.py",
+      "line": 4875,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/pages",
+      "function": "get_cms_pages",
+      "source": "backend/server.py",
+      "line": 4993,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/pages/{page_id}",
+      "function": "get_cms_page",
+      "source": "backend/server.py",
+      "line": 4999,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/pages/slug/{slug}",
+      "function": "get_cms_page_by_slug",
+      "source": "backend/server.py",
+      "line": 5007,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/pages",
+      "function": "create_cms_page",
+      "source": "backend/server.py",
+      "line": 5018,
+      "router": "app"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cms/pages/{page_id}",
+      "function": "update_cms_page",
+      "source": "backend/server.py",
+      "line": 5039,
+      "router": "app"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/cms/pages/{page_id}",
+      "function": "delete_cms_page",
+      "source": "backend/server.py",
+      "line": 5069,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/public/theme",
+      "function": "get_public_theme",
+      "source": "backend/server.py",
+      "line": 5081,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/public/content/{page}",
+      "function": "get_public_content",
+      "source": "backend/server.py",
+      "line": 5099,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/public/page/{slug}",
+      "function": "get_public_page",
+      "source": "backend/server.py",
+      "line": 5124,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/cleanup-atrium",
+      "function": "cleanup_atrium_references",
+      "source": "backend/server.py",
+      "line": 5128,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/map-territories",
+      "function": "get_map_territories",
+      "source": "backend/server.py",
+      "line": 5167,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/map-territories",
+      "function": "save_map_territories",
+      "source": "backend/server.py",
+      "line": 5182,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/map-territories/add",
+      "function": "add_map_territory",
+      "source": "backend/server.py",
+      "line": 5199,
+      "router": "app"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/cms/map-territories/{territory_id}",
+      "function": "delete_map_territory",
+      "source": "backend/server.py",
+      "line": 5227,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cms/site-config",
+      "function": "get_site_config",
+      "source": "backend/server.py",
+      "line": 5251,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/site-config",
+      "function": "save_site_config",
+      "source": "backend/server.py",
+      "line": 5268,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cms/section-background",
+      "function": "save_section_background",
+      "source": "backend/server.py",
+      "line": 5282,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/annual-intention",
+      "function": "get_annual_intention",
+      "source": "backend/server.py",
+      "line": 5334,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/annual-intention",
+      "function": "save_annual_intention",
+      "source": "backend/server.py",
+      "line": 5366,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/annual-intention/all",
+      "function": "get_all_intentions",
+      "source": "backend/server.py",
+      "line": 5400,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/verify/{attestation_id}",
+      "function": "verify_proxy",
+      "source": "backend/server.py",
+      "line": 5487,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/realtime/events",
+      "function": "realtime_events",
+      "source": "backend/server.py",
+      "line": 5717,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/realtime/status",
+      "function": "realtime_status",
+      "source": "backend/server.py",
+      "line": 5761,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/notifications",
+      "function": "get_admin_notifications",
+      "source": "backend/server.py",
+      "line": 5775,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/notifications/read-all",
+      "function": "mark_all_admin_notifications_read",
+      "source": "backend/server.py",
+      "line": 5784,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/notifications/test",
+      "function": "send_test_notification",
+      "source": "backend/server.py",
+      "line": 5791,
+      "router": "app"
+    },
+    {
+      "method": "WEBSOCKET",
+      "path": "/api/ws/sync",
+      "function": "websocket_sync",
+      "source": "backend/server.py",
+      "line": 5811,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/realtime/broadcast",
+      "function": "manual_broadcast",
+      "source": "backend/server.py",
+      "line": 5907,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/smart-engine/index-contacts",
+      "function": "index_contacts_to_smart_engine",
+      "source": "backend/server.py",
+      "line": 5920,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/profiles",
+      "function": "get_smart_engine_profiles",
+      "source": "backend/server.py",
+      "line": 5973,
+      "router": "app"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/smart-engine/purge",
+      "function": "purge_smart_engine",
+      "source": "backend/server.py",
+      "line": 6003,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/sitemap.xml",
+      "function": "dynamic_sitemap",
+      "source": "backend/server.py",
+      "line": 6022,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/tickets/purchase",
+      "function": "purchase_ticket",
+      "source": "backend/server.py",
+      "line": 6168,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/contact",
+      "function": "submit_contact_form",
+      "source": "backend/server.py",
+      "line": 6266,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/register",
+      "function": "register_on_site",
+      "source": "backend/server.py",
+      "line": 6288,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/accreditation",
+      "function": "admin_add_accreditation",
+      "source": "backend/server.py",
+      "line": 6385,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badge/{badge_id}",
+      "function": "get_badge_info",
+      "source": "backend/server.py",
+      "line": 6446,
+      "router": "app"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/badge/{badge_id}/validate",
+      "function": "validate_badge_presence",
+      "source": "backend/server.py",
+      "line": 6501,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/catalog/sync",
+      "function": "get_synced_catalog",
+      "source": "backend/server.py",
+      "line": 6566,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/contacts/alirio",
+      "function": "create_alirio_contact",
+      "source": "backend/server.py",
+      "line": 6636,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/contacts/alirio",
+      "function": "get_alirio_contacts",
+      "source": "backend/server.py",
+      "line": 6651,
+      "router": "app"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/contacts/alirio/{contact_id}/promote",
+      "function": "promote_contact_to_partner",
+      "source": "backend/server.py",
+      "line": 6661,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cc2026/tasks/status",
+      "function": "get_all_task_status",
+      "source": "backend/server.py",
+      "line": 6699,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cc2026/tasks/status/{workspace_id}",
+      "function": "get_workspace_task_status",
+      "source": "backend/server.py",
+      "line": 6705,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cc2026/tasks/{task_id}/toggle",
+      "function": "toggle_task_status",
+      "source": "backend/server.py",
+      "line": 6714,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/robots.txt",
+      "function": "robots_txt",
+      "source": "backend/server.py",
+      "line": 6768,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/register",
+      "function": "auth_register",
+      "source": "backend/server.py",
+      "line": 6910,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/request-access",
+      "function": "pro_request_access",
+      "source": "backend/server.py",
+      "line": 7073,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/verify-code",
+      "function": "pro_verify_code",
+      "source": "backend/server.py",
+      "line": 7231,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/dev/get-code/{email}",
+      "function": "dev_get_code",
+      "source": "backend/server.py",
+      "line": 7314,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/magic/{token}",
+      "function": "validate_magic_link",
+      "source": "backend/server.py",
+      "line": 7329,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/google/session",
+      "function": "google_auth_session",
+      "source": "backend/server.py",
+      "line": 7387,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/frek",
+      "function": "auth_frek_initiate",
+      "source": "backend/server.py",
+      "line": 7491,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/frek/verify",
+      "function": "auth_frek_verify",
+      "source": "backend/server.py",
+      "line": 7574,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/github",
+      "function": "auth_github_redirect",
+      "source": "backend/server.py",
+      "line": 7662,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/github/callback",
+      "function": "auth_github_callback",
+      "source": "backend/server.py",
+      "line": 7687,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/emergency-access",
+      "function": "emergency_admin_access",
+      "source": "backend/server.py",
+      "line": 7805,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/invite",
+      "function": "create_team_invitation",
+      "source": "backend/server.py",
+      "line": 7835,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/invitations",
+      "function": "list_invitations",
+      "source": "backend/server.py",
+      "line": 7881,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/invite/validate/{token}",
+      "function": "validate_invitation",
+      "source": "backend/server.py",
+      "line": 7893,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/health-stats",
+      "function": "get_health_stats",
+      "source": "backend/server.py",
+      "line": 7965,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/update-language",
+      "function": "update_language",
+      "source": "backend/server.py",
+      "line": 8040,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/delete-account",
+      "function": "delete_account",
+      "source": "backend/server.py",
+      "line": 8054,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/export-data/{user_id}",
+      "function": "export_user_data",
+      "source": "backend/server.py",
+      "line": 8095,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/profile/{profile_id}",
+      "function": "get_pro_profile",
+      "source": "backend/server.py",
+      "line": 8119,
+      "router": "app"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/pro/profile/{profile_id}",
+      "function": "update_pro_profile",
+      "source": "backend/server.py",
+      "line": 8149,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/connections/{profile_id}",
+      "function": "get_pro_connections",
+      "source": "backend/server.py",
+      "line": 8164,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/connect",
+      "function": "send_connection_request",
+      "source": "backend/server.py",
+      "line": 8180,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/messages/{profile_id}",
+      "function": "get_pro_messages",
+      "source": "backend/server.py",
+      "line": 8210,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/messages",
+      "function": "send_pro_message",
+      "source": "backend/server.py",
+      "line": 8229,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/frek/lookup",
+      "function": "frek_id_lookup",
+      "source": "backend/server.py",
+      "line": 8248,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/conversations",
+      "function": "get_conversations",
+      "source": "backend/server.py",
+      "line": 8282,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/{partner_id}",
+      "function": "get_messages_with_partner",
+      "source": "backend/server.py",
+      "line": 8322,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/messages/send",
+      "function": "send_message_api",
+      "source": "backend/server.py",
+      "line": 8361,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/opportunities",
+      "function": "get_pro_opportunities",
+      "source": "backend/server.py",
+      "line": 8400,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/opportunities",
+      "function": "create_pro_opportunity",
+      "source": "backend/server.py",
+      "line": 8406,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/opportunities/{opportunity_id}/apply",
+      "function": "apply_to_opportunity",
+      "source": "backend/server.py",
+      "line": 8427,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/events",
+      "function": "get_pro_events",
+      "source": "backend/server.py",
+      "line": 8452,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/events",
+      "function": "create_pro_event",
+      "source": "backend/server.py",
+      "line": 8458,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/events/{event_id}/register",
+      "function": "register_for_event",
+      "source": "backend/server.py",
+      "line": 8477,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/connection-requests/{profile_id}",
+      "function": "get_connection_requests",
+      "source": "backend/server.py",
+      "line": 8503,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/connection-requests/{request_id}/accept",
+      "function": "accept_connection_request",
+      "source": "backend/server.py",
+      "line": 8521,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/connection-requests/{request_id}/reject",
+      "function": "reject_connection_request",
+      "source": "backend/server.py",
+      "line": 8532,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/messages/{message_id}/read",
+      "function": "mark_message_read",
+      "source": "backend/server.py",
+      "line": 8543,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/messages/read",
+      "function": "mark_conversation_read",
+      "source": "backend/server.py",
+      "line": 8553,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/catalog/public",
+      "function": "get_public_catalog",
+      "source": "backend/server.py",
+      "line": 8569,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/export-pdf-batch",
+      "function": "export_badges_pdf_batch",
+      "source": "backend/server.py",
+      "line": 8600,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/export-pdf-single/{registration_id}",
+      "function": "export_single_badge_pdf",
+      "source": "backend/server.py",
+      "line": 8727,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/export-stats",
+      "function": "get_badge_export_stats",
+      "source": "backend/server.py",
+      "line": 8744,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/invitations/export-single/{badge_id}",
+      "function": "export_single_invitation",
+      "source": "backend/server.py",
+      "line": 8765,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/invitations/export-batch",
+      "function": "export_batch_invitations",
+      "source": "backend/server.py",
+      "line": 8792,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/scan/debit",
+      "function": "scan_debit",
+      "source": "backend/server.py",
+      "line": 8834,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/badges/print-batch",
+      "function": "mark_badges_printed",
+      "source": "backend/server.py",
+      "line": 8952,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/badges/archive-legacy",
+      "function": "archive_frek_legacy",
+      "source": "backend/server.py",
+      "line": 8970,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/dashboard/cc2026/live",
+      "function": "dashboard_cc2026_live",
+      "source": "backend/server.py",
+      "line": 8991,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/reconcile",
+      "function": "admin_reconcile",
+      "source": "backend/server.py",
+      "line": 9049,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/batch-email",
+      "function": "admin_batch_email",
+      "source": "backend/server.py",
+      "line": 9100,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/email/send",
+      "function": "email_send",
+      "source": "backend/server.py",
+      "line": 9176,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/email/campaign",
+      "function": "email_campaign",
+      "source": "backend/server.py",
+      "line": 9220,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/email/stats",
+      "function": "email_stats",
+      "source": "backend/server.py",
+      "line": 9274,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/email/templates",
+      "function": "email_templates",
+      "source": "backend/server.py",
+      "line": 9285,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/email/qr-generate",
+      "function": "email_qr_generate",
+      "source": "backend/server.py",
+      "line": 9295,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/stats/export",
+      "function": "stats_export",
+      "source": "backend/server.py",
+      "line": 9317,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/stats/export/transactions",
+      "function": "export_transactions",
+      "source": "backend/server.py",
+      "line": 9346,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/stats/export/scans",
+      "function": "export_scans",
+      "source": "backend/server.py",
+      "line": 9372,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/stats/live",
+      "function": "stats_live",
+      "source": "backend/server.py",
+      "line": 9394,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/stats/heatmap",
+      "function": "stats_heatmap",
+      "source": "backend/server.py",
+      "line": 9404,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/analytics/track",
+      "function": "track_analytics_single",
+      "source": "backend/server.py",
+      "line": 9458,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/analytics/batch",
+      "function": "track_analytics_batch",
+      "source": "backend/server.py",
+      "line": 9502,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/analytics/dashboard",
+      "function": "get_analytics_dashboard",
+      "source": "backend/server.py",
+      "line": 9590,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/analytics/site",
+      "function": "get_site_analytics",
+      "source": "backend/server.py",
+      "line": 9677,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/analytics/behavior/{user_id}",
+      "function": "get_user_behavior",
+      "source": "backend/server.py",
+      "line": 9816,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/team/notifications",
+      "function": "get_team_notifications",
+      "source": "backend/server.py",
+      "line": 9859,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/team/notifications/{notification_id}/read",
+      "function": "mark_team_notification_read",
+      "source": "backend/server.py",
+      "line": 9877,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/team/notifications/mark-all-read",
+      "function": "mark_all_team_notifications_read",
+      "source": "backend/server.py",
+      "line": 9891,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/team/notifications/create",
+      "function": "create_manual_notification",
+      "source": "backend/server.py",
+      "line": 9900,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/recommendations/{profile_id}",
+      "function": "get_pro_recommendations",
+      "source": "backend/server.py",
+      "line": 9916,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/stats",
+      "function": "get_smart_engine_stats",
+      "source": "backend/server.py",
+      "line": 10106,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/alerts/rules",
+      "function": "get_alert_rules",
+      "source": "backend/server.py",
+      "line": 10166,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/smart-engine/alerts/rules",
+      "function": "create_alert_rule",
+      "source": "backend/server.py",
+      "line": 10178,
+      "router": "app"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/smart-engine/alerts/rules/{rule_id}",
+      "function": "update_alert_rule",
+      "source": "backend/server.py",
+      "line": 10189,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/smart-engine/check-alerts",
+      "function": "check_and_trigger_alerts",
+      "source": "backend/server.py",
+      "line": 10204,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/insights",
+      "function": "get_smart_insights",
+      "source": "backend/server.py",
+      "line": 10319,
+      "router": "app"
+    },
+    {
+      "method": "POST",
+      "path": "/api/smart-engine/cron/check",
+      "function": "smart_engine_cron_check",
+      "source": "backend/server.py",
+      "line": 10458,
+      "router": "app"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/cc2026/stats",
+      "function": "cc2026_stats",
+      "source": "backend/routes/admin_cc2026.py",
+      "line": 37,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/users",
+      "function": "list_users",
+      "source": "backend/routes/admin_cc2026.py",
+      "line": 94,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/users/{frek_id}/role",
+      "function": "change_user_role",
+      "source": "backend/routes/admin_cc2026.py",
+      "line": 110,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/users/{frek_id}/suspend",
+      "function": "suspend_user",
+      "source": "backend/routes/admin_cc2026.py",
+      "line": 123,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/admin/users/{frek_id}",
+      "function": "anonymize_user",
+      "source": "backend/routes/admin_cc2026.py",
+      "line": 132,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/feed/reported",
+      "function": "get_reported_posts",
+      "source": "backend/routes/admin_cc2026.py",
+      "line": 154,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/admin/feed/posts/{post_id}",
+      "function": "admin_delete_post",
+      "source": "backend/routes/admin_cc2026.py",
+      "line": 164,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/feed/posts/{post_id}/restore",
+      "function": "admin_restore_post",
+      "source": "backend/routes/admin_cc2026.py",
+      "line": 173,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/users/{frek_id}/ban",
+      "function": "ban_user_from_feed",
+      "source": "backend/routes/admin_cc2026.py",
+      "line": 180,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai-agents/list",
+      "function": "list_agents",
+      "source": "backend/routes/ai_agents.py",
+      "line": 142,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai-agents/{agent_id}/status",
+      "function": "get_agent_status",
+      "source": "backend/routes/ai_agents.py",
+      "line": 189,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai-agents/{agent_id}/logs",
+      "function": "get_agent_logs",
+      "source": "backend/routes/ai_agents.py",
+      "line": 225,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ai-agents/{agent_id}/toggle",
+      "function": "toggle_agent",
+      "source": "backend/routes/ai_agents.py",
+      "line": 234,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/analytics/jetons/overview",
+      "function": "jetons_overview",
+      "source": "backend/routes/analytics.py",
+      "line": 20,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/frek-discovery",
+      "function": "frek_discovery",
+      "source": "backend/routes/badges.py",
+      "line": 101,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/single/{badge_id}",
+      "function": "get_badge",
+      "source": "backend/routes/badges.py",
+      "line": 122,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/badges/inscrire",
+      "function": "inscrire",
+      "source": "backend/routes/badges.py",
+      "line": 132,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/badges/scan",
+      "function": "scan_badge",
+      "source": "backend/routes/badges.py",
+      "line": 208,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/types",
+      "function": "get_badge_types",
+      "source": "backend/routes/badges.py",
+      "line": 291,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/lookup/{badge_id}",
+      "function": "lookup_badge",
+      "source": "backend/routes/badges.py",
+      "line": 300,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/badges/recover",
+      "function": "recover_badge",
+      "source": "backend/routes/badges.py",
+      "line": 311,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/list",
+      "function": "list_badges",
+      "source": "backend/routes/badges.py",
+      "line": 342,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/stats",
+      "function": "badge_stats",
+      "source": "backend/routes/badges.py",
+      "line": 353,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/frek-status",
+      "function": "frek_status",
+      "source": "backend/routes/badges.py",
+      "line": 375,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/badges/frek-reconcile",
+      "function": "frek_reconcile",
+      "source": "backend/routes/badges.py",
+      "line": 385,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/analyse",
+      "function": "analyse_profil",
+      "source": "backend/routes/brain.py",
+      "line": 19,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/entreprise",
+      "function": "analyse_entreprise",
+      "source": "backend/routes/brain.py",
+      "line": 28,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/evenement",
+      "function": "analyse_evenement",
+      "source": "backend/routes/brain.py",
+      "line": 37,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/alerte",
+      "function": "alerte_operationnelle",
+      "source": "backend/routes/brain.py",
+      "line": 46,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/agent-status",
+      "function": "agent_brain_status",
+      "source": "backend/routes/brain.py",
+      "line": 57,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/smart-engine-flux",
+      "function": "smart_engine_flux",
+      "source": "backend/routes/brain.py",
+      "line": 64,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/alert-check",
+      "function": "alert_check",
+      "source": "backend/routes/brain.py",
+      "line": 71,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/enrich-badge",
+      "function": "enrich_badge",
+      "source": "backend/routes/brain.py",
+      "line": 77,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/daily-report",
+      "function": "daily_report",
+      "source": "backend/routes/brain.py",
+      "line": 83,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/stripe-payment",
+      "function": "stripe_payment",
+      "source": "backend/routes/brain.py",
+      "line": 89,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/pro-profile",
+      "function": "pro_profile",
+      "source": "backend/routes/brain.py",
+      "line": 95,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/batch-process",
+      "function": "batch_process",
+      "source": "backend/routes/brain.py",
+      "line": 101,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/analyses",
+      "function": "list_analyses",
+      "source": "backend/routes/brain.py",
+      "line": 107,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/alerts",
+      "function": "list_alerts",
+      "source": "backend/routes/brain.py",
+      "line": 114,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/profile/{badge_id}",
+      "function": "profile_analysis",
+      "source": "backend/routes/brain.py",
+      "line": 121,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/chat",
+      "function": "brain_chat",
+      "source": "backend/routes/brain.py",
+      "line": 129,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/candidatures/cc2026",
+      "function": "submit_candidature",
+      "source": "backend/routes/candidatures.py",
+      "line": 47,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/candidatures/cc2026",
+      "function": "list_candidatures",
+      "source": "backend/routes/candidatures.py",
+      "line": 140,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/candidatures/cc2026/{candidature_id}/status",
+      "function": "update_candidature_status",
+      "source": "backend/routes/candidatures.py",
+      "line": 149,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/candidatures/cc2026/export",
+      "function": "export_candidatures_csv",
+      "source": "backend/routes/candidatures.py",
+      "line": 163,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/docs/{filename}",
+      "function": "serve_document",
+      "source": "backend/routes/candidatures.py",
+      "line": 182,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cultural-identity/{user_id}",
+      "function": "get_cultural_identity",
+      "source": "backend/routes/cultural_identity.py",
+      "line": 83,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cultural-identity/{user_id}/recalculate",
+      "function": "recalculate_score",
+      "source": "backend/routes/cultural_identity.py",
+      "line": 111,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cultural-feed",
+      "function": "get_cultural_feed",
+      "source": "backend/routes/cultural_identity.py",
+      "line": 197,
+      "router": "feed_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cultural-reactions",
+      "function": "add_cultural_reaction",
+      "source": "backend/routes/cultural_identity.py",
+      "line": 301,
+      "router": "reactions_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/cultural-feed/seed-preview",
+      "function": "seed_preview",
+      "source": "backend/routes/cultural_identity.py",
+      "line": 366,
+      "router": "feed_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cultural-feed/seed",
+      "function": "seed_cards",
+      "source": "backend/routes/cultural_identity.py",
+      "line": 372,
+      "router": "feed_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cultural-search",
+      "function": "cultural_search",
+      "source": "backend/routes/cultural_search.py",
+      "line": 51,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cultural-cards",
+      "function": "create_cultural_card",
+      "source": "backend/routes/cultural_search.py",
+      "line": 224,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/analytics/cultural-trends",
+      "function": "get_cultural_trends",
+      "source": "backend/routes/cultural_search.py",
+      "line": 328,
+      "router": "analytics_router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/analytics/cultural-profiles",
+      "function": "get_cultural_profiles",
+      "source": "backend/routes/cultural_search.py",
+      "line": 362,
+      "router": "analytics_router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cultural-cards/seed-sponsored",
+      "function": "seed_sponsored",
+      "source": "backend/routes/cultural_search.py",
+      "line": 402,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/doctrine/permissions",
+      "function": "get_all_permissions",
+      "source": "backend/routes/doctrine.py",
+      "line": 328,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/doctrine/permissions/{actor_role}",
+      "function": "get_permission",
+      "source": "backend/routes/doctrine.py",
+      "line": 335,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/doctrine/mapping",
+      "function": "get_mapping",
+      "source": "backend/routes/doctrine.py",
+      "line": 346,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/doctrine/resolve/{profile_type}",
+      "function": "resolve_role",
+      "source": "backend/routes/doctrine.py",
+      "line": 355,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/doctrine/assign",
+      "function": "assign_actor_role",
+      "source": "backend/routes/doctrine.py",
+      "line": 370,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/doctrine/backfill",
+      "function": "run_backfill",
+      "source": "backend/routes/doctrine.py",
+      "line": 412,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/doctrine/stats",
+      "function": "doctrine_stats",
+      "source": "backend/routes/doctrine.py",
+      "line": 419,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/doctrine/my-permissions",
+      "function": "my_permissions",
+      "source": "backend/routes/doctrine.py",
+      "line": 432,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/doctrine/flow-stats",
+      "function": "flow_stats",
+      "source": "backend/routes/doctrine.py",
+      "line": 473,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/doctrine/promote",
+      "function": "promote_user",
+      "source": "backend/routes/doctrine.py",
+      "line": 527,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/wallet/{user_id}",
+      "function": "get_wallet",
+      "source": "backend/routes/fintech.py",
+      "line": 218,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/wallet/{user_id}/transactions",
+      "function": "get_transactions",
+      "source": "backend/routes/fintech.py",
+      "line": 239,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/wallet/frek/{frek_id}",
+      "function": "get_wallet_by_frek",
+      "source": "backend/routes/fintech.py",
+      "line": 249,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/wallet/link-frek",
+      "function": "link_frek_to_wallet",
+      "source": "backend/routes/fintech.py",
+      "line": 278,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/wallet/transfer",
+      "function": "transfer_tokens",
+      "source": "backend/routes/fintech.py",
+      "line": 297,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/wallet/consume",
+      "function": "consume_tokens",
+      "source": "backend/routes/fintech.py",
+      "line": 328,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shop/packages",
+      "function": "list_packages",
+      "source": "backend/routes/fintech.py",
+      "line": 364,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shop/checkout/create",
+      "function": "create_checkout",
+      "source": "backend/routes/fintech.py",
+      "line": 385,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shop/checkout/status/{session_id}",
+      "function": "check_checkout_status",
+      "source": "backend/routes/fintech.py",
+      "line": 475,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shop/products",
+      "function": "list_products",
+      "source": "backend/routes/fintech.py",
+      "line": 523,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shop/products",
+      "function": "create_product",
+      "source": "backend/routes/fintech.py",
+      "line": 538,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/shop/products/{product_id}",
+      "function": "update_product",
+      "source": "backend/routes/fintech.py",
+      "line": 562,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/shop/products/{product_id}",
+      "function": "delete_product",
+      "source": "backend/routes/fintech.py",
+      "line": 573,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shop/seed",
+      "function": "seed_shop",
+      "source": "backend/routes/fintech.py",
+      "line": 580,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/{user_id}",
+      "function": "get_notifications",
+      "source": "backend/routes/fintech.py",
+      "line": 618,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/notifications/{user_id}/read",
+      "function": "mark_notifications_read",
+      "source": "backend/routes/fintech.py",
+      "line": 628,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/fintech/dashboard",
+      "function": "fintech_dashboard",
+      "source": "backend/routes/fintech.py",
+      "line": 721,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/frek/badge-types",
+      "function": "get_badge_types",
+      "source": "backend/routes/frek_silent.py",
+      "line": 97,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/frek/staff/verify",
+      "function": "verify_staff_token",
+      "source": "backend/routes/frek_silent.py",
+      "line": 103,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/frek/register-silent",
+      "function": "register_silent",
+      "source": "backend/routes/frek_silent.py",
+      "line": 112,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/frek/registration/{frek_id}",
+      "function": "get_registration",
+      "source": "backend/routes/frek_silent.py",
+      "line": 180,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/frek/pre-register-batch",
+      "function": "pre_register_batch",
+      "source": "backend/routes/frek_silent.py",
+      "line": 193,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/frek/queue/stats",
+      "function": "queue_stats",
+      "source": "backend/routes/frek_silent.py",
+      "line": 247,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/growth/engine/seed",
+      "function": "seed_growth_engine",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 415,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/growth/engine/daily-arrival",
+      "function": "process_daily_arrival",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 529,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/growth/engine/social-validation",
+      "function": "social_validation",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 563,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/growth/engine/fadeout",
+      "function": "run_fadeout",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 653,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/growth/engine/proof-of-life",
+      "function": "proof_of_life",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 705,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/growth/engine/reward",
+      "function": "trigger_reward",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 750,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/growth/engine/onboarding/{user_id}",
+      "function": "get_onboarding_progress",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 813,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/growth/engine/onboarding/complete",
+      "function": "complete_onboarding_step",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 834,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/growth/engine/mirror/{user_id}",
+      "function": "content_mirror",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 873,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/growth/engine/creation-nudge/{user_id}",
+      "function": "creation_nudge",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 904,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/growth/engine/invite",
+      "function": "generate_invite",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 947,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/growth/engine/invite/redeem",
+      "function": "redeem_invite",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 976,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/growth/engine/deeplink/{content_type}/{content_id}",
+      "function": "get_deeplink",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 1010,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/growth/engine/stats",
+      "function": "growth_engine_stats",
+      "source": "backend/routes/ghost_engine.py",
+      "line": 1036,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/seed",
+      "function": "seed_ghost_profiles",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 296,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ghost/admin/stats",
+      "function": "ghost_admin_stats",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 395,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ghost/admin/profiles",
+      "function": "ghost_admin_profiles",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 423,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/admin/toggle",
+      "function": "ghost_toggle_system",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 430,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/admin/retire/{ghost_id}",
+      "function": "manual_retire_ghost",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 441,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/engine/check-retirement",
+      "function": "check_retirement",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 456,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/engine/auto-comment",
+      "function": "trigger_ghost_comment",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 498,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/engine/welcome-connect",
+      "function": "ghost_welcome_connections",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 586,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/onboarding/complete",
+      "function": "complete_onboarding",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 664,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ghost/jetons/{user_id}",
+      "function": "get_user_jetons",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 783,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/jetons/transfer",
+      "function": "transfer_jetons",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 827,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/rewards/trigger",
+      "function": "trigger_reward",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 871,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ghost/rewards/history/{user_id}",
+      "function": "get_rewards_history",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 904,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/emails/welcome",
+      "function": "send_welcome_email",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 950,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/emails/connection-accepted",
+      "function": "send_connection_email",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 979,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/emails/new-message",
+      "function": "send_new_message_email",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 1006,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ghost/identity/{user_id}",
+      "function": "get_cultural_identity",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 1074,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ghost/identity/react",
+      "function": "cultural_reaction",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 1104,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ghost/discovery/feed",
+      "function": "discovery_feed",
+      "source": "backend/routes/ghost_profiles.py",
+      "line": 1170,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/gouvernance/candidater",
+      "function": "soumettre_candidature",
+      "source": "backend/routes/gouvernance.py",
+      "line": 101,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/gouvernance/profil/{frek_id}",
+      "function": "get_profil_membre",
+      "source": "backend/routes/gouvernance.py",
+      "line": 156,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/gouvernance/verify-frek",
+      "function": "verify_frek_stub",
+      "source": "backend/routes/gouvernance.py",
+      "line": 165,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/gouvernance/stats",
+      "function": "gouvernance_public_stats",
+      "source": "backend/routes/gouvernance.py",
+      "line": 181,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/gouvernance",
+      "function": "admin_list_candidatures",
+      "source": "backend/routes/gouvernance.py",
+      "line": 210,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/gouvernance/{candidature_id}",
+      "function": "admin_get_candidature",
+      "source": "backend/routes/gouvernance.py",
+      "line": 231,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/gouvernance/{candidature_id}/notes",
+      "function": "admin_update_notes",
+      "source": "backend/routes/gouvernance.py",
+      "line": 240,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/gouvernance/{candidature_id}/decision",
+      "function": "admin_decision",
+      "source": "backend/routes/gouvernance.py",
+      "line": 251,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/gouvernance/membres/actifs",
+      "function": "admin_membres_actifs",
+      "source": "backend/routes/gouvernance.py",
+      "line": 293,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/gouvernance/paiement/{num_membre}",
+      "function": "paiement_cotisation",
+      "source": "backend/routes/gouvernance.py",
+      "line": 304,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/gouvernance/paiement/{num_membre}/confirm",
+      "function": "confirm_cotisation",
+      "source": "backend/routes/gouvernance.py",
+      "line": 342,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/gouvernance/repertoire/{num_membre}",
+      "function": "get_repertoire",
+      "source": "backend/routes/gouvernance.py",
+      "line": 360,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/gouvernance/repertoire/{num_membre}",
+      "function": "update_repertoire",
+      "source": "backend/routes/gouvernance.py",
+      "line": 371,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/gouvernance/signature/initiate/{num_membre}",
+      "function": "initiate_signature",
+      "source": "backend/routes/gouvernance.py",
+      "line": 397,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/gouvernance/signature/status/{num_membre}",
+      "function": "get_signature_status",
+      "source": "backend/routes/gouvernance.py",
+      "line": 454,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/gouvernance/signature/webhook",
+      "function": "yousign_webhook",
+      "source": "backend/routes/gouvernance.py",
+      "line": 499,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/jetons/packs",
+      "function": "get_packs",
+      "source": "backend/routes/jetons.py",
+      "line": 59,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/jetons/checkout",
+      "function": "create_jeton_checkout",
+      "source": "backend/routes/jetons.py",
+      "line": 74,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/jetons/stripe/webhook",
+      "function": "jeton_stripe_webhook",
+      "source": "backend/routes/jetons.py",
+      "line": 117,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/jetons/wallet/{badge_id}",
+      "function": "get_wallet",
+      "source": "backend/routes/jetons.py",
+      "line": 201,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/jetons/spend",
+      "function": "spend_jetons",
+      "source": "backend/routes/jetons.py",
+      "line": 228,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/jetons/transactions/{badge_id}",
+      "function": "get_transactions",
+      "source": "backend/routes/jetons.py",
+      "line": 266,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/jetons/stats",
+      "function": "jetons_stats",
+      "source": "backend/routes/jetons.py",
+      "line": 274,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users/validate/{frek_id}",
+      "function": "validate_frek_id",
+      "source": "backend/routes/laurentia_bridge.py",
+      "line": 112,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users/{frek_id}/profile",
+      "function": "get_user_profile",
+      "source": "backend/routes/laurentia_bridge.py",
+      "line": 163,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users/bridge/health",
+      "function": "bridge_health",
+      "source": "backend/routes/laurentia_bridge.py",
+      "line": 219,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/me/laurentia/status",
+      "function": "laurentia_widget_status",
+      "source": "backend/routes/laurentia_widget.py",
+      "line": 27,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/overview",
+      "function": "network_overview",
+      "source": "backend/routes/network.py",
+      "line": 105,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/access",
+      "function": "network_access",
+      "source": "backend/routes/network.py",
+      "line": 161,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/territories",
+      "function": "list_territories",
+      "source": "backend/routes/network.py",
+      "line": 201,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/territories/{territory_id}",
+      "function": "get_territory",
+      "source": "backend/routes/network.py",
+      "line": 206,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/operators",
+      "function": "list_operators",
+      "source": "backend/routes/network.py",
+      "line": 222,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/licenses",
+      "function": "list_licenses",
+      "source": "backend/routes/network.py",
+      "line": 227,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/compliance",
+      "function": "list_compliance",
+      "source": "backend/routes/network.py",
+      "line": 232,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/audits",
+      "function": "list_audits",
+      "source": "backend/routes/network.py",
+      "line": 237,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/training",
+      "function": "list_training",
+      "source": "backend/routes/network.py",
+      "line": 242,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/technology",
+      "function": "list_technology_access",
+      "source": "backend/routes/network.py",
+      "line": 247,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/signals",
+      "function": "list_signals",
+      "source": "backend/routes/network.py",
+      "line": 252,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/opportunities",
+      "function": "list_opportunities",
+      "source": "backend/routes/network.py",
+      "line": 257,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/governance",
+      "function": "list_governance",
+      "source": "backend/routes/network.py",
+      "line": 262,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/network/programmes",
+      "function": "list_programmes",
+      "source": "backend/routes/network.py",
+      "line": 282,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/memory",
+      "function": "memory_overview",
+      "source": "backend/routes/observatory.py",
+      "line": 56,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/timeline",
+      "function": "timeline",
+      "source": "backend/routes/observatory.py",
+      "line": 121,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/event-types",
+      "function": "event_types",
+      "source": "backend/routes/observatory.py",
+      "line": 178,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/territories",
+      "function": "territories",
+      "source": "backend/routes/observatory.py",
+      "line": 204,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/actors",
+      "function": "actors",
+      "source": "backend/routes/observatory.py",
+      "line": 225,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/sessions",
+      "function": "sessions",
+      "source": "backend/routes/observatory.py",
+      "line": 255,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/access",
+      "function": "access_check",
+      "source": "backend/routes/observatory.py",
+      "line": 294,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/badges",
+      "function": "observatory_badges",
+      "source": "backend/routes/observatory.py",
+      "line": 324,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/conversion",
+      "function": "observatory_conversion",
+      "source": "backend/routes/observatory.py",
+      "line": 330,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/network",
+      "function": "observatory_network",
+      "source": "backend/routes/observatory.py",
+      "line": 335,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/diffusion",
+      "function": "observatory_diffusion",
+      "source": "backend/routes/observatory.py",
+      "line": 340,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/live",
+      "function": "observatory_live",
+      "source": "backend/routes/observatory.py",
+      "line": 345,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/mgraph",
+      "function": "observatory_mgraph",
+      "source": "backend/routes/observatory.py",
+      "line": 350,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/signals",
+      "function": "observatory_signals",
+      "source": "backend/routes/observatory.py",
+      "line": 356,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/observatory/public/now",
+      "function": "observatory_public_now",
+      "source": "backend/routes/observatory.py",
+      "line": 366,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/web-search",
+      "function": "brain_web_search",
+      "source": "backend/routes/omega.py",
+      "line": 194,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/chat-enriched",
+      "function": "brain_chat_enriched",
+      "source": "backend/routes/omega.py",
+      "line": 228,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/chat-stream",
+      "function": "brain_chat_stream",
+      "source": "backend/routes/omega.py",
+      "line": 393,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/memory/save",
+      "function": "brain_memory_save",
+      "source": "backend/routes/omega.py",
+      "line": 486,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/memory/history",
+      "function": "brain_memory_history",
+      "source": "backend/routes/omega.py",
+      "line": 524,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/memory/{session_id}",
+      "function": "brain_memory_get",
+      "source": "backend/routes/omega.py",
+      "line": 547,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/brain/memory/{session_id}",
+      "function": "brain_memory_delete",
+      "source": "backend/routes/omega.py",
+      "line": 556,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/frek/stats",
+      "function": "get_frek_cc2026_stats",
+      "source": "backend/routes/omega.py",
+      "line": 569,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/frek/health",
+      "function": "check_frek_health",
+      "source": "backend/routes/omega.py",
+      "line": 576,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/frek/nfc/tap",
+      "function": "nfc_tap",
+      "source": "backend/routes/omega.py",
+      "line": 595,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/jetons/remboursement",
+      "function": "jetons_remboursement",
+      "source": "backend/routes/omega.py",
+      "line": 667,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/jetons/remboursements",
+      "function": "list_remboursements",
+      "source": "backend/routes/omega.py",
+      "line": 687,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/badges/lifecycle/{badge_id}",
+      "function": "get_badge_lifecycle",
+      "source": "backend/routes/omega.py",
+      "line": 699,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/adhesion/levels",
+      "function": "get_adhesion_levels",
+      "source": "backend/routes/omega.py",
+      "line": 738,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/adhesion/current",
+      "function": "get_current_adhesion",
+      "source": "backend/routes/omega.py",
+      "line": 750,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/adhesion/subscribe",
+      "function": "subscribe_adhesion",
+      "source": "backend/routes/omega.py",
+      "line": 765,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/adhesion/cancel",
+      "function": "cancel_adhesion",
+      "source": "backend/routes/omega.py",
+      "line": 828,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/feed/posts",
+      "function": "get_feed_posts",
+      "source": "backend/routes/omega.py",
+      "line": 940,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/feed/posts",
+      "function": "create_feed_post",
+      "source": "backend/routes/omega.py",
+      "line": 959,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/feed/posts/{post_id}/eclair",
+      "function": "eclair_post",
+      "source": "backend/routes/omega.py",
+      "line": 992,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/feed/posts/{post_id}/commentaire",
+      "function": "comment_post",
+      "source": "backend/routes/omega.py",
+      "line": 1035,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/feed/posts/{post_id}/commentaires",
+      "function": "get_post_comments",
+      "source": "backend/routes/omega.py",
+      "line": 1062,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/user/account",
+      "function": "delete_user_account",
+      "source": "backend/routes/omega.py",
+      "line": 1075,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/user/settings",
+      "function": "get_user_settings",
+      "source": "backend/routes/omega.py",
+      "line": 1128,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/user/settings",
+      "function": "update_user_settings",
+      "source": "backend/routes/omega.py",
+      "line": 1172,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/user/avatar",
+      "function": "upload_avatar",
+      "source": "backend/routes/omega.py",
+      "line": 1196,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/conversations",
+      "function": "get_conversations",
+      "source": "backend/routes/omega.py",
+      "line": 1233,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/{conversation_id}",
+      "function": "get_messages",
+      "source": "backend/routes/omega.py",
+      "line": 1269,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/messages/send",
+      "function": "send_message",
+      "source": "backend/routes/omega.py",
+      "line": 1299,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/planning/cc2026",
+      "function": "get_cc2026_planning",
+      "source": "backend/routes/omega.py",
+      "line": 1396,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/planning/cc2026/{jour}",
+      "function": "get_cc2026_day",
+      "source": "backend/routes/omega.py",
+      "line": 1402,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/terminal/deploy",
+      "function": "terminal_deploy",
+      "source": "backend/routes/omega.py",
+      "line": 1471,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/terminal/deploys",
+      "function": "list_terminal_deploys",
+      "source": "backend/routes/omega.py",
+      "line": 1527,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/terminal/rollback/{deploy_id}",
+      "function": "terminal_rollback",
+      "source": "backend/routes/omega.py",
+      "line": 1537,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/pages/{slug:path}",
+      "function": "serve_deployed_page",
+      "source": "backend/routes/omega.py",
+      "line": 1547,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/conversations",
+      "function": "list_conversations",
+      "source": "backend/routes/omega.py",
+      "line": 1563,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/conversations/{convo_id}",
+      "function": "get_conversation_messages",
+      "source": "backend/routes/omega.py",
+      "line": 1573,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/messages/send",
+      "function": "send_dm",
+      "source": "backend/routes/omega.py",
+      "line": 1589,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/planning/cc2026",
+      "function": "get_cc2026_agenda",
+      "source": "backend/routes/omega.py",
+      "line": 1654,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/gouvernance/proposals",
+      "function": "list_gouvernance_proposals",
+      "source": "backend/routes/omega.py",
+      "line": 1664,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/gouvernance/seed",
+      "function": "seed_gouvernance_proposals",
+      "source": "backend/routes/omega.py",
+      "line": 1678,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/gouvernance/create",
+      "function": "create_gouvernance_proposal",
+      "source": "backend/routes/omega.py",
+      "line": 1749,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/gouvernance/vote",
+      "function": "vote_gouvernance",
+      "source": "backend/routes/omega.py",
+      "line": 1783,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/accreditation/apply",
+      "function": "accreditation_apply",
+      "source": "backend/routes/omega.py",
+      "line": 1839,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/accreditation/status/{accreditation_id}",
+      "function": "accreditation_status",
+      "source": "backend/routes/omega.py",
+      "line": 1893,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/accreditation/my",
+      "function": "my_accreditation",
+      "source": "backend/routes/omega.py",
+      "line": 1902,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/accreditation/types",
+      "function": "get_accreditation_types",
+      "source": "backend/routes/omega.py",
+      "line": 1912,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/accreditation/pay/{accreditation_id}",
+      "function": "accreditation_pay",
+      "source": "backend/routes/omega.py",
+      "line": 1918,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/accreditation/confirm-payment/{accreditation_id}",
+      "function": "accreditation_confirm_payment",
+      "source": "backend/routes/omega.py",
+      "line": 1961,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/accreditation/admin/list",
+      "function": "admin_list_accreditations",
+      "source": "backend/routes/omega.py",
+      "line": 1979,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/accreditation/admin/validate",
+      "function": "admin_validate_accreditation",
+      "source": "backend/routes/omega.py",
+      "line": 1995,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/accreditation/admin/mark-printed/{accreditation_id}",
+      "function": "mark_badge_printed",
+      "source": "backend/routes/omega.py",
+      "line": 2078,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/badges/export-csv",
+      "function": "export_badges_csv",
+      "source": "backend/routes/omega.py",
+      "line": 2092,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/wallet/transfer",
+      "function": "wallet_transfer",
+      "source": "backend/routes/omega.py",
+      "line": 2139,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/wallet/swap",
+      "function": "wallet_swap",
+      "source": "backend/routes/omega.py",
+      "line": 2191,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/builder/projects",
+      "function": "list_builder_projects",
+      "source": "backend/routes/omega.py",
+      "line": 2239,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/builder/projects",
+      "function": "create_builder_project",
+      "source": "backend/routes/omega.py",
+      "line": 2246,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/builder/projects/{project_id}",
+      "function": "update_builder_project",
+      "source": "backend/routes/omega.py",
+      "line": 2273,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/builder/publish",
+      "function": "publish_builder_project",
+      "source": "backend/routes/omega.py",
+      "line": 2293,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/builder/analytics",
+      "function": "builder_analytics",
+      "source": "backend/routes/omega.py",
+      "line": 2358,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/frek/certify",
+      "function": "frek_certify_project",
+      "source": "backend/routes/omega.py",
+      "line": 2391,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/user/follow",
+      "function": "toggle_follow",
+      "source": "backend/routes/omega.py",
+      "line": 2432,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/user/following",
+      "function": "get_following",
+      "source": "backend/routes/omega.py",
+      "line": 2461,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/sessions",
+      "function": "list_brain_sessions",
+      "source": "backend/routes/omega.py",
+      "line": 2474,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/activity",
+      "function": "brain_recent_activity",
+      "source": "backend/routes/omega.py",
+      "line": 2483,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/frek/profile/{frek_id}",
+      "function": "get_frek_profile",
+      "source": "backend/routes/omega.py",
+      "line": 2499,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/trade/offer",
+      "function": "create_trade_offer",
+      "source": "backend/routes/omega.py",
+      "line": 2566,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/trade/offers",
+      "function": "list_trade_offers",
+      "source": "backend/routes/omega.py",
+      "line": 2602,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/trade/accept/{offer_id}",
+      "function": "accept_trade",
+      "source": "backend/routes/omega.py",
+      "line": 2608,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/brain/upload",
+      "function": "brain_upload",
+      "source": "backend/routes/omega.py",
+      "line": 2658,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/builder/upload",
+      "function": "builder_upload",
+      "source": "backend/routes/omega.py",
+      "line": 2699,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/{path:path}",
+      "function": "serve_file",
+      "source": "backend/routes/omega.py",
+      "line": 2740,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/brain/sessions/{session_id}/messages",
+      "function": "get_brain_session_messages",
+      "source": "backend/routes/omega.py",
+      "line": 2756,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/feed",
+      "function": "get_pro_feed",
+      "source": "backend/routes/pro_feed.py",
+      "line": 287,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/feed/reels",
+      "function": "get_reels",
+      "source": "backend/routes/pro_feed.py",
+      "line": 317,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/feed/post",
+      "function": "create_post",
+      "source": "backend/routes/pro_feed.py",
+      "line": 355,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/feed/like",
+      "function": "toggle_like",
+      "source": "backend/routes/pro_feed.py",
+      "line": 403,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/feed/seed",
+      "function": "seed_feed_content",
+      "source": "backend/routes/pro_feed.py",
+      "line": 434,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/feed/posts/{post_id}/eclair",
+      "function": "eclair_post",
+      "source": "backend/routes/pro_feed.py",
+      "line": 452,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/pro/feed/posts/{post_id}",
+      "function": "delete_post",
+      "source": "backend/routes/pro_feed.py",
+      "line": 536,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/feed/posts/{post_id}/comments",
+      "function": "get_post_comments",
+      "source": "backend/routes/pro_feed.py",
+      "line": 560,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/feed/posts/{post_id}/comment",
+      "function": "add_post_comment",
+      "source": "backend/routes/pro_feed.py",
+      "line": 567,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/feed/geo/reverse",
+      "function": "reverse_geocode",
+      "source": "backend/routes/pro_feed.py",
+      "line": 591,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/feed/geo/points",
+      "function": "feed_geo_points",
+      "source": "backend/routes/pro_feed.py",
+      "line": 614,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/social/feed",
+      "function": "get_feed",
+      "source": "backend/routes/pro_social.py",
+      "line": 44,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/social/posts",
+      "function": "create_post",
+      "source": "backend/routes/pro_social.py",
+      "line": 83,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/social/posts/{post_id}/like",
+      "function": "toggle_like",
+      "source": "backend/routes/pro_social.py",
+      "line": 195,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/pro/social/posts/{post_id}/comment",
+      "function": "add_comment",
+      "source": "backend/routes/pro_social.py",
+      "line": 223,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/pro/social/posts/{post_id}",
+      "function": "delete_post",
+      "source": "backend/routes/pro_social.py",
+      "line": 247,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/social/directory",
+      "function": "get_directory",
+      "source": "backend/routes/pro_social.py",
+      "line": 259,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pro/social/recommendations/{profile_id}",
+      "function": "get_recommendations",
+      "source": "backend/routes/pro_social.py",
+      "line": 334,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/notifications/push/subscribe",
+      "function": "subscribe_push",
+      "source": "backend/routes/push_notifications.py",
+      "line": 36,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/notifications/push/unsubscribe",
+      "function": "unsubscribe_push",
+      "source": "backend/routes/push_notifications.py",
+      "line": 58,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/push/preferences",
+      "function": "get_push_preferences",
+      "source": "backend/routes/push_notifications.py",
+      "line": 68,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/notifications/push/preferences",
+      "function": "update_push_preferences",
+      "source": "backend/routes/push_notifications.py",
+      "line": 88,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/notifications/push/send",
+      "function": "send_push_notification",
+      "source": "backend/routes/push_notifications.py",
+      "line": 103,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/recommendations/connections/{badge_id}",
+      "function": "recommend_connections",
+      "source": "backend/routes/recommendations.py",
+      "line": 20,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/recommendations/events/{badge_id}",
+      "function": "recommend_events",
+      "source": "backend/routes/recommendations.py",
+      "line": 31,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/recommendations/partnerships/{badge_id}",
+      "function": "recommend_partnerships",
+      "source": "backend/routes/recommendations.py",
+      "line": 42,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/recommendations/admin/overview",
+      "function": "admin_overview",
+      "source": "backend/routes/recommendations.py",
+      "line": 53,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/recommendations/events",
+      "function": "list_events",
+      "source": "backend/routes/recommendations.py",
+      "line": 59,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ses/domain/status",
+      "function": "domain_status",
+      "source": "backend/routes/ses.py",
+      "line": 40,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ses/domain/verify",
+      "function": "verify_domain",
+      "source": "backend/routes/ses.py",
+      "line": 121,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ses/domain/enable-dkim",
+      "function": "enable_dkim",
+      "source": "backend/routes/ses.py",
+      "line": 181,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ses/production-request",
+      "function": "request_production",
+      "source": "backend/routes/ses.py",
+      "line": 196,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ses/stats",
+      "function": "ses_stats",
+      "source": "backend/routes/ses.py",
+      "line": 226,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shared/artistes",
+      "function": "get_artistes",
+      "source": "backend/routes/shared.py",
+      "line": 113,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shared/artistes",
+      "function": "create_artiste",
+      "source": "backend/routes/shared.py",
+      "line": 117,
+      "router": "router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/shared/artistes/{artiste_id}",
+      "function": "update_artiste",
+      "source": "backend/routes/shared.py",
+      "line": 127,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/shared/artistes/{artiste_id}",
+      "function": "delete_artiste",
+      "source": "backend/routes/shared.py",
+      "line": 134,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shared/prestataires",
+      "function": "get_prestataires",
+      "source": "backend/routes/shared.py",
+      "line": 141,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shared/prestataires",
+      "function": "create_prestataire",
+      "source": "backend/routes/shared.py",
+      "line": 145,
+      "router": "router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/shared/prestataires/{prestataire_id}",
+      "function": "update_prestataire",
+      "source": "backend/routes/shared.py",
+      "line": 155,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/shared/prestataires/{prestataire_id}",
+      "function": "delete_prestataire",
+      "source": "backend/routes/shared.py",
+      "line": 162,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shared/tasks",
+      "function": "get_tasks",
+      "source": "backend/routes/shared.py",
+      "line": 169,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shared/tasks",
+      "function": "create_task",
+      "source": "backend/routes/shared.py",
+      "line": 174,
+      "router": "router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/shared/tasks/{task_id}",
+      "function": "update_task",
+      "source": "backend/routes/shared.py",
+      "line": 184,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/shared/tasks/{task_id}",
+      "function": "delete_task",
+      "source": "backend/routes/shared.py",
+      "line": 191,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shared/partners",
+      "function": "get_partners",
+      "source": "backend/routes/shared.py",
+      "line": 198,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shared/partners",
+      "function": "create_partner",
+      "source": "backend/routes/shared.py",
+      "line": 202,
+      "router": "router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/shared/partners/{partner_id}",
+      "function": "update_partner",
+      "source": "backend/routes/shared.py",
+      "line": 212,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/shared/partners/{partner_id}",
+      "function": "delete_partner",
+      "source": "backend/routes/shared.py",
+      "line": 219,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shared/partners/{partner_id}/photo",
+      "function": "upload_partner_photo",
+      "source": "backend/routes/shared.py",
+      "line": 224,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shared/expenses",
+      "function": "get_expenses",
+      "source": "backend/routes/shared.py",
+      "line": 245,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shared/expenses",
+      "function": "create_expense",
+      "source": "backend/routes/shared.py",
+      "line": 249,
+      "router": "router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/shared/expenses/{expense_id}",
+      "function": "update_expense",
+      "source": "backend/routes/shared.py",
+      "line": 259,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/shared/expenses/{expense_id}",
+      "function": "delete_expense",
+      "source": "backend/routes/shared.py",
+      "line": 265,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shared/contacts",
+      "function": "get_contacts",
+      "source": "backend/routes/shared.py",
+      "line": 272,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shared/contacts",
+      "function": "create_contact",
+      "source": "backend/routes/shared.py",
+      "line": 277,
+      "router": "router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/shared/contacts/{contact_id}",
+      "function": "update_contact",
+      "source": "backend/routes/shared.py",
+      "line": 286,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/shared/contacts/{contact_id}",
+      "function": "delete_contact",
+      "source": "backend/routes/shared.py",
+      "line": 292,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shared/planning",
+      "function": "get_planning",
+      "source": "backend/routes/shared.py",
+      "line": 299,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shared/planning",
+      "function": "create_planning_item",
+      "source": "backend/routes/shared.py",
+      "line": 304,
+      "router": "router"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/shared/planning/{item_id}",
+      "function": "update_planning_item",
+      "source": "backend/routes/shared.py",
+      "line": 313,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/shared/planning/{item_id}",
+      "function": "delete_planning_item",
+      "source": "backend/routes/shared.py",
+      "line": 319,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shared/init-default-data",
+      "function": "init_default_data",
+      "source": "backend/routes/shared.py",
+      "line": 326,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shop/packs",
+      "function": "get_jcc_packs",
+      "source": "backend/routes/shop_payments.py",
+      "line": 42,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shop/products",
+      "function": "list_products",
+      "source": "backend/routes/shop_payments.py",
+      "line": 62,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shop/products",
+      "function": "create_product",
+      "source": "backend/routes/shop_payments.py",
+      "line": 78,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/shop/products/{product_id}",
+      "function": "update_product",
+      "source": "backend/routes/shop_payments.py",
+      "line": 102,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/shop/products/{product_id}",
+      "function": "delete_product",
+      "source": "backend/routes/shop_payments.py",
+      "line": 113,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shop/seed",
+      "function": "seed_shop",
+      "source": "backend/routes/shop_payments.py",
+      "line": 123,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shop/checkout/create",
+      "function": "create_checkout",
+      "source": "backend/routes/shop_payments.py",
+      "line": 170,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shop/checkout/status/{session_id}",
+      "function": "check_checkout_status",
+      "source": "backend/routes/shop_payments.py",
+      "line": 236,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/shop/notifications/{user_id}",
+      "function": "get_notifications",
+      "source": "backend/routes/shop_payments.py",
+      "line": 341,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/shop/notifications/{user_id}/read",
+      "function": "mark_notifications_read",
+      "source": "backend/routes/shop_payments.py",
+      "line": 352,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/analytics/site-stats",
+      "function": "site_stats",
+      "source": "backend/routes/site_analytics.py",
+      "line": 32,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/analytics/health",
+      "function": "analytics_health",
+      "source": "backend/routes/site_analytics.py",
+      "line": 109,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/omega/adhesion/levels",
+      "function": "get_adhesion_levels",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 16,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/omega/adhesion/my-subscription",
+      "function": "get_my_subscription",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 35,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/adhesion/subscribe",
+      "function": "subscribe_adhesion",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 45,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/adhesion/cancel",
+      "function": "cancel_adhesion",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 51,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/omega/gouvernance/proposals",
+      "function": "get_proposals",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 79,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/gouvernance/vote",
+      "function": "cast_vote",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 90,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/gouvernance/proposals",
+      "function": "create_proposal",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 102,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/omega/trade/orders",
+      "function": "get_trade_orders",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 110,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/trade/orders",
+      "function": "create_trade_order",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 133,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/omega/trade/orders/{order_id}",
+      "function": "cancel_trade_order",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 139,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/omega/terminal/deploys",
+      "function": "get_deploys",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 147,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/terminal/deploy",
+      "function": "deploy_page",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 164,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/terminal/rollback",
+      "function": "rollback_deploy",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 180,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/omega/user/settings",
+      "function": "get_user_settings",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 188,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/omega/user/settings",
+      "function": "update_user_settings",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 202,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/omega/frek/works/{frek_id}",
+      "function": "get_frek_works",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 210,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/frek/certify",
+      "function": "certify_work",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 232,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/feed/eclair/{post_id}",
+      "function": "eclair_post",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 246,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/omega/admin/scan",
+      "function": "admin_scan",
+      "source": "backend/routes/skeleton_omega.py",
+      "line": 262,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/predictive",
+      "function": "get_predictive_analysis",
+      "source": "backend/routes/smart_engine.py",
+      "line": 24,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/mgraph",
+      "function": "get_mgraph",
+      "source": "backend/routes/smart_engine.py",
+      "line": 90,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/live-audience",
+      "function": "get_live_audience",
+      "source": "backend/routes/smart_engine.py",
+      "line": 179,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/creation-origin",
+      "function": "get_creation_origin",
+      "source": "backend/routes/smart_engine.py",
+      "line": 239,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/cultural-diffusion",
+      "function": "get_cultural_diffusion",
+      "source": "backend/routes/smart_engine.py",
+      "line": 297,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/conversion",
+      "function": "get_conversion_funnel",
+      "source": "backend/routes/smart_engine.py",
+      "line": 358,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/verified-identity",
+      "function": "get_verified_identity",
+      "source": "backend/routes/smart_engine.py",
+      "line": 440,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/creative-network",
+      "function": "get_creative_network",
+      "source": "backend/routes/smart_engine.py",
+      "line": 493,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/smart-engine/dashboard",
+      "function": "get_unified_dashboard",
+      "source": "backend/routes/smart_engine.py",
+      "line": 563,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/faq",
+      "function": "list_faq",
+      "source": "backend/routes/support.py",
+      "line": 41,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/faq",
+      "function": "admin_list_faq",
+      "source": "backend/routes/support.py",
+      "line": 51,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/faq",
+      "function": "create_faq",
+      "source": "backend/routes/support.py",
+      "line": 57,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/faq/{faq_id}",
+      "function": "update_faq",
+      "source": "backend/routes/support.py",
+      "line": 75,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/admin/faq/{faq_id}",
+      "function": "delete_faq",
+      "source": "backend/routes/support.py",
+      "line": 88,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/support/tickets",
+      "function": "create_ticket",
+      "source": "backend/routes/support.py",
+      "line": 111,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/support/tickets/mine",
+      "function": "my_tickets",
+      "source": "backend/routes/support.py",
+      "line": 132,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/support/tickets",
+      "function": "admin_list_tickets",
+      "source": "backend/routes/support.py",
+      "line": 140,
+      "router": "router"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/support/tickets/{ticket_id}/status",
+      "function": "update_ticket_status",
+      "source": "backend/routes/support.py",
+      "line": 155,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/support/tickets/{ticket_id}/reply",
+      "function": "reply_to_ticket",
+      "source": "backend/routes/support.py",
+      "line": 168,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/terrain/validate-badge",
+      "function": "validate_badge",
+      "source": "backend/routes/terrain.py",
+      "line": 24,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/terrain/affluence",
+      "function": "get_affluence",
+      "source": "backend/routes/terrain.py",
+      "line": 75,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/terrain/search",
+      "function": "search_participants",
+      "source": "backend/routes/terrain.py",
+      "line": 100,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/terrain/manual-checkin/{registration_id}",
+      "function": "manual_checkin",
+      "source": "backend/routes/terrain.py",
+      "line": 122,
+      "router": "router"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/terrain/reset-presence/{registration_id}",
+      "function": "reset_presence",
+      "source": "backend/routes/terrain.py",
+      "line": 147,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/my-wallet/me",
+      "function": "wallet_me",
+      "source": "backend/routes/wallet.py",
+      "line": 47,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/my-wallet/history",
+      "function": "wallet_history",
+      "source": "backend/routes/wallet.py",
+      "line": 103,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/my-wallet/buy-pack",
+      "function": "wallet_buy_pack",
+      "source": "backend/routes/wallet.py",
+      "line": 137,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/my-wallet/analytics",
+      "function": "wallet_analytics",
+      "source": "backend/routes/wallet.py",
+      "line": 204,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/my-wallet/transfer",
+      "function": "wallet_transfer",
+      "source": "backend/routes/wallet.py",
+      "line": 249,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/webauthn/register/begin",
+      "function": "webauthn_register_begin",
+      "source": "backend/routes/webauthn.py",
+      "line": 42,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/webauthn/register/complete",
+      "function": "webauthn_register_complete",
+      "source": "backend/routes/webauthn.py",
+      "line": 97,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/webauthn/login/begin",
+      "function": "webauthn_login_begin",
+      "source": "backend/routes/webauthn.py",
+      "line": 148,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/webauthn/login/complete",
+      "function": "webauthn_login_complete",
+      "source": "backend/routes/webauthn.py",
+      "line": 181,
+      "router": "router"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/webauthn/devices",
+      "function": "list_webauthn_devices",
+      "source": "backend/routes/webauthn.py",
+      "line": 247,
+      "router": "router"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/webauthn/revoke/{credential_id}",
+      "function": "revoke_webauthn",
+      "source": "backend/routes/webauthn.py",
+      "line": 262,
+      "router": "router"
+    }
+  ]
+}

@@ -33,9 +33,19 @@ if (config.enableHealthCheck) {
 }
 
 const webpackConfig = {
+  jest: {
+    configure: {
+      // CRA's Jest 27 does not resolve React Router 7 package subpath exports.
+      // Point to the installed CommonJS module, retaining the real router in tests.
+      moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/src/$1',
+        '^react-router/dom$': path.join(path.dirname(require.resolve('react-router/package.json')), 'dist/development/dom-export.js'),
+      },
+    },
+  },
   eslint: {
     configure: {
-      extends: ["plugin:react-hooks/recommended"],
+      // react-app in package.json already loads the hooks plugin.
       rules: {
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",

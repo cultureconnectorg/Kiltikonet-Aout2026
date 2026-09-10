@@ -21,6 +21,11 @@ import TerminalIA from './pro/TerminalIA';
 import TradingSettings from './pro/TradingSettings';
 import ArchivesCloud from './pro/ArchivesCloud';
 import { GovernanceSection, ConsoleSection, SettingsSovereign, MessagesSection } from './pro/SovereignSections';
+import CulturalFeed from './pro/CulturalFeed';
+import CulturalIdentityBar from './pro/CulturalIdentityBar';
+import ConstellationRadar from './pro/ConstellationRadar';
+import CulturalReactions from './pro/CulturalReactions';
+import { OnboardingWidget, CreationNudge } from './pro/GrowthWidgets';
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -698,7 +703,7 @@ const ProSpaceDashboard = () => {
 // ═══════════════════════════════════════════════════════════
 // FEED LAYOUT — Immersive TikTok on mobile, 3-column on desktop
 // ═══════════════════════════════════════════════════════════
-const FeedLayout = ({ session, profile, connections, onRefresh, jetonsBalance, culturalIdentity }) => {
+const FeedLayout = ({ session, profile, connections, onRefresh, jetonsBalance, culturalIdentity, doctrine }) => {
   const [feedMode, setFeedMode] = useState('cultural'); // 'cultural' or 'social'
 
   return (
@@ -814,6 +819,7 @@ const FeedSection = ({ session }) => {
   const [loading, setLoading] = useState(true);
   const [newPost, setNewPost] = useState('');
   const [posting, setPosting] = useState(false);
+  const [deletingPostId, setDeletingPostId] = useState(null);
   const [generating, setGenerating] = useState(false);
   const [commentInputs, setCommentInputs] = useState({});
   const [showComments, setShowComments] = useState({});

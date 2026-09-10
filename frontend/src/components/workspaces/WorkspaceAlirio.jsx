@@ -1136,20 +1136,20 @@ Comment puis-je vous aider ?`
           <div className="rounded-lg p-4 sm:p-6" style={{ background: '#2A2820', border: `1px solid ${COLORS.terracotta}20` }}>
             <h2 className="text-lg font-bold mb-4 sm:mb-6" style={{ color: COLORS.terracotta }}>Carnet de contacts global</h2>
             <div className="space-y-3">
-              {contacts.map(contact => (
+              {sharedContacts.map(contact => (
                 <div key={contact.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 p-3 sm:p-4 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)' }}>
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0" style={{ background: COLORS.terracotta, color: '#fff' }}>
-                      {contact.name.substring(0, 2).toUpperCase()}
+                      {(contact.name || `${contact.prenom || ''} ${contact.nom || ''}`).trim().substring(0, 2).toUpperCase()}
                     </div>
                     <div>
-                      <div className="font-bold text-white text-sm sm:text-base">{contact.name}</div>
-                      <div className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>{contact.role} - {contact.org}</div>
+                      <div className="font-bold text-white text-sm sm:text-base">{contact.name || `${contact.prenom || ''} ${contact.nom || ''}`.trim()}</div>
+                      <div className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>{contact.role || contact.type} - {contact.org || contact.organisation}</div>
                     </div>
                   </div>
                   <div className="text-left sm:text-right text-xs sm:text-sm ml-12 sm:ml-0">
                     <div style={{ color: 'rgba(255,255,255,0.5)' }}>{contact.email}</div>
-                    <div style={{ color: 'rgba(255,255,255,0.3)' }}>{contact.phone}</div>
+                    <div style={{ color: 'rgba(255,255,255,0.3)' }}>{contact.phone || contact.tel}</div>
                   </div>
                 </div>
               ))}

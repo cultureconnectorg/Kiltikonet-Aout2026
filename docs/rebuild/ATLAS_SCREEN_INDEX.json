@@ -1,0 +1,921 @@
+{
+  "source_file": "Kiltikonet_atlas_reconstruction_corrige_CVLN_iOS(1).xlsx",
+  "source_sha256": "225920c59152196c17f36f223dd3c8c642f4bff61b6230fe314cc27a7c616aad",
+  "sheet": "Atlas visuel",
+  "columns": "A:D, F:G",
+  "scope": "Source index only. Classifications and access labels are workbook claims, not architecture or authorization decisions.",
+  "screens": [
+    {
+      "row": 4,
+      "section": "01 · Kiltikonet institutionnel",
+      "screen": "Page d’accueil",
+      "paths": [
+        "/"
+      ],
+      "component": "KiltikonetHome",
+      "access": "Public",
+      "classification": "Kiltikonet.fr"
+    },
+    {
+      "row": 5,
+      "section": "01 · Kiltikonet institutionnel",
+      "screen": "Infrastructure",
+      "paths": [
+        "/infrastructure"
+      ],
+      "component": "Infrastructure",
+      "access": "Public",
+      "classification": "Kiltikonet.fr"
+    },
+    {
+      "row": 6,
+      "section": "01 · Kiltikonet institutionnel",
+      "screen": "À propos",
+      "paths": [
+        "/a-propos",
+        "/about"
+      ],
+      "component": "APropos",
+      "access": "Public",
+      "classification": "Kiltikonet.fr"
+    },
+    {
+      "row": 7,
+      "section": "01 · Kiltikonet institutionnel",
+      "screen": "Rejoindre",
+      "paths": [
+        "/rejoindre"
+      ],
+      "component": "Rejoindre",
+      "access": "Public",
+      "classification": "À reclasser"
+    },
+    {
+      "row": 8,
+      "section": "01 · Kiltikonet institutionnel",
+      "screen": "Maintenant",
+      "paths": [
+        "/now",
+        "/maintenant"
+      ],
+      "component": "NowPage",
+      "access": "Public",
+      "classification": "Observatory / institution"
+    },
+    {
+      "row": 9,
+      "section": "01 · Kiltikonet institutionnel",
+      "screen": "Observatory",
+      "paths": [
+        "/observatory"
+      ],
+      "component": "Observatory",
+      "access": "Public/partiel",
+      "classification": "Observatory"
+    },
+    {
+      "row": 10,
+      "section": "01 · Kiltikonet institutionnel",
+      "screen": "Founder Observatory",
+      "paths": [
+        "/observatory/founder"
+      ],
+      "component": "ObservatoryFounder",
+      "access": "Founder",
+      "classification": "Interne"
+    },
+    {
+      "row": 11,
+      "section": "01 · Kiltikonet institutionnel",
+      "screen": "Contact institutionnel",
+      "paths": [
+        "/contact"
+      ],
+      "component": "ContactKiltikonet",
+      "access": "Public",
+      "classification": "Kiltikonet.fr"
+    },
+    {
+      "row": 12,
+      "section": "02 · Culture Connect",
+      "screen": "Culture Connect — page mère",
+      "paths": [
+        "/culture-connect"
+      ],
+      "component": "CultureConnect",
+      "access": "Public",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 13,
+      "section": "02 · Culture Connect",
+      "screen": "Culture Connect 2026",
+      "paths": [
+        "/culture-connect/2026"
+      ],
+      "component": "CultureConnect2026",
+      "access": "Public",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 14,
+      "section": "02 · Culture Connect",
+      "screen": "Culture Connect 2027",
+      "paths": [
+        "/culture-connect/2027"
+      ],
+      "component": "CultureConnect2027",
+      "access": "Public",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 15,
+      "section": "02 · Culture Connect",
+      "screen": "Ancienne landing CC2026",
+      "paths": [
+        "/legacy-cc2026"
+      ],
+      "component": "LandingPage",
+      "access": "Public",
+      "classification": "Legacy / archive"
+    },
+    {
+      "row": 16,
+      "section": "02 · Culture Connect",
+      "screen": "Programme",
+      "paths": [
+        "/programme"
+      ],
+      "component": "ProgramPage",
+      "access": "Public",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 17,
+      "section": "02 · Culture Connect",
+      "screen": "Concert",
+      "paths": [
+        "/concert"
+      ],
+      "component": "ConcertPage",
+      "access": "Public",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 18,
+      "section": "02 · Culture Connect",
+      "screen": "Appel 2026",
+      "paths": [
+        "/appel-2026"
+      ],
+      "component": "AppelPage",
+      "access": "Public",
+      "classification": "Culture Connect / opportunités"
+    },
+    {
+      "row": 19,
+      "section": "02 · Culture Connect",
+      "screen": "Tarifs / inscription",
+      "paths": [
+        "/pricing",
+        "/tarifs",
+        "/register",
+        "/inscription"
+      ],
+      "component": "PricingPage",
+      "access": "Public",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 20,
+      "section": "02 · Culture Connect",
+      "screen": "Catalogue",
+      "paths": [
+        "/catalogue",
+        "/catalog"
+      ],
+      "component": "CatalogPage",
+      "access": "Public",
+      "classification": "À reclasser"
+    },
+    {
+      "row": 21,
+      "section": "02 · Culture Connect",
+      "screen": "Partenariats",
+      "paths": [
+        "/partnership",
+        "/partenaires"
+      ],
+      "component": "PartnershipPage",
+      "access": "Public",
+      "classification": "À scinder"
+    },
+    {
+      "row": 22,
+      "section": "02 · Culture Connect",
+      "screen": "Confirmation partenaire",
+      "paths": [
+        "/partenaire/confirmation"
+      ],
+      "component": "PartnerConfirmation",
+      "access": "Public",
+      "classification": "Culture Connect / institution"
+    },
+    {
+      "row": 23,
+      "section": "02 · Culture Connect",
+      "screen": "Confirmation inscription",
+      "paths": [
+        "/confirmation"
+      ],
+      "component": "ConfirmationScreen",
+      "access": "Public",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 24,
+      "section": "03 · Badges & événement",
+      "screen": "Badge scan dynamique",
+      "paths": [
+        "/badge/:id"
+      ],
+      "component": "BadgeScan",
+      "access": "Public/terrain",
+      "classification": "Culture Connect / identité"
+    },
+    {
+      "row": 25,
+      "section": "03 · Badges & événement",
+      "screen": "Badge scan générique",
+      "paths": [
+        "/badge-scan"
+      ],
+      "component": "BadgeScan",
+      "access": "Public/terrain",
+      "classification": "Culture Connect / identité"
+    },
+    {
+      "row": 26,
+      "section": "03 · Badges & événement",
+      "screen": "Activation badge",
+      "paths": [
+        "/activer-badge/:qrToken"
+      ],
+      "component": "BadgeActivation",
+      "access": "Participant",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 27,
+      "section": "03 · Badges & événement",
+      "screen": "Inscription badge",
+      "paths": [
+        "/badge-inscription"
+      ],
+      "component": "BadgeInscription",
+      "access": "Public",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 28,
+      "section": "03 · Badges & événement",
+      "screen": "Inscription pro",
+      "paths": [
+        "/register-pro"
+      ],
+      "component": "RegistrationForm",
+      "access": "Public",
+      "classification": "Culture Connect / communauté"
+    },
+    {
+      "row": 29,
+      "section": "03 · Badges & événement",
+      "screen": "Scanner CC2026",
+      "paths": [
+        "/scanner-cc2026"
+      ],
+      "component": "ScannerCC2026",
+      "access": "Staff",
+      "classification": "Culture Connect"
+    },
+    {
+      "row": 30,
+      "section": "03 · Badges & événement",
+      "screen": "Scan PWA terrain",
+      "paths": [
+        "/scan"
+      ],
+      "component": "ScanApp",
+      "access": "Staff/agent",
+      "classification": "Culture Connect / terrain"
+    },
+    {
+      "row": 31,
+      "section": "03 · Badges & événement",
+      "screen": "Profil participant",
+      "paths": [
+        "/participant/:participantId"
+      ],
+      "component": "ParticipantProfile",
+      "access": "Participant",
+      "classification": "Culture Connect / communauté"
+    },
+    {
+      "row": 32,
+      "section": "03 · Badges & événement",
+      "screen": "Accréditation admin",
+      "paths": [
+        "/admin/accreditation"
+      ],
+      "component": "AccreditationSystem",
+      "access": "Admin",
+      "classification": "Culture Connect interne"
+    },
+    {
+      "row": 33,
+      "section": "04 · Utilisateur & communauté",
+      "screen": "Jetons",
+      "paths": [
+        "/jetons",
+        "/jetons/confirmation"
+      ],
+      "component": "JetonsPage",
+      "access": "Utilisateur",
+      "classification": "À extraire du cœur public"
+    },
+    {
+      "row": 34,
+      "section": "04 · Utilisateur & communauté",
+      "screen": "Mon espace",
+      "paths": [
+        "/mon-espace"
+      ],
+      "component": "UserDashboard",
+      "access": "Utilisateur",
+      "classification": "Communauté / compte"
+    },
+    {
+      "row": 35,
+      "section": "04 · Utilisateur & communauté",
+      "screen": "Gouvernance — histoire",
+      "paths": [
+        "/gouvernance"
+      ],
+      "component": "GouvernanceStoryPage",
+      "access": "Public",
+      "classification": "Institution / gouvernance"
+    },
+    {
+      "row": 36,
+      "section": "04 · Utilisateur & communauté",
+      "screen": "Adhésion gouvernance",
+      "paths": [
+        "/gouvernance/adhesion"
+      ],
+      "component": "GouvernancePage",
+      "access": "Public",
+      "classification": "Institution / gouvernance"
+    },
+    {
+      "row": 37,
+      "section": "04 · Utilisateur & communauté",
+      "screen": "Candidature gouvernance",
+      "paths": [
+        "/gouvernance/candidater"
+      ],
+      "component": "GouvernanceCandidater",
+      "access": "Public",
+      "classification": "Institution / gouvernance"
+    },
+    {
+      "row": 38,
+      "section": "04 · Utilisateur & communauté",
+      "screen": "Confirmation gouvernance",
+      "paths": [
+        "/gouvernance/confirmation"
+      ],
+      "component": "GouvernanceConfirmation",
+      "access": "Membre",
+      "classification": "Institution / gouvernance"
+    },
+    {
+      "row": 39,
+      "section": "04 · Utilisateur & communauté",
+      "screen": "Profil gouvernance",
+      "paths": [
+        "/gouvernance/profil"
+      ],
+      "component": "GouvernanceProfil",
+      "access": "Membre",
+      "classification": "Institution / gouvernance"
+    },
+    {
+      "row": 40,
+      "section": "04 · Utilisateur & communauté",
+      "screen": "Paiement gouvernance",
+      "paths": [
+        "/gouvernance/paiement/:numMembre"
+      ],
+      "component": "GouvernancePaiement",
+      "access": "Membre",
+      "classification": "Institution / gouvernance"
+    },
+    {
+      "row": 41,
+      "section": "04 · Utilisateur & communauté",
+      "screen": "Répertoire membre",
+      "paths": [
+        "/gouvernance/repertoire/:numMembre"
+      ],
+      "component": "GouvernanceRepertoire",
+      "access": "Membre",
+      "classification": "Institution / gouvernance"
+    },
+    {
+      "row": 42,
+      "section": "05 · Espace Pro",
+      "screen": "Omega Pro",
+      "paths": [
+        "/pro"
+      ],
+      "component": "ProApp via ProSplashWrapper",
+      "access": "Authentifié",
+      "classification": "Produit / espace pro"
+    },
+    {
+      "row": 43,
+      "section": "05 · Espace Pro",
+      "screen": "Connexion Pro",
+      "paths": [
+        "/espace-pro/connexion"
+      ],
+      "component": "ProSpaceLogin",
+      "access": "Public",
+      "classification": "Espace Pro"
+    },
+    {
+      "row": 44,
+      "section": "05 · Espace Pro",
+      "screen": "Ancien Pro Core",
+      "paths": [
+        "/admin/core"
+      ],
+      "component": "ProSpaceDashboard",
+      "access": "Admin/Founder",
+      "classification": "Legacy interne"
+    },
+    {
+      "row": 45,
+      "section": "05 · Espace Pro",
+      "screen": "Messages Core",
+      "paths": [
+        "/admin/core/messages"
+      ],
+      "component": "MessagesPage",
+      "access": "Admin/Founder",
+      "classification": "Interne"
+    },
+    {
+      "row": 46,
+      "section": "05 · Espace Pro",
+      "screen": "Réseau Core",
+      "paths": [
+        "/admin/core/reseau"
+      ],
+      "component": "NetworkStandalonePage",
+      "access": "Admin/Founder",
+      "classification": "Interne"
+    },
+    {
+      "row": 47,
+      "section": "06 · Administration",
+      "screen": "Admin principal",
+      "paths": [
+        "/admin"
+      ],
+      "component": "AdminDashboard",
+      "access": "Admin",
+      "classification": "Interne"
+    },
+    {
+      "row": 48,
+      "section": "06 · Administration",
+      "screen": "Dashboard 3D",
+      "paths": [
+        "/admin/dashboard-3d"
+      ],
+      "component": "Dashboard3D",
+      "access": "Admin",
+      "classification": "Interne"
+    },
+    {
+      "row": 49,
+      "section": "06 · Administration",
+      "screen": "CMS",
+      "paths": [
+        "/admin/cms"
+      ],
+      "component": "CMSAdmin",
+      "access": "Admin",
+      "classification": "Interne"
+    },
+    {
+      "row": 50,
+      "section": "06 · Administration",
+      "screen": "Éditeur visuel CMS",
+      "paths": [
+        "/admin/cms/visual-editor"
+      ],
+      "component": "VisualEditor",
+      "access": "Admin",
+      "classification": "Interne"
+    },
+    {
+      "row": 51,
+      "section": "06 · Administration",
+      "screen": "Performance",
+      "paths": [
+        "/admin/performance"
+      ],
+      "component": "PerformanceDashboard",
+      "access": "Admin/Founder",
+      "classification": "Interne"
+    },
+    {
+      "row": 52,
+      "section": "06 · Administration",
+      "screen": "Finance",
+      "paths": [
+        "/admin/finance"
+      ],
+      "component": "AdminFinanceDashboard",
+      "access": "Admin/Founder/Finance",
+      "classification": "Interne"
+    },
+    {
+      "row": 53,
+      "section": "06 · Administration",
+      "screen": "Mobile / terrain",
+      "paths": [
+        "/admin/mobile",
+        "/admin/terrain"
+      ],
+      "component": "AdminMobileDashboard",
+      "access": "Admin/Founder",
+      "classification": "Interne"
+    },
+    {
+      "row": 54,
+      "section": "06 · Administration",
+      "screen": "Analytics jetons",
+      "paths": [
+        "/admin/analytics/jetons"
+      ],
+      "component": "JetonsAnalyticsDashboard",
+      "access": "Admin/Founder",
+      "classification": "Interne"
+    },
+    {
+      "row": 55,
+      "section": "06 · Administration",
+      "screen": "Analytics site",
+      "paths": [
+        "/admin/analytics/site"
+      ],
+      "component": "SiteAnalyticsDashboard",
+      "access": "Admin/Founder",
+      "classification": "Interne"
+    },
+    {
+      "row": 56,
+      "section": "07 · Intelligence",
+      "screen": "Smart Engine",
+      "paths": [
+        "/smart-engine"
+      ],
+      "component": "SmartEngineDashboard",
+      "access": "Interne/public selon session",
+      "classification": "À repositionner"
+    },
+    {
+      "row": 57,
+      "section": "07 · Intelligence",
+      "screen": "Smart Engine 3D",
+      "paths": [
+        "/smart-engine-3d"
+      ],
+      "component": "SmartEngine3D",
+      "access": "Interne",
+      "classification": "Interne"
+    },
+    {
+      "row": 58,
+      "section": "07 · Intelligence",
+      "screen": "Agents IA",
+      "paths": [
+        "/admin/ai-agents"
+      ],
+      "component": "AIAgentsDashboard",
+      "access": "Admin",
+      "classification": "Interne"
+    },
+    {
+      "row": 59,
+      "section": "08 · Workspaces équipe",
+      "screen": "Workspace Laurent",
+      "paths": [
+        "/workspace/laurent"
+      ],
+      "component": "WorkspaceLaurent",
+      "access": "Founder",
+      "classification": "Interne"
+    },
+    {
+      "row": 60,
+      "section": "08 · Workspaces équipe",
+      "screen": "Workspace Twina",
+      "paths": [
+        "/workspace/twina"
+      ],
+      "component": "WorkspaceTwina",
+      "access": "Design",
+      "classification": "Interne"
+    },
+    {
+      "row": 61,
+      "section": "08 · Workspaces équipe",
+      "screen": "Workspace Gwen",
+      "paths": [
+        "/workspace/gwen"
+      ],
+      "component": "WorkspaceGwen",
+      "access": "Event",
+      "classification": "Interne"
+    },
+    {
+      "row": 62,
+      "section": "08 · Workspaces équipe",
+      "screen": "Workspace Kaige",
+      "paths": [
+        "/workspace/kaige"
+      ],
+      "component": "WorkspaceKaige",
+      "access": "Press",
+      "classification": "Interne"
+    },
+    {
+      "row": 63,
+      "section": "08 · Workspaces équipe",
+      "screen": "Workspace Alirio",
+      "paths": [
+        "/workspace/alirio"
+      ],
+      "component": "WorkspaceAlirio",
+      "access": "Business",
+      "classification": "Interne"
+    },
+    {
+      "row": 64,
+      "section": "08 · Workspaces équipe",
+      "screen": "Workspace Wudy",
+      "paths": [
+        "/workspace/wudy"
+      ],
+      "component": "WorkspaceWudy",
+      "access": "Finance",
+      "classification": "Interne"
+    },
+    {
+      "row": 65,
+      "section": "08 · Workspaces équipe",
+      "screen": "Workspace Fabrice",
+      "paths": [
+        "/workspace/fabrice"
+      ],
+      "component": "WorkspaceFabrice",
+      "access": "Captions",
+      "classification": "Interne"
+    },
+    {
+      "row": 66,
+      "section": "08 · Workspaces équipe",
+      "screen": "Workspace Analyst",
+      "paths": [
+        "/workspace/analyst"
+      ],
+      "component": "WorkspaceAnalyst",
+      "access": "Analyst",
+      "classification": "Interne"
+    },
+    {
+      "row": 67,
+      "section": "08 · Workspaces équipe",
+      "screen": "Workspace Coleen",
+      "paths": [
+        "/workspace/coleen"
+      ],
+      "component": "ColeenWorkspace",
+      "access": "Partnerships",
+      "classification": "Interne"
+    },
+    {
+      "row": 68,
+      "section": "09 · Dashboard CC2026",
+      "screen": "Dashboard équipe général",
+      "paths": [
+        "/dashboard-cc2026"
+      ],
+      "component": "DashboardCC2026",
+      "access": "Admin/Design",
+      "classification": "Culture Connect interne"
+    },
+    {
+      "row": 69,
+      "section": "09 · Dashboard CC2026",
+      "screen": "Dashboard Laurent",
+      "paths": [
+        "/dashboard-cc2026/laurent"
+      ],
+      "component": "DashboardCC2026 (LC2026)",
+      "access": "Founder",
+      "classification": "Culture Connect interne"
+    },
+    {
+      "row": 70,
+      "section": "09 · Dashboard CC2026",
+      "screen": "Dashboard Twina",
+      "paths": [
+        "/dashboard-cc2026/twina"
+      ],
+      "component": "DashboardCC2026 (Twina2026)",
+      "access": "Design",
+      "classification": "Culture Connect interne"
+    },
+    {
+      "row": 71,
+      "section": "09 · Dashboard CC2026",
+      "screen": "Dashboard Gwen",
+      "paths": [
+        "/dashboard-cc2026/gwen"
+      ],
+      "component": "DashboardCC2026 (Gwen2026)",
+      "access": "Event",
+      "classification": "Culture Connect interne"
+    },
+    {
+      "row": 72,
+      "section": "09 · Dashboard CC2026",
+      "screen": "Dashboard Fabrice",
+      "paths": [
+        "/dashboard-cc2026/fabrice"
+      ],
+      "component": "DashboardCC2026 (Fabrice2026)",
+      "access": "Captions",
+      "classification": "Culture Connect interne"
+    },
+    {
+      "row": 73,
+      "section": "09 · Dashboard CC2026",
+      "screen": "Dashboard Kaige",
+      "paths": [
+        "/dashboard-cc2026/kaige"
+      ],
+      "component": "DashboardCC2026 (Kaige2026)",
+      "access": "Press",
+      "classification": "Culture Connect interne"
+    },
+    {
+      "row": 74,
+      "section": "09 · Dashboard CC2026",
+      "screen": "Dashboard Alirio",
+      "paths": [
+        "/dashboard-cc2026/alirio"
+      ],
+      "component": "DashboardCC2026 (Alirio2026)",
+      "access": "Business",
+      "classification": "Culture Connect interne"
+    },
+    {
+      "row": 75,
+      "section": "09 · Dashboard CC2026",
+      "screen": "Dashboard Wudy",
+      "paths": [
+        "/dashboard-cc2026/wudy"
+      ],
+      "component": "DashboardCC2026 (Wudy2026)",
+      "access": "Finance",
+      "classification": "Culture Connect interne"
+    },
+    {
+      "row": 76,
+      "section": "10 · Système / légal",
+      "screen": "Magic link",
+      "paths": [
+        "/auth/magic/:token"
+      ],
+      "component": "MagicLinkPage",
+      "access": "Public/token",
+      "classification": "Système"
+    },
+    {
+      "row": 77,
+      "section": "10 · Système / légal",
+      "screen": "Invitation",
+      "paths": [
+        "/invite/:token"
+      ],
+      "component": "InvitePage",
+      "access": "Public/token",
+      "classification": "Système"
+    },
+    {
+      "row": 78,
+      "section": "10 · Système / légal",
+      "screen": "Mentions légales",
+      "paths": [
+        "/mentions-legales"
+      ],
+      "component": "MentionsLegales",
+      "access": "Public",
+      "classification": "Kiltikonet.fr"
+    },
+    {
+      "row": 79,
+      "section": "10 · Système / légal",
+      "screen": "Confidentialité",
+      "paths": [
+        "/confidentialite"
+      ],
+      "component": "PolitiqueConfidentialite",
+      "access": "Public",
+      "classification": "Kiltikonet.fr"
+    },
+    {
+      "row": 80,
+      "section": "10 · Système / légal",
+      "screen": "CGU",
+      "paths": [
+        "/cgu"
+      ],
+      "component": "CGU",
+      "access": "Public",
+      "classification": "Kiltikonet.fr"
+    },
+    {
+      "row": 81,
+      "section": "10 · Système / légal",
+      "screen": "Cookies",
+      "paths": [
+        "/cookies"
+      ],
+      "component": "Cookies",
+      "access": "Public",
+      "classification": "Kiltikonet.fr"
+    },
+    {
+      "row": 82,
+      "section": "10 · Système / légal",
+      "screen": "FAQ",
+      "paths": [
+        "/faq",
+        "/aide"
+      ],
+      "component": "FAQPage",
+      "access": "Public",
+      "classification": "Support"
+    },
+    {
+      "row": 83,
+      "section": "10 · Système / légal",
+      "screen": "Support",
+      "paths": [
+        "/support"
+      ],
+      "component": "SupportPage",
+      "access": "Public",
+      "classification": "Support"
+    },
+    {
+      "row": 84,
+      "section": "10 · Système / légal",
+      "screen": "Page CMS dynamique",
+      "paths": [
+        "/p/:slug"
+      ],
+      "component": "DynamicPage",
+      "access": "Public",
+      "classification": "Kiltikonet.fr"
+    },
+    {
+      "row": 85,
+      "section": "10 · Système / légal",
+      "screen": "404",
+      "paths": [
+        "*"
+      ],
+      "component": "NotFound",
+      "access": "Public",
+      "classification": "Système"
+    }
+  ]
+}

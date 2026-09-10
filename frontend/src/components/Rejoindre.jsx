@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from './SEO';
-import { K, Rule, ArchiveBar, SectionIndex, MonumentalHeading, IndexRow, EditorialLink } from './kilti/atoms';
+import { K, Rule, ArchiveBar, SectionIndex, MonumentalHeading, EditorialLink } from './kilti/atoms';
 import InstitutionalFooter from './kilti/InstitutionalFooter';
 
 const PROFILES = [
@@ -9,7 +9,7 @@ const PROFILES = [
     id: '01',
     label: 'Acteur',
     name: 'Artiste · Créateur',
-    description: 'Musicien, plasticien, auteur, créateur culturel afro-caribéen. Obtenir son identifiant culturel FREK-ID et intégrer la cartographie du réseau.',
+    description: 'Musicien, plasticien, auteur ou créateur culturel afro-caribéen. Découvrir le parcours de badge et d’identité culturelle.',
     to: '/badge-inscription',
     testId: 'join-artist',
   },
@@ -17,7 +17,7 @@ const PROFILES = [
     id: '02',
     label: 'Professionnel',
     name: 'Producteur · Distributeur · Média',
-    description: 'Acteur professionnel des industries culturelles. Accéder au marché récurrent, aux rendez-vous B2B, et à la circulation des acteurs identifiés.',
+    description: 'Professionnel des industries culturelles. Découvrir les inscriptions et les rencontres proposées dans les programmes Culture Connect.',
     to: '/badge-inscription',
     testId: 'join-pro',
   },
@@ -25,7 +25,7 @@ const PROFILES = [
     id: '03',
     label: 'Institution',
     name: 'Collectivité · Ministère · École',
-    description: 'Institution publique ou éducative. Devenir partenaire structurel du réseau afro-caribéen, adosser des programmes à l\'infrastructure culturelle.',
+    description: 'Institution publique ou éducative. Prendre contact avec Kiltikonet pour un partenariat, un programme ou une coopération territoriale à instruire.',
     to: '/partenaires',
     testId: 'join-institution',
   },
@@ -33,7 +33,7 @@ const PROFILES = [
     id: '04',
     label: 'Partenaire',
     name: 'Sponsor · Entreprise · Fondation',
-    description: 'Soutenir la construction de l\'infrastructure culturelle afro-caribéenne. Association d\'image avec Culture Connect, adossement institutionnel long terme.',
+    description: 'Soutenir un programme, une édition Culture Connect ou une action structurante portée par Kiltikonet, selon le périmètre effectivement ouvert.',
     to: '/partenaires',
     testId: 'join-partner',
   },
@@ -50,8 +50,8 @@ export default function Rejoindre() {
       data-testid="rejoindre-page"
     >
       <SEO
-        title="Rejoindre — Quatre parcours d'entrée dans le réseau"
-        description="Artistes, professionnels, institutions et partenaires — rejoignez le réseau Kiltikonet et prenez part à l'infrastructure culturelle afro-caribéenne."
+        title="Rejoindre Kiltikonet — quatre parcours d'entrée"
+        description="Artistes, professionnels, institutions et partenaires : découvrez les parcours de participation à Kiltikonet."
         path="/rejoindre"
       />
 
@@ -64,15 +64,14 @@ export default function Rejoindre() {
 
       {/* 01 — IDENTITÉ */}
       <section className="px-6 md:px-12 lg:px-20 pt-16 md:pt-28 pb-24 md:pb-40" data-testid="rejoindre-hero">
-        <SectionIndex n="01" label="Entrer dans le réseau" />
-        <MonumentalHeading italic="reste ouvert.">Le réseau</MonumentalHeading>
+        <SectionIndex n="01" label="Participer à Kiltikonet" />
+        <MonumentalHeading italic="reste ouvert.">Kiltikonet</MonumentalHeading>
         <div className="mt-16 md:mt-24 grid md:grid-cols-12 gap-8 md:gap-12">
           <div className="md:col-span-6 md:col-start-2">
             <p style={{ color: K.bone, lineHeight: 1.75, fontSize: '15px' }} data-testid="rejoindre-lead">
-              Kiltikonet ne se traverse pas à sens unique. Chaque acteur — artiste,
-              structure, institution, partenaire — peut y entrer par la porte qui
-              correspond à son rôle. Choisir un parcours ci-dessous, c'est se doter d'un
-              identifiant culturel numérique et rejoindre la cartographie vivante du réseau.
+              Chaque acteur — artiste, structure, institution ou partenaire — peut découvrir
+              le parcours correspondant à son rôle : badge culturel, participation à Culture
+              Connect ou prise de contact pour une coopération.
             </p>
           </div>
         </div>
@@ -120,13 +119,13 @@ export default function Rejoindre() {
         <div style={{ borderTop: `1px solid ${K.ruleLight}` }} />
       </section>
 
-      {/* 03 — INSCRIPTION */}
+      {/* 03 — IDENTITÉ */}
       <section
         className="px-6 md:px-12 lg:px-20 py-24 md:py-40"
         style={{ background: K.ink, color: K.paper }}
         data-testid="rejoindre-support"
       >
-        <SectionIndex n="03" label="Après l'inscription" tone="light" />
+        <SectionIndex n="03" label="Identité et continuité" tone="light" />
         <div className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-7">
             <h2
@@ -139,17 +138,17 @@ export default function Rejoindre() {
                 color: K.paper,
               }}
             >
-              Un identifiant. <br />
+              Un identifiant culturel. <br />
               <span style={{ fontStyle: 'italic', color: '#B8B0A0' }}>
-                Un fragment permanent du réseau.
+                Une continuité entre les usages.
               </span>
             </h2>
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <p style={{ color: '#B8B0A0', lineHeight: 1.75, fontSize: '15px' }}>
-              Chaque personne inscrite reçoit son FREK-ID — un identifiant culturel
-              numérique souverain, portable, réutilisable au-delà de Culture Connect.
-              L'identifiant traverse les éditions et les années.
+              Le parcours de badge vous accompagne dans votre participation à Culture Connect.
+              Les informations d’identité culturelle et les usages associés sont précisés
+              dans votre parcours d’inscription.
             </p>
             <div className="mt-8">
               <EditorialLink to="/contact" tone="light" testId="cta-contact">

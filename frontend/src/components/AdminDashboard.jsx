@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { AdminLogin } from './AdminLogin';
-import { getSession } from './ProtectedRoute';
+import { getSession, saveSession } from './ProtectedRoute';
 import { usePermissions } from '../lib/usePermissions';
 import { Button } from './ui/button';
 import { Input } from './ui/input';

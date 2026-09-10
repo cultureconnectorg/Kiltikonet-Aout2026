@@ -132,7 +132,7 @@ const MessagesPage = () => {
       <header className="flex-shrink-0" style={{ background: 'rgba(10,10,11,0.97)', backdropFilter: 'blur(24px)', borderBottom: `1px solid ${C.border}` }}>
         <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button onClick={() => navigate('/espace-pro')} className="p-2 rounded-lg hover:bg-white/5"
+            <button onClick={() => navigate('/admin/core')} className="p-2 rounded-lg hover:bg-white/5"
               data-testid="messages-back-btn">
               <ArrowLeft size={18} style={{ color: C.muted }} />
             </button>

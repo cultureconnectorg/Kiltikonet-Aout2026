@@ -234,7 +234,7 @@ const NetworkPage = () => {
       <header className="sticky top-0 z-50" style={{ background: 'rgba(10,10,11,0.97)', backdropFilter: 'blur(24px)', borderBottom: `1px solid ${C.border}` }}>
         <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button onClick={() => navigate('/espace-pro')} className="p-2 rounded-lg hover:bg-white/5"
+            <button onClick={() => navigate('/admin/core')} className="p-2 rounded-lg hover:bg-white/5"
               data-testid="network-back-btn">
               <ArrowLeft size={18} style={{ color: C.muted }} />
             </button>
@@ -426,7 +426,7 @@ const NetworkPage = () => {
         <ProfileModal pro={selectedPro} onClose={() => setSelectedPro(null)}
           isConnected={connectedIds.has(selectedPro.id)}
           onConnect={() => { sendConnect(selectedPro.id); setSelectedPro(null); }}
-          onMessage={() => { navigate('/espace-pro/messages'); }} />
+          onMessage={() => { navigate('/admin/core/messages'); }} />
       )}
     </div>
   );

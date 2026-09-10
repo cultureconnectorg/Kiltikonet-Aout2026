@@ -6,6 +6,12 @@ Le classeur est consulté sans modification. Il n’est pas publié intégraleme
 
 ## Couverture
 
+La reprise du 10 septembre ajoute une [matrice écran par écran](ATLAS_SCREEN_MATRIX.md)
+et son [index extrait du classeur](ATLAS_SCREEN_INDEX.json). Le contrôle
+`python scripts/rebuild_atlas.py` confronte aussi les composants et les identifiants
+de workspace explicités dans le classeur au montage actuel. La route 404 `*` est
+contrôlée séparément des 91 chemins nommés.
+
 - Feuille **Atlas visuel** : 82 lignes d’écrans, lignes 4 à 85.
 - 91 chemins distincts hors catch-all `*` ; **91 présents sur 91** dans le routeur corrigé.
 - Six chemins supplémentaires présents dans le code : `/accessibilite`, `/reseau`, `/culture-connect/programme`, `/culture-connect/concert`, `/culture-connect/inscription`, `/culture-connect/catalogue`.

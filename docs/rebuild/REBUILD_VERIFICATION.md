@@ -26,7 +26,7 @@ distinguent compilation, tests unitaires, parcours navigateur et intégration.
 | Dépendances empêchant une compilation neuve | Build initial et worktree original : `three/webgpu` non exporté par Three 0.160.0. Pas de lockfile dans l'état audité. | Alignement de Three/Fiber/Drei avec React 19 ; les composants et le fallback 2D existants sont conservés. Les parcours GPU doivent être validés avec une session autorisée. |
 | Outillage de test/lint incompatible | Jest 27 ne résout pas `react-router/dom` ni l'alias `@/` ; conflit de chargement du plugin hooks pendant le build. | Mapping vers le vrai module CommonJS installé et alias source, ESLint 8 compatible CRA, configuration react-app unique. Aucun faux routeur ni désactivation globale du lint. |
 
-## Exécutions locales
+## Exécutions locales du premier correctif
 
 Environnement : Node 24.19.0, Python 3.12, environnement Python isolé.
 Les requêtes applicatives de validation utilisent uniquement localhost.
@@ -77,3 +77,46 @@ une garde React ne constitue pas une protection serveur.
 
 **La phase ne peut pas être déclarée entièrement terminée tant que ces gates
 d'intégration et les smoke tests nécessaires ne sont pas validés réellement.**
+
+## Reprise Atlas du 10 septembre 2026
+
+Point de départ distant vérifié : `2ae7bcc78f0940365fdbde01b871400e8e32cf4f`.
+Main reste `bb64ce72812f20f6237c02a7ca316fdbbcbb3bf6`. Le contenu local a été
+resynchronisé avec le commit distant exact, sans changement de fichiers.
+
+Le lot ajoute la matrice des 82 écrans, l'index des attentes du classeur et son
+contrôle reproductible. Il répare trois liens internes Core vers leurs routes
+déjà montées et corrige l'affirmation documentaire de compromission certaine.
+Les fichiers App.js, routeInventory.json et les routeurs backend n'ont pas été
+modifiés par ce lot. Le paramètre optionnel du script d'inventaire permet de
+contrôler aussi la 404, tout en conservant son décompte habituel sans catch-all.
+
+| Vérification exécutée sur ce lot | Résultat et portée |
+|---|---|
+| `python scripts/rebuild_inventory.py` | PASS : 97 chemins uniques, 606 déclarations backend ; aucune route historique retirée et inventaires générés inchangés. |
+| `python scripts/rebuild_atlas.py --write`, puis `python scripts/rebuild_atlas.py` | PASS : 82 lignes, 91 chemins nommés et la 404 recoupés avec App ; composants et identifiants de workspace explicités dans le classeur conservés. 6 chemins supplémentaires documentés. |
+| Tests de clics Core avant réparation | 3 échecs reproduits : les retours et l'accès Messages arrivaient sur la route absente. Aucun échec de chargement de fixture. |
+| `CI=true REACT_APP_BACKEND_URL=http://127.0.0.1:8001 npm test -- --watchAll=false --runInBand` | PASS : 15 tests, 2 suites. Les 3 nouveaux tests utilisent les composants Messages/Réseau et le routeur réels, avec données Axios et session d'affichage synthétiques. Ils ne valident pas l'authentification ni l'envoi de messages. |
+| `npm run lint -- --format json --output-file <rapport local>` | PASS : 247 fichiers, 0 erreur, 378 avertissements. |
+| `REACT_APP_BACKEND_URL=http://127.0.0.1:8001 npm run build` | PASS : code de sortie 0 ; avertissements de lint, source maps et taille du bundle toujours présents. |
+| `python -m pytest backend/tests/test_rebuild_authorization.py -q` dans un environnement Python isolé recréé | PASS : 25 tests. Les dépendances d'autorisation réelles sont exécutées, sans base de données. |
+| `python -m flake8 scripts/rebuild_inventory.py scripts/rebuild_atlas.py backend/routes/network.py backend/routes/observatory.py --select=E9,F63,F7,F82 --show-source` | PASS : contrôles Python critiques ciblés. Compilation des deux scripts également réussie. |
+| Smoke HTTP du build produit | PASS : 15/15 routes servent le shell React et les 2 fichiers d'entrée JS/CSS correspondent exactement aux fichiers construits. Pas de preuve de rendu navigateur ou de fonctionnement API. |
+| Sonde MongoDB réel : suite Network/Observatory avec `-k network_catalogue` | BLOQUÉ à nouveau : MongoDB 7.0.14 quitte avec `open: Operation not permitted`. 1 erreur de setup, 28 cas désélectionnés ; aucun résultat métier compté comme exécuté. |
+
+Le smoke HTTP couvre `/`, `/rejoindre`, `/reseau?source=atlas`,
+`/tarifs?ticket=success&session_id=atlas-test`, `/pricing`, `/programme`, `/concert`,
+`/catalogue`, `/culture-connect/inscription`, `/observatory`, `/pro`,
+`/smart-engine`, `/admin/core`, `/admin/core/reseau` et `/admin/core/messages`.
+Le serveur de test est un serveur statique local avec fallback SPA, pas le serveur
+de déploiement. Les réponses 200 ne prouvent donc pas l'autorisation des écrans.
+
+Le navigateur cloud n'a pas été réessayé dans cette reprise après le refus de
+localhost constaté dans le premier lot. Le backend complet n'a pas été réinstallé
+ni démarré : l'absence d'`emergentintegrations==0.1.0` dans l'index utilisé reste
+une limite documentée du premier lot. Les dépendances de test ciblées ont été
+réinstallées ; aucun substitut de ce SDK ni faux MongoDB n'a été introduit.
+
+Le lot de traçabilité et de navigation a ses contrôles ci-dessus. La reconstruction
+complète reste ouverte. Les décisions et parcours restants sont détaillés dans
+[ATLAS_NEXT_STEPS.md](ATLAS_NEXT_STEPS.md).

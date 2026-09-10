@@ -8,16 +8,17 @@ Ce document ne contient aucune valeur de secret.
 - `backend/.env` et `frontend/.env` ont été suivis dans le commit historique `7325fa7` du 25 février 2026, puis retirés dans `1cacd5a` le même jour.
 - Les variables historiques trouvées sont `MONGO_URL`, `DB_NAME`, `CORS_ORIGINS`, `REACT_APP_BACKEND_URL`, `WDS_SOCKET_PORT` et `ENABLE_HEALTH_CHECK`. Le `MONGO_URL` historique pointait vers localhost et n'intégrait pas d'identifiant. L'URL frontend historique était distante ; une URL publique n'est pas à elle seule un secret.
 - Aucun fichier `.env` n'est actuellement suivi. La règle `*.env` de `.gitignore` couvre les fichiers locaux envisagés.
-- La section `CREDENTIALS` de `KILTIKONET_DOCUMENTATION.md` contenait des valeurs d'accès en clair pour AWS, FREKcore, Baserow et un workspace, ainsi que des fragments Stripe. Elles ont été retirées de la version courante et remplacées par les noms de variables. Elles restent récupérables dans l'historique Git et doivent être considérées comme compromises.
+- La section `CREDENTIALS` de `KILTIKONET_DOCUMENTATION.md` contenait des valeurs d'accès en clair pour AWS, FREKcore, Baserow et un workspace, ainsi que des fragments Stripe. Elles ont été retirées de la version courante et remplacées par les noms de variables. Elles restent récupérables dans l'historique Git. Un accès par un tiers, une publication publique et la validité actuelle de ces valeurs n'ont pas été établis par cet audit.
+- Aucune clé fournisseur n'a été révoquée ou renouvelée par ce nettoyage. Aucune suppression de capacité n'est justifiée par la seule date d'une clé. L'affirmation antérieure de compromission certaine était excessive.
 
 ## Traitement de la liste datée du 4 mars
 
-La liste doit être comparée par **nom de variable**, sans coller ses valeurs dans une issue, un commit, un rapport, un message ou une sortie de commande.
+La liste a été mentionnée par l'utilisateur. Son contenu n'est pas une preuve disponible dans ce dossier. Elle doit être comparée par **nom de variable**, sans coller ses valeurs dans une issue, un commit, un rapport, un message ou une sortie de commande.
 
 | Classe | Action |
 |---|---|
-| Base de données, Stripe, Cloudinary, e-mail, IA, GitHub OAuth, Yousign, AWS, FREK, Laurentia | Vérifier dans la console du fournisseur si la clé existe encore ; renouveler les clés anciennes ou dont l'exposition est incertaine ; tester en environnement local/staging. |
-| `SESSION_SECRET`, `EMERGENCY_SECRET`, clés VAPID privées, tokens staff/admin | Générer ou renouveler ; ne pas réutiliser une valeur de mars comme référence durable. Une rotation peut invalider des sessions existantes. |
+| Base de données, Stripe, Cloudinary, e-mail, IA, GitHub OAuth, Yousign, AWS, FREK, Laurentia | Identifier le service consommateur et l'environnement, puis vérifier la configuration et la validité. La date de mars ne prouve ni invalidité ni compromission. Préserver les intégrations existantes. |
+| `SESSION_SECRET`, `EMERGENCY_SECRET`, clés VAPID privées, tokens staff/admin | Préserver la configuration privée nécessaire. Documenter les dépendances avant tout changement : une rotation peut invalider des sessions ou des accès existants. |
 | Variables `REACT_APP_*` | Considérer leur valeur comme publique : React les incorpore au bundle. Ne jamais y placer un secret. `REACT_APP_BASEROW_TOKEN` demande une décision de correction serveur avant utilisation. |
 | URL, port, identifiants de table, cloud name, e-mail d'expéditeur | Paramètres potentiellement publics ; vérifier leur exactitude sans les traiter automatiquement comme justificatifs d'accès. |
 
@@ -38,14 +39,12 @@ La liste doit être comparée par **nom de variable**, sans coller ses valeurs d
 4. Tester une intégration à la fois et consigner seulement PASS/FAIL, fournisseur, variable et date. Masquer les valeurs dans les logs.
 5. Renouveler immédiatement toute valeur confirmée comme publique, puis vérifier l'historique Git et les journaux du fournisseur.
 
-### Rotation prioritaire confirmée
+### Vérifications restant à effectuer
 
-1. AWS : désactiver l'Access Key exposée, créer une clé à privilèges minimaux et contrôler les journaux d'usage.
-2. Baserow : révoquer le token exposé et vérifier les droits de la table concernée.
-3. FREKcore : remplacer le secret client exposé et contrôler les appels récents.
-4. Workspace/Admin : supprimer tout bypass sans code et remplacer le mot de passe exposé ; invalider les sessions associées.
-5. Stripe : vérifier et renouveler les clés/webhooks si les fragments documentés correspondent à une configuration réelle.
+Pour AWS, Baserow, FREKcore et le workspace concerné : établir les droits d'accès à l'historique, la validité et la portée des identifiants, puis consulter les journaux disponibles. Pour Stripe, des fragments seuls ne permettent pas de conclure qu'une clé complète était accessible.
 
-La réécriture d'historique est une opération coordonnée : elle modifie les SHA et impose à tous les clones de se resynchroniser. Elle n'est pas effectuée par ce correctif. La rotation reste obligatoire même après une éventuelle purge Git.
+Si une divulgation publique ou un usage non autorisé est confirmé, remplacer les valeurs concernées et rétablir les intégrations avec les nouvelles valeurs. Consigner ce qui a été effectivement vérifié et changé. Aucune rotation n'est exécutée par ce document.
+
+La réécriture d'historique est une opération coordonnée : elle modifie les SHA et impose à tous les clones de se resynchroniser. Elle n'est pas effectuée par ce correctif et ne révoque pas les clés auprès des fournisseurs.
 
 La liste du 4 mars est une **source à réconcilier**, pas une preuve que les clés sont valides ou adaptées à la production.

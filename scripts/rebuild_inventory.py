@@ -17,7 +17,7 @@ BASE = "bb64ce72812f20f6237c02a7ca316fdbbcbb3bf6"
 AUDITED_HEAD = "932067029e75eb74b7136002576655237a2ff262"
 
 
-def frontend_routes(source):
+def frontend_routes(source, include_catch_all=False):
     rows = []
     for line_number, line in enumerate(source.splitlines(), 1):
         if "<Route " not in line:
@@ -26,7 +26,7 @@ def frontend_routes(source):
         if not found:
             raise ValueError(f"Unsupported route declaration at line {line_number}")
         path = found[1]
-        if path in ("/*", "*"):
+        if path == "/*" or (path == "*" and not include_catch_all):
             continue
         if not line.rstrip().endswith("} />"):
             raise ValueError(f"Multiline route needs parser review: {path}")

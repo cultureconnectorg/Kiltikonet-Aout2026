@@ -301,8 +301,9 @@ Tous les autres types (ART, INT, VIP, etc.) sont identiques.
 ## 8. CONFIGURATION DES ACCÈS
 
 Aucune valeur d’accès ne doit être stockée dans cette documentation ou dans Git.
-Les valeurs autrefois présentes ici doivent être considérées comme compromises et
-révoquées auprès de leurs fournisseurs.
+Des valeurs d'accès figuraient dans cette documentation et restent dans l'historique
+Git. Leur validité et un éventuel accès par un tiers n'ont pas été établis.
+Le nettoyage documentaire n'a révoqué aucune clé ni désactivé aucun service.
 
 | Service | Variables / configuration attendues |
 |---------|--------------------------------------|
